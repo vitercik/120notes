@@ -12,7 +12,7 @@ In probability, the primary goal is to determine how likely a specific **set** o
 This first section will admittedly be a bit dry, but bear with me! For the rest of the class, it's necessary that we're all completely comfortable with these definitions and notations.
 ```
 
-A *set* is a collection of objects or elements. For example, the set ${1, 3, 5, 7}$ contains four numbers, while the outcomes from flipping a coin twice form the set $\{HH, HT, TH, TT\}$ (where $H$ stands for Heads and $T$ stands for Tails). There’s also the empty set, denoted $∅$, which contains no elements.
+A *set* is a collection of objects or elements. For example, the set $\{1, 3, 5, 7\}$ contains four numbers, while the outcomes from flipping a coin twice form the set $\{HH, HT, TH, TT\}$ (where $H$ stands for Heads and $T$ stands for Tails). There’s also the empty set, denoted $∅$, which contains no elements.
 
 **Subsets.** If every element in the set $A$ is also in the set $B$, then $A$ is called a *subset* of $B$, represented as $A \subseteq B$. For example, $\{HH, HT\} \subseteq \{HH, HT, TH, TT\}$.
 
