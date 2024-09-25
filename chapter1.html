@@ -376,6 +376,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">1.1. Sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-spaces-and-events">1.2. Sample spaces and events</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-naive-definition-of-probability">1.3. A naive definition of probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#counting">1.4. Counting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication-rule">1.4.1. Multiplication rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-for-overcounting">1.4.2. Adjusting for overcounting</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -394,6 +399,12 @@ document.write(`
 <li><p><a class="reference internal" href="#sets" id="id2">Sets</a></p></li>
 <li><p><a class="reference internal" href="#sample-spaces-and-events" id="id3">Sample spaces and events</a></p></li>
 <li><p><a class="reference internal" href="#a-naive-definition-of-probability" id="id4">A naive definition of probability</a></p></li>
+<li><p><a class="reference internal" href="#counting" id="id5">Counting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#multiplication-rule" id="id6">Multiplication rule</a></p></li>
+<li><p><a class="reference internal" href="#adjusting-for-overcounting" id="id7">Adjusting for overcounting</a></p></li>
+</ul>
+</li>
 </ul>
 </nav>
 <section id="sets">
@@ -470,7 +481,7 @@ document.write(`
 <section id="a-naive-definition-of-probability">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.3. </span>A naive definition of probability</a><a class="headerlink" href="#a-naive-definition-of-probability" title="Link to this heading">#</a></h2>
 <p>As described at the beginning, the primary goal in probability is to determine how likely a specific set of outcomes is, given a particular experiment. Given an event <span class="math notranslate nohighlight">\(A\)</span> (such as Arsenal not winning a match or a stock price not rising), our goal will be to determine how likely that event is to occur. We will refer to this likelihood as the <em>probability of the event <span class="math notranslate nohighlight">\(A\)</span></em>.</p>
-<p>In this class, we will begin with a very basic, naive method for calculating the probability of the event <span class="math notranslate nohighlight">\(A\)</span>, which we will denote as <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>. This method is only to build intuition. In the next class, with this intuition, we will be ready to move on to the actual, non-naive definition of probability.</p>
+<p>In this section, we will begin with a very basic, naive method for calculating the probability of the event <span class="math notranslate nohighlight">\(A\)</span>, which we will denote as <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>. This method is only to build intuition. Later in this chapter, with this intuition, we will be ready to move on to the actual, non-naive definition of probability.</p>
 <p>The first method you might try to calculate the likelihood of an event <span class="math notranslate nohighlight">\(A\)</span> is to count the number of outcomes where that event happens—which we will call the number of “favorable” outcomes—and divide it by the total number of possible outcomes. Since <span class="math notranslate nohighlight">\(A\)</span> is a set of outcomes, we know that the number of favorable outcomes is <span class="math notranslate nohighlight">\(|A|\)</span> and the number of possible outcomes is the size of the sample space <span class="math notranslate nohighlight">\(|S|\)</span>. In other words,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -492,7 +503,147 @@ document.write(`
 \[\begin{equation*}
 \mathbb{P}_{\text{naive}}[A^c] = \frac{|A^c|}{|S|} = \frac{|S| - |A|}{|S|} = 1 - \mathbb{P}_{\text{naive}}[A].
 \end{equation*}\]</div>
-<p>This naive approach to probability assumes that all outcomes are equally likely and that the number of possible outcomes is finite. However, in many cases, such as predicting the outcome of a soccer match, not all outcomes are equally likely (e.g., Arsenal winning versus Liverpool winning). Therefore, we will require a more sophisticated approach to calculating probabilities, which we will introduce in the next section.</p>
+<p>This naive approach to probability assumes that all outcomes are equally likely and that the number of possible outcomes is finite. However, in many cases, such as predicting the outcome of a soccer match, not all outcomes are equally likely (e.g., Arsenal winning versus Liverpool winning). Therefore, we will require a more sophisticated approach to calculating probabilities, which we will introduce later in this chapter.</p>
+</section>
+<section id="counting">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.4. </span>Counting</a><a class="headerlink" href="#counting" title="Link to this heading">#</a></h2>
+<p>To use the naive definition of probability introduced above, we need to be able to count the number of favorable outcomes of an experiment <span class="math notranslate nohighlight">\(|A|\)</span>, as well as the total number of possible outcomes <span class="math notranslate nohighlight">\(|S|\)</span>. This is straightforward in the examples we’ve seen so far, but it becomes challenging for complex experiments. In this section, we will develop tools for calculating the sizes of sets.</p>
+<section id="multiplication-rule">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.4.1. </span>Multiplication rule</a><a class="headerlink" href="#multiplication-rule" title="Link to this heading">#</a></h3>
+<p>We will begin with the simple <em>multiplication rule</em>. Suppose we run an experiment with two parts, <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span>. Suppose <span class="math notranslate nohighlight">\(C\)</span> has <span class="math notranslate nohighlight">\(c\)</span> possible outcomes, and for each possible outcome of <span class="math notranslate nohighlight">\(C\)</span>, there are <span class="math notranslate nohighlight">\(d\)</span> possible outcomes of <span class="math notranslate nohighlight">\(D\)</span>. The multiplication rule tells us that this experiment has a total of <span class="math notranslate nohighlight">\(c \cdot d\)</span> outcomes.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Running a race</p>
+<p>Suppose Alice, Bob, Claire, and David are running a race. Our “experiment” is determining who will win first and second place. Thus, the outcome of this experiment has two parts: the first-place winner and the second-place winner. There are four possibilities for the first-place winner, and once that outcome is determined, there are three possibilities for the second-place winner (for example, if Alice wins first place, then Bob, Claire, or David could win second place). Therefore, this experiment’s total number of outcomes (again, determining who wins first and second place) is <span class="math notranslate nohighlight">\(4 \cdot 3 = 12\)</span>.</p>
+<p>These outcomes can be visualized with the tree diagram in <a class="reference internal" href="#race"><span class="std std-numref">Figure 1.5</span></a>, where the first level indicates possible first-place winners, and the second level indicates possible second-place winners. The tree has a total of 12 leaves, corresponding to the 12 possible outcomes of the experiment.</p>
+</div>
+<figure class="align-center" id="race">
+<a class="reference internal image-reference" href="_images/race.png"><img alt="_images/race.png" src="_images/race.png" style="width: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.5 </span><span class="caption-text">Possible first- and second-place finishers.</span><a class="headerlink" href="#race" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We can extend the logic in this example to the following general rule.</p>
+<div class="admonition-general-rule admonition">
+<p class="admonition-title">General rule</p>
+<p>If we have <span class="math notranslate nohighlight">\(n\)</span> objects, there are <span class="math notranslate nohighlight">\(n! = n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot 1\)</span> ways to order those objects.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Assigning majors to students.</p>
+<p>Suppose we have five majors—-BioE, CS, CE, EE, and MS&amp;E—-and three students—-Alice, Bob, and Claire. How many ways are there to assign majors to these students? The answer is <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 5\)</span> because there are five ways to assign a major to Alice, five ways to assign a major to Bob, and so on. Unlike the previous example, the major we assign to Alice doesn’t limit the majors we can assign to Bob or Claire (so the answer is <em>not</em> <span class="math notranslate nohighlight">\(5 \cdot 4 \cdot 3\)</span>).</p>
+<p>However, suppose we wanted to assign a <em>unique</em> major to each student. There would be <span class="math notranslate nohighlight">\(5 \cdot 4 \cdot 3\)</span> possible ways to do so, since there are would be five ways to assign a major to Alice, and once her major has been determined, four ways to assign a different major to Bob, and then finally three ways to assign a major to Claire that is different from Alice and Bob’s.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: The birthday paradox.</p>
+<p>This a famous example of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least one pair of people in the room shares the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
+<p>In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.</p>
+<p><strong>Step 1: Define the events.</strong> To solve this problem, we begin by defining the relevant events:</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(A\)</span> represent the event that at least one pair has the same birthday.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(A^c\)</span> represent the complement, which is the event that all <span class="math notranslate nohighlight">\(k\)</span> people have different birthdays.</p></li>
+</ul>
+<p><strong>Step 2: Define the goal.</strong> Our goal is to calculate the probability <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>, which, as we saw earlier in this chapter, is equal to <span class="math notranslate nohighlight">\(1 - \mathbb{P}_{\text{naive}}[A^c]\)</span>. By definition,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{P}_{\text{naive}}[A^c] &amp;= \frac{\text{# of favorable outcomes}}{\text{# of possible outcomes}}\\
+&amp;= \frac{\text{# of ways to assign birthdays so all $k$ people have different birthdays}}{\text{Total # of ways to assign birthdays to $k$ people}}.
+\end{align*}\]</div>
+<p><strong>Step 3: Calculate the relevant quantities.</strong> Now, we calculate the number of possible outcomes and favorable outcomes:</p>
+<ul class="simple">
+<li><p><strong>Number of possible outcomes</strong>: Since each person can have any of the 365 days as their birthday, the total number of ways to assign birthdays to <span class="math notranslate nohighlight">\(k\)</span> people is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}\underbrace{365 \cdot 365 \cdots 365}_{k \text{ times}} = 365^k.\end{equation*}\]</div>
+<ul class="simple">
+<li><p><strong>Number of favorable outcomes</strong>: To count the favorable outcomes, i.e., the ways in which all <span class="math notranslate nohighlight">\(k\)</span> people have different birthdays, we start by choosing a birthday for the first person (for which we have 365 options), then for the second person (for which we have 364 options, since they can’t have the same birthday as the first), and so on. This results in:
+\begin{equation*}
+365 \cdot 364 \cdot 363 \cdot \cdots \cdot (365 - k + 1).
+\end{equation*}</p></li>
+</ul>
+<p><strong>Step 4: Compute the final probability.</strong> With these expressions for possible and favorable outcomes, we can now compute <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A^c]\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}_{\text{naive}}[A] = 1 - \mathbb{P}_{\text{naive}}[A^c] = 1 - \frac{365 \cdot 364 \cdot 363 \cdots (365 - k + 1)}{365^k}
+\end{equation*}\]</div>
+<p>This gives the exact probability that at least one pair shares the same birthday.</p>
+<p>For <span class="math notranslate nohighlight">\(k \geq 23\)</span>, the probability there is at least one birthday match is at least <span class="math notranslate nohighlight">\(0.5\)</span>, meaning there is a 50% or higher chance of a shared birthday. Twenty-three is a surprisingly small bound for <span class="math notranslate nohighlight">\(k\)</span>, which is why this example is called a paradox. Intuitively, when <span class="math notranslate nohighlight">\(k = 23\)</span>, there are 253 pairs of individuals, each of which could potentially share a birthday. This large number of pairs makes the likelihood of a birthday match surprisingly high.</p>
+</div>
+</section>
+<section id="adjusting-for-overcounting">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.4.2. </span>Adjusting for overcounting</a><a class="headerlink" href="#adjusting-for-overcounting" title="Link to this heading">#</a></h3>
+<p>Overcounting is a common trap with these types of problems, as the following example illstrates.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Selecting a team.</p>
+<p>Suppose we have four people: Alice, Bob, Claire, and David. How many ways are there to choose a two-person team from this set of four? The first thing we might try to answer this question would be to draw the tree diagram in <a class="reference internal" href="#team"><span class="std std-numref">Figure 1.6</span></a>, as we did earlier in this section. However, the answer is <em>not</em> <span class="math notranslate nohighlight">\(4 \cdot 3\)</span>, as this would overcount. For example, our tree diagram includes the teams (Alice, Bob) and (Bob, Alice), but these are the same teams! In fact, there are only six ways to choose a two-person team: (A, B), (A, C), (A, D), (B, C), (B, D), and (C, D).</p>
+</div>
+<figure class="align-center" id="team">
+<a class="reference internal image-reference" href="_images/team.png"><img alt="_images/team.png" src="_images/team.png" style="width: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Incorrect tree diagram for choosing a two-person team.</span><a class="headerlink" href="#team" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This example motivates the following definition.</p>
+<div class="admonition-binomial-coefficient admonition">
+<p class="admonition-title">Binomial coefficient.</p>
+<p>The number of subsets of size <span class="math notranslate nohighlight">\(k\)</span> from a set of size <span class="math notranslate nohighlight">\(n \geq k\)</span> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} {n \choose k} = \frac{ n(n-1)\cdots (n-k+1)}{k!}. \end{equation*}\]</div>
+<p><em>Intuition:</em> If we didn’t account for overcounting (as initially in the prior example), the answer would be <span class="math notranslate nohighlight">\(n(n-1)\cdots (n-k+1)\)</span>. The <span class="math notranslate nohighlight">\(k!\)</span> in the denominator fixes the overcounting.</p>
+<p>We can write the binomial coefficient more succinctly as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}{n \choose k} = \frac{n!}{(n-k)! k!}.\end{equation*}\]</div>
+</div>
+<p>For example, <span class="math notranslate nohighlight">\({4 \choose 2} = \frac{4 \cdot 3 \cdot 2 \cdot 1}{(2 \cdot 1) \cdot (2 \cdot 1)} = 6\)</span>, which was the answer to the preceding examples.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Investing in ventures.</p>
+<p>You are planning to invest in five of seven ventures, which we’ll call A, B, C, D, E, F, G.</p>
+<p><strong>Question:</strong> How many ways are there to choose these five ventures?</p>
+<p><strong>Answer:</strong> <span class="math notranslate nohighlight">\({7 \choose 5} = 21\)</span>.</p>
+<p>Unbeknownst to you, the ventures {A, B, C, D} will succeed but the ventures {E, F, G} will fail.</p>
+<p><strong>Question:</strong> How may ways are there to choose three ventures that will succeed and two ventures that will fail?</p>
+<p><strong>Answer:</strong> There are <span class="math notranslate nohighlight">\({4 \choose 3}\)</span> was to choose three successful ventures and <span class="math notranslate nohighlight">\({3 \choose 2}\)</span> ways to choose two ventures that will fail, so the final answer is <span class="math notranslate nohighlight">\({4 \choose 3}\cdot {3 \choose 2} = 12\)</span>.</p>
+<p><strong>Question:</strong> Suppose you choose the five ventures you’ll invest in randomly, with all possible choices equally likely. What is the probability that you choose three that succeed and two that fail.</p>
+<p><strong>Answer:</strong> We’ll again work through the answer step by step.</p>
+<p><em>Step 1: Define the events:</em> Let <span class="math notranslate nohighlight">\(A\)</span> be the event that you choose three ventures that succeed and two that fail.</p>
+<p><em>Step 2: Define the goal:</em> We will use the naive definition of probability to compute</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}\mathbb{P}_{\text{naive}}[A] &amp;= \frac{\text{# favorable outcomes}}{\text{# possible outcomes}}\\
+&amp;=  \frac{\text{# ways to choose 3 ventures that succeed and 2 that fail}}{\text{# ways to choose 5 ventures}}.\end{align*}\]</div>
+<p><em>Step 3: Compute the final answer:</em> From the previous parts of this example, we know that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}\mathbb{P}_{\text{naive}}[A] =  \frac{{4 \choose 3} \cdot {3 \choose 2}}{{7 \choose 5}} \approx 0.57.\end{equation*}\]</div>
+</div>
+<p>In the final example of this section, we’ll introduce a concept called “stars and bars” that you’ll see many times throughout this course. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> <em>indistinguishable</em> coins that we will place into <span class="math notranslate nohighlight">\(n\)</span> <em>distinguishable</em> boxes.</p>
+<figure class="align-center" id="boxes">
+<a class="reference internal image-reference" href="_images/boxes.png"><img alt="_images/boxes.png" src="_images/boxes.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.7 </span><span class="caption-text">Seven indistinguishable coins distributed among three distinguishable boxes.</span><a class="headerlink" href="#boxes" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For example, in <a class="reference internal" href="#boxes"><span class="std std-numref">Figure 1.7</span></a>, we have <span class="math notranslate nohighlight">\(k = 7\)</span> coins, which I’ve drawn as stars, and we’ve placed them into <span class="math notranslate nohighlight">\(n = 3\)</span> boxes which we’ve labeled by our friends’ names, Alice, Bob, and Claire. The boxes are distinguishable because they’re labeled by our friends’ names, but the coins/stars are indistinguishable (e.g., they are all shiny pennies).</p>
+<p><strong>Question:</strong> How many ways are there to distribute the <span class="math notranslate nohighlight">\(k\)</span> indistinguishable coins among the <span class="math notranslate nohighlight">\(n\)</span> distinguishable boxes?</p>
+<p><strong>Answer</strong>: The answer is <span class="math notranslate nohighlight">\({k+n-1 \choose k}\)</span>. To explain, we will adjust <a class="reference internal" href="#boxes"><span class="std std-numref">Figure 1.7</span></a> slightly, so that instead of drawing each box in <a class="reference internal" href="#stars1"><span class="std std-numref">Figure 1.8</span></a>, we will only draw the boundary between boxes, represented by a vertical bar |. Since there are <span class="math notranslate nohighlight">\(n\)</span> boxes, there are <span class="math notranslate nohighlight">\(n-1\)</span> bars representing the boundaries between boxes.</p>
+<figure class="align-center" id="stars1">
+<a class="reference internal image-reference" href="_images/stars1.png"><img alt="_images/stars1.png" src="_images/stars1.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.8 </span><span class="caption-text">The two vertical bars | represent the boundaries between the three boxes.</span><a class="headerlink" href="#stars1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Meanwhile, the following figure represents the distribution where we give two coins/stars to Alice, none to Bob, and five to Claire.</p>
+<figure class="align-center" id="stars2">
+<a class="reference internal image-reference" href="_images/stars2.png"><img alt="_images/stars2.png" src="_images/stars2.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.9 </span><span class="caption-text">Another distribution of the coins/stars among the three boxes.</span><a class="headerlink" href="#stars2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the following figure, I replaced the stars and bars with <span class="math notranslate nohighlight">\(k+n-1\)</span> fill-in-the-blank slots.</p>
+<figure class="align-center" id="fill-in-the-blank">
+<a class="reference internal image-reference" href="_images/fill_in_the_blank.png"><img alt="_images/fill_in_the_blank.png" src="_images/fill_in_the_blank.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.10 </span><span class="caption-text"><span class="math notranslate nohighlight">\(k+n-1\)</span> fill-in-the-blank slots.</span><a class="headerlink" href="#fill-in-the-blank" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In both <a class="reference internal" href="#stars1"><span class="std std-numref">Figure 1.8</span></a> and <a class="reference internal" href="#stars2"><span class="std std-numref">Figure 1.9</span></a>, we’ve filled in these fill-in-the-blank slots with exactly <span class="math notranslate nohighlight">\(k\)</span> stars and <span class="math notranslate nohighlight">\(n-1\)</span> bars. In fact, every possible distribution of the <span class="math notranslate nohighlight">\(k\)</span> coins/stars into the <span class="math notranslate nohighlight">\(n\)</span> boxes can be represented by filling exactly <span class="math notranslate nohighlight">\(k\)</span> of these fill-in-the-blank slots with <span class="math notranslate nohighlight">\(k\)</span> stars, and filling the rest with bars. We know that the number of ways to choose these <span class="math notranslate nohighlight">\(k\)</span> fill-in-the-blank slots is <span class="math notranslate nohighlight">\({k+n-1 \choose k}\)</span>, which is how we got the final answer.</p>
+</section>
 </section>
 </section>
 
@@ -563,6 +714,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">1.1. Sets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-spaces-and-events">1.2. Sample spaces and events</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-naive-definition-of-probability">1.3. A naive definition of probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#counting">1.4. Counting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication-rule">1.4.1. Multiplication rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-for-overcounting">1.4.2. Adjusting for overcounting</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
