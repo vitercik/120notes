@@ -530,11 +530,11 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">Example: Assigning majors to students.</p>
 <p>Suppose we have five majors—-BioE, CS, CE, EE, and MS&amp;E—-and three students—-Alice, Bob, and Claire. How many ways are there to assign majors to these students? The answer is <span class="math notranslate nohighlight">\(5 \cdot 5 \cdot 5\)</span> because there are five ways to assign a major to Alice, five ways to assign a major to Bob, and so on. Unlike the previous example, the major we assign to Alice doesn’t limit the majors we can assign to Bob or Claire (so the answer is <em>not</em> <span class="math notranslate nohighlight">\(5 \cdot 4 \cdot 3\)</span>).</p>
-<p>However, suppose we wanted to assign a <em>unique</em> major to each student. There would be <span class="math notranslate nohighlight">\(5 \cdot 4 \cdot 3\)</span> possible ways to do so, since there are would be five ways to assign a major to Alice, and once her major has been determined, four ways to assign a different major to Bob, and then finally three ways to assign a major to Claire that is different from Alice and Bob’s.</p>
+<p>However, suppose we wanted to assign a <em>unique</em> major to each student. There would be <span class="math notranslate nohighlight">\(5 \cdot 4 \cdot 3\)</span> possible ways to do so, since there would be five ways to assign a major to Alice, and once her major has been determined, four ways to assign a different major to Bob, and then finally three ways to assign a major to Claire that is different from Alice and Bob’s.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Example: The birthday paradox.</p>
-<p>This a famous example of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least one pair of people in the room shares the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
+<p>This a famous example of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
 <p>In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.</p>
 <p><strong>Step 1: Define the events.</strong> To solve this problem, we begin by defining the relevant events:</p>
 <ul class="simple">
@@ -554,11 +554,12 @@ document.write(`
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}\underbrace{365 \cdot 365 \cdots 365}_{k \text{ times}} = 365^k.\end{equation*}\]</div>
 <ul class="simple">
-<li><p><strong>Number of favorable outcomes</strong>: To count the favorable outcomes, i.e., the ways in which all <span class="math notranslate nohighlight">\(k\)</span> people have different birthdays, we start by choosing a birthday for the first person (for which we have 365 options), then for the second person (for which we have 364 options, since they can’t have the same birthday as the first), and so on. This results in:
-\begin{equation*}
-365 \cdot 364 \cdot 363 \cdot \cdots \cdot (365 - k + 1).
-\end{equation*}</p></li>
+<li><p><strong>Number of favorable outcomes</strong>: To count the favorable outcomes, i.e., the ways in which all <span class="math notranslate nohighlight">\(k\)</span> people have different birthdays, we start by choosing a birthday for the first person (for which we have 365 options), then for the second person (for which we have 364 options, since they can’t have the same birthday as the first), and so on. This results in:</p></li>
 </ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+365 \cdot 364 \cdot 363 \cdot \cdots \cdot (365 - k + 1).
+\end{equation*}\]</div>
 <p><strong>Step 4: Compute the final probability.</strong> With these expressions for possible and favorable outcomes, we can now compute <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A^c]\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -592,7 +593,7 @@ document.write(`
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}{n \choose k} = \frac{n!}{(n-k)! k!}.\end{equation*}\]</div>
 </div>
-<p>For example, <span class="math notranslate nohighlight">\({4 \choose 2} = \frac{4 \cdot 3 \cdot 2 \cdot 1}{(2 \cdot 1) \cdot (2 \cdot 1)} = 6\)</span>, which was the answer to the preceding examples.</p>
+<p>For example, <span class="math notranslate nohighlight">\({4 \choose 2} = \frac{4 \cdot 3 \cdot 2 \cdot 1}{(2 \cdot 1) \cdot (2 \cdot 1)} = 6\)</span>, which was the answer to the preceding example.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Investing in ventures.</p>
 <p>You are planning to invest in five of seven ventures, which we’ll call A, B, C, D, E, F, G.</p>
