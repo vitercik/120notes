@@ -164,14 +164,14 @@ If we have $n$ objects, there are $n! = n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot
 
 Suppose we have five majors—-BioE, CS, CE, EE, and MS&E—-and three students—-Alice, Bob, and Claire. How many ways are there to assign majors to these students? The answer is $5 \cdot 5 \cdot 5$ because there are five ways to assign a major to Alice, five ways to assign a major to Bob, and so on. Unlike the previous example, the major we assign to Alice doesn’t limit the majors we can assign to Bob or Claire (so the answer is *not* $5 \cdot 4 \cdot 3$).
 
-However, suppose we wanted to assign a *unique* major to each student. There would be $5 \cdot 4 \cdot 3$ possible ways to do so, since there are would be five ways to assign a major to Alice, and once her major has been determined, four ways to assign a different major to Bob, and then finally three ways to assign a major to Claire that is different from Alice and Bob’s.
+However, suppose we wanted to assign a *unique* major to each student. There would be $5 \cdot 4 \cdot 3$ possible ways to do so, since there would be five ways to assign a major to Alice, and once her major has been determined, four ways to assign a different major to Bob, and then finally three ways to assign a major to Claire that is different from Alice and Bob’s.
 
 ```
 
 ```{admonition} Example: The birthday paradox.
 :class: tip
 
-This a famous example of the multiplication rule. Suppose we have $k$ people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least one pair of people in the room shares the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!
+This a famous example of the multiplication rule. Suppose we have $k$ people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!
 
 In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.
 
@@ -193,6 +193,7 @@ In this class, I aim to give you a step-by-step guide to solving these types of 
 \begin{equation*}\underbrace{365 \cdot 365 \cdots 365}_{k \text{ times}} = 365^k.\end{equation*}
 
 - **Number of favorable outcomes**: To count the favorable outcomes, i.e., the ways in which all $k$ people have different birthdays, we start by choosing a birthday for the first person (for which we have 365 options), then for the second person (for which we have 364 options, since they can't have the same birthday as the first), and so on. This results in:
+
 \begin{equation*}
 365 \cdot 364 \cdot 363 \cdot \cdots \cdot (365 - k + 1).
 \end{equation*}
@@ -241,7 +242,7 @@ We can write the binomial coefficient more succinctly as follows:
 
 ```
 
-For example, ${4 \choose 2} = \frac{4 \cdot 3 \cdot 2 \cdot 1}{(2 \cdot 1) \cdot (2 \cdot 1)} = 6$, which was the answer to the preceding examples.
+For example, ${4 \choose 2} = \frac{4 \cdot 3 \cdot 2 \cdot 1}{(2 \cdot 1) \cdot (2 \cdot 1)} = 6$, which was the answer to the preceding example.
 
 ```{admonition} Example: Investing in ventures.
 :class: tip
