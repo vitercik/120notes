@@ -534,7 +534,7 @@ document.write(`
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Example: The birthday paradox.</p>
-<p>This a famous example of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
+<p>This is a famous example of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
 <p>In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.</p>
 <p><strong>Step 1: Define the events.</strong> To solve this problem, we begin by defining the relevant events:</p>
 <ul class="simple">
@@ -571,7 +571,7 @@ document.write(`
 </section>
 <section id="adjusting-for-overcounting">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.4.2. </span>Adjusting for overcounting</a><a class="headerlink" href="#adjusting-for-overcounting" title="Link to this heading">#</a></h3>
-<p>Overcounting is a common trap with these types of problems, as the following example illstrates.</p>
+<p>Overcounting is a common trap with these types of problems, as the following example illustrates.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Selecting a team.</p>
 <p>Suppose we have four people: Alice, Bob, Claire, and David. How many ways are there to choose a two-person team from this set of four? The first thing we might try to answer this question would be to draw the tree diagram in <a class="reference internal" href="#team"><span class="std std-numref">Figure 1.6</span></a>, as we did earlier in this section. However, the answer is <em>not</em> <span class="math notranslate nohighlight">\(4 \cdot 3\)</span>, as this would overcount. For example, our tree diagram includes the teams (Alice, Bob) and (Bob, Alice), but these are the same teams! In fact, there are only six ways to choose a two-person team: (A, B), (A, C), (A, D), (B, C), (B, D), and (C, D).</p>
@@ -600,7 +600,7 @@ document.write(`
 <p><strong>Question:</strong> How many ways are there to choose these five ventures?</p>
 <p><strong>Answer:</strong> <span class="math notranslate nohighlight">\({7 \choose 5} = 21\)</span>.</p>
 <p>Unbeknownst to you, the ventures {A, B, C, D} will succeed but the ventures {E, F, G} will fail.</p>
-<p><strong>Question:</strong> How may ways are there to choose three ventures that will succeed and two ventures that will fail?</p>
+<p><strong>Question:</strong> How many ways are there to choose three ventures that will succeed and two ventures that will fail?</p>
 <p><strong>Answer:</strong> There are <span class="math notranslate nohighlight">\({4 \choose 3}\)</span> was to choose three successful ventures and <span class="math notranslate nohighlight">\({3 \choose 2}\)</span> ways to choose two ventures that will fail, so the final answer is <span class="math notranslate nohighlight">\({4 \choose 3}\cdot {3 \choose 2} = 12\)</span>.</p>
 <p><strong>Question:</strong> Suppose you choose the five ventures you’ll invest in randomly, with all possible choices equally likely. What is the probability that you choose three that succeed and two that fail.</p>
 <p><strong>Answer:</strong> We’ll again work through the answer step by step.</p>

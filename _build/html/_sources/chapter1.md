@@ -171,7 +171,7 @@ However, suppose we wanted to assign a *unique* major to each student. There wou
 ```{admonition} Example: The birthday paradox.
 :class: tip
 
-This a famous example of the multiplication rule. Suppose we have $k$ people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!
+This is a famous example of the multiplication rule. Suppose we have $k$ people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!
 
 In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.
 
@@ -209,7 +209,7 @@ For $k \geq 23$, the probability there is at least one birthday match is at leas
 
 ### Adjusting for overcounting
 
-Overcounting is a common trap with these types of problems, as the following example illstrates.
+Overcounting is a common trap with these types of problems, as the following example illustrates.
 
 ```{admonition} Example: Selecting a team.
 :class: tip
@@ -255,7 +255,7 @@ You are planning to invest in five of seven ventures, which we’ll call A, B, C
 
 Unbeknownst to you, the ventures {A, B, C, D} will succeed but the ventures {E, F, G} will fail.
 
-**Question:** How may ways are there to choose three ventures that will succeed and two ventures that will fail?
+**Question:** How many ways are there to choose three ventures that will succeed and two ventures that will fail?
 
 **Answer:** There are ${4 \choose 3}$ was to choose three successful ventures and ${3 \choose 2}$ ways to choose two ventures that will fail, so the final answer is ${4 \choose 3}\cdot {3 \choose 2} = 12$.
 
