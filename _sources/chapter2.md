@@ -49,7 +49,7 @@ This example is from {cite}`Severini20:Analytic`.
 We can generalize the coin-flipping example to more practical “experiments”, such as football games where the Bears play the Packers at home. For intuition, as in the coin-flipping example, we can interpret the probability of an event as the long-run relative frequency of the event happening over a long sequence of games. Let $ A $ be the event that the Bears win. If, over this long sequence of games, $A$ occurs about 25% of the time, we can interpret this as meaning that $ \mathbb{P}[A] = 0.25 $. Let $B$ be the event that the Bears' quarterback throws four interceptions during the at-home game. Suppose that, in our long sequence of games *in which the Bears’ quarterback throws an interception* (i.e., $B$ occurs), the Bears win about 5% of the time. This would mean that the conditional probability of the Bears winning, given that their quarterback throws four interceptions, drops to $ \mathbb{P}[A \mid B] = 0.05 $: the interceptions negatively affect their chances of winning.
 ```
 
-```{admonition} Tossing coins.
+```{admonition} Example: Tossing coins.
 :class: tip
 
 Suppose we toss a coin twice. We will explore conditional probability through two scenarios:
