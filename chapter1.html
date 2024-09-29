@@ -381,6 +381,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-for-overcounting">1.4.2. Adjusting for overcounting</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-naive-definition-of-probability">1.5. Non-naive definition of probability</a></li>
 </ul>
             </nav>
         </div>
@@ -396,19 +397,20 @@ document.write(`
 <h1><span class="section-number">1. </span>Probability and counting<a class="headerlink" href="#probability-and-counting" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#sets" id="id2">Sets</a></p></li>
-<li><p><a class="reference internal" href="#sample-spaces-and-events" id="id3">Sample spaces and events</a></p></li>
-<li><p><a class="reference internal" href="#a-naive-definition-of-probability" id="id4">A naive definition of probability</a></p></li>
-<li><p><a class="reference internal" href="#counting" id="id5">Counting</a></p>
+<li><p><a class="reference internal" href="#sets" id="id3">Sets</a></p></li>
+<li><p><a class="reference internal" href="#sample-spaces-and-events" id="id4">Sample spaces and events</a></p></li>
+<li><p><a class="reference internal" href="#a-naive-definition-of-probability" id="id5">A naive definition of probability</a></p></li>
+<li><p><a class="reference internal" href="#counting" id="id6">Counting</a></p>
 <ul>
-<li><p><a class="reference internal" href="#multiplication-rule" id="id6">Multiplication rule</a></p></li>
-<li><p><a class="reference internal" href="#adjusting-for-overcounting" id="id7">Adjusting for overcounting</a></p></li>
+<li><p><a class="reference internal" href="#multiplication-rule" id="id7">Multiplication rule</a></p></li>
+<li><p><a class="reference internal" href="#adjusting-for-overcounting" id="id8">Adjusting for overcounting</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#non-naive-definition-of-probability" id="id9">Non-naive definition of probability</a></p></li>
 </ul>
 </nav>
 <section id="sets">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">1.1. </span>Sets</a><a class="headerlink" href="#sets" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.1. </span>Sets</a><a class="headerlink" href="#sets" title="Link to this heading">#</a></h2>
 <p>In probability, the primary goal is to determine how likely a specific <strong>set</strong> of outcomes is, given a particular experiment. In this section, we’ll focus on understanding the concept of <em>sets</em>, which form the foundation of probability theory.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -448,7 +450,7 @@ document.write(`
 <p><strong>Cardinality.</strong> The final definition we’ll cover in this section is the <em>cardinality</em> of a set, which is the number of elements in the set, denoted <span class="math notranslate nohighlight">\(|A|\)</span>.   For example, if <span class="math notranslate nohighlight">\(A = \{1, 3, 5, 7\}\)</span>, then <span class="math notranslate nohighlight">\(|A| = 4\)</span>.</p>
 </section>
 <section id="sample-spaces-and-events">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.2. </span>Sample spaces and events</a><a class="headerlink" href="#sample-spaces-and-events" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.2. </span>Sample spaces and events</a><a class="headerlink" href="#sample-spaces-and-events" title="Link to this heading">#</a></h2>
 <p>The <em>sample space</em> of an experiment, typically denoted as <span class="math notranslate nohighlight">\(S\)</span>, is the set of all possible outcomes of that experiment. For instance, if our experiment involves flipping two coins, the sample space is <span class="math notranslate nohighlight">\(\{HH, HT, TH, TT\}\)</span>. An <em>event</em> is a subset of the sample space. For example, the event that exactly one coin lands Heads is represented by the subset <span class="math notranslate nohighlight">\(\{HT, TH\}\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Deck of cards</p>
@@ -479,7 +481,7 @@ document.write(`
 </div>
 </section>
 <section id="a-naive-definition-of-probability">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.3. </span>A naive definition of probability</a><a class="headerlink" href="#a-naive-definition-of-probability" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.3. </span>A naive definition of probability</a><a class="headerlink" href="#a-naive-definition-of-probability" title="Link to this heading">#</a></h2>
 <p>As described at the beginning, the primary goal in probability is to determine how likely a specific set of outcomes is, given a particular experiment. Given an event <span class="math notranslate nohighlight">\(A\)</span> (such as Arsenal not winning a match or a stock price not rising), our goal will be to determine how likely that event is to occur. We will refer to this likelihood as the <em>probability of the event <span class="math notranslate nohighlight">\(A\)</span></em>.</p>
 <p>In this section, we will begin with a very basic, naive method for calculating the probability of the event <span class="math notranslate nohighlight">\(A\)</span>, which we will denote as <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>. This method is only to build intuition. Later in this chapter, with this intuition, we will be ready to move on to the actual, non-naive definition of probability.</p>
 <p>The first method you might try to calculate the likelihood of an event <span class="math notranslate nohighlight">\(A\)</span> is to count the number of outcomes where that event happens—which we will call the number of “favorable” outcomes—and divide it by the total number of possible outcomes. Since <span class="math notranslate nohighlight">\(A\)</span> is a set of outcomes, we know that the number of favorable outcomes is <span class="math notranslate nohighlight">\(|A|\)</span> and the number of possible outcomes is the size of the sample space <span class="math notranslate nohighlight">\(|S|\)</span>. In other words,</p>
@@ -506,10 +508,10 @@ document.write(`
 <p>This naive approach to probability assumes that all outcomes are equally likely and that the number of possible outcomes is finite. However, in many cases, such as predicting the outcome of a soccer match, not all outcomes are equally likely (e.g., Arsenal winning versus Liverpool winning). Therefore, we will require a more sophisticated approach to calculating probabilities, which we will introduce later in this chapter.</p>
 </section>
 <section id="counting">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.4. </span>Counting</a><a class="headerlink" href="#counting" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.4. </span>Counting</a><a class="headerlink" href="#counting" title="Link to this heading">#</a></h2>
 <p>To use the naive definition of probability introduced above, we need to be able to count the number of favorable outcomes of an experiment <span class="math notranslate nohighlight">\(|A|\)</span>, as well as the total number of possible outcomes <span class="math notranslate nohighlight">\(|S|\)</span>. This is straightforward in the examples we’ve seen so far, but it becomes challenging for complex experiments. In this section, we will develop tools for calculating the sizes of sets.</p>
 <section id="multiplication-rule">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.4.1. </span>Multiplication rule</a><a class="headerlink" href="#multiplication-rule" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.4.1. </span>Multiplication rule</a><a class="headerlink" href="#multiplication-rule" title="Link to this heading">#</a></h3>
 <p>We will begin with the simple <em>multiplication rule</em>. Suppose we run an experiment with two parts, <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span>. Suppose <span class="math notranslate nohighlight">\(C\)</span> has <span class="math notranslate nohighlight">\(c\)</span> possible outcomes, and for each possible outcome of <span class="math notranslate nohighlight">\(C\)</span>, there are <span class="math notranslate nohighlight">\(d\)</span> possible outcomes of <span class="math notranslate nohighlight">\(D\)</span>. The multiplication rule tells us that this experiment has a total of <span class="math notranslate nohighlight">\(c \cdot d\)</span> outcomes.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Running a race</p>
@@ -570,7 +572,7 @@ document.write(`
 </div>
 </section>
 <section id="adjusting-for-overcounting">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.4.2. </span>Adjusting for overcounting</a><a class="headerlink" href="#adjusting-for-overcounting" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.4.2. </span>Adjusting for overcounting</a><a class="headerlink" href="#adjusting-for-overcounting" title="Link to this heading">#</a></h3>
 <p>Overcounting is a common trap with these types of problems, as the following example illustrates.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Selecting a team.</p>
@@ -646,6 +648,130 @@ document.write(`
 <p>In both <a class="reference internal" href="#stars1"><span class="std std-numref">Figure 1.8</span></a> and <a class="reference internal" href="#stars2"><span class="std std-numref">Figure 1.9</span></a>, we’ve filled in these fill-in-the-blank slots with exactly <span class="math notranslate nohighlight">\(k\)</span> stars and <span class="math notranslate nohighlight">\(n-1\)</span> bars. In fact, every possible distribution of the <span class="math notranslate nohighlight">\(k\)</span> coins/stars into the <span class="math notranslate nohighlight">\(n\)</span> boxes can be represented by filling exactly <span class="math notranslate nohighlight">\(k\)</span> of these fill-in-the-blank slots with <span class="math notranslate nohighlight">\(k\)</span> stars, and filling the rest with bars. We know that the number of ways to choose these <span class="math notranslate nohighlight">\(k\)</span> fill-in-the-blank slots is <span class="math notranslate nohighlight">\({k+n-1 \choose k}\)</span>, which is how we got the final answer.</p>
 </section>
 </section>
+<section id="non-naive-definition-of-probability">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.5. </span>Non-naive definition of probability</a><a class="headerlink" href="#non-naive-definition-of-probability" title="Link to this heading">#</a></h2>
+<p>Now that we have developed our intuition by working with the naive definition of probability, we are ready to move on to the non-naive definition:</p>
+<div class="admonition-probability-space admonition">
+<p class="admonition-title">Probability space.</p>
+<p>A <strong>probability space</strong> consists of the following two components:</p>
+<ol class="arabic">
+<li><p><strong>Sample space (<span class="math notranslate nohighlight">\(S\)</span>)</strong>: As we know by now, <span class="math notranslate nohighlight">\(S\)</span> is the set of all possible outcomes. For instance, when flipping two coins, the sample space is <span class="math notranslate nohighlight">\(S = \{HH, HT, TH, TT\}\)</span>, where each pair represents a combination of heads and tails.</p></li>
+<li><p><strong>Probability function (<span class="math notranslate nohighlight">\(\mathbb{P}\)</span>)</strong>: This function assigns probabilities to events, which, as we’ve seen, are subsets of the sample space. For any event <span class="math notranslate nohighlight">\(A \subseteq S\)</span>, the probability of <span class="math notranslate nohighlight">\(A\)</span>, denoted <span class="math notranslate nohighlight">\(\mathbb{P}[A]\)</span>, satisfies the following <em>axioms</em>:</p>
+<ul class="simple">
+<li><p>For any event, <span class="math notranslate nohighlight">\(0 \leq \mathbb{P}[A] \leq 1 \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[\emptyset] = 0 \)</span> and <span class="math notranslate nohighlight">\( \mathbb{P}[S] = 1 \)</span>. In our coin-flipping example, the probability of no outcome is zero, and the probability of some outcome in <span class="math notranslate nohighlight">\(S = \{HH, HT, TH, TT\}\)</span> occurring is one.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\( A_1, A_2, \dots, A_n \)</span> are disjoint events (i.e., <span class="math notranslate nohighlight">\( A_i \cap A_j = \emptyset \)</span> for all <span class="math notranslate nohighlight">\( i \neq j \)</span>), the probability of their union is the sum of their individual probabilities:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A_1 \cup A_2 \cup \cdots \cup A_n] = \sum_{j=1}^n \mathbb{P}[A_j].
+\end{equation*}\]</div>
+<p>For example, if a baseball player is at bat and the events are hitting a single (<span class="math notranslate nohighlight">\( H_S \)</span>) or hitting a double (<span class="math notranslate nohighlight">\( H_D \)</span>), with probabilities <span class="math notranslate nohighlight">\( \mathbb{P}[H_S] = 0.2 \)</span> and <span class="math notranslate nohighlight">\( \mathbb{P}[H_D] = 0.05 \)</span>, then the probability of either hitting a single or a double is <span class="math notranslate nohighlight">\( \mathbb{P}[H_S \cup H_D] = 0.25 \)</span>.</p>
+</li>
+</ol>
+</div>
+<p>From these axioms, we can derive several helpful rules and properties.</p>
+<ul class="simple">
+<li><p><strong>Complement Rule</strong>: The probability of the complement of an event <span class="math notranslate nohighlight">\( A \)</span>, denoted <span class="math notranslate nohighlight">\( A^c \)</span>, is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A^c] = 1 - \mathbb{P}[A].
+\end{equation*}\]</div>
+<p>For instance, if the probability of a baseball player hitting a single is <span class="math notranslate nohighlight">\( \mathbb{P}[H_S] = 0.2 \)</span>, the probability of not hitting a single is <span class="math notranslate nohighlight">\( \mathbb{P}[H_S^c] = 0.8 \)</span>.</p>
+<ul class="simple">
+<li><p><strong>Union of Two Events</strong>: For any two events <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span>, the probability of their union is:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A \cup B] = \mathbb{P}[A] + \mathbb{P}[B] - \mathbb{P}[A \cap B].
+\end{equation*}\]</div>
+<p>For example, if <span class="math notranslate nohighlight">\( A \)</span> is the event of being chosen for the varsity soccer team and <span class="math notranslate nohighlight">\( B \)</span> is the event of being chosen for the varsity football team, the probability of being chosen for either is <span class="math notranslate nohighlight">\(\mathbb{P}[\text{soccer or football}] = \mathbb{P}[\text{soccer}] + \mathbb{P}[\text{football}] - \mathbb{P}[\text{soccer and football}]\)</span>. See <a class="reference internal" href="#a-union-b"><span class="std std-numref">Figure 1.11</span></a> for an illustration.</p>
+<figure class="align-center" id="a-union-b">
+<a class="reference internal image-reference" href="_images/a_union_b.png"><img alt="_images/a_union_b.png" src="_images/a_union_b.png" style="width: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.11 </span><span class="caption-text">Union Illustration of <span class="math notranslate nohighlight">\(\mathbb{P}[A\cup B]\)</span>. The numbers count how many times we have added or subtracted each set in the ven diagram.</span><a class="headerlink" href="#a-union-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Union of Three Events</strong>: The probability of the union of three events is:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A \cup B \cup C] = \mathbb{P}[A] + \mathbb{P}[B] + \mathbb{P}[C] - \mathbb{P}[A \cap B] - \mathbb{P}[A \cap C] - \mathbb{P}[B \cap C] + \mathbb{P}[A \cap B \cap C].
+\end{equation*}\]</div>
+<p>See <a class="reference internal" href="#a-union-b-union-c"><span class="std std-numref">Figure 1.12</span></a> for an illustration.</p>
+<figure class="align-center" id="a-union-b-union-c">
+<a class="reference internal image-reference" href="_images/a_union_b_union_c.png"><img alt="_images/a_union_b_union_c.png" src="_images/a_union_b_union_c.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.12 </span><span class="caption-text">Union Illustration of <span class="math notranslate nohighlight">\(\mathbb{P}[A\cup B \cup C]\)</span>. The numbers count how many times we have added or subtracted each set in the ven diagram.</span><a class="headerlink" href="#a-union-b-union-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This formula generalizes for larger unions using the <strong>inclusion-exclusion rule:</strong></p>
+<div class="math notranslate nohighlight" id="equation-my-label">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-my-label" title="Link to this equation">#</a></span>\[\begin{split}&amp;\mathbb{P}\left[\bigcup_{i = 1}^n A_i\right]\\
+=\, &amp;\sum_{i = 1}^n \mathbb{P}[A_i] - \sum_{i &lt; j}\mathbb{P}[A_i \cap A_j] + \sum_{i &lt; j &lt; k} \mathbb{P}[A_i \cap A_j \cap A_k] - \cdots + (-1)^{n+1}\mathbb{P}[A_1 \cap \cdots \cap A_n].\end{split}\]</div>
+<p>The notation <span class="math notranslate nohighlight">\(\sum_{i &lt; j &lt; k}\)</span> means that we are summing over all indices <span class="math notranslate nohighlight">\(i,j,k\in \{1, \dots, n\}\)</span> such that <span class="math notranslate nohighlight">\(i &lt; j &lt; k\)</span>, of which there are <span class="math notranslate nohighlight">\({n \choose 3}\)</span>.</p>
+<figure class="align-center" id="winning">
+<a class="reference internal image-reference" href="_images/winning.png"><img alt="_images/winning.png" src="_images/winning.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.13 </span><span class="caption-text">Example of a winning order in Montmort’s matching game.</span><a class="headerlink" href="#winning" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="non-winning">
+<a class="reference internal image-reference" href="_images/non_winning.png"><img alt="_images/non_winning.png" src="_images/non_winning.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.14 </span><span class="caption-text">Example of a losing order in Montmort’s matching game.</span><a class="headerlink" href="#non-winning" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Example: de Montmort’s matching game.</p>
+<p>This is Example 1.6.4 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>This example is a bit involved, but I think it’s a great example because it ties together everything we’ve learned so far in class. I encourage you to work through it slowly!</p>
+<p>Suppose you have a deck of <span class="math notranslate nohighlight">\(n\)</span> cards, with each card labeled <span class="math notranslate nohighlight">\(1\)</span> through <span class="math notranslate nohighlight">\(n\)</span>. You flip the cards over one by one, saying the numbers “1”, “2”, “3”, <span class="math notranslate nohighlight">\(\dots\)</span> as you do so. You “win” if, at some point, the number you say aloud is the same as the number written on the card. See <a class="reference internal" href="#winning"><span class="std std-numref">Figure 1.13</span></a> for an order that will cause you to win and <a class="reference internal" href="#non-winning"><span class="std std-numref">Figure 1.14</span></a> for an order that will cause you to lose.</p>
+<p><strong>Question</strong> Let <span class="math notranslate nohighlight">\(A\)</span> be the event that you win. What is <span class="math notranslate nohighlight">\(\mathbb{P}[A]\)</span>?</p>
+<p>We will work through the solution step by step.</p>
+<p><strong>Step 1: Define the events</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A_j\)</span> be the event that the <span class="math notranslate nohighlight">\(j^{th}\)</span> card in the deck is labeled <span class="math notranslate nohighlight">\(j\)</span>. Notice that <span class="math notranslate nohighlight">\(A\)</span> is the event that <span class="math notranslate nohighlight">\(A_1\)</span> happens, or <span class="math notranslate nohighlight">\(A_2\)</span> happens, or <span class="math notranslate nohighlight">\(A_3\)</span> happens, and so on. In other words, <span class="math notranslate nohighlight">\(A = A_1 \cup A_2 \cup \cdots \cup A_n\)</span>.</p>
+<p><strong>Step 2: Define the goal</strong></p>
+<p>Our goal will be to compute <span class="math notranslate nohighlight">\(\mathbb{P}[A] = \mathbb{P}[A_1 \cup A_2 \cup \cdots \cup A_n]\)</span> using the inclusion-exclusion principal from Equation <a class="reference internal" href="#equation-my-label">(1.1)</a>.</p>
+<p><strong>Step 3: Compute the individual probabilities</strong></p>
+<p>This is the most involved step: we need to compute each of the individual probabilities from Equation <a class="reference internal" href="#equation-my-label">(1.1)</a>.</p>
+<p>Let’s start with <span class="math notranslate nohighlight">\(\mathbb{P}[A_j]\)</span>, for an arbitrary <span class="math notranslate nohighlight">\(j \in \{1, 2, \dots, n\}\)</span>. Since the deck is perfectly shuffled, all <span class="math notranslate nohighlight">\(n\)</span> positions are equally likely for the card labeled <span class="math notranslate nohighlight">\(j\)</span>. Therefore, <span class="math notranslate nohighlight">\(\mathbb{P}[A_j] = \frac{1}{n}.\)</span></p>
+<p>Next, we compute <span class="math notranslate nohighlight">\(\mathbb{P}[A_1 \cap A_2]\)</span>. This is the event that the first card in the deck is labeled 1, and the second card in the deck is labeled 2. Since all orderings of the deck are equally likely, we know that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[A_1 \cap A_2] = \frac{\text{# orderings where $1^{st}$ is labeled 1 and $2^{nd}$ is labeled 2}}{\text{# possible orderings}}.
+
+\end{equation*}\]</div>
+<p>Starting with the denominator, we know that the number of possible orderings is <span class="math notranslate nohighlight">\(n!\)</span>, as we saw earlier in this chapter. Next, the numerator is equal to <span class="math notranslate nohighlight">\((n-2)!\)</span>. This is because we know the first card is labeled 1 and the second card is labeled 2, which leaves <span class="math notranslate nohighlight">\(n-2\)</span> remaining cards. There are <span class="math notranslate nohighlight">\((n-2)!\)</span> ways to order them. Therefore,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[A_1 \cap A_2]  = \frac{(n-2)!}{n!} = \frac{(n-2)\cdot(n-3)\cdots 3 \cdot 2 \cdot 1}{n \cdot (n-1) \cdot (n-2)\cdot(n-3)\cdots 3 \cdot 2 \cdot 1} = \frac{1}{n\cdot (n-1)}.
+
+\end{equation*}\]</div>
+<p>Similarly, <span class="math notranslate nohighlight">\(\mathbb{P}[A_i \cap A_j] = \frac{1}{n\cdot (n-1)}\)</span> for all <span class="math notranslate nohighlight">\(i \not= j\)</span>. Note that there are <span class="math notranslate nohighlight">\({n \choose 2}\)</span> of these pair-wise intersections summed in Equation <a class="reference internal" href="#equation-my-label">(1.1)</a>.</p>
+<p>Generalizing this logic, we can see that for any intersection of <span class="math notranslate nohighlight">\(k\)</span> of these events, say <span class="math notranslate nohighlight">\(A_1 \cap A_2 \cap \cdots \cap A_k\)</span>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[A_1 \cap \cdots \cap A_k] = \frac{(n-k)!}{n!}.
+
+\end{equation*}\]</div>
+<p>There are <span class="math notranslate nohighlight">\({n \choose k}\)</span> of these <span class="math notranslate nohighlight">\(k\)</span>-wise intersections summed in Equation <a class="reference internal" href="#equation-my-label">(1.1)</a>.</p>
+<p><strong>Step 4: Plug in to compute the final answer.</strong></p>
+<p>Finally, we get that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}\mathbb{P}[A] &amp;= n\cdot \frac{1}{n} - {n \choose 2}\cdot \frac{(n-2)!}{n!} + {n \choose 3} \cdot \frac{(n-3)!}{n!} - \cdots\\
+		&amp;= n \cdot \frac{1}{n} - \frac{n!}{(n-2)! 2!}\cdot \frac{(n-2)!}{n!} + \frac{n!}{(n-3)! 3!}\cdot \frac{(n-3)!}{n!} - \cdots\\
+		&amp;= 1 - \frac{1}{2!} + \frac{1}{3!} - \cdots
+
+\end{align*}\]</div>
+<p>It turns out that by a Taylor expansion, <span class="math notranslate nohighlight">\(1 - \frac{1}{2!} + \frac{1}{3!} - \cdots \approx \frac{1}{e}\)</span> (don’t worry, I don’t expect you to remember Taylor expansions for this class), so <span class="math notranslate nohighlight">\(\mathbb{P}[A] \approx \frac{1}{e}\)</span>. Surprisingly, this answer doesn’t depend on the number of cards <span class="math notranslate nohighlight">\(n\)</span>. Intuitively, this is because as <span class="math notranslate nohighlight">\(n\)</span> grows, we have more possible matching locations but a lower probability that any one match occurs. Ultimately, this tradeoff ends up canceling out to get a final probability of <span class="math notranslate nohighlight">\(\frac{1}{e}\)</span>, independent of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -720,6 +846,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-for-overcounting">1.4.2. Adjusting for overcounting</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-naive-definition-of-probability">1.5. Non-naive definition of probability</a></li>
 </ul>
   </nav></div>
 

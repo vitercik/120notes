@@ -326,3 +326,164 @@ $k+n-1$ fill-in-the-blank slots.
 ```
 
 In both {numref}`Figure {number} <stars1>` and {numref}`Figure {number} <stars2>`, we’ve filled in these fill-in-the-blank slots with exactly $k$ stars and $n-1$ bars. In fact, every possible distribution of the $k$ coins/stars into the $n$ boxes can be represented by filling exactly $k$ of these fill-in-the-blank slots with $k$ stars, and filling the rest with bars. We know that the number of ways to choose these $k$ fill-in-the-blank slots is ${k+n-1 \choose k}$, which is how we got the final answer.
+
+## Non-naive definition of probability
+
+Now that we have developed our intuition by working with the naive definition of probability, we are ready to move on to the non-naive definition:
+
+```{admonition} Probability space.
+
+A **probability space** consists of the following two components:
+
+1. **Sample space ($S$)**: As we know by now, $S$ is the set of all possible outcomes. For instance, when flipping two coins, the sample space is $S = \{HH, HT, TH, TT\}$, where each pair represents a combination of heads and tails.
+2. **Probability function ($\mathbb{P}$)**: This function assigns probabilities to events, which, as we’ve seen, are subsets of the sample space. For any event $A \subseteq S$, the probability of $A$, denoted $\mathbb{P}[A]$, satisfies the following *axioms*:
+    - For any event, $0 \leq \mathbb{P}[A] \leq 1 $.
+    - $ \mathbb{P}[\emptyset] = 0 $ and $ \mathbb{P}[S] = 1 $. In our coin-flipping example, the probability of no outcome is zero, and the probability of some outcome in $S = \{HH, HT, TH, TT\}$ occurring is one.
+    - If $ A_1, A_2, \dots, A_n $ are disjoint events (i.e., $ A_i \cap A_j = \emptyset $ for all $ i \neq j $), the probability of their union is the sum of their individual probabilities:
+    
+    \begin{equation*}
+    \mathbb{P}[A_1 \cup A_2 \cup \cdots \cup A_n] = \sum_{j=1}^n \mathbb{P}[A_j].
+    \end{equation*}
+    For example, if a baseball player is at bat and the events are hitting a single ($ H_S $) or hitting a double ($ H_D $), with probabilities $ \mathbb{P}[H_S] = 0.2 $ and $ \mathbb{P}[H_D] = 0.05 $, then the probability of either hitting a single or a double is $ \mathbb{P}[H_S \cup H_D] = 0.25 $.
+
+```
+
+From these axioms, we can derive several helpful rules and properties.
+
+- **Complement Rule**: The probability of the complement of an event $ A $, denoted $ A^c $, is 
+
+\begin{equation*}
+\mathbb{P}[A^c] = 1 - \mathbb{P}[A].
+\end{equation*}
+  For instance, if the probability of a baseball player hitting a single is $ \mathbb{P}[H_S] = 0.2 $, the probability of not hitting a single is $ \mathbb{P}[H_S^c] = 0.8 $.
+- **Union of Two Events**: For any two events $ A $ and $ B $, the probability of their union is:
+
+\begin{equation*}
+\mathbb{P}[A \cup B] = \mathbb{P}[A] + \mathbb{P}[B] - \mathbb{P}[A \cap B].
+\end{equation*}
+For example, if $ A $ is the event of being chosen for the varsity soccer team and $ B $ is the event of being chosen for the varsity football team, the probability of being chosen for either is $\mathbb{P}[\text{soccer or football}] = \mathbb{P}[\text{soccer}] + \mathbb{P}[\text{football}] - \mathbb{P}[\text{soccer and football}]$. See {numref}`Figure {number} <a_union_b>` for an illustration.
+
+```{figure} images/a_union_b.png
+---
+name: a_union_b
+width: 550px
+align: center
+---
+
+Union Illustration of $\mathbb{P}[A\cup B]$. The numbers count how many times we have added or subtracted each set in the ven diagram.
+```
+
+- **Union of Three Events**: The probability of the union of three events is:
+
+\begin{equation*}
+\mathbb{P}[A \cup B \cup C] = \mathbb{P}[A] + \mathbb{P}[B] + \mathbb{P}[C] - \mathbb{P}[A \cap B] - \mathbb{P}[A \cap C] - \mathbb{P}[B \cap C] + \mathbb{P}[A \cap B \cap C].
+\end{equation*}
+See {numref}`Figure {number} <a_union_b_union_c>` for an illustration.
+
+```{figure} images/a_union_b_union_c.png
+---
+name: a_union_b_union_c
+width: 800px
+align: center
+---
+
+Union Illustration of $\mathbb{P}[A\cup B \cup C]$. The numbers count how many times we have added or subtracted each set in the ven diagram.
+```
+
+This formula generalizes for larger unions using the **inclusion-exclusion rule:**
+
+```{math}
+:label: my_label
+&\mathbb{P}\left[\bigcup_{i = 1}^n A_i\right]\\
+=\, &\sum_{i = 1}^n \mathbb{P}[A_i] - \sum_{i < j}\mathbb{P}[A_i \cap A_j] + \sum_{i < j < k} \mathbb{P}[A_i \cap A_j \cap A_k] - \cdots + (-1)^{n+1}\mathbb{P}[A_1 \cap \cdots \cap A_n].
+```
+The notation $\sum_{i < j < k}$ means that we are summing over all indices $i,j,k\in \{1, \dots, n\}$ such that $i < j < k$, of which there are ${n \choose 3}$.
+
+```{figure} images/winning.png
+---
+name: winning
+width: 200px
+align: center
+---
+
+Example of a winning order in Montmort's matching game.
+```
+
+```{figure} images/non_winning.png
+---
+name: non_winning
+width: 200px
+align: center
+---
+
+Example of a losing order in Montmort's matching game.
+```
+
+```{admonition} Example: de Montmort's matching game.
+:class: tip
+
+This is Example 1.6.4 from {cite}`Blitzstein19:Introduction`.
+
+This example is a bit involved, but I think it’s a great example because it ties together everything we’ve learned so far in class. I encourage you to work through it slowly!
+
+Suppose you have a deck of $n$ cards, with each card labeled $1$ through $n$. You flip the cards over one by one, saying the numbers “1”, “2”, “3”, $\dots$ as you do so. You “win” if, at some point, the number you say aloud is the same as the number written on the card. See {numref}`Figure {number} <winning>` for an order that will cause you to win and {numref}`Figure {number} <non_winning>` for an order that will cause you to lose.
+
+**Question** Let $A$ be the event that you win. What is $\mathbb{P}[A]$?
+
+We will work through the solution step by step.
+
+**Step 1: Define the events**
+
+Let $A_j$ be the event that the $j^{th}$ card in the deck is labeled $j$. Notice that $A$ is the event that $A_1$ happens, or $A_2$ happens, or $A_3$ happens, and so on. In other words, $A = A_1 \cup A_2 \cup \cdots \cup A_n$.
+
+**Step 2: Define the goal**
+
+Our goal will be to compute $\mathbb{P}[A] = \mathbb{P}[A_1 \cup A_2 \cup \cdots \cup A_n]$ using the inclusion-exclusion principal from Equation {eq}`my_label`.
+
+**Step 3: Compute the individual probabilities**
+
+This is the most involved step: we need to compute each of the individual probabilities from Equation {eq}`my_label`.
+
+Let’s start with $\mathbb{P}[A_j]$, for an arbitrary $j \in \{1, 2, \dots, n\}$. Since the deck is perfectly shuffled, all $n$ positions are equally likely for the card labeled $j$. Therefore, $\mathbb{P}[A_j] = \frac{1}{n}.$
+
+Next, we compute $\mathbb{P}[A_1 \cap A_2]$. This is the event that the first card in the deck is labeled 1, and the second card in the deck is labeled 2. Since all orderings of the deck are equally likely, we know that 
+
+\begin{equation*}
+
+\mathbb{P}[A_1 \cap A_2] = \frac{\text{# orderings where $1^{st}$ is labeled 1 and $2^{nd}$ is labeled 2}}{\text{# possible orderings}}.
+
+\end{equation*}
+
+Starting with the denominator, we know that the number of possible orderings is $n!$, as we saw earlier in this chapter. Next, the numerator is equal to $(n-2)!$. This is because we know the first card is labeled 1 and the second card is labeled 2, which leaves $n-2$ remaining cards. There are $(n-2)!$ ways to order them. Therefore, 
+
+\begin{equation*}
+
+\mathbb{P}[A_1 \cap A_2]  = \frac{(n-2)!}{n!} = \frac{(n-2)\cdot(n-3)\cdots 3 \cdot 2 \cdot 1}{n \cdot (n-1) \cdot (n-2)\cdot(n-3)\cdots 3 \cdot 2 \cdot 1} = \frac{1}{n\cdot (n-1)}.
+
+\end{equation*}
+
+Similarly, $\mathbb{P}[A_i \cap A_j] = \frac{1}{n\cdot (n-1)}$ for all $i \not= j$. Note that there are ${n \choose 2}$ of these pair-wise intersections summed in Equation {eq}`my_label`.
+
+Generalizing this logic, we can see that for any intersection of $k$ of these events, say $A_1 \cap A_2 \cap \cdots \cap A_k$,
+
+\begin{equation*}
+
+\mathbb{P}[A_1 \cap \cdots \cap A_k] = \frac{(n-k)!}{n!}.
+
+\end{equation*}
+
+There are ${n \choose k}$ of these $k$-wise intersections summed in Equation {eq}`my_label`.
+
+**Step 4: Plug in to compute the final answer.**
+
+Finally, we get that
+
+\begin{align*}\mathbb{P}[A] &= n\cdot \frac{1}{n} - {n \choose 2}\cdot \frac{(n-2)!}{n!} + {n \choose 3} \cdot \frac{(n-3)!}{n!} - \cdots\\
+		&= n \cdot \frac{1}{n} - \frac{n!}{(n-2)! 2!}\cdot \frac{(n-2)!}{n!} + \frac{n!}{(n-3)! 3!}\cdot \frac{(n-3)!}{n!} - \cdots\\
+		&= 1 - \frac{1}{2!} + \frac{1}{3!} - \cdots
+
+\end{align*}
+
+It turns out that by a Taylor expansion, $1 - \frac{1}{2!} + \frac{1}{3!} - \cdots \approx \frac{1}{e}$ (don’t worry, I don’t expect you to remember Taylor expansions for this class), so $\mathbb{P}[A] \approx \frac{1}{e}$. Surprisingly, this answer doesn’t depend on the number of cards $n$. Intuitively, this is because as $n$ grows, we have more possible matching locations but a lower probability that any one match occurs. Ultimately, this tradeoff ends up canceling out to get a final probability of $\frac{1}{e}$, independent of $n$.
+
+```
