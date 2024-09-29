@@ -4,6 +4,8 @@
 :local:
 ```
 
+## Definition and intuition
+
 When faced with new information, it is often necessary to adjust our beliefs or probabilities accordingly. This is where the concept of **conditional probability** comes into play. Conditional probability allows us to quantify the likelihood of an event $ A $, given that another event $ B $ has already occurred. It is defined mathematically as:
 
 \begin{equation*}
