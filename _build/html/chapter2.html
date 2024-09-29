@@ -351,7 +351,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -367,6 +369,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-intuition">2.1. Definition and intuition</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -378,6 +388,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="conditional-probability">
 <h1><span class="section-number">2. </span>Conditional probability<a class="headerlink" href="#conditional-probability" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-and-intuition" id="id4">Definition and intuition</a></p></li>
+</ul>
+</nav>
+<section id="definition-and-intuition">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">2.1. </span>Definition and intuition</a><a class="headerlink" href="#definition-and-intuition" title="Link to this heading">#</a></h2>
 <p>When faced with new information, it is often necessary to adjust our beliefs or probabilities accordingly. This is where the concept of <strong>conditional probability</strong> comes into play. Conditional probability allows us to quantify the likelihood of an event <span class="math notranslate nohighlight">\( A \)</span>, given that another event <span class="math notranslate nohighlight">\( B \)</span> has already occurred. It is defined mathematically as:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -423,6 +440,7 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
 \end{equation*}\]</div>
 </div>
 <p>It is important to keep in mind that conditional probabilities still obey the basic rules of probability. For example, <span class="math notranslate nohighlight">\( \mathbb{P}[A \mid B] = 1 - \mathbb{P}[A^c \mid B] \)</span>. This means that if the probability of the Bears winning after their quarterback throws four interceptions is <span class="math notranslate nohighlight">\( 0.05 \)</span>, the probability of them <em>not</em> winning given the same information is <span class="math notranslate nohighlight">\( 0.95 \)</span>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -479,6 +497,21 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-intuition">2.1. Definition and intuition</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
