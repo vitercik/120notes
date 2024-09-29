@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Bibliography" href="bibliography.html" />
+    <link rel="next" title="2. Conditional probability" href="chapter2.html" />
     <link rel="prev" title="Stanford MS&amp;E 120: Intro to Probability" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,7 +177,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Probability and counting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">2. Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">3. Bibliography</a></li>
 </ul>
 
     </div>
@@ -397,20 +398,20 @@ document.write(`
 <h1><span class="section-number">1. </span>Probability and counting<a class="headerlink" href="#probability-and-counting" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#sets" id="id3">Sets</a></p></li>
-<li><p><a class="reference internal" href="#sample-spaces-and-events" id="id4">Sample spaces and events</a></p></li>
-<li><p><a class="reference internal" href="#a-naive-definition-of-probability" id="id5">A naive definition of probability</a></p></li>
-<li><p><a class="reference internal" href="#counting" id="id6">Counting</a></p>
+<li><p><a class="reference internal" href="#sets" id="id5">Sets</a></p></li>
+<li><p><a class="reference internal" href="#sample-spaces-and-events" id="id6">Sample spaces and events</a></p></li>
+<li><p><a class="reference internal" href="#a-naive-definition-of-probability" id="id7">A naive definition of probability</a></p></li>
+<li><p><a class="reference internal" href="#counting" id="id8">Counting</a></p>
 <ul>
-<li><p><a class="reference internal" href="#multiplication-rule" id="id7">Multiplication rule</a></p></li>
-<li><p><a class="reference internal" href="#adjusting-for-overcounting" id="id8">Adjusting for overcounting</a></p></li>
+<li><p><a class="reference internal" href="#multiplication-rule" id="id9">Multiplication rule</a></p></li>
+<li><p><a class="reference internal" href="#adjusting-for-overcounting" id="id10">Adjusting for overcounting</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#non-naive-definition-of-probability" id="id9">Non-naive definition of probability</a></p></li>
+<li><p><a class="reference internal" href="#non-naive-definition-of-probability" id="id11">Non-naive definition of probability</a></p></li>
 </ul>
 </nav>
 <section id="sets">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.1. </span>Sets</a><a class="headerlink" href="#sets" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.1. </span>Sets</a><a class="headerlink" href="#sets" title="Link to this heading">#</a></h2>
 <p>In probability, the primary goal is to determine how likely a specific <strong>set</strong> of outcomes is, given a particular experiment. In this section, we’ll focus on understanding the concept of <em>sets</em>, which form the foundation of probability theory.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -450,7 +451,7 @@ document.write(`
 <p><strong>Cardinality.</strong> The final definition we’ll cover in this section is the <em>cardinality</em> of a set, which is the number of elements in the set, denoted <span class="math notranslate nohighlight">\(|A|\)</span>.   For example, if <span class="math notranslate nohighlight">\(A = \{1, 3, 5, 7\}\)</span>, then <span class="math notranslate nohighlight">\(|A| = 4\)</span>.</p>
 </section>
 <section id="sample-spaces-and-events">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.2. </span>Sample spaces and events</a><a class="headerlink" href="#sample-spaces-and-events" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.2. </span>Sample spaces and events</a><a class="headerlink" href="#sample-spaces-and-events" title="Link to this heading">#</a></h2>
 <p>The <em>sample space</em> of an experiment, typically denoted as <span class="math notranslate nohighlight">\(S\)</span>, is the set of all possible outcomes of that experiment. For instance, if our experiment involves flipping two coins, the sample space is <span class="math notranslate nohighlight">\(\{HH, HT, TH, TT\}\)</span>. An <em>event</em> is a subset of the sample space. For example, the event that exactly one coin lands Heads is represented by the subset <span class="math notranslate nohighlight">\(\{HT, TH\}\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Deck of cards</p>
@@ -481,7 +482,7 @@ document.write(`
 </div>
 </section>
 <section id="a-naive-definition-of-probability">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.3. </span>A naive definition of probability</a><a class="headerlink" href="#a-naive-definition-of-probability" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.3. </span>A naive definition of probability</a><a class="headerlink" href="#a-naive-definition-of-probability" title="Link to this heading">#</a></h2>
 <p>As described at the beginning, the primary goal in probability is to determine how likely a specific set of outcomes is, given a particular experiment. Given an event <span class="math notranslate nohighlight">\(A\)</span> (such as Arsenal not winning a match or a stock price not rising), our goal will be to determine how likely that event is to occur. We will refer to this likelihood as the <em>probability of the event <span class="math notranslate nohighlight">\(A\)</span></em>.</p>
 <p>In this section, we will begin with a very basic, naive method for calculating the probability of the event <span class="math notranslate nohighlight">\(A\)</span>, which we will denote as <span class="math notranslate nohighlight">\(\mathbb{P}_{\text{naive}}[A]\)</span>. This method is only to build intuition. Later in this chapter, with this intuition, we will be ready to move on to the actual, non-naive definition of probability.</p>
 <p>The first method you might try to calculate the likelihood of an event <span class="math notranslate nohighlight">\(A\)</span> is to count the number of outcomes where that event happens—which we will call the number of “favorable” outcomes—and divide it by the total number of possible outcomes. Since <span class="math notranslate nohighlight">\(A\)</span> is a set of outcomes, we know that the number of favorable outcomes is <span class="math notranslate nohighlight">\(|A|\)</span> and the number of possible outcomes is the size of the sample space <span class="math notranslate nohighlight">\(|S|\)</span>. In other words,</p>
@@ -508,10 +509,10 @@ document.write(`
 <p>This naive approach to probability assumes that all outcomes are equally likely and that the number of possible outcomes is finite. However, in many cases, such as predicting the outcome of a soccer match, not all outcomes are equally likely (e.g., Arsenal winning versus Liverpool winning). Therefore, we will require a more sophisticated approach to calculating probabilities, which we will introduce later in this chapter.</p>
 </section>
 <section id="counting">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.4. </span>Counting</a><a class="headerlink" href="#counting" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.4. </span>Counting</a><a class="headerlink" href="#counting" title="Link to this heading">#</a></h2>
 <p>To use the naive definition of probability introduced above, we need to be able to count the number of favorable outcomes of an experiment <span class="math notranslate nohighlight">\(|A|\)</span>, as well as the total number of possible outcomes <span class="math notranslate nohighlight">\(|S|\)</span>. This is straightforward in the examples we’ve seen so far, but it becomes challenging for complex experiments. In this section, we will develop tools for calculating the sizes of sets.</p>
 <section id="multiplication-rule">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.4.1. </span>Multiplication rule</a><a class="headerlink" href="#multiplication-rule" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.4.1. </span>Multiplication rule</a><a class="headerlink" href="#multiplication-rule" title="Link to this heading">#</a></h3>
 <p>We will begin with the simple <em>multiplication rule</em>. Suppose we run an experiment with two parts, <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span>. Suppose <span class="math notranslate nohighlight">\(C\)</span> has <span class="math notranslate nohighlight">\(c\)</span> possible outcomes, and for each possible outcome of <span class="math notranslate nohighlight">\(C\)</span>, there are <span class="math notranslate nohighlight">\(d\)</span> possible outcomes of <span class="math notranslate nohighlight">\(D\)</span>. The multiplication rule tells us that this experiment has a total of <span class="math notranslate nohighlight">\(c \cdot d\)</span> outcomes.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Running a race</p>
@@ -536,7 +537,7 @@ document.write(`
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Example: The birthday paradox.</p>
-<p>This is a famous example of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
+<p>This is a famous example (Example 1.4.10 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>) of the multiplication rule. Suppose we have <span class="math notranslate nohighlight">\(k\)</span> people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!</p>
 <p>In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.</p>
 <p><strong>Step 1: Define the events.</strong> To solve this problem, we begin by defining the relevant events:</p>
 <ul class="simple">
@@ -572,10 +573,11 @@ document.write(`
 </div>
 </section>
 <section id="adjusting-for-overcounting">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.4.2. </span>Adjusting for overcounting</a><a class="headerlink" href="#adjusting-for-overcounting" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.4.2. </span>Adjusting for overcounting</a><a class="headerlink" href="#adjusting-for-overcounting" title="Link to this heading">#</a></h3>
 <p>Overcounting is a common trap with these types of problems, as the following example illustrates.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Selecting a team.</p>
+<p>This is Example 1.4.13 from <span id="id3">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
 <p>Suppose we have four people: Alice, Bob, Claire, and David. How many ways are there to choose a two-person team from this set of four? The first thing we might try to answer this question would be to draw the tree diagram in <a class="reference internal" href="#team"><span class="std std-numref">Figure 1.6</span></a>, as we did earlier in this section. However, the answer is <em>not</em> <span class="math notranslate nohighlight">\(4 \cdot 3\)</span>, as this would overcount. For example, our tree diagram includes the teams (Alice, Bob) and (Bob, Alice), but these are the same teams! In fact, there are only six ways to choose a two-person team: (A, B), (A, C), (A, D), (B, C), (B, D), and (C, D).</p>
 </div>
 <figure class="align-center" id="team">
@@ -649,7 +651,7 @@ document.write(`
 </section>
 </section>
 <section id="non-naive-definition-of-probability">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.5. </span>Non-naive definition of probability</a><a class="headerlink" href="#non-naive-definition-of-probability" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.5. </span>Non-naive definition of probability</a><a class="headerlink" href="#non-naive-definition-of-probability" title="Link to this heading">#</a></h2>
 <p>Now that we have developed our intuition by working with the naive definition of probability, we are ready to move on to the non-naive definition:</p>
 <div class="admonition-probability-space admonition">
 <p class="admonition-title">Probability space.</p>
@@ -726,7 +728,7 @@ document.write(`
 </figure>
 <div class="tip admonition">
 <p class="admonition-title">Example: de Montmort’s matching game.</p>
-<p>This is Example 1.6.4 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>This is Example 1.6.4 from <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
 <p>This example is a bit involved, but I think it’s a great example because it ties together everything we’ve learned so far in class. I encourage you to work through it slowly!</p>
 <p>Suppose you have a deck of <span class="math notranslate nohighlight">\(n\)</span> cards, with each card labeled <span class="math notranslate nohighlight">\(1\)</span> through <span class="math notranslate nohighlight">\(n\)</span>. You flip the cards over one by one, saying the numbers “1”, “2”, “3”, <span class="math notranslate nohighlight">\(\dots\)</span> as you do so. You “win” if, at some point, the number you say aloud is the same as the number written on the card. See <a class="reference internal" href="#winning"><span class="std std-numref">Figure 1.13</span></a> for an order that will cause you to win and <a class="reference internal" href="#non-winning"><span class="std std-numref">Figure 1.14</span></a> for an order that will cause you to lose.</p>
 <p><strong>Question</strong> Let <span class="math notranslate nohighlight">\(A\)</span> be the event that you win. What is <span class="math notranslate nohighlight">\(\mathbb{P}[A]\)</span>?</p>
@@ -742,7 +744,7 @@ document.write(`
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 
-\mathbb{P}[A_1 \cap A_2] = \frac{\text{# orderings where $1^{st}$ is labeled 1 and $2^{nd}$ is labeled 2}}{\text{# possible orderings}}.
+\mathbb{P}[A_1 \cap A_2] = \frac{\text{# orderings where $1^{st}$ card is labeled 1 and $2^{nd}$ card is labeled 2}}{\text{# possible orderings}}.
 
 \end{equation*}\]</div>
 <p>Starting with the denominator, we know that the number of possible orderings is <span class="math notranslate nohighlight">\(n!\)</span>, as we saw earlier in this chapter. Next, the numerator is equal to <span class="math notranslate nohighlight">\((n-2)!\)</span>. This is because we know the first card is labeled 1 and the second card is labeled 2, which leaves <span class="math notranslate nohighlight">\(n-2\)</span> remaining cards. There are <span class="math notranslate nohighlight">\((n-2)!\)</span> ways to order them. Therefore,</p>
@@ -814,11 +816,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="bibliography.html"
+       href="chapter2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Conditional probability</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

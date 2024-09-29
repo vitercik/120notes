@@ -7,4 +7,5 @@ options:
   numbered: true
 chapters:
 - file: chapter1
+- file: chapter2
 - file: bibliography

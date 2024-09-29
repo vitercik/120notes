@@ -171,7 +171,7 @@ However, suppose we wanted to assign a *unique* major to each student. There wou
 ```{admonition} Example: The birthday paradox.
 :class: tip
 
-This is a famous example of the multiplication rule. Suppose we have $k$ people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!
+This is a famous example (Example 1.4.10 from {cite}`Blitzstein19:Introduction`) of the multiplication rule. Suppose we have $k$ people in a room, each of whom is equally likely to be born on any of the 365 days of the year. Our goal is to determine the probability that at least two people in the room share the same birthday. We will work with our naive definition of probability to answer this question, but fortunately in this case, the naive probability will be the true probability!
 
 In this class, I aim to give you a step-by-step guide to solving these types of problems, which will serve you well in the homeworks and exams.
 
@@ -213,6 +213,8 @@ Overcounting is a common trap with these types of problems, as the following exa
 
 ```{admonition} Example: Selecting a team.
 :class: tip
+
+This is Example 1.4.13 from {cite}`Blitzstein19:Introduction`.
 
 Suppose we have four people: Alice, Bob, Claire, and David. How many ways are there to choose a two-person team from this set of four? The first thing we might try to answer this question would be to draw the tree diagram in {numref}`Figure {number} <team>`, as we did earlier in this section. However, the answer is *not* $4 \cdot 3$, as this would overcount. For example, our tree diagram includes the teams (Alice, Bob) and (Bob, Alice), but these are the same teams! In fact, there are only six ways to choose a two-person team: (A, B), (A, C), (A, D), (B, C), (B, D), and (C, D).
 
@@ -450,7 +452,7 @@ Next, we compute $\mathbb{P}[A_1 \cap A_2]$. This is the event that the first ca
 
 \begin{equation*}
 
-\mathbb{P}[A_1 \cap A_2] = \frac{\text{# orderings where $1^{st}$ is labeled 1 and $2^{nd}$ is labeled 2}}{\text{# possible orderings}}.
+\mathbb{P}[A_1 \cap A_2] = \frac{\text{# orderings where $1^{st}$ card is labeled 1 and $2^{nd}$ card is labeled 2}}{\text{# possible orderings}}.
 
 \end{equation*}
 
