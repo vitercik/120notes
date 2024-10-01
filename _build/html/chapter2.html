@@ -375,6 +375,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-intuition">2.1. Definition and intuition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule-and-the-law-of-total-probability">2.2. Bayes’ rule and the law of total probability</a></li>
 </ul>
             </nav>
         </div>
@@ -390,11 +391,12 @@ document.write(`
 <h1><span class="section-number">2. </span>Conditional probability<a class="headerlink" href="#conditional-probability" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#definition-and-intuition" id="id4">Definition and intuition</a></p></li>
+<li><p><a class="reference internal" href="#definition-and-intuition" id="id8">Definition and intuition</a></p></li>
+<li><p><a class="reference internal" href="#bayes-rule-and-the-law-of-total-probability" id="id9">Bayes’ rule and the law of total probability</a></p></li>
 </ul>
 </nav>
 <section id="definition-and-intuition">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">2.1. </span>Definition and intuition</a><a class="headerlink" href="#definition-and-intuition" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">2.1. </span>Definition and intuition</a><a class="headerlink" href="#definition-and-intuition" title="Link to this heading">#</a></h2>
 <p>When faced with new information, it is often necessary to adjust our beliefs or probabilities accordingly. This is where the concept of <strong>conditional probability</strong> comes into play. Conditional probability allows us to quantify the likelihood of an event <span class="math notranslate nohighlight">\( A \)</span>, given that another event <span class="math notranslate nohighlight">\( B \)</span> has already occurred. It is defined mathematically as:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -440,6 +442,199 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
 \end{equation*}\]</div>
 </div>
 <p>It is important to keep in mind that conditional probabilities still obey the basic rules of probability. For example, <span class="math notranslate nohighlight">\( \mathbb{P}[A \mid B] = 1 - \mathbb{P}[A^c \mid B] \)</span>. This means that if the probability of the Bears winning after their quarterback throws four interceptions is <span class="math notranslate nohighlight">\( 0.05 \)</span>, the probability of them <em>not</em> winning given the same information is <span class="math notranslate nohighlight">\( 0.95 \)</span>.</p>
+</section>
+<section id="bayes-rule-and-the-law-of-total-probability">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">2.2. </span>Bayes’ rule and the law of total probability</a><a class="headerlink" href="#bayes-rule-and-the-law-of-total-probability" title="Link to this heading">#</a></h2>
+<p>In this section, we will cover two famous tools for calculating conditional probabilities: Bayes’ rule and the law of total probability.</p>
+<div class="admonition-bayes-rule admonition">
+<p class="admonition-title">Bayes’ rule.</p>
+<p>Bayes’ rule tells us that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[A \mid B] = \frac{\mathbb{P}[B \mid A] \mathbb{P}[A]}{\mathbb{P}[B]}.
+
+\end{equation*}\]</div>
+</div>
+<p>This fact follows simply from the observation that</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[A \mid B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\)</span>, which means that <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B] = \mathbb{P}[A \mid B]\mathbb{P}[B]\)</span>.</p></li>
+<li><p>Moreover, <span class="math notranslate nohighlight">\(\mathbb{P}[B \mid A] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[A]}\)</span>, which means that <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B] = \mathbb{P}[B \mid B]\mathbb{P}[A]\)</span>.</p></li>
+</ol>
+<p>As a result, <span class="math notranslate nohighlight">\(\mathbb{P}[A \mid B]\mathbb{P}[B] = \mathbb{P}[B \mid B]\mathbb{P}[A]\)</span>, and Bayes’ rule follows immediately.</p>
+<p>To apply Bayes’ rule it will often be useful to use the <em>law of total probability</em>.</p>
+<figure class="align-center" id="lotp">
+<a class="reference internal image-reference" href="_images/LOTP.png"><img alt="_images/LOTP.png" src="_images/LOTP.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Visualization of the law of total probability. This is Figure 2.3 from <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</span><a class="headerlink" href="#lotp" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-law-of-total-probability-lotp admonition">
+<p class="admonition-title">Law of total probability (LOTP).</p>
+<p>Suppose <span class="math notranslate nohighlight">\(A_1, \dots, A_n\)</span> <em>partition</em> sample space <span class="math notranslate nohighlight">\(S\)</span>, which means that they’re disjoint their union is <span class="math notranslate nohighlight">\(S\)</span>, as in <a class="reference internal" href="#lotp"><span class="std std-numref">Figure 2.3</span></a>. The law of total probability tells us that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[B] = \sum_{i = 1}^n \mathbb{P}[B \cap A_i] = \sum_{i = 1}^n \mathbb{P}[B \mid A_i] \mathbb{P}[A_i].
+
+\end{equation*}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: The importance of scoring first.</p>
+<p>This example is from <span id="id5">[<a class="reference internal" href="bibliography.html#id3" title="Thomas A Severini. Analytic methods in sports: Using mathematics and statistics to understand data from baseball, football, basketball, and other sports. Chapman and Hall/CRC, 2020.">Sev20</a>]</span>.</p>
+<p>Using data from the English Premier League, we can calculate the probability that the home team wins by considering different scenarios regarding which team scores first. In particular, we can use LOTP to derive the following formula:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp;\mathbb{P}[\text{home team wins}]\\
+=\, &amp;\mathbb{P}[\text{home team wins} \mid \text{home team scores first}] \cdot \mathbb{P}[\text{home team scores first}]\\
++\, &amp;\mathbb{P}[\text{home team wins} \mid \text{visitor scores first}] \cdot \mathbb{P}[\text{visitor scores first}]\\
++\, &amp;\mathbb{P}[\text{home team wins} \mid \text{neither team scores first}] \cdot \mathbb{P}[\text{neither team scores first}].
+\end{align*}\]</div>
+<p>From the EPL data, we have the following values:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[\text{home team wins} \mid \text{home team scores first}] = 0.718\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[\text{home team scores first}] = 0.534\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[\text{home team wins} \mid \text{visitor scores first}] = 0.178\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[\text{visitor scores first}] = 0.39\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[\text{home team wins} \mid \text{neither team scores first}] = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[\text{neither team scores first}] = 0.076\)</span></p></li>
+</ul>
+<p>Using these values, the total probability of the home team winning is: <span class="math notranslate nohighlight">\(0.718 \cdot 0.534 + 0.178 \cdot 0.39 + 0 \cdot 0.076 = 0.453\)</span>.</p>
+</div>
+<p>We’ll now work through an example that combines Bayes’ rule and LOTP. Suppose we have a population of 10 sick and 90 healthy people, as in the following figure.</p>
+<figure class="align-center" id="sick1">
+<a class="reference internal image-reference" href="_images/sick1.png"><img alt="_images/sick1.png" src="_images/sick1.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.4 </span><span class="caption-text">10 sick and 90 healthy people.</span><a class="headerlink" href="#sick1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If we chose a random person from this pool,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[\text{random person is sick}] = \frac{\text{(# sick)}}{\text{# total people}} = \frac{10}{100}.
+\end{equation*}\]</div>
+<p>Now, suppose that we test this population. Of the 10 sick people, suppose that 9 test positive, and of the 90 healthy people, another 9 test positive, as in the following figure.</p>
+<figure class="align-center" id="sick2">
+<a class="reference internal image-reference" href="_images/sick2.png"><img alt="_images/sick2.png" src="_images/sick2.png" style="width: 280px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Results of a test.</span><a class="headerlink" href="#sick2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If we chose a random sick person from this pool, the probability they test positive is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{P}[\text{random person tests positive} \mid \text{they’re sick}] &amp;= \frac{\text{(# people who are sick and test positive)}}{\text{(# sick people)}}\\
+&amp;= \frac{9}{10}.
+\end{align*}\]</div>
+<p>Meanwhile, suppose we chose a random person from this pool who tested positive, as highlighted in the following figure.</p>
+<figure class="align-center" id="sick3">
+<a class="reference internal image-reference" href="_images/sick3.png"><img alt="_images/sick3.png" src="_images/sick3.png" style="width: 280px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Highlighting the people who tested positive, both sick and healthy.</span><a class="headerlink" href="#sick3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The probability they’re actually sick is called the <em>true-positive rate</em>, and in this case is equal to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{P}[\text{random person is sick} \mid \text{they test positive}] &amp;= \frac{\text{(# people who are sick and test positive)}}{\text{(# people who test positive)}}\\
+&amp;= \frac{9}{18} = \frac{1}{2}.
+\end{align*}\]</div>
+<p>In other words, even if you tested positive, you only have a 50-50 chance of being sick! This surprising fact is called the “false positive paradox.”</p>
+<p>Another way to express the true-positive rate is via Bayes’ rule:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+
+\mathbb{P}[\text{random person is sick} \mid \text{they test positive}] &amp;= \frac{\mathbb{P}[\text{positive} \mid \text{sick}]\mathbb{P}[\text{sick}]}{\mathbb{P}[\text{positive}]}\\
+&amp;= \frac{\frac{9}{10} \cdot \frac{1}{10}}{\frac{18}{100}} = \frac{1}{2}.
+
+\end{align*}\]</div>
+<p>To get an intuition for the false positive paradox, we will expand out the denominator of this equation using the LOTP:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*} &amp;\mathbb{P}[\text{random person is sick} \mid \text{they test positive}]\\
+=\, &amp;\frac{\mathbb{P}[\text{positive} \mid \text{sick}]\mathbb{P}[\text{sick}]}{\mathbb{P}[\text{positive} \mid \text{sick}]\mathbb{P}[\text{sick}] + \mathbb{P}[\text{positive} \mid \text{healthy}]\mathbb{P}[\text{healthy}]}.
+
+\end{align*}\]</div>
+<p>We can see that as <span class="math notranslate nohighlight">\(\mathbb{P}[\text{healthy}]\)</span> gets larger and larger, the true-positive rate will get smaller and smaller. Intuitively, once a significant fraction of the population is healthy, a relatively large number will test positive compared to the true positives, and the true-positive rate will be driven to a small number.</p>
+<p>We’ll finish this section with a few more examples.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>This example is from <span id="id6">[<a class="reference internal" href="bibliography.html#id4" title="Sheldon Ross. A first course in probability. Pearson, 2018.">Ros18</a>]</span>.</p>
+<p>Imagine you’re going away for the weekend and ask your roommate to water your plant. If your roommate forgets to water the plant, there’s a 90% chance it will be dead by the time you return. If your roommate remembers to water the plant, there’s only a 10% chance it will die. You’re fairly confident that your roommate will remember to water it, estimating the likelihood at 85%.</p>
+<p><strong>Question 1:</strong> What is the probability that your plant will still be alive when you return?</p>
+<p><strong>Step 1: Define the events.</strong> Let’s define the events:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( R \)</span>: Your roommate waters the plant.</p></li>
+<li><p><span class="math notranslate nohighlight">\( D \)</span>: The plant is dead.</p></li>
+</ul>
+<p><strong>Step 2: Define the goal.</strong> To answer the question, we want to calculate <span class="math notranslate nohighlight">\( \mathbb{P}[D^c] \)</span>, the probability that the plant is <em>not</em> dead, using the Law of Total Probability:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[D^c] = \mathbb{P}[D^c \mid R] \cdot \mathbb{P}[R] + \mathbb{P}[D^c \mid R^c] \cdot \mathbb{P}[R^c]
+\end{equation*}\]</div>
+<p><strong>Step 3: Compute the individual probabilities.</strong> We are given the following information:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[D \mid R^c] = 0.9 \)</span>, so <span class="math notranslate nohighlight">\( \mathbb{P}[D^c \mid R^c] = 0.1 \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[D \mid R] = 0.1 \)</span>, so <span class="math notranslate nohighlight">\( \mathbb{P}[D^c \mid R] = 0.9 \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[R] = 0.85 \)</span>, meaning your confidence in your roommate remembering is 85%.</p></li>
+</ul>
+<p><strong>Step 4: Plug in to get the final answer.</strong> Now we can calculate the probability that the plant is alive:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[D^c] = 0.9 \cdot 0.85 + 0.1 \cdot 0.15 = 0.78.
+\end{equation*}\]</div>
+<hr class="docutils" />
+<p><strong>Question 2:</strong> You return home to find your plant is dead. What is the probability that your roommate forgot to water it?</p>
+<p>In other words, we want to calculate <span class="math notranslate nohighlight">\( \mathbb{P}[R^c \mid D] \)</span>, the probability that your roommate forgot, given that the plant is dead.</p>
+<p>Using Bayes’ Rule:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[R^c \mid D] = \frac{\mathbb{P}[D \mid R^c] \cdot \mathbb{P}[R^c]}{\mathbb{P}[D]} = \frac{\mathbb{P}[D \mid R^c] \cdot \mathbb{P}[R^c]}{1 - \mathbb{P}[D^c]}
+\end{equation*}\]</div>
+<p>From the previous information, we know:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[D \mid R^c] = 0.9 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[R^c] = 0.15 \)</span> (since <span class="math notranslate nohighlight">\( \mathbb{P}[R] = 0.85 \)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[D^c] = 0.78 \)</span>, so <span class="math notranslate nohighlight">\( \mathbb{P}[D] = 1 - 0.78 = 0.22 \)</span></p></li>
+</ul>
+<p>Now, plugging in the values:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[R^c \mid D] = \frac{0.9 \cdot 0.15}{0.22} \approx 0.61.
+\end{equation*}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>This example is from <span id="id7">[<a class="reference internal" href="bibliography.html#id5" title="Mor Harchol-Balter. Introduction to probability for computing. Cambridge University Press, 2023.">HB23</a>]</span>.</p>
+<p>Imagine a bomb detector system where the alarm lights up with high accuracy if a bomb is present. Specifically, if a bomb is there, the alarm goes off with a probability of 0.99. However, the system isn’t perfect, and if no bomb is present, the alarm still (incorrectly) lights up with a probability of 0.05. Additionally, suppose that the likelihood of a bomb being present in any given situation is 0.1.</p>
+<p><strong>Question:</strong> Given that the alarm has gone off, what is the probability that there is actually a bomb?</p>
+<p><strong>Step 1: Define the events.</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( A \)</span>: The alarm goes off.</p></li>
+<li><p><span class="math notranslate nohighlight">\( B \)</span>: A bomb is present.</p></li>
+</ul>
+<p><strong>Step 2: Define the goal.</strong> To answer the question, we need to calculate <span class="math notranslate nohighlight">\( \mathbb{P}[B \mid A] \)</span>, the probability that a bomb is present given that the alarm has gone off. We can use Bayes’ Rule for this calculation:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[B \mid A] = \frac{\mathbb{P}[A \mid B] \cdot \mathbb{P}[B]}{\mathbb{P}[A]}
+\end{equation*}\]</div>
+<p><strong>Step 3: Compute the individual probabilities.</strong> From the given information, we know:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[A \mid B] = 0.99 \)</span> (the probability that the alarm goes off if a bomb is present).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[A \mid B^c] = 0.05 \)</span> (the probability that the alarm goes off when there is no bomb).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[B] = 0.1 \)</span> (the probability that a bomb is present).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[B^c] = 0.9 \)</span> (the probability that there is no bomb).</p></li>
+</ul>
+<p><strong>Step 4: Plug in to get the final answer.</strong> Now, we can calculate the desired probability:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[B \mid A] = \frac{\mathbb{P}[A \mid B] \cdot \mathbb{P}[B]}{\mathbb{P}[A \mid B] \cdot \mathbb{P}[B] + \mathbb{P}[A \mid B^c] \cdot \mathbb{P}[B^c]}.
+\end{equation*}\]</div>
+<p>Substituting the known values:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[B \mid A] = \frac{0.99 \cdot 0.1}{0.99 \cdot 0.1 + 0.05 \cdot 0.9} = \frac{0.099}{0.099 + 0.045} = \frac{0.099}{0.144} \approx 0.6875.
+\end{equation*}\]</div>
+</div>
 </section>
 </section>
 
@@ -508,6 +703,7 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-intuition">2.1. Definition and intuition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule-and-the-law-of-total-probability">2.2. Bayes’ rule and the law of total probability</a></li>
 </ul>
   </nav></div>
 
