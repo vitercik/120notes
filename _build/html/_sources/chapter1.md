@@ -372,7 +372,7 @@ width: 550px
 align: center
 ---
 
-Union Illustration of $\mathbb{P}[A\cup B]$. The numbers count how many times we have added or subtracted each set in the ven diagram.
+Illustration of $\mathbb{P}[A\cup B]$. The numbers count how many times we have added or subtracted each set in the ven diagram.
 ```
 
 - **Union of Three Events**: The probability of the union of three events is:
@@ -389,7 +389,7 @@ width: 800px
 align: center
 ---
 
-Union Illustration of $\mathbb{P}[A\cup B \cup C]$. The numbers count how many times we have added or subtracted each set in the ven diagram.
+Illustration of $\mathbb{P}[A\cup B \cup C]$. The numbers count how many times we have added or subtracted each set in the ven diagram.
 ```
 
 This formula generalizes for larger unions using the **inclusion-exclusion rule:**
@@ -486,6 +486,6 @@ Finally, we get that
 
 \end{align*}
 
-It turns out that by a Taylor expansion, $1 - \frac{1}{2!} + \frac{1}{3!} - \cdots \approx \frac{1}{e}$ (don’t worry, I don’t expect you to remember Taylor expansions for this class), so $\mathbb{P}[A] \approx \frac{1}{e}$. Surprisingly, this answer doesn’t depend on the number of cards $n$. Intuitively, this is because as $n$ grows, we have more possible matching locations but a lower probability that any one match occurs. Ultimately, this tradeoff ends up canceling out to get a final probability of $\frac{1}{e}$, independent of $n$.
+It turns out that by a Taylor expansion, $1 - \frac{1}{2!} + \frac{1}{3!} - \cdots \approx 1 - \frac{1}{e}$ (don’t worry, I don’t expect you to remember Taylor expansions for this class), so $\mathbb{P}[A] \approx 1 - \frac{1}{e}$. Surprisingly, this answer doesn’t depend on the number of cards $n$. Intuitively, this is because as $n$ grows, we have more possible matching locations but a lower probability that any one match occurs. Ultimately, this tradeoff ends up canceling out to get a final probability of $1 - \frac{1}{e}$, independent of $n$.
 
 ```
