@@ -185,7 +185,7 @@ align: center
 Highlighting the people who tested positive, both sick and healthy.
 ```
 
-The probability they’re actually sick is called the *true-positive rate*, and in this case is equal to
+The probability they’re actually sick is equal to
 
 \begin{align*}
 \mathbb{P}[\text{random person is sick} \mid \text{they test positive}] &= \frac{\text{(# people who are sick and test positive)}}{\text{(# people who test positive)}}\\
@@ -194,7 +194,7 @@ The probability they’re actually sick is called the *true-positive rate*, and 
 
 In other words, even if you tested positive, you only have a 50-50 chance of being sick! This surprising fact is called the “false positive paradox.”
 
-Another way to express the true-positive rate is via Bayes’ rule:
+Another way to express this probability is via Bayes’ rule:
 
 \begin{align*}
 
@@ -210,7 +210,7 @@ To get an intuition for the false positive paradox, we will expand out the denom
 
 \end{align*}
 
-We can see that as $\mathbb{P}[\text{healthy}]$ gets larger and larger, the true-positive rate will get smaller and smaller. Intuitively, once a significant fraction of the population is healthy, a relatively large number will test positive compared to the true positives, and the true-positive rate will be driven to a small number.
+We can see that as $\mathbb{P}[\text{healthy}]$ gets larger and larger, the $\mathbb{P}[\text{random person is sick} \mid \text{they test positive}]$ will get smaller and smaller. Intuitively, once a significant fraction of the population is healthy, a relatively large number will test positive compared to the true positives, and $\mathbb{P}[\text{random person is sick} \mid \text{they test positive}]$ will be driven to a small number.
 
 We'll finish this section with a few more examples.
 
