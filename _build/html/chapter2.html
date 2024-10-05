@@ -376,6 +376,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-intuition">2.1. Definition and intuition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule-and-the-law-of-total-probability">2.2. Bayes’ rule and the law of total probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">2.3. Independence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-monty-hall-problem">2.4. The Monty Hall problem</a></li>
 </ul>
             </nav>
         </div>
@@ -393,6 +395,8 @@ document.write(`
 <ul class="simple">
 <li><p><a class="reference internal" href="#definition-and-intuition" id="id8">Definition and intuition</a></p></li>
 <li><p><a class="reference internal" href="#bayes-rule-and-the-law-of-total-probability" id="id9">Bayes’ rule and the law of total probability</a></p></li>
+<li><p><a class="reference internal" href="#independence" id="id10">Independence</a></p></li>
+<li><p><a class="reference internal" href="#the-monty-hall-problem" id="id11">The Monty Hall problem</a></p></li>
 </ul>
 </nav>
 <section id="definition-and-intuition">
@@ -636,6 +640,130 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
 \end{equation*}\]</div>
 </div>
 </section>
+<section id="independence">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">2.3. </span>Independence</a><a class="headerlink" href="#independence" title="Link to this heading">#</a></h2>
+<p>In probability theory, we’ve observed several examples where conditioning on one event alters the probability of other events. In this section, we will focus on <em>independence,</em> where the occurrence of one event provides no information about the occurrence of another.</p>
+<div class="admonition-independence admonition">
+<p class="admonition-title">Independence.</p>
+<p>Two events <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span> are <em>independent</em> if the probability of both events occurring together equals the product of their individual probabilities, i.e., <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B] = \mathbb{P}[A]\mathbb{P}[B].\)</span></p>
+<p>This can be rewritten as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A \mid B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]} = \mathbb{P}[A].
+\end{equation*}\]</div>
+<p>In other words, knowing whether <span class="math notranslate nohighlight">\( B \)</span> has occurred does not provide any information about whether <span class="math notranslate nohighlight">\( A \)</span> has occurred.</p>
+</div>
+<div class="admonition-independence-of-three-events admonition">
+<p class="admonition-title">Independence of three events.</p>
+<p>For three events <span class="math notranslate nohighlight">\( A \)</span>, <span class="math notranslate nohighlight">\( B \)</span>, and <span class="math notranslate nohighlight">\( C \)</span>, independence means that:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\( \mathbb{P}[A \cap B] = \mathbb{P}[A]\mathbb{P}[B] \)</span>, <span class="math notranslate nohighlight">\( \mathbb{P}[A \cap C] = \mathbb{P}[A]\mathbb{P}[C] \)</span>, and <span class="math notranslate nohighlight">\( \mathbb{P}[B \cap C] = \mathbb{P}[B]\mathbb{P}[C]\)</span>, <strong>and</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B \cap C] = \mathbb{P}[A]\mathbb{P}[B]\mathbb{P}[C].\)</span></p></li>
+</ol>
+<p>It’s important to note that pairwise independence (condition 1) does not necessarily imply joint independence (condition 2).</p>
+</div>
+<div class="admonition-conditional-independence admonition">
+<p class="admonition-title">Conditional independence.</p>
+<p>Two events <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span> are conditionally independent given a third event <span class="math notranslate nohighlight">\( E \)</span> if <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B \mid E] = \mathbb{P}[A \mid E]\mathbb{P}[B \mid E].\)</span>
+This means that, given <span class="math notranslate nohighlight">\( E \)</span>, the occurrence of <span class="math notranslate nohighlight">\( A \)</span> provides no further information about the occurrence of <span class="math notranslate nohighlight">\( B \)</span>, and vice versa.</p>
+</div>
+<p>As the following examples illustrate, independence does not necessarily imply conditional independence, and vice versa.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Conditional independence doesn’t imply independence.</p>
+<p>Consider a scenario where a box contains two coins: Coin 1 is a regular coin with one head and one tail, while Coin 2 is a special coin with two heads. One of these coins is randomly chosen, and it is flipped twice.</p>
+<p>Let the event <span class="math notranslate nohighlight">\( A = \{HH, HT\}\)</span> represent the outcome where the first toss results in heads (H), and <span class="math notranslate nohighlight">\( B = \{HH, TH\}\)</span> represent the event where the second toss results in heads. Additionally, let <span class="math notranslate nohighlight">\( E \)</span> denote the event that Coin 1 was chosen.</p>
+<p><strong>Conditional independence.</strong> Given that Coin 1 (a regular coin) is chosen, the events <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span> are conditionally independent. This is because, for Coin 1, the probability of getting heads on either toss is <span class="math notranslate nohighlight">\( \frac{1}{2} \)</span>. Therefore, the conditional probabilities are
+<span class="math notranslate nohighlight">\(\mathbb{P}[A \mid E] = \mathbb{P}[\{HH, HT\} \mid \text{Coin 1 chosen}] = \frac{1}{2}\)</span>. Similarly, <span class="math notranslate nohighlight">\(\mathbb{P}[B \mid E] = \frac{1}{2}.\)</span>
+Additionally, the probability of both tosses resulting in heads, given that Coin 1 was chosen, is <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B \mid E] = \mathbb{P}[\{HH\} \mid \text{Coin 1 chosen}] = \frac{1}{4}\)</span>.
+Thus, <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span> are independent events conditioned on choosing Coin 1 because <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B \mid E] = \mathbb{P}[A \mid E] \cdot \mathbb{P}[B \mid E]\)</span>.</p>
+<p><strong>Unconditional dependence.</strong>
+However, <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span> are not independent when we don’t condition on <span class="math notranslate nohighlight">\( E \)</span>. By the law of total probability,
+<span class="math notranslate nohighlight">\(\mathbb{P}[B] = \mathbb{P}[B \mid E]\cdot \mathbb{P}[E] + \mathbb{P}[B \mid E^c]\cdot \mathbb{P}[E^c]\)</span>. We’ve already computed <span class="math notranslate nohighlight">\(\mathbb{P}[B \mid E] = \frac{1}{2}\)</span>, and we know that <span class="math notranslate nohighlight">\(\mathbb{P}[E] = \frac{1}{2}\)</span>, so <span class="math notranslate nohighlight">\(\mathbb{P}[E^c] = \mathbb{P}[\text{Coin 2 chosen}] = \frac{1}{2}\)</span> as well. If Coin 2 is chosen, HH is the only possible outcome. Therefore, <span class="math notranslate nohighlight">\(\mathbb{P}[B \mid E^c] = \mathbb{P}[\text{HH or TH} \mid \text{Coin 2 chosen}] = 1.\)</span> Putting this all together, we have that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[B] = \frac{1}{2} \cdot \frac{1}{2} + 1 \cdot \frac{1}{2} = \frac{3}{4}.
+\end{equation*}\]</div>
+<p>By the same logic, <span class="math notranslate nohighlight">\(\mathbb{P}[A] = \frac{3}{4}\)</span>.
+Meanwhile, the probability both tosses land heads (<span class="math notranslate nohighlight">\(A \cap B = \{HH\}\)</span>) is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A \cap B] = \mathbb{P}[A \cap B \mid E]\cdot \mathbb{P}[E] + \mathbb{P}[A \cap B \mid E^c]\cdot \mathbb{P}[E^c] = \frac{1}{4} \cdot \frac{1}{2} + 1 \cdot \frac{1}{2} = \frac{5}{8}.
+\end{equation*}\]</div>
+<p>Since <span class="math notranslate nohighlight">\( \mathbb{P}[A] \mathbb{P}[B] \neq \mathbb{P}[A \cap B] \)</span>, we conclude that <span class="math notranslate nohighlight">\( A \)</span> and <span class="math notranslate nohighlight">\( B \)</span> are not independent events when we don’t know which coin was chosen. Intuitively, if the first flip lands heads (i.e., <span class="math notranslate nohighlight">\(A\)</span> happens), we can assume there’s a good chance we chose Coin 2, and therefore, there’s a higher likelihood that the second flip will land heads as well. Said another way, given that <span class="math notranslate nohighlight">\(A\)</span> happens, we can be slightly more confident that <span class="math notranslate nohighlight">\(B\)</span> will also happen.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Independence doesn’t imply conditional independence.</p>
+<p>Suppose my friends Alice and Bob each decide, <em>independently</em> of one another, whether or not to call me every day. Let’s define a few events: <span class="math notranslate nohighlight">\( A \)</span> represents the event that Alice calls this coming Friday, and <span class="math notranslate nohighlight">\( B \)</span> represents the event that Bob calls this coming Friday. Additionally, let <span class="math notranslate nohighlight">\( E \)</span> denote the event that I receive exactly one call this coming Friday.</p>
+<p>Given that I receive exactly one call (<span class="math notranslate nohighlight">\( E \)</span>), either Alice or Bob may be the one who calls, so the probabilities <span class="math notranslate nohighlight">\( \mathbb{P}[A \mid E]\)</span> and <span class="math notranslate nohighlight">\( \mathbb{P}[B \mid E]\)</span> are non-zero (i.e., <span class="math notranslate nohighlight">\( \mathbb{P}[A \mid E] &gt; 0 \)</span> and <span class="math notranslate nohighlight">\( \mathbb{P}[B \mid E] &gt; 0 \)</span>).</p>
+<p>However, the probability of both Alice and Bob calling, given that I receive exactly one call, is zero: <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B \mid E] = 0.\)</span> Therefore, <span class="math notranslate nohighlight">\(0 = \mathbb{P}[A \cap B \mid E] \not= \mathbb{P}[A \mid E] \cdot \mathbb{P}[B \mid E] &gt; 0\)</span>, so <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are not conditionally independent, given <span class="math notranslate nohighlight">\(E\)</span>.</p>
+</div>
+</section>
+<section id="the-monty-hall-problem">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">2.4. </span>The Monty Hall problem</a><a class="headerlink" href="#the-monty-hall-problem" title="Link to this heading">#</a></h2>
+<p>We’ll now see how working with conditional probability can help us solve a famous problem from the game show <em>Let’s Make a Deal</em>, hosted by Monty Hall. On this show, a contestant plays a game involving three doors: behind one of the doors is a car, while the other two doors conceal goats. Each door conceals the car with equal probability.</p>
+<figure class="align-center" id="doors">
+<a class="reference internal image-reference" href="_images/doors.png"><img alt="_images/doors.png" src="_images/doors.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.7 </span><span class="caption-text">Three doors. One conceals a car and the others conceal goats.</span><a class="headerlink" href="#doors" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Monty, the game show host, knows which door hides the car and which doors hide the goats. Here’s how the game works:</p>
+<ol class="arabic simple">
+<li><p>The contestant begins by choosing one of the three doors. Next, Monty will open one of the other two doors. Importantly, Monty will always open a door that hides a goat. If both of the remaining doors have goats behind them, Monty will choose which door to open with equal probabilities.</p></li>
+<li><p>After Monty opens the door, revealing a goat, the contestant is given a choice: either stick with their original door or switch to the remaining unopened door.</p></li>
+<li><p>Finally, Monty will open the contestant’s chosen door, and the contestant will win whatever is behind it, either the car or a goat.</p></li>
+</ol>
+<p>The contestant has two possible strategies to choose from in the game:</p>
+<ol class="arabic simple">
+<li><p><strong>Switch:</strong> The contestant initially selects door 1 (without loss of generality). After Monty opens a door revealing a goat, the contestant switches to the other remaining door.</p></li>
+<li><p><strong>Stay:</strong> The contestant selects door 1, and after Monty opens a door revealing a goat, they stick with their original choice and keep door 1.</p></li>
+</ol>
+<p><strong>Q1:</strong> What is the probability the contestant wins under the “stay” strategy?</p>
+<p>In this case, the contestant will only win if the car is behind door 1, so the probability they win is <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> (since the car is behind each door with equal probability).</p>
+<p><strong>Q2:</strong> What is the probability the contestant wins under the “switch” strategy?</p>
+<p><strong>Step 1: Define the events.</strong> We start by defining the relevant events in the game. Let:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( A \)</span> be the event you win the car if you switch doors.</p></li>
+<li><p><span class="math notranslate nohighlight">\( C_j \)</span> be the event that the car is behind door <span class="math notranslate nohighlight">\( j \)</span>, where <span class="math notranslate nohighlight">\( j = 1, 2, 3 \)</span>.</p></li>
+</ul>
+<p><strong>Step 2: Define the goal.</strong> We aim to calculate the probability of winning the car if you switch, denoted as <span class="math notranslate nohighlight">\( \mathbb{P}[A] \)</span>. We use the Law of Total Probability (LOTP) to break this down into conditional probabilities based on where the car is located: <span class="math notranslate nohighlight">\(\mathbb{P}[A] = \mathbb{P}[A \mid C_1]\mathbb{P}[C_1] + \mathbb{P}[A \mid C_2]\mathbb{P}[C_2] + \mathbb{P}[A \mid C_3]\mathbb{P}[C_3].\)</span></p>
+<p><strong>Step 3: Calculate the individual probabilities.</strong> Now, we compute the individual probabilities:</p>
+<ul class="simple">
+<li><p>The probability of the car being behind any of the three doors is equally likely, so
+<span class="math notranslate nohighlight">\(\mathbb{P}[C_1] = \mathbb{P}[C_2] = \mathbb{P}[C_3] = \frac{1}{3}.\)</span></p></li>
+<li><p>If the car is behind door 1 (<span class="math notranslate nohighlight">\( C_1 \)</span>), switching will result in a loss, so
+<span class="math notranslate nohighlight">\(\mathbb{P}[A \mid C_1] = 0.\)</span></p></li>
+<li><p>If the car is behind door 2 (<span class="math notranslate nohighlight">\( C_2 \)</span>), Monty will open door 3. Therefore, you will switch to door 2 and win the car, so
+<span class="math notranslate nohighlight">\(\mathbb{P}[A \mid C_2] = 1.\)</span></p></li>
+<li><p>Similarly, if the car is behind door 3 (<span class="math notranslate nohighlight">\( C_3 \)</span>), Monty will open door 2. Therefore, you will switch to door 3 and win the car, so
+<span class="math notranslate nohighlight">\(\mathbb{P}[A \mid C_3] = 1.\)</span></p></li>
+</ul>
+<p><strong>Step 4: Compute the final answer.</strong> Using these values, we can now compute the overall probability of winning by switching:
+<span class="math notranslate nohighlight">\(\mathbb{P}[A] = 0 \cdot \frac{1}{3} + 1 \cdot \frac{1}{3} + 1 \cdot \frac{1}{3} = \frac{2}{3}.\)</span> Therefore, the probability of winning the car if you switch doors is <span class="math notranslate nohighlight">\( \frac{2}{3} \)</span>, which makes switching the optimal strategy in the Monty Hall problem.</p>
+<p>Tree diagrams can help us work through slightly more complex probabilities. For example, let <span class="math notranslate nohighlight">\(M_j\)</span> be the event that Monty opens door <span class="math notranslate nohighlight">\(j\)</span>, for <span class="math notranslate nohighlight">\(j = 1, 2, 3\)</span>.</p>
+<figure class="align-center" id="monty-tree">
+<a class="reference internal image-reference" href="_images/monty_tree.png"><img alt="_images/monty_tree.png" src="_images/monty_tree.png" style="width: 700px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.8 </span><span class="caption-text">Tree diagram for the Monty hall problem.</span><a class="headerlink" href="#monty-tree" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Q:</strong> What is the probability you win if you switch, given that Monty opens door 2? In other words,  let <span class="math notranslate nohighlight">\(A\)</span> be the event you win if you switch. What is <span class="math notranslate nohighlight">\(\mathbb{P}[A \mid M_2]\)</span>?</p>
+<p>We know that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} \mathbb{P}[A \mid M_2] = \frac{\mathbb{P}[A \cap M_2]}{\mathbb{P}[M_2]}.
+
+\end{equation*}\]</div>
+<p>The only way that you can win if you switch in the scenario that Monty opens door 2 is if the car is behind door 3. Therefore, the event <span class="math notranslate nohighlight">\(A \cap M_2\)</span> is equivalent to the event <span class="math notranslate nohighlight">\(C_3 \cap M_2\)</span>. <a class="reference internal" href="#monty-tree"><span class="std std-numref">Figure 2.8</span></a> illustrates that <span class="math notranslate nohighlight">\(\mathbb{P}[C_3 \cap M_2] = \frac{1}{3}\)</span>.</p>
+<p>Meanwhile, by the law of total probability, <span class="math notranslate nohighlight">\(\mathbb{P}[M_2] = \mathbb{P}[M_2 \cap C_1] + \mathbb{P}[M_2 \cap C_2] + \mathbb{P}[M_2 \cap C_3]\)</span>. Note that <span class="math notranslate nohighlight">\(\mathbb{P}[M_2 \cap C_2] = 0\)</span>, since Monty will never open a door that has a car behind it. From <a class="reference internal" href="#monty-tree"><span class="std std-numref">Figure 2.8</span></a>, we see that <span class="math notranslate nohighlight">\(\mathbb{P}[M_2 \cap C_1] = \frac{1}{6}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}[M_2 \cap C_3] = \frac{1}{3}\)</span>. Therefore,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[A \mid M_2] = \frac{\mathbb{P}[C_3 \cap M_2]}{\mathbb{P}[M_2]} = \frac{1/3}{1/6 + 1/3} = \frac{2}{3}.
+
+\end{equation*}\]</div>
+<p>So even if you condition on Monty opening door 2, you still have a <span class="math notranslate nohighlight">\(\frac{2}{3}\)</span> probability of winning under the switching strategy.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -704,6 +832,8 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-intuition">2.1. Definition and intuition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule-and-the-law-of-total-probability">2.2. Bayes’ rule and the law of total probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">2.3. Independence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-monty-hall-problem">2.4. The Monty Hall problem</a></li>
 </ul>
   </nav></div>
 
