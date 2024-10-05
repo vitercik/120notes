@@ -310,3 +310,152 @@ Substituting the known values:
 \mathbb{P}[B \mid A] = \frac{0.99 \cdot 0.1}{0.99 \cdot 0.1 + 0.05 \cdot 0.9} = \frac{0.099}{0.099 + 0.045} = \frac{0.099}{0.144} \approx 0.6875.
 \end{equation*}
 ```
+
+## Independence
+
+In probability theory, we've observed several examples where conditioning on one event alters the probability of other events. In this section, we will focus on *independence,* where the occurrence of one event provides no information about the occurrence of another.
+
+```{admonition} Independence.
+Two events $ A $ and $ B $ are *independent* if the probability of both events occurring together equals the product of their individual probabilities, i.e., $\mathbb{P}[A \cap B] = \mathbb{P}[A]\mathbb{P}[B].$
+
+This can be rewritten as:
+\begin{equation*}
+\mathbb{P}[A \mid B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]} = \mathbb{P}[A].
+\end{equation*}
+In other words, knowing whether $ B $ has occurred does not provide any information about whether $ A $ has occurred.
+```
+
+```{admonition} Independence of three events.
+For three events $ A $, $ B $, and $ C $, independence means that:
+
+1. $ \mathbb{P}[A \cap B] = \mathbb{P}[A]\mathbb{P}[B] $, $ \mathbb{P}[A \cap C] = \mathbb{P}[A]\mathbb{P}[C] $, and $ \mathbb{P}[B \cap C] = \mathbb{P}[B]\mathbb{P}[C]$, **and**
+2. $\mathbb{P}[A \cap B \cap C] = \mathbb{P}[A]\mathbb{P}[B]\mathbb{P}[C].$
+
+It’s important to note that pairwise independence (condition 1) does not necessarily imply joint independence (condition 2).
+```
+
+```{admonition} Conditional independence.
+Two events $ A $ and $ B $ are conditionally independent given a third event $ E $ if $\mathbb{P}[A \cap B \mid E] = \mathbb{P}[A \mid E]\mathbb{P}[B \mid E].$
+This means that, given $ E $, the occurrence of $ A $ provides no further information about the occurrence of $ B $, and vice versa.
+```
+
+As the following examples illustrate, independence does not necessarily imply conditional independence, and vice versa.
+
+```{admonition} Example: Conditional independence doesn't imply independence.
+:class: tip
+
+Consider a scenario where a box contains two coins: Coin 1 is a regular coin with one head and one tail, while Coin 2 is a special coin with two heads. One of these coins is randomly chosen, and it is flipped twice.
+
+Let the event $ A = \{HH, HT\}$ represent the outcome where the first toss results in heads (H), and $ B = \{HH, TH\}$ represent the event where the second toss results in heads. Additionally, let $ E $ denote the event that Coin 1 was chosen.
+
+**Conditional independence.** Given that Coin 1 (a regular coin) is chosen, the events $ A $ and $ B $ are conditionally independent. This is because, for Coin 1, the probability of getting heads on either toss is $ \frac{1}{2} $. Therefore, the conditional probabilities are
+$\mathbb{P}[A \mid E] = \mathbb{P}[\{HH, HT\} \mid \text{Coin 1 chosen}] = \frac{1}{2}$. Similarly, $\mathbb{P}[B \mid E] = \frac{1}{2}.$
+Additionally, the probability of both tosses resulting in heads, given that Coin 1 was chosen, is $\mathbb{P}[A \cap B \mid E] = \mathbb{P}[\{HH\} \mid \text{Coin 1 chosen}] = \frac{1}{4}$.
+Thus, $ A $ and $ B $ are independent events conditioned on choosing Coin 1 because $\mathbb{P}[A \cap B \mid E] = \mathbb{P}[A \mid E] \cdot \mathbb{P}[B \mid E]$.
+
+**Unconditional dependence.**
+However, $ A $ and $ B $ are not independent when we don’t condition on $ E $. By the law of total probability,
+$\mathbb{P}[B] = \mathbb{P}[B \mid E]\cdot \mathbb{P}[E] + \mathbb{P}[B \mid E^c]\cdot \mathbb{P}[E^c]$. We’ve already computed $\mathbb{P}[B \mid E] = \frac{1}{2}$, and we know that $\mathbb{P}[E] = \frac{1}{2}$, so $\mathbb{P}[E^c] = \mathbb{P}[\text{Coin 2 chosen}] = \frac{1}{2}$ as well. If Coin 2 is chosen, HH is the only possible outcome. Therefore, $\mathbb{P}[B \mid E^c] = \mathbb{P}[\text{HH or TH} \mid \text{Coin 2 chosen}] = 1.$ Putting this all together, we have that
+
+\begin{equation*}
+
+\mathbb{P}[B] = \frac{1}{2} \cdot \frac{1}{2} + 1 \cdot \frac{1}{2} = \frac{3}{4}.
+\end{equation*}
+By the same logic, $\mathbb{P}[A] = \frac{3}{4}$.
+Meanwhile, the probability both tosses land heads ($A \cap B = \{HH\}$) is:
+\begin{equation*}
+\mathbb{P}[A \cap B] = \mathbb{P}[A \cap B \mid E]\cdot \mathbb{P}[E] + \mathbb{P}[A \cap B \mid E^c]\cdot \mathbb{P}[E^c] = \frac{1}{4} \cdot \frac{1}{2} + 1 \cdot \frac{1}{2} = \frac{5}{8}.
+\end{equation*}
+Since $ \mathbb{P}[A] \mathbb{P}[B] \neq \mathbb{P}[A \cap B] $, we conclude that $ A $ and $ B $ are not independent events when we don't know which coin was chosen. Intuitively, if the first flip lands heads (i.e., $A$ happens), we can assume there’s a good chance we chose Coin 2, and therefore, there’s a higher likelihood that the second flip will land heads as well. Said another way, given that $A$ happens, we can be slightly more confident that $B$ will also happen.
+```
+
+```{admonition} Example: Independence doesn't imply conditional independence.
+:class: tip
+
+Suppose my friends Alice and Bob each decide, *independently* of one another, whether or not to call me every day. Let’s define a few events: $ A $ represents the event that Alice calls this coming Friday, and $ B $ represents the event that Bob calls this coming Friday. Additionally, let $ E $ denote the event that I receive exactly one call this coming Friday.
+
+Given that I receive exactly one call ($ E $), either Alice or Bob may be the one who calls, so the probabilities $ \mathbb{P}[A \mid E]$ and $ \mathbb{P}[B \mid E]$ are non-zero (i.e., $ \mathbb{P}[A \mid E] > 0 $ and $ \mathbb{P}[B \mid E] > 0 $).
+
+However, the probability of both Alice and Bob calling, given that I receive exactly one call, is zero: $\mathbb{P}[A \cap B \mid E] = 0.$ Therefore, $0 = \mathbb{P}[A \cap B \mid E] \not= \mathbb{P}[A \mid E] \cdot \mathbb{P}[B \mid E] > 0$, so $A$ and $B$ are not conditionally independent, given $E$.
+```
+
+## The Monty Hall problem
+
+We’ll now see how working with conditional probability can help us solve a famous problem from the game show *Let’s Make a Deal*, hosted by Monty Hall. On this show, a contestant plays a game involving three doors: behind one of the doors is a car, while the other two doors conceal goats. Each door conceals the car with equal probability.
+```{figure} images/doors.png
+---
+name: doors
+width: 250px
+align: center
+---
+
+Three doors. One conceals a car and the others conceal goats.
+```
+Monty, the game show host, knows which door hides the car and which doors hide the goats. Here’s how the game works:
+
+1. The contestant begins by choosing one of the three doors. Next, Monty will open one of the other two doors. Importantly, Monty will always open a door that hides a goat. If both of the remaining doors have goats behind them, Monty will choose which door to open with equal probabilities.
+2. After Monty opens the door, revealing a goat, the contestant is given a choice: either stick with their original door or switch to the remaining unopened door.
+3. Finally, Monty will open the contestant’s chosen door, and the contestant will win whatever is behind it, either the car or a goat.
+
+The contestant has two possible strategies to choose from in the game:
+
+1. **Switch:** The contestant initially selects door 1 (without loss of generality). After Monty opens a door revealing a goat, the contestant switches to the other remaining door.
+2. **Stay:** The contestant selects door 1, and after Monty opens a door revealing a goat, they stick with their original choice and keep door 1.
+
+**Q1:** What is the probability the contestant wins under the “stay” strategy?
+
+In this case, the contestant will only win if the car is behind door 1, so the probability they win is $\frac{1}{3}$ (since the car is behind each door with equal probability).
+
+**Q2:** What is the probability the contestant wins under the “switch” strategy?
+
+**Step 1: Define the events.** We start by defining the relevant events in the game. Let:
+
+- $ A $ be the event you win the car if you switch doors.
+- $ C_j $ be the event that the car is behind door $ j $, where $ j = 1, 2, 3 $.
+
+**Step 2: Define the goal.** We aim to calculate the probability of winning the car if you switch, denoted as $ \mathbb{P}[A] $. We use the Law of Total Probability (LOTP) to break this down into conditional probabilities based on where the car is located: $\mathbb{P}[A] = \mathbb{P}[A \mid C_1]\mathbb{P}[C_1] + \mathbb{P}[A \mid C_2]\mathbb{P}[C_2] + \mathbb{P}[A \mid C_3]\mathbb{P}[C_3].$
+
+**Step 3: Calculate the individual probabilities.** Now, we compute the individual probabilities:
+
+- The probability of the car being behind any of the three doors is equally likely, so
+$\mathbb{P}[C_1] = \mathbb{P}[C_2] = \mathbb{P}[C_3] = \frac{1}{3}.$
+- If the car is behind door 1 ($ C_1 $), switching will result in a loss, so
+$\mathbb{P}[A \mid C_1] = 0.$
+- If the car is behind door 2 ($ C_2 $), Monty will open door 3. Therefore, you will switch to door 2 and win the car, so
+$\mathbb{P}[A \mid C_2] = 1.$
+- Similarly, if the car is behind door 3 ($ C_3 $), Monty will open door 2. Therefore, you will switch to door 3 and win the car, so
+$\mathbb{P}[A \mid C_3] = 1.$
+
+**Step 4: Compute the final answer.** Using these values, we can now compute the overall probability of winning by switching:
+$\mathbb{P}[A] = 0 \cdot \frac{1}{3} + 1 \cdot \frac{1}{3} + 1 \cdot \frac{1}{3} = \frac{2}{3}.$ Therefore, the probability of winning the car if you switch doors is $ \frac{2}{3} $, which makes switching the optimal strategy in the Monty Hall problem.
+
+Tree diagrams can help us work through slightly more complex probabilities. For example, let $M_j$ be the event that Monty opens door $j$, for $j = 1, 2, 3$.
+```{figure} images/monty_tree.png
+---
+name: monty_tree
+width: 700px
+align: center
+---
+
+Tree diagram for the Monty hall problem.
+```
+
+**Q:** What is the probability you win if you switch, given that Monty opens door 2? In other words,  let $A$ be the event you win if you switch. What is $\mathbb{P}[A \mid M_2]$?
+
+We know that
+
+\begin{equation*} \mathbb{P}[A \mid M_2] = \frac{\mathbb{P}[A \cap M_2]}{\mathbb{P}[M_2]}.
+
+\end{equation*}
+
+The only way that you can win if you switch in the scenario that Monty opens door 2 is if the car is behind door 3. Therefore, the event $A \cap M_2$ is equivalent to the event $C_3 \cap M_2$. {numref}`Figure {number} <monty_tree>` illustrates that $\mathbb{P}[C_3 \cap M_2] = \frac{1}{3}$.
+
+Meanwhile, by the law of total probability, $\mathbb{P}[M_2] = \mathbb{P}[M_2 \cap C_1] + \mathbb{P}[M_2 \cap C_2] + \mathbb{P}[M_2 \cap C_3]$. Note that $\mathbb{P}[M_2 \cap C_2] = 0$, since Monty will never open a door that has a car behind it. From {numref}`Figure {number} <monty_tree>`, we see that $\mathbb{P}[M_2 \cap C_1] = \frac{1}{6}$ and $\mathbb{P}[M_2 \cap C_3] = \frac{1}{3}$. Therefore, 
+
+\begin{equation*}
+
+\mathbb{P}[A \mid M_2] = \frac{\mathbb{P}[C_3 \cap M_2]}{\mathbb{P}[M_2]} = \frac{1/3}{1/6 + 1/3} = \frac{2}{3}.
+
+\end{equation*}
+
+So even if you condition on Monty opening door 2, you still have a $\frac{2}{3}$ probability of winning under the switching strategy.
