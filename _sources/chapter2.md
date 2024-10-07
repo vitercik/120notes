@@ -87,7 +87,7 @@ Bayes’ rule tells us that
 This fact follows simply from the observation that
 
 1. $\mathbb{P}[A \mid B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}$, which means that $\mathbb{P}[A \cap B] = \mathbb{P}[A \mid B]\mathbb{P}[B]$.
-2. Moreover, $\mathbb{P}[B \mid A] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[A]}$, which means that $\mathbb{P}[A \cap B] = \mathbb{P}[B \mid B]\mathbb{P}[A]$.
+2. Moreover, $\mathbb{P}[B \mid A] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[A]}$, which means that $\mathbb{P}[A \cap B] = \mathbb{P}[B \mid A]\mathbb{P}[A]$.
 
 As a result, $\mathbb{P}[A \mid B]\mathbb{P}[B] = \mathbb{P}[B \mid A]\mathbb{P}[A]$, and Bayes’ rule follows immediately.
 
