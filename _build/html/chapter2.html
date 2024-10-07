@@ -465,7 +465,7 @@ Imagine rolling a die repeatedly, as in the following figure.</p>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{P}[A \mid B] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[B]}\)</span>, which means that <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B] = \mathbb{P}[A \mid B]\mathbb{P}[B]\)</span>.</p></li>
 <li><p>Moreover, <span class="math notranslate nohighlight">\(\mathbb{P}[B \mid A] = \frac{\mathbb{P}[A \cap B]}{\mathbb{P}[A]}\)</span>, which means that <span class="math notranslate nohighlight">\(\mathbb{P}[A \cap B] = \mathbb{P}[B \mid B]\mathbb{P}[A]\)</span>.</p></li>
 </ol>
-<p>As a result, <span class="math notranslate nohighlight">\(\mathbb{P}[A \mid B]\mathbb{P}[B] = \mathbb{P}[B \mid B]\mathbb{P}[A]\)</span>, and Bayes’ rule follows immediately.</p>
+<p>As a result, <span class="math notranslate nohighlight">\(\mathbb{P}[A \mid B]\mathbb{P}[B] = \mathbb{P}[B \mid A]\mathbb{P}[A]\)</span>, and Bayes’ rule follows immediately.</p>
 <p>To apply Bayes’ rule it will often be useful to use the <em>law of total probability</em>.</p>
 <figure class="align-center" id="lotp">
 <a class="reference internal image-reference" href="_images/LOTP.png"><img alt="_images/LOTP.png" src="_images/LOTP.png" style="width: 400px;" /></a>
@@ -743,7 +743,7 @@ Meanwhile, the probability both tosses land heads (<span class="math notranslate
 <span class="math notranslate nohighlight">\(\mathbb{P}[A] = 0 \cdot \frac{1}{3} + 1 \cdot \frac{1}{3} + 1 \cdot \frac{1}{3} = \frac{2}{3}.\)</span> Therefore, the probability of winning the car if you switch doors is <span class="math notranslate nohighlight">\( \frac{2}{3} \)</span>, which makes switching the optimal strategy in the Monty Hall problem.</p>
 <p>Tree diagrams can help us work through slightly more complex probabilities. For example, let <span class="math notranslate nohighlight">\(M_j\)</span> be the event that Monty opens door <span class="math notranslate nohighlight">\(j\)</span>, for <span class="math notranslate nohighlight">\(j = 1, 2, 3\)</span>.</p>
 <figure class="align-center" id="monty-tree">
-<a class="reference internal image-reference" href="_images/monty_tree.png"><img alt="_images/monty_tree.png" src="_images/monty_tree.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="images/monty_tree.png"><img alt="images/monty_tree.png" src="images/monty_tree.png" style="width: 700px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 2.8 </span><span class="caption-text">Tree diagram for the Monty hall problem.</span><a class="headerlink" href="#monty-tree" title="Link to this image">#</a></p>
 </figcaption>
