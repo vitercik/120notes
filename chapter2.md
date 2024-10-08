@@ -459,3 +459,100 @@ Meanwhile, by the law of total probability, $\mathbb{P}[M_2] = \mathbb{P}[M_2 \c
 \end{equation*}
 
 So even if you condition on Monty opening door 2, you still have a $\frac{2}{3}$ probability of winning under the switching strategy.
+
+## Paradoxes and fallacies
+
+We will end this chapter with some famous paradoxes from probability.
+
+### Prosecutor’s fallacy
+
+In 1998, Sally Clark was tried for the murder of her two sons, both of whom tragically died as infants. During the trial, the prosecutor argued that the probability of a newborn dying from sudden infant death syndrome (SIDS) was 1 in 8500. Based on this, they claimed that the probability of Clark being innocent was $ \frac{1}{8500^2} $.
+
+However, this reasoning contained two significant flaws. First, it assumed the deaths were independent events, which may not be the case: genetic factors could link the deaths, making them not independent. Second, and more crucially, the prosecutor misapplied probability. They claimed that the likelihood of the evidence (the deaths of the children) given Clark's innocence was $ \frac{1}{8500^2} $. However, what we *actually* what to determine is the probability of Clark being innocent given the evidence — a fundamentally different quantity.
+
+As we know from Bayes’ rule,
+
+\begin{equation*}
+\mathbb{P}[\text{innocent} \mid \text{evidence}] = \frac{\mathbb{P}[\text{evidence} \mid \text{innocent}] \cdot \mathbb{P}[\text{innocent}]}{\mathbb{P}[\text{evidence}]}.
+\end{equation*}
+
+Expanding it further with the LOTP:
+
+\begin{equation*}
+\mathbb{P}[\text{innocent} \mid \text{evidence}] = \frac{\mathbb{P}[\text{evidence} \mid \text{innocent}] \cdot \mathbb{P}[\text{innocent}]}{\mathbb{P}[\text{evidence} \mid \text{innocent}] \cdot \mathbb{P}[\text{innocent}] + \mathbb{P}[\text{evidence} \mid \text{guilty}] \cdot \mathbb{P}[\text{guilty}]}.
+\end{equation*}
+
+This equation shows that if the probability of guilt is sufficiently small, then the probability of innocence, given the evidence, would be close to 1. Therefore, the prosecutor's simplistic approach vastly overstated the likelihood of guilt by failing to apply the correct probabilistic reasoning. This mistake is commonly referred to as the "[prosecutor's fallacy](https://en.wikipedia.org/wiki/Base_rate_fallacy)."
+
+### Simpson’s paradox
+
+Simpson's paradox is a phenomenon in probability where a trend that appears in different groups of data reverses when the groups are combined. We’ll see two examples of this paradox.
+
+```{list-table} Survival data of 100 people from Country A
+:header-rows: 1
+:name: countryA
+
+* - 
+  - **Young**
+  - **Old**
+* - **Survived**
+  - 10
+  - 70
+* - **Didn't survive**
+  - 0
+  - 20
+```
+
+```{list-table} Survival data of 100 people from Country B
+:header-rows: 1
+:name: countryB
+
+* - 
+  - **Young**
+  - **Old**
+* - **Survived**
+  - 81
+  - 2
+* - **Didn't survive**
+  - 9
+  - 8
+```
+
+```{admonition} Example: Disease survival rates.
+:class: tip
+
+Simpson’s paradox can be illustrated through an example involving disease survival rates in two countries, Country A and Country B. The survival data for both countries is shown in {numref}`countryA` and {numref}`countryB`.
+
+At first glance, when we calculate the overall survival rates, Country B appears to have a slightly higher survival rate (83%) than Country A (80%). However, this conclusion is deceptive. When the data is conditioned on age, Country A has a better survival rate for both young and old patients.
+
+To write this in terms of probability, let $L$ be the event that a randomly chosen patient survives the disease. Let $A$ be the event that the patient lives in country A and $B$ be the event that they live in country B. Moreover, let $Y$ be the event that the patient is young. We denote the probability the patient survives given that they live in country A and are young as $\mathbb{P}[L \mid A , Y]$, a common shorthand for $\mathbb{P}[L \mid A \cap Y]$. We have that
+$\mathbb{P}[L \mid A, Y]= 1.0 > \mathbb{P}[L \mid B, Y] = \frac{81}{90}$ and $\mathbb{P}[L \mid A, Y^c] = \frac{70}{90} > \mathbb{P}[L \mid B, Y^c] = \frac{2}{10}$. However, $\mathbb{P}[L \mid A] = \frac{80}{100} < \mathbb{P}[L \mid B] = \frac{83}{100}.$
+
+This paradox occurs because the age distributions of the two countries are different. Country A has a larger proportion of elderly patients, and many survive (for example, due to excellent elder care). In contrast, Country B has fewer elderly patients, but perhaps the care for older individuals is poor, resulting in a lower survival rate. However, the younger population in Country B is relatively large and has a high survival rate, skewing the overall survival statistics.
+
+Thus, while Country B appears to have a better overall survival rate, Country A performs better when we examine the data separately by age group. This reversal of conclusions, depending on how the data is grouped, is a classic example of Simpson's paradox.
+```
+
+```{admonition} Example: Batting average against.
+:class: tip
+
+In 2009, pitchers Beckett and Santana had very similar batting averages against (BAA), the percentage of at-bats that result in a hit by the opposing team's batters. Lower is better since the BAA measures how effectively a pitcher prevents hits. Beckett's BAA was 0.2441, and Santana's was 0.2438. To write these numbers in terms of events, let $ H_B $ be the event that Beckett allows a hit, with $ \mathbb{P}[H_B] = 0.2441 $. Similarly, let $H_S$ be the event Santana allows a hit, with $ \mathbb{P}[H_S] = 0.2438 $.
+
+However, when we break down the data by handedness of the batters, Beckett's performance appears better. Let $ R_B $ be the event that a batter facing Beckett was right-handed, and let $R_S$ be the same for Santana. For right-handed batters, Beckett's conditional BAA was $ \mathbb{P}[H_B \mid R_B] = 0.226 $, while Santana's was $ \mathbb{P}[H_S \mid R_S] = 0.235 $. Similarly, against left-handed batters, Beckett's BAA was $ \mathbb{P}[H_B \mid R_B^c] = 0.258 $, compared to Santana's $ \mathbb{P}[H_S \mid R_S^c] = 0.267 $. Despite these superior conditional BAAs for Beckett, his overall BAA was slightly worse than Santana's.
+
+This difference arises from the distribution of right- and left-handed batters each pitcher faced. Beckett faced a lower proportion of right-handed batters compared to Santana. Using the LOTP, the overall BAA can be calculated by considering both conditional probabilities and the proportions of right- and left-handed batters faced:
+
+\begin{align*}
+\mathbb{P}[H_B] &= \mathbb{P}[H_B \mid R_B]\mathbb{P}[R_B] + \mathbb{P}[H_B \mid R_B^c]\mathbb{P}[R_B^c]\\
+&= 0.226 \times 0.432 + 0.258 \times 0.568 = 0.2441
+\end{align*}
+
+and
+
+\begin{align*}
+\mathbb{P}[H_S] &= \mathbb{P}[H_S \mid R_S]\mathbb{P}[R_S] + \mathbb{P}[H_S \mid R_S^c]\mathbb{P}[R_S^c]\\
+&= 0.235 \times 0.719 + 0.267 \times 0.281 = 0.2438.
+\end{align*}
+
+Santana faced a significantly higher proportion of right-handed batters (71.9%) compared to Beckett (43.2%), which contributed to lowering his overall BAA, despite his conditional BAAs being worse than Beckett's in both right- and left-handed matchups.
+```

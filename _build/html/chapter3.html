@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Bibliography &#8212; MS&amp;E 120 Course Reader</title>
+    <title>3. Random variables and their distributions &#8212; MS&amp;E 120 Course Reader</title>
   
   
   
@@ -57,10 +57,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'bibliography';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter3';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="3. Random variables and their distributions" href="chapter3.html" />
+    <link rel="next" title="4. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="2. Conditional probability" href="chapter2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,8 +178,8 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Bibliography</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">4. Bibliography</a></li>
 </ul>
 
     </div>
@@ -248,7 +251,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbibliography.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter3.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +281,7 @@
       
       
       
-      <li><a href="_sources/bibliography.md" target="_blank"
+      <li><a href="_sources/chapter3.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +352,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -360,11 +365,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bibliography</h1>
+    <h1>Random variables and their distributions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">3.1. Random variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-and-probability-mass-functions">3.2. Distributions and probability mass functions</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -374,28 +388,102 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bibliography">
-<h1><span class="section-number">4. </span>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h1>
-<div class="docutils container" id="id1">
-<div role="list" class="citation-list">
-<div class="citation" id="id2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>BH19<span class="fn-bracket">]</span></span>
-<p>Joseph K Blitzstein and Jessica Hwang. <em>Introduction to probability</em>. Chapman and Hall/CRC, 2019.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="random-variables-and-their-distributions">
+<h1><span class="section-number">3. </span>Random variables and their distributions<a class="headerlink" href="#random-variables-and-their-distributions" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#random-variables" id="id1">Random variables</a></p></li>
+<li><p><a class="reference internal" href="#distributions-and-probability-mass-functions" id="id2">Distributions and probability mass functions</a></p></li>
+</ul>
+</nav>
+<section id="random-variables">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">3.1. </span>Random variables</a><a class="headerlink" href="#random-variables" title="Link to this heading">#</a></h2>
+<p>When performing an experiment, we are often more interested in specific properties of the outcomes rather than the outcomes themselves. For example, if we toss a coin three times, instead of focusing on each individual result (e.g., heads or tails for each toss), we may be more interested in the total number of head we observed.</p>
+<p>This is where <strong>random variables</strong> come into play. A random variable, denoted as <span class="math notranslate nohighlight">\( X \)</span>, is a variable that takes on different values based on the outcome of a random experiment. More formally, given an experiment with a sample space <span class="math notranslate nohighlight">\( S \)</span>, a random variable is a function that maps each outcome <span class="math notranslate nohighlight">\(s \in S \)</span> to a real number in <span class="math notranslate nohighlight">\( \mathbb{R} \)</span>. The value assigned to each outcome, <span class="math notranslate nohighlight">\( X(s) \)</span>, depends on the random result of the experiment, represented by a probability function <span class="math notranslate nohighlight">\( \mathbb{P} \)</span>.</p>
+<p>To make this concrete, let’s return to the example of tossing a coin three times. The sample space <span class="math notranslate nohighlight">\( S \)</span> for this experiment consists of all possible sequences of heads (H) and tails (T):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+\end{equation*}\]</div>
+<p>Now, define the random variable <span class="math notranslate nohighlight">\( X \)</span> as the number of heads observed in the sequence. For each outcome in the sample space, the random variable assigns a corresponding value:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( X(HHH) = 3 \)</span> (three heads)</p></li>
+<li><p><span class="math notranslate nohighlight">\( X(HHT) = X(HTH) = X(THH) = 2 \)</span> (two heads)</p></li>
+<li><p><span class="math notranslate nohighlight">\( X(HTT) = X(THT) = X(TTH) = 1 \)</span> (one head)</p></li>
+<li><p><span class="math notranslate nohighlight">\( X(TTT) = 0 \)</span> (no heads)</p></li>
+</ul>
+<p>In this way, the random variable simplifies the experiment’s outcomes, focusing on the specific feature we care about—in this case, the number of heads—while preserving the underlying randomness of the experiment.</p>
+<p>We’ll now provide the formal definition of a <em>discrete</em> random variable. (We will discuss <em>continuous</em> random variables later in the quarter.)</p>
+<div class="admonition-discrete-random-variable admonition">
+<p class="admonition-title">Discrete random variable</p>
+<p>A discrete <strong>random variable</strong> (RV) is a type of random variable that can take on either a finite or an infinite list of distinct values, such as <span class="math notranslate nohighlight">\( x_1, x_2, x_3, \dots \)</span>. For a discrete random variable, the sum of the probabilities that <span class="math notranslate nohighlight">\( X \)</span> takes each of these values must equal 1. In other words:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X = x_1 \text{ or } X = x_2 \text{ or } X = x_3 \text{ or } \dots ] = 1.
+\end{equation*}\]</div>
+<p>The expression <span class="math notranslate nohighlight">\( \mathbb{P}[X = x] \)</span> is shorthand for the probability that the random variable <span class="math notranslate nohighlight">\( X \)</span> takes the value <span class="math notranslate nohighlight">\( x \)</span>, which refers to the probability of the event <span class="math notranslate nohighlight">\(\{s \in S \text{ such that } X(s) = x\}\)</span> where the outcome of the experiment <span class="math notranslate nohighlight">\( s \in S \)</span> results in <span class="math notranslate nohighlight">\( X(s) = x \)</span>.</p>
 </div>
-<div class="citation" id="id5" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HB23<span class="fn-bracket">]</span></span>
-<p>Mor Harchol-Balter. <em>Introduction to probability for computing</em>. Cambridge University Press, 2023.</p>
+</section>
+<section id="distributions-and-probability-mass-functions">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">3.2. </span>Distributions and probability mass functions</a><a class="headerlink" href="#distributions-and-probability-mass-functions" title="Link to this heading">#</a></h2>
+<p>The <strong>probability mass function (PMF)</strong> of a discrete random variable is a function that assigns probabilities to each possible value of the random variable. The PMF is denoted by <span class="math notranslate nohighlight">\( p_X(x) = \mathbb{P}[X = x] \)</span>, which gives the probability that <span class="math notranslate nohighlight">\( X \)</span> takes the value <span class="math notranslate nohighlight">\( x \)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Tossing coins.</p>
+<p>Suppose we toss a coin three times, and let <span class="math notranslate nohighlight">\( X \)</span> represent the number of heads. The possible values of <span class="math notranslate nohighlight">\( X \)</span> are 0, 1, 2, and 3, and the PMF would look as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( p_X(0) = \mathbb{P}[X = 0] = \mathbb{P}[\{TTT\}] = \frac{1}{8} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( p_X(1) = \mathbb{P}[X = 1] = \mathbb{P}[\{HTT, THT, TTH\}] = \frac{3}{8} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( p_X(2) = \mathbb{P}[X = 2] = \frac{3}{8} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( p_X(3) = \mathbb{P}[X = 3] = \mathbb{P}[\{HHH\}] = \frac{1}{8} \)</span></p></li>
+</ul>
+<p>See <a class="reference internal" href="#coin-pmf"><span class="std std-numref">Figure 3.1</span></a> for an illustration.</p>
 </div>
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Ros18<span class="fn-bracket">]</span></span>
-<p>Sheldon Ross. <em>A first course in probability</em>. Pearson, 2018.</p>
+<figure class="align-center" id="coin-pmf">
+<a class="reference internal image-reference" href="_images/coin_pmf.png"><img alt="_images/coin_pmf.png" src="_images/coin_pmf.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">PMF of the number of times a coin lands heads when tossed three times.</span><a class="headerlink" href="#coin-pmf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Example: Touchdown passes.</p>
+<p>As another example, if our experiment is a game between the Bears and Packers, <span class="math notranslate nohighlight">\(X\)</span> might be the number of touchdowns passes thrown by the Packers quarterback. Its PMF may look something like <a class="reference internal" href="#touchdown"><span class="std std-numref">Table 3.1</span></a>, as illustrated in <a class="reference internal" href="#football-pmf"><span class="std std-numref">Fig. 3.2</span></a>.</p>
 </div>
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Sev20<span class="fn-bracket">]</span></span>
-<p>Thomas A Severini. <em>Analytic methods in sports: Using mathematics and statistics to understand data from baseball, football, basketball, and other sports</em>. Chapman and Hall/CRC, 2020.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="touchdown">
+<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">PMF of the number of touchdown passes thrown by Packers quarterback.</span><a class="headerlink" href="#touchdown" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\( p_X(x) = \mathbb{P}[X = x] \)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>0.05</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-</div>
+<figure class="align-center" id="football-pmf">
+<a class="reference internal image-reference" href="_images/football_pmf.png"><img alt="_images/football_pmf.png" src="_images/football_pmf.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Illustration of the PMF of the number of touchdown passes thrown by the Packers quarterback.</span><a class="headerlink" href="#football-pmf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -429,13 +517,22 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="chapter3.html"
+       href="chapter2.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Random variables and their distributions</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Conditional probability</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -443,6 +540,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">3.1. Random variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-and-probability-mass-functions">3.2. Distributions and probability mass functions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

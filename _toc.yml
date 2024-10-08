@@ -8,4 +8,5 @@ options:
 chapters:
 - file: chapter1
 - file: chapter2
+- file: chapter3
 - file: bibliography
