@@ -378,6 +378,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule-and-the-law-of-total-probability">2.2. Bayes’ rule and the law of total probability</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">2.3. Independence</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-monty-hall-problem">2.4. The Monty Hall problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradoxes-and-fallacies">2.5. Paradoxes and fallacies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prosecutors-fallacy">2.5.1. Prosecutor’s fallacy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simpsons-paradox">2.5.2. Simpson’s paradox</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -397,6 +402,12 @@ document.write(`
 <li><p><a class="reference internal" href="#bayes-rule-and-the-law-of-total-probability" id="id9">Bayes’ rule and the law of total probability</a></p></li>
 <li><p><a class="reference internal" href="#independence" id="id10">Independence</a></p></li>
 <li><p><a class="reference internal" href="#the-monty-hall-problem" id="id11">The Monty Hall problem</a></p></li>
+<li><p><a class="reference internal" href="#paradoxes-and-fallacies" id="id12">Paradoxes and fallacies</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prosecutors-fallacy" id="id13">Prosecutor’s fallacy</a></p></li>
+<li><p><a class="reference internal" href="#simpsons-paradox" id="id14">Simpson’s paradox</a></p></li>
+</ul>
+</li>
 </ul>
 </nav>
 <section id="definition-and-intuition">
@@ -764,6 +775,97 @@ Meanwhile, the probability both tosses land heads (<span class="math notranslate
 \end{equation*}\]</div>
 <p>So even if you condition on Monty opening door 2, you still have a <span class="math notranslate nohighlight">\(\frac{2}{3}\)</span> probability of winning under the switching strategy.</p>
 </section>
+<section id="paradoxes-and-fallacies">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">2.5. </span>Paradoxes and fallacies</a><a class="headerlink" href="#paradoxes-and-fallacies" title="Link to this heading">#</a></h2>
+<p>We will end this chapter with some famous paradoxes from probability.</p>
+<section id="prosecutors-fallacy">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">2.5.1. </span>Prosecutor’s fallacy</a><a class="headerlink" href="#prosecutors-fallacy" title="Link to this heading">#</a></h3>
+<p>In 1998, Sally Clark was tried for the murder of her two sons, both of whom tragically died as infants. During the trial, the prosecutor argued that the probability of a newborn dying from sudden infant death syndrome (SIDS) was 1 in 8500. Based on this, they claimed that the probability of Clark being innocent was <span class="math notranslate nohighlight">\( \frac{1}{8500^2} \)</span>.</p>
+<p>However, this reasoning contained two significant flaws. First, it assumed the deaths were independent events, which may not be the case: genetic factors could link the deaths, making them not independent. Second, and more crucially, the prosecutor misapplied probability. They claimed that the likelihood of the evidence (the deaths of the children) given Clark’s innocence was <span class="math notranslate nohighlight">\( \frac{1}{8500^2} \)</span>. However, what we <em>actually</em> what to determine is the probability of Clark being innocent given the evidence — a fundamentally different quantity.</p>
+<p>As we know from Bayes’ rule,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[\text{innocent} \mid \text{evidence}] = \frac{\mathbb{P}[\text{evidence} \mid \text{innocent}] \cdot \mathbb{P}[\text{innocent}]}{\mathbb{P}[\text{evidence}]}.
+\end{equation*}\]</div>
+<p>Expanding it further with the LOTP:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[\text{innocent} \mid \text{evidence}] = \frac{\mathbb{P}[\text{evidence} \mid \text{innocent}] \cdot \mathbb{P}[\text{innocent}]}{\mathbb{P}[\text{evidence} \mid \text{innocent}] \cdot \mathbb{P}[\text{innocent}] + \mathbb{P}[\text{evidence} \mid \text{guilty}] \cdot \mathbb{P}[\text{guilty}]}.
+\end{equation*}\]</div>
+<p>This equation shows that if the probability of guilt is sufficiently small, then the probability of innocence, given the evidence, would be close to 1. Therefore, the prosecutor’s simplistic approach vastly overstated the likelihood of guilt by failing to apply the correct probabilistic reasoning. This mistake is commonly referred to as the “<a class="reference external" href="https://en.wikipedia.org/wiki/Base_rate_fallacy">prosecutor’s fallacy</a>.”</p>
+</section>
+<section id="simpsons-paradox">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">2.5.2. </span>Simpson’s paradox</a><a class="headerlink" href="#simpsons-paradox" title="Link to this heading">#</a></h3>
+<p>Simpson’s paradox is a phenomenon in probability where a trend that appears in different groups of data reverses when the groups are combined. We’ll see two examples of this paradox.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="countrya">
+<caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Survival data of 100 people from Country A</span><a class="headerlink" href="#countrya" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong>Young</strong></p></th>
+<th class="head"><p><strong>Old</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Survived</strong></p></td>
+<td><p>10</p></td>
+<td><p>70</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Didn’t survive</strong></p></td>
+<td><p>0</p></td>
+<td><p>20</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="countryb">
+<caption><span class="caption-number">Table 2.2 </span><span class="caption-text">Survival data of 100 people from Country B</span><a class="headerlink" href="#countryb" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong>Young</strong></p></th>
+<th class="head"><p><strong>Old</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Survived</strong></p></td>
+<td><p>81</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Didn’t survive</strong></p></td>
+<td><p>9</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Disease survival rates.</p>
+<p>Simpson’s paradox can be illustrated through an example involving disease survival rates in two countries, Country A and Country B. The survival data for both countries is shown in <a class="reference internal" href="#countrya"><span class="std std-numref">Table 2.1</span></a> and <a class="reference internal" href="#countryb"><span class="std std-numref">Table 2.2</span></a>.</p>
+<p>At first glance, when we calculate the overall survival rates, Country B appears to have a slightly higher survival rate (83%) than Country A (80%). However, this conclusion is deceptive. When the data is conditioned on age, Country A has a better survival rate for both young and old patients.</p>
+<p>To write this in terms of probability, let <span class="math notranslate nohighlight">\(L\)</span> be the event that a randomly chosen patient survives the disease. Let <span class="math notranslate nohighlight">\(A\)</span> be the event that the patient lives in country A and <span class="math notranslate nohighlight">\(B\)</span> be the event that they live in country B. Moreover, let <span class="math notranslate nohighlight">\(Y\)</span> be the event that the patient is young. We denote the probability the patient survives given that they live in country A and are young as <span class="math notranslate nohighlight">\(\mathbb{P}[L \mid A , Y]\)</span>, a common shorthand for <span class="math notranslate nohighlight">\(\mathbb{P}[L \mid A \cap Y]\)</span>. We have that
+<span class="math notranslate nohighlight">\(\mathbb{P}[L \mid A, Y]= 1.0 &gt; \mathbb{P}[L \mid B, Y] = \frac{81}{90}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}[L \mid A, Y^c] = \frac{70}{90} &gt; \mathbb{P}[L \mid B, Y^c] = \frac{2}{10}\)</span>. However, <span class="math notranslate nohighlight">\(\mathbb{P}[L \mid A] = \frac{80}{100} &lt; \mathbb{P}[L \mid B] = \frac{83}{100}.\)</span></p>
+<p>This paradox occurs because the age distributions of the two countries are different. Country A has a larger proportion of elderly patients, and many survive (for example, due to excellent elder care). In contrast, Country B has fewer elderly patients, but perhaps the care for older individuals is poor, resulting in a lower survival rate. However, the younger population in Country B is relatively large and has a high survival rate, skewing the overall survival statistics.</p>
+<p>Thus, while Country B appears to have a better overall survival rate, Country A performs better when we examine the data separately by age group. This reversal of conclusions, depending on how the data is grouped, is a classic example of Simpson’s paradox.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Batting average against.</p>
+<p>In 2009, pitchers Beckett and Santana had very similar batting averages against (BAA), the percentage of at-bats that result in a hit by the opposing team’s batters. Lower is better since the BAA measures how effectively a pitcher prevents hits. Beckett’s BAA was 0.2441, and Santana’s was 0.2438. To write these numbers in terms of events, let <span class="math notranslate nohighlight">\( H_B \)</span> be the event that Beckett allows a hit, with <span class="math notranslate nohighlight">\( \mathbb{P}[H_B] = 0.2441 \)</span>. Similarly, let <span class="math notranslate nohighlight">\(H_S\)</span> be the event Santana allows a hit, with <span class="math notranslate nohighlight">\( \mathbb{P}[H_S] = 0.2438 \)</span>.</p>
+<p>However, when we break down the data by handedness of the batters, Beckett’s performance appears better. Let <span class="math notranslate nohighlight">\( R_B \)</span> be the event that a batter facing Beckett was right-handed, and let <span class="math notranslate nohighlight">\(R_S\)</span> be the same for Santana. For right-handed batters, Beckett’s conditional BAA was <span class="math notranslate nohighlight">\( \mathbb{P}[H_B \mid R_B] = 0.226 \)</span>, while Santana’s was <span class="math notranslate nohighlight">\( \mathbb{P}[H_S \mid R_S] = 0.235 \)</span>. Similarly, against left-handed batters, Beckett’s BAA was <span class="math notranslate nohighlight">\( \mathbb{P}[H_B \mid R_B^c] = 0.258 \)</span>, compared to Santana’s <span class="math notranslate nohighlight">\( \mathbb{P}[H_S \mid R_S^c] = 0.267 \)</span>. Despite these superior conditional BAAs for Beckett, his overall BAA was slightly worse than Santana’s.</p>
+<p>This difference arises from the distribution of right- and left-handed batters each pitcher faced. Beckett faced a lower proportion of right-handed batters compared to Santana. Using the LOTP, the overall BAA can be calculated by considering both conditional probabilities and the proportions of right- and left-handed batters faced:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{P}[H_B] &amp;= \mathbb{P}[H_B \mid R_B]\mathbb{P}[R_B] + \mathbb{P}[H_B \mid R_B^c]\mathbb{P}[R_B^c]\\
+&amp;= 0.226 \times 0.432 + 0.258 \times 0.568 = 0.2441
+\end{align*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{P}[H_S] &amp;= \mathbb{P}[H_S \mid R_S]\mathbb{P}[R_S] + \mathbb{P}[H_S \mid R_S^c]\mathbb{P}[R_S^c]\\
+&amp;= 0.235 \times 0.719 + 0.267 \times 0.281 = 0.2438.
+\end{align*}\]</div>
+<p>Santana faced a significantly higher proportion of right-handed batters (71.9%) compared to Beckett (43.2%), which contributed to lowering his overall BAA, despite his conditional BAAs being worse than Beckett’s in both right- and left-handed matchups.</p>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -834,6 +936,11 @@ Meanwhile, the probability both tosses land heads (<span class="math notranslate
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule-and-the-law-of-total-probability">2.2. Bayes’ rule and the law of total probability</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">2.3. Independence</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-monty-hall-problem">2.4. The Monty Hall problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradoxes-and-fallacies">2.5. Paradoxes and fallacies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prosecutors-fallacy">2.5.1. Prosecutor’s fallacy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simpsons-paradox">2.5.2. Simpson’s paradox</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
