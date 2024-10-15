@@ -67,7 +67,7 @@ PMF of the number of times a coin lands heads when tossed three times.
 ```{admonition} Example: Touchdown passes.
 :class: tip
 
-As another example, if our experiment is a game between the Bears and Packers, $X$ might be the number of touchdowns passes thrown by the Packers quarterback. Its PMF may look something like {numref}`touchdown`, as illustrated in {numref}`football_pmf`.
+As another example, if our experiment is a game between the Bears and Packers, $X$ might be the number of touchdown passes thrown by the Packers quarterback. Its PMF may look something like {numref}`touchdown`, as illustrated in {numref}`football_pmf`.
 
 ```
 
@@ -223,6 +223,10 @@ for $0 \leq k \leq n.$ To see why, we know that $X = X_1 + \cdots + X_n$, where 
 
 ```{admonition} Example: Baseball World Series
 :class: tip
+
+This is Question 18 from Chapter 3 of {cite}`Blitzstein19:Introduction`.
+
+
 The Boston Red Sox (RS) and the New York Yankees are facing off in the Baseball World Series. The first team to win four games takes home the championship. Suppose the probability that the Red Sox win any individual game is $ p = 0.6 $, and we assume that each game outcome is independent of the others.
 
 **Question:** What is the probability the Red Sox win the world series?
@@ -287,11 +291,130 @@ p_X(k) = \frac{{{w} \choose {k}}{{b} \choose {n-k}}}{{{w + b} \choose {n}}}.
 
 ```{admonition} Example: Endangered species.
 :class: tip
+This is Example 3.4.3 from {cite}`Blitzstein19:Introduction`.
+
 Suppose you’re a scientist in a jungle with $N$ endangered tigers. You tag $m$ tigers and release them into the wild. Then, you recapture $n$ random tigers and see how many are tagged. If $X$ is the number of tagged tigers in your random sample, then $X \sim \text{HGeom}(m, N-m, n)$.
 ```
 
 ```{admonition} Example: Card hands.
 :class: tip
+This is Example 3.4.4 from {cite}`Blitzstein19:Introduction`.
+
 
 Suppose you draw a 5-card hand from a shuffled deck. Let $X$ be the number of aces in your hand. Then $X \sim \text{HGeom}(4, 48, 5)$.
 ```
+
+The following table summarizes the correspondance between the different colored marbles and the categories of objects in the previous two examples.
+
+| $w$ white marbles    | $b$ black marbles   |
+|----------------------|---------------------|
+| $m$ tagged tigers     | $N-m$ untagged tigers|
+| 4 aces                | 48 non-aces          |
+
+## Discrete uniform
+
+The final example of a named distribution we will see in this chapter is the *discrete uniform* distribution.
+
+```{admonition} Discrete uniform distribution
+Let $ C = \{x_1, \dots, x_n\} $ be a finite set of numbers. From this set, we randomly select one number, $ X $, with each element equally likely. We say that $ X $ has the discrete uniform distribution, denoted by $ X \sim \text{Disc}(C) $. The PMF for $ X $ is
+\begin{equation*} p_X(x) = \begin{cases} \frac{1}{|C|} &\text{if } x \in C\\
+
+0 &\text{else.}
+
+\end{cases}
+
+\end{equation*}
+```
+
+## Cumulative distribution functions
+
+In addition to a RV’s PMF, we will see that it can be useful to work with the RV’s *cumulative distribution function (CDF).* The CDF of a RV $X$ is defined as $ F_X(x) = \mathbb{P}[X \leq x] $, representing the probability that $ X $ takes a value less than or equal to $ x $.
+
+Suppose we toss a coin twice. Let $ X $ be the number of heads. In this case, $ X $ follows a binomial distribution, $ X \sim \text{Bin}(2, \frac{1}{2}) $. The probability mass function of $ X $ is as follows:
+
+- $ p_X(0) = \mathbb{P}[\{TT\}] = \frac{1}{4} $,
+- $ p_X(1) = \mathbb{P}[\{HT, TH\}] = \frac{1}{2} $,
+- $ p_X(2) = \frac{1}{4} $.
+
+We plot the CDF of $X$ below.
+```{figure} images/cdf.png
+---
+name: cdf
+width: 250px
+align: center
+---
+
+CDF of the number of times a coin lands heads when tossed two times.
+```
+
+For example, we can see that:
+
+- $ F_X(-1) = \mathbb{P}[X \leq -1] = 0 $,
+- $ F_X(0) = \mathbb{P}[X \leq 0] = \mathbb{P}[X = 0] = \frac{1}{4} $,
+- $ F_X(1.5) = \mathbb{P}[X \leq 1.5] = \mathbb{P}[X = 0 \text{ or } X = 1] = \frac{3}{4} $, and
+- $ F_X(2) = \mathbb{P}[X \leq 2] = 1 $.
+
+Additionally, the probability that $ X $ exceeds a certain value $ x $ is given by $ \mathbb{P}[X > x] = 1 - \mathbb{P}[X \leq x] = 1 - F_X(x) $.
+
+## Functions of random variables
+
+For a random variable $ X $ and a function $ g: \mathbb{R} \to \mathbb{R} $, the transformed variable $ g(X) $ is also a random variable.
+
+```{admonition} Example: PMF of $ Y = 2|X| $ for $ X \sim \text{Disc}(\{-1, 0, 1, 2, 3\}) $.
+:class: tip
+Suppose $ X \sim \text{Disc}(\{-1, 0, 1, 2, 3\}) $. 
+
+**Question:** What is the PMF of $ Y = 2|X| $?
+
+**Step 1:** **Identify the PMF of $ X $.** Since $ X $ is uniformly distributed over the set $ \{-1, 0, 1, 2, 3\} $, the probability of each value is:
+\begin{equation*}
+p_X(k) = \frac{1}{5} \quad \text{for} \quad k = -1, 0, 1, 2, 3.
+\end{equation*}
+
+**Step 2: Compute the PMF of $ Y $.**
+
+- $ p_Y(0) = \mathbb{P}[Y = 0] = \mathbb{P}[2|X| = 0] = \mathbb{P}[X = 0] = \frac{1}{5} $,
+- $ p_Y(1) = 0 $, since there is no value of $ X $ that satisfies $ 2|X| = 1 $,
+- $ p_Y(2) = \mathbb{P}[Y = 2] = \mathbb{P}[2|X| = 2] = \mathbb{P}[X = 1] + \mathbb{P}[X = -1] = \frac{2}{5} $,
+- $ p_Y(4) = \mathbb{P}[Y = 4] = \mathbb{P}[2|X| = 4] = \mathbb{P}[X = 2] = \frac{1}{5} $,
+- $ p_Y(6) = \mathbb{P}[Y = 6] = \mathbb{P}[2|X| = 6] = \mathbb{P}[X = 3] = \frac{1}{5} $.
+
+Therefore, we have that
+
+\begin{equation*}
+
+p_Y(k) = \begin{cases} \frac{1}{5} &\text{if } k = 0, 4, 6\\
+
+\frac{2}{5} &\text{if } k = 2\\
+
+0 &\text{otherwise.}\end{cases}
+
+\end{equation*}
+```
+
+```{admonition} Example: Value of a stock price.
+:class: tip
+
+This is Example 3.7.2 from {cite}`Blitzstein19:Introduction`.
+
+
+A stock price starts at \$0, and each day the price either increases or decreases by \$1 with equal probability. Let $ Y $ be the stock price on the 100th day.
+
+**Question:** What is the PMF of $ Y $?
+
+**Step 1: Determine if $ Y $ is related to any familiar discrete RV.** Let $ X $ be the number of days (out of 100) that the stock price increases by \$1. Since each day the price has a 50% chance of increasing, $ X $ follows a binomial distribution: $X \sim \text{Bin}\left(100, \frac{1}{2}\right).$
+
+**Step 2:** **Establish the relationship between $ X $ and $ Y $.** If $ X = j $, then on $ j $ days the price increased by \$1, and on $ 100 - j $ days it decreased by \$1. Therefore, the price on the 100th day is: $Y = j - (100 - j) = 2j - 100 = 2X - 100.$
+
+**Step 3:** **Compute the PMF of $ Y $ using the PMF of $ X $.** First, since $X \in \{0, 1, 2, \dots, 100\}$ and $Y = 2X - 100$, we know that $Y$ must be an even number between $-100$ and $100$. For any other number $k$, $p_Y(k) = \mathbb{P}[Y = k] = 0$.
+
+Next, suppose $k$ is an even number between $-100$ and $100$. We want to find the probability that $ Y = k $, which corresponds to the probability that $ X = \frac{100 + k}{2} $. Thus, the PMF of $ Y $ is given by:
+\begin{equation*}
+p_Y(k) = \mathbb{P}[Y = k] = \mathbb{P}[2X - 100 = k] = \mathbb{P}\left[X = \frac{100 + k}{2}\right] =  {100 \choose \frac{100 + k}{2}} \left(\frac{1}{2}\right)^{100}.
+\end{equation*}
+```
+
+## Independence of random variables
+Random variables $ X $ and $ Y $ are said to be independent if the joint probability that $ X $ is less than or equal to some value $ x $ and $ Y $ is less than or equal to some value $ y $ can be expressed as the product of their individual probabilities. Formally, $ X $ and $ Y $ are independent if: $\mathbb{P}[X \leq x, Y \leq y] = \mathbb{P}[X \leq x] \mathbb{P}[Y \leq y]$ for all $x, y \in \mathbb{R}.$
+
+In the case of discrete random variables, independence means that the joint probability of $ X = x $ and $ Y = y $ is the product of their individual probabilities. That is, $ X $ and $ Y $ are independent if: $\mathbb{P}[X = x, Y = y] = \mathbb{P}[X = x] \mathbb{P}[Y = y].$

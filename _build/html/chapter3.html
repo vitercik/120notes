@@ -379,6 +379,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-and-probability-mass-functions">3.2. Distributions and probability mass functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-and-binomial">3.3. Bernoulli and Binomial</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergeometric">3.4. Hypergeometric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-uniform">3.5. Discrete uniform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-functions">3.6. Cumulative distribution functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-of-random-variables">3.7. Functions of random variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-random-variables">3.8. Independence of random variables</a></li>
 </ul>
             </nav>
         </div>
@@ -394,14 +398,18 @@ document.write(`
 <h1><span class="section-number">3. </span>Random variables and their distributions<a class="headerlink" href="#random-variables-and-their-distributions" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#random-variables" id="id1">Random variables</a></p></li>
-<li><p><a class="reference internal" href="#distributions-and-probability-mass-functions" id="id2">Distributions and probability mass functions</a></p></li>
-<li><p><a class="reference internal" href="#bernoulli-and-binomial" id="id3">Bernoulli and Binomial</a></p></li>
-<li><p><a class="reference internal" href="#hypergeometric" id="id4">Hypergeometric</a></p></li>
+<li><p><a class="reference internal" href="#random-variables" id="id5">Random variables</a></p></li>
+<li><p><a class="reference internal" href="#distributions-and-probability-mass-functions" id="id6">Distributions and probability mass functions</a></p></li>
+<li><p><a class="reference internal" href="#bernoulli-and-binomial" id="id7">Bernoulli and Binomial</a></p></li>
+<li><p><a class="reference internal" href="#hypergeometric" id="id8">Hypergeometric</a></p></li>
+<li><p><a class="reference internal" href="#discrete-uniform" id="id9">Discrete uniform</a></p></li>
+<li><p><a class="reference internal" href="#cumulative-distribution-functions" id="id10">Cumulative distribution functions</a></p></li>
+<li><p><a class="reference internal" href="#functions-of-random-variables" id="id11">Functions of random variables</a></p></li>
+<li><p><a class="reference internal" href="#independence-of-random-variables" id="id12">Independence of random variables</a></p></li>
 </ul>
 </nav>
 <section id="random-variables">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">3.1. </span>Random variables</a><a class="headerlink" href="#random-variables" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">3.1. </span>Random variables</a><a class="headerlink" href="#random-variables" title="Link to this heading">#</a></h2>
 <p>When performing an experiment, we are often more interested in specific properties of the outcomes rather than the outcomes themselves. For example, if we toss a coin three times, instead of focusing on each individual result (e.g., heads or tails for each toss), we may be more interested in the total number of head we observed.</p>
 <p>This is where <strong>random variables</strong> come into play. A random variable, denoted as <span class="math notranslate nohighlight">\( X \)</span>, is a variable that takes on different values based on the outcome of a random experiment. More formally, given an experiment with a sample space <span class="math notranslate nohighlight">\( S \)</span>, a random variable is a function that maps each outcome <span class="math notranslate nohighlight">\(s \in S \)</span> to a real number in <span class="math notranslate nohighlight">\( \mathbb{R} \)</span>. The value assigned to each outcome, <span class="math notranslate nohighlight">\( X(s) \)</span>, depends on the random result of the experiment, represented by a probability function <span class="math notranslate nohighlight">\( \mathbb{P} \)</span>.</p>
 <p>To make this concrete, let’s return to the example of tossing a coin three times. The sample space <span class="math notranslate nohighlight">\( S \)</span> for this experiment consists of all possible sequences of heads (H) and tails (T):</p>
@@ -429,7 +437,7 @@ S = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
 </div>
 </section>
 <section id="distributions-and-probability-mass-functions">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">3.2. </span>Distributions and probability mass functions</a><a class="headerlink" href="#distributions-and-probability-mass-functions" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">3.2. </span>Distributions and probability mass functions</a><a class="headerlink" href="#distributions-and-probability-mass-functions" title="Link to this heading">#</a></h2>
 <p>The <strong>probability mass function (PMF)</strong> of a discrete random variable is a function that assigns probabilities to each possible value of the random variable. The PMF is denoted by <span class="math notranslate nohighlight">\( p_X(x) = \mathbb{P}[X = x] \)</span>, which gives the probability that <span class="math notranslate nohighlight">\( X \)</span> takes the value <span class="math notranslate nohighlight">\( x \)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Tossing coins.</p>
@@ -450,7 +458,7 @@ S = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
 </figure>
 <div class="tip admonition">
 <p class="admonition-title">Example: Touchdown passes.</p>
-<p>As another example, if our experiment is a game between the Bears and Packers, <span class="math notranslate nohighlight">\(X\)</span> might be the number of touchdowns passes thrown by the Packers quarterback. Its PMF may look something like <a class="reference internal" href="#touchdown"><span class="std std-numref">Table 3.1</span></a>, as illustrated in <a class="reference internal" href="#football-pmf"><span class="std std-numref">Fig. 3.2</span></a>.</p>
+<p>As another example, if our experiment is a game between the Bears and Packers, <span class="math notranslate nohighlight">\(X\)</span> might be the number of touchdown passes thrown by the Packers quarterback. Its PMF may look something like <a class="reference internal" href="#touchdown"><span class="std std-numref">Table 3.1</span></a>, as illustrated in <a class="reference internal" href="#football-pmf"><span class="std std-numref">Fig. 3.2</span></a>.</p>
 </div>
 <div class="pst-scrollable-table-container"><table class="table" id="touchdown">
 <caption><span class="caption-number">Table 3.1 </span><span class="caption-text">PMF of the number of touchdown passes thrown by Packers quarterback.</span><a class="headerlink" href="#touchdown" title="Link to this table">#</a></caption>
@@ -489,7 +497,7 @@ S = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
 </figure>
 </section>
 <section id="bernoulli-and-binomial">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">3.3. </span>Bernoulli and Binomial</a><a class="headerlink" href="#bernoulli-and-binomial" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">3.3. </span>Bernoulli and Binomial</a><a class="headerlink" href="#bernoulli-and-binomial" title="Link to this heading">#</a></h2>
 <p>In the next few sections, we will cover famous families of discrete RVs. We begin with the definition of the simplest discrete RV.</p>
 <div class="admonition-bernoulli-distribution admonition">
 <p class="admonition-title">Bernoulli distribution</p>
@@ -580,6 +588,7 @@ p_X(k) = {3 \choose k}\left(\frac{1}{4}\right)^k\left(\frac{3}{4}\right)^{3-k}.
 <p>for <span class="math notranslate nohighlight">\(0 \leq k \leq n.\)</span> To see why, we know that <span class="math notranslate nohighlight">\(X = X_1 + \cdots + X_n\)</span>, where each <span class="math notranslate nohighlight">\(X_j \sim \text{Bern}(p)\)</span>. To calculate <span class="math notranslate nohighlight">\(\mathbb{P}[X = k] = \mathbb{P}[X_1 + \cdots + X_n = k],\)</span> there are <span class="math notranslate nohighlight">\({n \choose k}\)</span> ways to choose <span class="math notranslate nohighlight">\(k\)</span> of the <span class="math notranslate nohighlight">\(n\)</span> terms <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span> to set equal to 1, with the rest equal to 0. For a particular choice, the probability that those <span class="math notranslate nohighlight">\(k\)</span> terms are equal to 1 and the remaining <span class="math notranslate nohighlight">\(n-k\)</span> terms are equal to 0 is <span class="math notranslate nohighlight">\(p^k(1-p)^{n-k}\)</span>. Hence, <a class="reference internal" href="#equation-pxk">(3.6)</a> holds.</p>
 <div class="tip admonition">
 <p class="admonition-title">Example: Baseball World Series</p>
+<p>This is Question 18 from Chapter 3 of <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
 <p>The Boston Red Sox (RS) and the New York Yankees are facing off in the Baseball World Series. The first team to win four games takes home the championship. Suppose the probability that the Red Sox win any individual game is <span class="math notranslate nohighlight">\( p = 0.6 \)</span>, and we assume that each game outcome is independent of the others.</p>
 <p><strong>Question:</strong> What is the probability the Red Sox win the world series?</p>
 <p><strong>Step 1: Define the goal.</strong> We want to compute the probability that the Red Sox win the series. This can happen if they win in 4, 5, 6, or 7 games. We express this mathematically as:</p>
@@ -621,7 +630,7 @@ P[\text{RS win}] = p^4 + {4 \choose 3}p^4(1-p) + {5 \choose 3}p^4(1-p)^2 + {6 \c
 </div>
 </section>
 <section id="hypergeometric">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">3.4. </span>Hypergeometric</a><a class="headerlink" href="#hypergeometric" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">3.4. </span>Hypergeometric</a><a class="headerlink" href="#hypergeometric" title="Link to this heading">#</a></h2>
 <p>We have a bag containing <span class="math notranslate nohighlight">\( w \)</span> white marbles and <span class="math notranslate nohighlight">\( b \)</span> black marbles. Suppose we draw <span class="math notranslate nohighlight">\(n\)</span> marbles out of the bag <em>with replacement</em>, and let <span class="math notranslate nohighlight">\(X\)</span> be the number of white marbles. Then <span class="math notranslate nohighlight">\(X \sim \text{Bin}\left(n, \frac{w}{w+b}\right)\)</span> because each marble we draw is white with probability <span class="math notranslate nohighlight">\(\frac{w}{w+b}\)</span>. However, if we draw <span class="math notranslate nohighlight">\(n\)</span> marbles out of the bag <em>without replacement</em>, the number of white marbles follows the <em>Hypergeometric distribution</em>.</p>
 <div class="admonition-hypergeometric-distribution admonition">
 <p class="admonition-title">Hypergeometric distribution</p>
@@ -640,12 +649,124 @@ p_X(k) = \frac{{{w} \choose {k}}{{b} \choose {n-k}}}{{{w + b} \choose {n}}}.
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Example: Endangered species.</p>
+<p>This is Example 3.4.3 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
 <p>Suppose you’re a scientist in a jungle with <span class="math notranslate nohighlight">\(N\)</span> endangered tigers. You tag <span class="math notranslate nohighlight">\(m\)</span> tigers and release them into the wild. Then, you recapture <span class="math notranslate nohighlight">\(n\)</span> random tigers and see how many are tagged. If <span class="math notranslate nohighlight">\(X\)</span> is the number of tagged tigers in your random sample, then <span class="math notranslate nohighlight">\(X \sim \text{HGeom}(m, N-m, n)\)</span>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Example: Card hands.</p>
+<p>This is Example 3.4.4 from <span id="id3">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
 <p>Suppose you draw a 5-card hand from a shuffled deck. Let <span class="math notranslate nohighlight">\(X\)</span> be the number of aces in your hand. Then <span class="math notranslate nohighlight">\(X \sim \text{HGeom}(4, 48, 5)\)</span>.</p>
 </div>
+<p>The following table summarizes the correspondance between the different colored marbles and the categories of objects in the previous two examples.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(w\)</span> white marbles</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(b\)</span> black marbles</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(m\)</span> tagged tigers</p></td>
+<td><p><span class="math notranslate nohighlight">\(N-m\)</span> untagged tigers</p></td>
+</tr>
+<tr class="row-odd"><td><p>4 aces</p></td>
+<td><p>48 non-aces</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="discrete-uniform">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">3.5. </span>Discrete uniform</a><a class="headerlink" href="#discrete-uniform" title="Link to this heading">#</a></h2>
+<p>The final example of a named distribution we will see in this chapter is the <em>discrete uniform</em> distribution.</p>
+<div class="admonition-discrete-uniform-distribution admonition">
+<p class="admonition-title">Discrete uniform distribution</p>
+<p>Let <span class="math notranslate nohighlight">\( C = \{x_1, \dots, x_n\} \)</span> be a finite set of numbers. From this set, we randomly select one number, <span class="math notranslate nohighlight">\( X \)</span>, with each element equally likely. We say that <span class="math notranslate nohighlight">\( X \)</span> has the discrete uniform distribution, denoted by <span class="math notranslate nohighlight">\( X \sim \text{Disc}(C) \)</span>. The PMF for <span class="math notranslate nohighlight">\( X \)</span> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} p_X(x) = \begin{cases} \frac{1}{|C|} &amp;\text{if } x \in C\\
+
+0 &amp;\text{else.}
+
+\end{cases}
+
+\end{equation*}\]</div>
+</div>
+</section>
+<section id="cumulative-distribution-functions">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">3.6. </span>Cumulative distribution functions</a><a class="headerlink" href="#cumulative-distribution-functions" title="Link to this heading">#</a></h2>
+<p>In addition to a RV’s PMF, we will see that it can be useful to work with the RV’s <em>cumulative distribution function (CDF).</em> The CDF of a RV <span class="math notranslate nohighlight">\(X\)</span> is defined as <span class="math notranslate nohighlight">\( F_X(x) = \mathbb{P}[X \leq x] \)</span>, representing the probability that <span class="math notranslate nohighlight">\( X \)</span> takes a value less than or equal to <span class="math notranslate nohighlight">\( x \)</span>.</p>
+<p>Suppose we toss a coin twice. Let <span class="math notranslate nohighlight">\( X \)</span> be the number of heads. In this case, <span class="math notranslate nohighlight">\( X \)</span> follows a binomial distribution, <span class="math notranslate nohighlight">\( X \sim \text{Bin}(2, \frac{1}{2}) \)</span>. The probability mass function of <span class="math notranslate nohighlight">\( X \)</span> is as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( p_X(0) = \mathbb{P}[\{TT\}] = \frac{1}{4} \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( p_X(1) = \mathbb{P}[\{HT, TH\}] = \frac{1}{2} \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( p_X(2) = \frac{1}{4} \)</span>.</p></li>
+</ul>
+<p>We plot the CDF of <span class="math notranslate nohighlight">\(X\)</span> below.</p>
+<figure class="align-center" id="cdf">
+<a class="reference internal image-reference" href="_images/cdf.png"><img alt="_images/cdf.png" src="_images/cdf.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">CDF of the number of times a coin lands heads when tossed two times.</span><a class="headerlink" href="#cdf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For example, we can see that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( F_X(-1) = \mathbb{P}[X \leq -1] = 0 \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( F_X(0) = \mathbb{P}[X \leq 0] = \mathbb{P}[X = 0] = \frac{1}{4} \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( F_X(1.5) = \mathbb{P}[X \leq 1.5] = \mathbb{P}[X = 0 \text{ or } X = 1] = \frac{3}{4} \)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\( F_X(2) = \mathbb{P}[X \leq 2] = 1 \)</span>.</p></li>
+</ul>
+<p>Additionally, the probability that <span class="math notranslate nohighlight">\( X \)</span> exceeds a certain value <span class="math notranslate nohighlight">\( x \)</span> is given by <span class="math notranslate nohighlight">\( \mathbb{P}[X &gt; x] = 1 - \mathbb{P}[X \leq x] = 1 - F_X(x) \)</span>.</p>
+</section>
+<section id="functions-of-random-variables">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">3.7. </span>Functions of random variables</a><a class="headerlink" href="#functions-of-random-variables" title="Link to this heading">#</a></h2>
+<p>For a random variable <span class="math notranslate nohighlight">\( X \)</span> and a function <span class="math notranslate nohighlight">\( g: \mathbb{R} \to \mathbb{R} \)</span>, the transformed variable <span class="math notranslate nohighlight">\( g(X) \)</span> is also a random variable.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: PMF of <span class="math notranslate nohighlight">\( Y = 2|X| \)</span> for <span class="math notranslate nohighlight">\( X \sim \text{Disc}(\{-1, 0, 1, 2, 3\}) \)</span>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\( X \sim \text{Disc}(\{-1, 0, 1, 2, 3\}) \)</span>.</p>
+<p><strong>Question:</strong> What is the PMF of <span class="math notranslate nohighlight">\( Y = 2|X| \)</span>?</p>
+<p><strong>Step 1:</strong> <strong>Identify the PMF of <span class="math notranslate nohighlight">\( X \)</span>.</strong> Since <span class="math notranslate nohighlight">\( X \)</span> is uniformly distributed over the set <span class="math notranslate nohighlight">\( \{-1, 0, 1, 2, 3\} \)</span>, the probability of each value is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+p_X(k) = \frac{1}{5} \quad \text{for} \quad k = -1, 0, 1, 2, 3.
+\end{equation*}\]</div>
+<p><strong>Step 2: Compute the PMF of <span class="math notranslate nohighlight">\( Y \)</span>.</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( p_Y(0) = \mathbb{P}[Y = 0] = \mathbb{P}[2|X| = 0] = \mathbb{P}[X = 0] = \frac{1}{5} \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( p_Y(1) = 0 \)</span>, since there is no value of <span class="math notranslate nohighlight">\( X \)</span> that satisfies <span class="math notranslate nohighlight">\( 2|X| = 1 \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( p_Y(2) = \mathbb{P}[Y = 2] = \mathbb{P}[2|X| = 2] = \mathbb{P}[X = 1] + \mathbb{P}[X = -1] = \frac{2}{5} \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( p_Y(4) = \mathbb{P}[Y = 4] = \mathbb{P}[2|X| = 4] = \mathbb{P}[X = 2] = \frac{1}{5} \)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\( p_Y(6) = \mathbb{P}[Y = 6] = \mathbb{P}[2|X| = 6] = \mathbb{P}[X = 3] = \frac{1}{5} \)</span>.</p></li>
+</ul>
+<p>Therefore, we have that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+p_Y(k) = \begin{cases} \frac{1}{5} &amp;\text{if } k = 0, 4, 6\\
+
+\frac{2}{5} &amp;\text{if } k = 2\\
+
+0 &amp;\text{otherwise.}\end{cases}
+
+\end{equation*}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Value of a stock price.</p>
+<p>This is Example 3.7.2 from <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>A stock price starts at $0, and each day the price either increases or decreases by $1 with equal probability. Let <span class="math notranslate nohighlight">\( Y \)</span> be the stock price on the 100th day.</p>
+<p><strong>Question:</strong> What is the PMF of <span class="math notranslate nohighlight">\( Y \)</span>?</p>
+<p><strong>Step 1: Determine if <span class="math notranslate nohighlight">\( Y \)</span> is related to any familiar discrete RV.</strong> Let <span class="math notranslate nohighlight">\( X \)</span> be the number of days (out of 100) that the stock price increases by $1. Since each day the price has a 50% chance of increasing, <span class="math notranslate nohighlight">\( X \)</span> follows a binomial distribution: <span class="math notranslate nohighlight">\(X \sim \text{Bin}\left(100, \frac{1}{2}\right).\)</span></p>
+<p><strong>Step 2:</strong> <strong>Establish the relationship between <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>.</strong> If <span class="math notranslate nohighlight">\( X = j \)</span>, then on <span class="math notranslate nohighlight">\( j \)</span> days the price increased by $1, and on <span class="math notranslate nohighlight">\( 100 - j \)</span> days it decreased by $1. Therefore, the price on the 100th day is: <span class="math notranslate nohighlight">\(Y = j - (100 - j) = 2j - 100 = 2X - 100.\)</span></p>
+<p><strong>Step 3:</strong> <strong>Compute the PMF of <span class="math notranslate nohighlight">\( Y \)</span> using the PMF of <span class="math notranslate nohighlight">\( X \)</span>.</strong> First, since <span class="math notranslate nohighlight">\(X \in \{0, 1, 2, \dots, 100\}\)</span> and <span class="math notranslate nohighlight">\(Y = 2X - 100\)</span>, we know that <span class="math notranslate nohighlight">\(Y\)</span> must be an even number between <span class="math notranslate nohighlight">\(-100\)</span> and <span class="math notranslate nohighlight">\(100\)</span>. For any other number <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(p_Y(k) = \mathbb{P}[Y = k] = 0\)</span>.</p>
+<p>Next, suppose <span class="math notranslate nohighlight">\(k\)</span> is an even number between <span class="math notranslate nohighlight">\(-100\)</span> and <span class="math notranslate nohighlight">\(100\)</span>. We want to find the probability that <span class="math notranslate nohighlight">\( Y = k \)</span>, which corresponds to the probability that <span class="math notranslate nohighlight">\( X = \frac{100 + k}{2} \)</span>. Thus, the PMF of <span class="math notranslate nohighlight">\( Y \)</span> is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+p_Y(k) = \mathbb{P}[Y = k] = \mathbb{P}[2X - 100 = k] = \mathbb{P}\left[X = \frac{100 + k}{2}\right] =  {100 \choose \frac{100 + k}{2}} \left(\frac{1}{2}\right)^{100}.
+\end{equation*}\]</div>
+</div>
+</section>
+<section id="independence-of-random-variables">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">3.8. </span>Independence of random variables</a><a class="headerlink" href="#independence-of-random-variables" title="Link to this heading">#</a></h2>
+<p>Random variables <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are said to be independent if the joint probability that <span class="math notranslate nohighlight">\( X \)</span> is less than or equal to some value <span class="math notranslate nohighlight">\( x \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> is less than or equal to some value <span class="math notranslate nohighlight">\( y \)</span> can be expressed as the product of their individual probabilities. Formally, <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are independent if: <span class="math notranslate nohighlight">\(\mathbb{P}[X \leq x, Y \leq y] = \mathbb{P}[X \leq x] \mathbb{P}[Y \leq y]\)</span> for all <span class="math notranslate nohighlight">\(x, y \in \mathbb{R}.\)</span></p>
+<p>In the case of discrete random variables, independence means that the joint probability of <span class="math notranslate nohighlight">\( X = x \)</span> and <span class="math notranslate nohighlight">\( Y = y \)</span> is the product of their individual probabilities. That is, <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are independent if: <span class="math notranslate nohighlight">\(\mathbb{P}[X = x, Y = y] = \mathbb{P}[X = x] \mathbb{P}[Y = y].\)</span></p>
 </section>
 </section>
 
@@ -717,6 +838,10 @@ p_X(k) = \frac{{{w} \choose {k}}{{b} \choose {n-k}}}{{{w + b} \choose {n}}}.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-and-probability-mass-functions">3.2. Distributions and probability mass functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-and-binomial">3.3. Bernoulli and Binomial</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypergeometric">3.4. Hypergeometric</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-uniform">3.5. Discrete uniform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-functions">3.6. Cumulative distribution functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-of-random-variables">3.7. Functions of random variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-of-random-variables">3.8. Independence of random variables</a></li>
 </ul>
   </nav></div>
 

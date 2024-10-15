@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. Bibliography &#8212; MS&amp;E 120 Course Reader</title>
+    <title>4. Expectation &#8212; MS&amp;E 120 Course Reader</title>
   
   
   
@@ -57,10 +57,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'bibliography';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter4';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="4. Expectation" href="chapter4.html" />
+    <link rel="next" title="5. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="3. Random variables and their distributions" href="chapter3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,8 +179,8 @@
 <li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Bibliography</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">5. Bibliography</a></li>
 </ul>
 
     </div>
@@ -249,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbibliography.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter4.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -279,7 +282,7 @@
       
       
       
-      <li><a href="_sources/bibliography.md" target="_blank"
+      <li><a href="_sources/chapter4.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -350,7 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -361,11 +366,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bibliography</h1>
+    <h1>Expectation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-expectation">4.1. Definition of expectation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -375,28 +388,92 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bibliography">
-<h1><span class="section-number">5. </span>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h1>
-<div class="docutils container" id="id1">
-<div role="list" class="citation-list">
-<div class="citation" id="id2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>BH19<span class="fn-bracket">]</span></span>
-<p>Joseph K Blitzstein and Jessica Hwang. <em>Introduction to probability</em>. Chapman and Hall/CRC, 2019.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="expectation">
+<h1><span class="section-number">4. </span>Expectation<a class="headerlink" href="#expectation" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-of-expectation" id="id1">Definition of expectation</a></p></li>
+</ul>
+</nav>
+<section id="definition-of-expectation">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">4.1. </span>Definition of expectation</a><a class="headerlink" href="#definition-of-expectation" title="Link to this heading">#</a></h2>
+<p>While the full distribution of a RV provides a complete description of its behavior, it can be cumbersome to work with since it involves many probabilities. Instead, it is often more practical to summarize a distribution with just a few key numbers that describe the “average” value of the RV and how much it varies or spreads.</p>
+<p>One important summary is the <em>expected value</em>.</p>
+<div class="admonition-expected-value admonition">
+<p class="admonition-title">Expected value</p>
+<p>For a RV <span class="math notranslate nohighlight">\( X \)</span> that takes distinct values <span class="math notranslate nohighlight">\( x_1, x_2, \dots \)</span>, the expected value, denoted <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span>, is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \sum_{i = 1}^{\infty} x_i \mathbb{P}[X = x_i].
+\end{equation*}\]</div>
+<p>This formula gives a weighted average of the possible values of <span class="math notranslate nohighlight">\( X \)</span>, where the weights are the probabilities associated with each value.</p>
 </div>
-<div class="citation" id="id5" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HB23<span class="fn-bracket">]</span></span>
-<p>Mor Harchol-Balter. <em>Introduction to probability for computing</em>. Cambridge University Press, 2023.</p>
+<p>For example, let <span class="math notranslate nohighlight">\( X \sim \text{Bern}(p) \)</span> be a Bernoulli random variable that takes the value 1 with probability <span class="math notranslate nohighlight">\( p \)</span> and 0 with probability <span class="math notranslate nohighlight">\( 1 - p \)</span>. The expected value of <span class="math notranslate nohighlight">\( X \)</span> is <span class="math notranslate nohighlight">\(\mathbb{E}[X] = 0 \cdot \mathbb{P}[X = 0] + 1 \cdot \mathbb{P}[X = 1] = 1 \cdot p = p.\)</span>
+This means that the expected value of a Bernoulli random variable is simply <span class="math notranslate nohighlight">\( p \)</span>, the probability of success.</p>
+<p>Below, we illustrate the <span class="math notranslate nohighlight">\(\text{Bern}(p)\)</span> PMF for several choices of <span class="math notranslate nohighlight">\(p\)</span>, together with the expected value.</p>
+<figure class="align-center" id="bern25">
+<a class="reference internal image-reference" href="_images/bern25.png"><img alt="_images/bern25.png" src="_images/bern25.png" style="width: 225px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">PMF of the <span class="math notranslate nohighlight">\(\text{Bern}(0.5)\)</span> distribution, with the expected value marked by a star.</span><a class="headerlink" href="#bern25" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="bern50">
+<a class="reference internal image-reference" href="_images/bern50.png"><img alt="_images/bern50.png" src="_images/bern50.png" style="width: 225px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">PMF of the <span class="math notranslate nohighlight">\(\text{Bern}(0.5)\)</span> distribution, with the expected value marked by a star.</span><a class="headerlink" href="#bern50" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="bern75">
+<a class="reference internal image-reference" href="_images/bern75.png"><img alt="_images/bern75.png" src="_images/bern75.png" style="width: 225px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">PMF of the <span class="math notranslate nohighlight">\(\text{Bern}(0.75)\)</span> distribution, with the expected value marked by a star.</span><a class="headerlink" href="#bern75" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As another example, let <span class="math notranslate nohighlight">\(X\)</span> be the number of touchdown passes thrown by the Packers quarterback in a game between the Bears and the Packers, with its PMF as follows:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="touchdown">
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">PMF of the number of touchdown passes thrown by Packers quarterback.</span><a class="headerlink" href="#touchdown" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\( p_X(x) = \mathbb{P}[X = x] \)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>0.05</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Ros18<span class="fn-bracket">]</span></span>
-<p>Sheldon Ross. <em>A first course in probability</em>. Pearson, 2018.</p>
+<p>Then <span class="math notranslate nohighlight">\(\mathbb{E}[X] = 0 \cdot 0.1 + 1 \cdot 0.25 + 2 \cdot 0.25 + 3 \cdot 0.25 + 4 \cdot 0.1 + 5 \cdot 0.05 = 2.15\)</span>.</p>
+<p>We illustrate the PMF and expected value of this random variable below.</p>
+<figure class="align-center" id="football-exp">
+<a class="reference internal image-reference" href="_images/football_exp.png"><img alt="_images/football_exp.png" src="_images/football_exp.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Illustration of the PMF and expected number of touchdown passes thrown by the Packers quarterback.</span><a class="headerlink" href="#football-exp" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Example: Investment returns.</p>
+<p>Suppose an investment has a 50% chance of gaining 20% and a 50% chance of losing 10%. To calculate the expected return, we multiply the probability of each outcome by the corresponding return and sum the results, so the expected return is <span class="math notranslate nohighlight">\(0.5 \cdot 0.2 + 0.5 \cdot (-0.1) = 0.05.\)</span>
+In other words, the expected return of this investment is 5%.</p>
+<p>Meanwhile, suppose the investment has a 50% chance of gaining 200% and a 50% chance of losing 190%. The expected return is <span class="math notranslate nohighlight">\(0.5 \cdot 2.0 + 0.5 \cdot (-1.9) = 0.05.\)</span> Even though the potential gains and losses are much larger in this case, the expected return is still 5% (however, the <em>variance</em> is different, a topic we will return to later in this chapter).</p>
 </div>
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Sev20<span class="fn-bracket">]</span></span>
-<p>Thomas A Severini. <em>Analytic methods in sports: Using mathematics and statistics to understand data from baseball, football, basketball, and other sports</em>. Chapman and Hall/CRC, 2020.</p>
-</div>
-</div>
-</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -430,13 +507,22 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="chapter4.html"
+       href="chapter3.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Expectation</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Random variables and their distributions</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -444,6 +530,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-expectation">4.1. Definition of expectation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
