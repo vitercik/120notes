@@ -377,6 +377,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-expectation">4.1. Definition of expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity-of-expectation">4.2. Linearity of Expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometric-and-negative-binomial">4.3. Geometric and negative binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicator-random-variables-and-the-fundamental-bridge">4.4. Indicator random variables and the fundamental bridge</a></li>
 </ul>
             </nav>
         </div>
@@ -393,6 +396,9 @@ document.write(`
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#definition-of-expectation" id="id1">Definition of expectation</a></p></li>
+<li><p><a class="reference internal" href="#linearity-of-expectation" id="id2">Linearity of Expectation</a></p></li>
+<li><p><a class="reference internal" href="#geometric-and-negative-binomial" id="id3">Geometric and negative binomial</a></p></li>
+<li><p><a class="reference internal" href="#indicator-random-variables-and-the-fundamental-bridge" id="id4">Indicator random variables and the fundamental bridge</a></p></li>
 </ul>
 </nav>
 <section id="definition-of-expectation">
@@ -474,6 +480,190 @@ In other words, the expected return of this investment is 5%.</p>
 <p>Meanwhile, suppose the investment has a 50% chance of gaining 200% and a 50% chance of losing 190%. The expected return is <span class="math notranslate nohighlight">\(0.5 \cdot 2.0 + 0.5 \cdot (-1.9) = 0.05.\)</span> Even though the potential gains and losses are much larger in this case, the expected return is still 5% (however, the <em>variance</em> is different, a topic we will return to later in this chapter).</p>
 </div>
 </section>
+<section id="linearity-of-expectation">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">4.2. </span>Linearity of Expectation</a><a class="headerlink" href="#linearity-of-expectation" title="Link to this heading">#</a></h2>
+<p>One of the fundamental properties of expectation is <em>linearity:</em> the expected value of a sum of random variables equals the sum of their individual expected values, regardless of whether these random variables are independent.</p>
+<div class="admonition-linearity-of-expectation admonition">
+<p class="admonition-title">Linearity of expectation</p>
+<ol class="arabic simple">
+<li><p><strong>Sum of random variables</strong>: The expectation of the sum of two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> can be expressed as: <span class="math notranslate nohighlight">\(\mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y].\)</span> Notably, this property holds even if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent.</p></li>
+<li><p><strong>Scaling of random variables</strong>: For a random variable <span class="math notranslate nohighlight">\(X\)</span> and any constant <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>, the expectation scales linearly: <span class="math notranslate nohighlight">\(\mathbb{E}[cX] = c \mathbb{E}[X].\)</span></p></li>
+</ol>
+</div>
+<p>These properties allow us to decompose complex random variables into simpler parts for easier computation.</p>
+<p>For example, let <span class="math notranslate nohighlight">\(X \sim \text{Bin}(n, p)\)</span> be a binomial RV. We know that <span class="math notranslate nohighlight">\(X = I_1 + I_2 + \cdots + I_n\)</span>, where each <span class="math notranslate nohighlight">\(I_j \sim \text{Bern}(p)\)</span>. Since <span class="math notranslate nohighlight">\(\mathbb{E}[I_j] = p\)</span>, we can conclude that <span class="math notranslate nohighlight">\(\mathbb{E}[X] =  \mathbb{E}[I_1 + I_2 + \cdots + I_n] = \mathbb{E}[I_1] + \cdots + \mathbb{E}[I_n] = np.\)</span></p>
+<p>As another example, suppose we have a bag with <span class="math notranslate nohighlight">\(w\)</span> white marbles and <span class="math notranslate nohighlight">\(b\)</span> black marbles. Let <span class="math notranslate nohighlight">\(X \sim \text{HGeom}(w, b, n)\)</span> represent the number of white marbles when we draw <span class="math notranslate nohighlight">\(n\)</span> marbles out of the bag randomly without replacement. Define the RV <span class="math notranslate nohighlight">\(I_j\)</span> such that <span class="math notranslate nohighlight">\(I_j = 1\)</span> if the <span class="math notranslate nohighlight">\(j\)</span>-th marble in the sample is white, and <span class="math notranslate nohighlight">\(I_j = 0\)</span> otherwise. Then, the RV <span class="math notranslate nohighlight">\(X\)</span> can be expressed as <span class="math notranslate nohighlight">\(X = I_1 + I_2 + \cdots + I_n.\)</span> The RVs <span class="math notranslate nohighlight">\(I_1, \dots, I_n\)</span> are not independent, but linearity of expectation still applies. For each indicator variable <span class="math notranslate nohighlight">\(I_j\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-hyp-exp">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-hyp-exp" title="Link to this equation">#</a></span>\[\mathbb{E}[I_j] = 1 \cdot \mathbb{P}[I_j = 1] + 0 \cdot \mathbb{P}[I_j = 0] = \mathbb{P}[\text{$j$-th marble is white}].\]</div>
+<p>To calculate this probability, let’s start with the first marble. Since there are <span class="math notranslate nohighlight">\(w\)</span> white marbles and <span class="math notranslate nohighlight">\(w+ b\)</span> total marbles, <span class="math notranslate nohighlight">\(\mathbb{P}[1^{st} \text{ marble is white}] = \frac{w}{w+b}\)</span>. Next,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \mathbb{P}[2^{nd} \text{ marble is white}] = \, &amp;\mathbb{P}[2^{nd} \text{ marble is white} \mid 1^{st} \text{ marble is white}]\mathbb{P}[1^{st} \text{ marble is white}]\\
+			+\, &amp;\mathbb{P}[2^{nd} \text{ marble is white} \mid 1^{st} \text{ marble is black}]\mathbb{P}[1^{st} \text{ marble is black}].
+\end{align*}\]</div>
+<p>If we know the first marble is white, then there are <span class="math notranslate nohighlight">\(w-1\)</span> white marbles out of the remaining <span class="math notranslate nohighlight">\(w+b-1\)</span> marbles. Therefore, <span class="math notranslate nohighlight">\(\mathbb{P}[2^{nd} \text{ marble is white} \mid 1^{st} \text{ marble is white}] = \frac{w-1}{w+b-1}\)</span>. Meanwhile, <span class="math notranslate nohighlight">\(\mathbb{P}[2^{nd} \text{ marble is white} \mid 1^{st} \text{ marble is black}] = \frac{w}{w+b-1}\)</span>. Therefore,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[2^{nd} \text{ marble is white}] = \frac{w-1}{w+b-1} \cdot \frac{w}{w+b} + \frac{w}{w+b-1}\left(1 - \frac{w}{w+b}\right) = \frac{w}{w+b}.
+\end{equation*}\]</div>
+<p>Returning to <a class="reference internal" href="#equation-hyp-exp">(4.1)</a>, we have that <span class="math notranslate nohighlight">\(\mathbb{E}[I_j] =  \mathbb{P}[j^{th} \text{ marble is white}] = \frac{w}{w+b}\)</span>. In other words, each marble we draw is equally likely to be white when considered in isolation (though not when conditioned on the previous draws), a phenomenon known as <em>symmetry</em>. In the end, we have that <span class="math notranslate nohighlight">\(\mathbb{E}[X] = \mathbb{E}[I_1 + \dots + I_n] = \mathbb{E}[I_1] + \cdots + \mathbb{E}[I_n] =  \frac{nw}{w+b}\)</span>.</p>
+<p>We note that the events that the <span class="math notranslate nohighlight">\(1^{st}\)</span> and <span class="math notranslate nohighlight">\(2^{nd}\)</span> marbles are white are not independent: <span class="math notranslate nohighlight">\(\mathbb{P}[2^{nd} \text{ marble is white} \mid 1^{st} \text{ marble is white}] = \frac{w-1}{w+b-1} &lt; \mathbb{P}[2^{nd} \text{ marble is white}]  = \frac{w}{w+b}\)</span>. This intuitively makes sense: once you know the first marble is white, there are fewer white marbles to choose from.</p>
+</section>
+<section id="geometric-and-negative-binomial">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">4.3. </span>Geometric and negative binomial</a><a class="headerlink" href="#geometric-and-negative-binomial" title="Link to this heading">#</a></h2>
+<div class="admonition-geometric-distribution admonition">
+<p class="admonition-title">Geometric distribution</p>
+<p>The geometric distribution arises from a sequence of independent Bernoulli trials, where each trial results in a success with probability <span class="math notranslate nohighlight">\( p \)</span> and a failure with probability <span class="math notranslate nohighlight">\( q = 1 - p \)</span>. In this context, let the random variable <span class="math notranslate nohighlight">\( X \)</span> represent the number of failures that occur before the first success. We say that <span class="math notranslate nohighlight">\( X \)</span> follows a <em>geometric distribution with parameter <span class="math notranslate nohighlight">\( p \)</span></em>, denoted as <span class="math notranslate nohighlight">\( X \sim \text{Geom}(p) \)</span>.</p>
+<p>The probability mass function <span class="math notranslate nohighlight">\( p_X(k) \)</span> of a geometric random variable is <span class="math notranslate nohighlight">\(\mathbb{P}[X = k] = p_X(k) = q^k p\)</span> for <span class="math notranslate nohighlight">\(k = 0, 1, 2, \dots\)</span>. This expression reflects the probability of having <span class="math notranslate nohighlight">\( k \)</span> consecutive failures (each occurring with probability <span class="math notranslate nohighlight">\( q \)</span>) followed by a single success (occurring with probability <span class="math notranslate nohighlight">\( p \)</span>). For example, if we observe the sequence “FFFFFS,” where five failures are followed by one success, the probability of this specific sequence occurring is given by <span class="math notranslate nohighlight">\( q^5 p \)</span>.</p>
+</div>
+<p>The expectation <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span> for a geometric random variable can be derived by summing over all possible values of <span class="math notranslate nohighlight">\( k \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \sum_{k = 0}^{\infty} k \cdot \mathbb{P}[X = k] = p \sum_{k = 0}^{\infty} k q^k = \frac{1 - p}{p}.
+\end{equation*}\]</div>
+<p>The following distribution is closely related to the geometric distribution.</p>
+<div class="admonition-first-success-distribution admonition">
+<p class="admonition-title">First success distribution</p>
+<p>Suppose we perform a sequence of independent Bernoulli trials, where each trial results in a success with probability <span class="math notranslate nohighlight">\( p \)</span> and a failure with probability <span class="math notranslate nohighlight">\( q = 1 - p \)</span>. Let <span class="math notranslate nohighlight">\( Y \)</span> be the total number of trials required to achieve the first successful outcome, <em>including the successful trial itself</em>. Then <span class="math notranslate nohighlight">\(Y\)</span> follows the <em>first success distribution with parameter <span class="math notranslate nohighlight">\(p\)</span></em>, denoted <span class="math notranslate nohighlight">\( Y \sim \text{FS}(p) \)</span>.</p>
+</div>
+<p>The key relationship between <span class="math notranslate nohighlight">\( Y \)</span> and the geometric distribution is that <span class="math notranslate nohighlight">\( Y \)</span> counts the total number of trials, while the geometric random variable <span class="math notranslate nohighlight">\( X \)</span> only counts the number of failures before the first success. Mathematically, <span class="math notranslate nohighlight">\(Y = X+1\)</span>, where <span class="math notranslate nohighlight">\( X \sim \text{Geom}(p) \)</span>. Since <span class="math notranslate nohighlight">\( Y \)</span> simply adds one successful trial to the count of failures, the expected value of <span class="math notranslate nohighlight">\( Y \)</span> can be derived using the linearity of expectation:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y] = \mathbb{E}[X + 1] = \mathbb{E}[X] + 1 = \frac{1 - p}{p} + 1 = \frac{1}{p}.
+\end{equation*}\]</div>
+<p>In other words, on average, the number of trials required to achieve the first success (including the successful trial itself) is <span class="math notranslate nohighlight">\( \frac{1}{p} \)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>Imagine a couple who decides to continue having children until they have at least one boy and one girl. Each child is either a boy or a girl, and each outcome is independent with an equal probability of 50%. The couple never has twins, so each child is born individually.</p>
+<p><strong>Question:</strong> What is the expected number of children they’ll have?</p>
+<p>For example, if the sequence of births is G-G-G-B, they would have four children in total. If the sequence is <strong>B-B-G</strong>, they would have three children in total.</p>
+<ol class="arabic">
+<li><p><strong>Step 1: Define the Random Variables</strong></p>
+<p>Let <span class="math notranslate nohighlight">\( X \)</span> denote the number of children needed, starting from the second child, to get a gender different from the firstborn. Essentially, <span class="math notranslate nohighlight">\( X \)</span> is the number of additional children required after the first child to achieve a child of the opposite gender. For example, if the birth order is G-G-G-B, then <span class="math notranslate nohighlight">\(X = 3\)</span> and if the birth order is B-B-G, then <span class="math notranslate nohighlight">\(X = 2\)</span>.</p>
+</li>
+<li><p><strong>Step 2: Define the Goal</strong></p>
+<p>The goal is to compute the expected number of children the couple will have, which can be expressed as <span class="math notranslate nohighlight">\(\mathbb{E}[\# \text{children}] = \mathbb{E}[1 + X] = 1 + \mathbb{E}[X]\)</span>. Here, the “1” represents the firstborn, and <span class="math notranslate nohighlight">\( X \)</span> represents the additional children needed.</p>
+</li>
+<li><p><strong>Step 3: Identify the Distribution of <span class="math notranslate nohighlight">\( X \)</span></strong></p>
+<p>Notice that <span class="math notranslate nohighlight">\( X \)</span> represents the number of children until the couple has a child of the opposite gender from the firstborn. This is equivalent to the distribution <span class="math notranslate nohighlight">\( \text{FS}(\frac{1}{2}) \)</span>, which describes the number of trials until the first success, given a success probability of <span class="math notranslate nohighlight">\( \frac{1}{2} \)</span>. The expected value of <span class="math notranslate nohighlight">\( X \)</span> is <span class="math notranslate nohighlight">\(\mathbb{E}[X] = \frac{1}{\frac{1}{2}} = 2\)</span>.</p>
+</li>
+<li><p><strong>Step 4: Calculate the Final Answer</strong></p>
+<p>The total expected number of children the couple will have is: <span class="math notranslate nohighlight">\(\mathbb{E}[\# \text{children}] = 1 + \mathbb{E}[X] = 1 + 2 = 3.\)</span></p>
+</li>
+</ol>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>This is a classic problem called the coupon collector problem. Imagine that there are <span class="math notranslate nohighlight">\( n \)</span> different types of toys that you are trying to collect. Each time you acquire a toy, it is equally likely to be any one of the <span class="math notranslate nohighlight">\( n \)</span> types, regardless of the toys you have collected so far. The goal is to determine the expected number of toys you need to collect in order to have at least one of each type.</p>
+<p><strong>Question:</strong> What is the expected number of toys needed to complete the set?</p>
+<ol class="arabic">
+<li><p><strong>Step 1: Define the Random Variables</strong></p>
+<p>Let <span class="math notranslate nohighlight">\( N \)</span> denote the total number of toys needed to collect all <span class="math notranslate nohighlight">\( n \)</span> different types. This can be expressed as the sum of individual random variables <span class="math notranslate nohighlight">\( N_1, N_2, \ldots, N_n \)</span>, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( N_1 \)</span> is the number of toys needed to collect the first type that you haven’t seen before. Clearly, <span class="math notranslate nohighlight">\( N_1 = 1 \)</span> because the first toy you collect will always be a new type.</p></li>
+<li><p><span class="math notranslate nohighlight">\( N_2 \)</span> is the number of additional toys needed to collect a second type that you haven’t seen before.</p></li>
+<li><p><span class="math notranslate nohighlight">\( N_j \)</span> is the number of additional toys needed to collect the <span class="math notranslate nohighlight">\( j \)</span>-th type that you haven’t seen before.</p></li>
+</ul>
+<p>Thus, <span class="math notranslate nohighlight">\(N = N_1 + N_2 + \cdots + N_n.\)</span></p>
+</li>
+<li><p><strong>Step 2: Identify the Distribution of <span class="math notranslate nohighlight">\( N_j \)</span></strong></p>
+<p>Each <span class="math notranslate nohighlight">\( N_j \)</span> follows the first success distribution, where the probability of success depends on how many types are yet to be collected.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( N_2 \sim \text{FS}\left(\frac{n-1}{n}\right) \)</span>, as you are looking for a toy of a new type among the <span class="math notranslate nohighlight">\( n \)</span> available types, given that you’ve already collected one type.</p></li>
+<li><p>More generally, <span class="math notranslate nohighlight">\( N_j \)</span> follows <span class="math notranslate nohighlight">\( \text{FS}\left(\frac{n-j+1}{n}\right) \)</span> because you are searching for a new type of toy among the remaining <span class="math notranslate nohighlight">\( n - (j - 1) \)</span> types.</p></li>
+</ul>
+</li>
+<li><p><strong>Step 3: Compute the Final Answer</strong></p>
+<p>The expected total number of toys <span class="math notranslate nohighlight">\( N \)</span> is given by the sum of the expected values of each <span class="math notranslate nohighlight">\( N_j \)</span>. Therefore,
+\begin{equation*}
+\mathbb{E}[N] = \mathbb{E}[N_1] + \mathbb{E}[N_2] + \cdots + \mathbb{E}[N_n] = 1 + \frac{n}{n-1} + \frac{n}{n-2} + \cdots + n \approx n \log n.
+\end{equation*}</p>
+</li>
+</ol>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>The <strong>St. Petersburg paradox</strong> is a classic problem in probability theory and economics. The setup of this paradox involves a game where a fair coin is flipped repeatedly until it lands on heads for the first time. The game has the following structure:</p>
+<ul class="simple">
+<li><p>If the game ends in one round (i.e., you get heads on the first flip), you win $2.</p></li>
+<li><p>If the game ends in two rounds (i.e., the first heads occurs on the second flip), you win $4.</p></li>
+<li><p>More generally, if the game ends in <span class="math notranslate nohighlight">\( i \)</span> rounds, you win $<span class="math notranslate nohighlight">\( 2^i \)</span>.</p></li>
+</ul>
+<p>Let <span class="math notranslate nohighlight">\( X \)</span> denote the total winnings from the game. By definition, the winnings are given by <span class="math notranslate nohighlight">\( X = 2^N \)</span>, where <span class="math notranslate nohighlight">\( N \)</span> is the number of rounds needed to get the first heads. The expected value of <span class="math notranslate nohighlight">\( X \)</span> can be calculated as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{E}[X] &amp;= \sum_{i = 1}^{\infty} 2^i \cdot \mathbb{P}[X = 2^i] = \sum_{i = 1}^{\infty} 2^i \cdot \mathbb{P}[2^N = 2^i]\\
+&amp;= \sum_{i = 1}^{\infty} 2^i \cdot \mathbb{P}[N = i] =  2 \cdot \frac{1}{2} + 4 \cdot \frac{1}{4} + 8 \cdot \frac{1}{8} + \cdots = \infty.
+\end{align*}\]</div>
+<p>This result is counterintuitive because it suggests that a rational person should be willing to pay any amount to play this game, despite the unrealistic nature of achieving such high winnings. In fact, since <span class="math notranslate nohighlight">\(N \sim \text{FS}\left(\frac{1}{2}\right)\)</span>, so the expected number of rounds of the game is <span class="math notranslate nohighlight">\(\mathbb{E}[N] = 2\)</span>.</p>
+<p>It’s important to note that <span class="math notranslate nohighlight">\( \infty = \mathbb{E}[X] = \mathbb{E}\left[2^N\right] \not=  2^{\mathbb{E}[N]} = 4\)</span>.</p>
+<p>To make the game more realistic, suppose you impose a bound of 40 rounds. In this case, the maximum potential winnings are $<span class="math notranslate nohighlight">\( 2^{40} \)</span>, which is approximately one trillion dollars. However, the expected value of <span class="math notranslate nohighlight">\( X \)</span> when limiting the number of rounds to 40 can be calculated as <span class="math notranslate nohighlight">\(\mathbb{E}[X] = \sum_{n = 1}^{40} \frac{1}{2^n} \cdot 2^n = 40.\)</span> By capping the game at 40 rounds, the expected winnings become finite and are equal to 40 dollars.</p>
+</div>
+<p>We will introduce one more distribution that is closely related to the geometric distribution.</p>
+<div class="admonition-negative-binomial-distribution admonition">
+<p class="admonition-title">Negative binomial distribution</p>
+<p>Suppose we perform a sequence of independent Bernoulli trials, where each trial results in a success with probability <span class="math notranslate nohighlight">\( p \)</span>. Let <span class="math notranslate nohighlight">\(X\)</span> be the number of failures before <span class="math notranslate nohighlight">\(r^{th}\)</span> success. Then we say that <span class="math notranslate nohighlight">\(X\)</span> follows the *negative binomial distribution with parameters <span class="math notranslate nohighlight">\((r,p)\)</span>, denoted <span class="math notranslate nohighlight">\(X \sim \text{NBin}(r,p)\)</span>.</p>
+</div>
+<p>To determine the PMF of <span class="math notranslate nohighlight">\(X\)</span>, we will start with an example, where <span class="math notranslate nohighlight">\(X \sim \text{NBin}(5, p)\)</span>, which is the number of failures before the fifth success. Under the following sequences (with 1 representing success and 0 representing failure), there are three failures before the fifth success: 11010011, or 11010101, or … Indeed, to represent three failures before the fifth success, the last digit in these sequences <strong>must</strong> be a 1, and must be preceded by three 0s (the three failures) and four 1s (the four other successes), arranged in any order. There are <span class="math notranslate nohighlight">\({3 + 4 \choose 3}\)</span> different sequences of this form: imagine drawing seven fill-in-the-blank slots, three of which we must fill in with 0s, and the rest with 1s. Each sequence has a probability of <span class="math notranslate nohighlight">\(p^5(1-p)^3\)</span> (for the five success and the three failures). Therefore</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[X = 3] = {3 + 4 \choose 3}p^5(1-p)^3.
+
+\end{equation*}\]</div>
+<p>By the exact same logic, for <span class="math notranslate nohighlight">\(X \sim \text{NBin}(r,p)\)</span>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{P}[X = n] = {n + r-1 \choose n}p^r(1-p)^n
+
+\end{equation*}\]</div>
+<p>for <span class="math notranslate nohighlight">\(n = 0, 1, 2, \dots\)</span>.
+To calculate the expectation of <span class="math notranslate nohighlight">\(X\)</span>, we can write it as <span class="math notranslate nohighlight">\(X = X_1 + \cdots + X_r\)</span> where <span class="math notranslate nohighlight">\(X_1\)</span> is the number of failures until the <span class="math notranslate nohighlight">\(1^{st}\)</span> success, <span class="math notranslate nohighlight">\(X_2\)</span> is the number of failures between <span class="math notranslate nohighlight">\(1^{st}\)</span> and second <span class="math notranslate nohighlight">\(2^{nd}\)</span> successes, and so on. We can see that <span class="math notranslate nohighlight">\(X_i \sim \text{Geom}(p)\)</span>, so by linearity of expectation, <span class="math notranslate nohighlight">\(\mathbb{E}[X] = r \cdot \frac{1-p}{p}\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>This season, suppose Arsenal wins each soccer game independently with a probability of 0.7.</p>
+<p><strong>1. Number of Games Before a Win.</strong> Let <span class="math notranslate nohighlight">\( X \)</span> be the number of games Arsenal plays before winning their first game. Since each game is independent and has a fixed probability of success (a win) of 0.7, <span class="math notranslate nohighlight">\(X \sim \text{Geom}(0.7).\)</span></p>
+<p><strong>2. Number of Losses Before Winning Five Games.</strong> Next, let <span class="math notranslate nohighlight">\( Y \)</span> represent the number of games Arsenal loses before achieving five wins. Then <span class="math notranslate nohighlight">\(Y \sim \text{NBin}(5, 0.7).\)</span></p>
+</div>
+</section>
+<section id="indicator-random-variables-and-the-fundamental-bridge">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">4.4. </span>Indicator random variables and the fundamental bridge</a><a class="headerlink" href="#indicator-random-variables-and-the-fundamental-bridge" title="Link to this heading">#</a></h2>
+<p>An indicator random variable is a simple variable that indicates whether a specific event has occurred or not.</p>
+<div class="admonition-indicator-random-variable admonition">
+<p class="admonition-title">Indicator random variable</p>
+<p>Given an event <span class="math notranslate nohighlight">\(A\)</span>, define the RV <span class="math notranslate nohighlight">\( I_A \)</span> is as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+I_A =
+\begin{cases}
+1 &amp; \text{if event } A \text{ occurs} \\
+0 &amp; \text{otherwise}.
+\end{cases}
+\end{equation*}\]</div>
+</div>
+<p>The fundamental relationship between the probability and expectation of an indicator RV is captured by the following formula:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[I_A] = 1 \cdot \mathbb{P}[I_A = 1] + 0 \cdot \mathbb{P}[I_A = 0] = \mathbb{P}[I_A = 1] = \mathbb{P}[A].
+\end{equation*}\]</div>
+<p>This equation shows that the expected value of an indicator random variable <span class="math notranslate nohighlight">\( I_A \)</span> is equal to the probability of the event <span class="math notranslate nohighlight">\( A \)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>Suppose a university is deciding whether to test all 100 people in a dormitory for COVID-19. Before conducting individual tests, they will test the sewage. If the sewage sample tests positive, they will test all 100 people in the dorm. Let’s model this situation using indicator random variables:</p>
+<ul class="simple">
+<li><p>Each person in the dorm is independently negative with a probability of 0.9.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\( X \)</span> represent the total number of tests conducted, including the sewage test.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\( A \)</span> denote the event that the sewage test is positive, with indicator RV <span class="math notranslate nohighlight">\(I_A\)</span>.</p></li>
+</ul>
+<p>The total number of tests <span class="math notranslate nohighlight">\( X \)</span> is <span class="math notranslate nohighlight">\(X = 1 + 100 \cdot I_A\)</span>. Here, the “1” represents the initial sewage test, and the term <span class="math notranslate nohighlight">\( 100 \cdot I_A \)</span> represents the additional 100 individual tests if the sewage test is positive. To find the expected number of tests <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span>, we first need to determine <span class="math notranslate nohighlight">\( \mathbb{E}[I_A] \)</span>. The probability of <span class="math notranslate nohighlight">\( A \)</span>, which is the probability that at least one person in the dorm has COVID-19, is given by <span class="math notranslate nohighlight">\(\mathbb{P}[A] = 1 - \mathbb{P}[\text{no one has COVID}] = 1 - 0.9^{100}.\)</span> Therefore, the expected value of <span class="math notranslate nohighlight">\( I_A \)</span> is <span class="math notranslate nohighlight">\(\mathbb{E}[I_A] = \mathbb{P}[A] = 1 - 0.9^{100}\)</span>.</p>
+<p>Now, we can calculate the expected number of tests:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \mathbb{E}[1 + 100 \cdot I_A] = 1 + 100 \mathbb{E}[I_A] = 1 + 100(1 - 0.9^{100}).
+\end{equation*}\]</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -541,6 +731,9 @@ In other words, the expected return of this investment is 5%.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-expectation">4.1. Definition of expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity-of-expectation">4.2. Linearity of Expectation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometric-and-negative-binomial">4.3. Geometric and negative binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicator-random-variables-and-the-fundamental-bridge">4.4. Indicator random variables and the fundamental bridge</a></li>
 </ul>
   </nav></div>
 
