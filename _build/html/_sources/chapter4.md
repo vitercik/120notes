@@ -177,7 +177,7 @@ Imagine a couple who decides to continue having children until they have at leas
 
 **Question:** What is the expected number of children they’ll have?
 
-For example, if the sequence of births is G-G-G-B, they would have four children in total. If the sequence is **B-B-G**, they would have three children in total.
+For example, if the sequence of births is G-G-G-B, they would have four children in total. If the sequence is B-B-G, they would have three children in total.
 
 1. **Step 1: Define the Random Variables**
     
@@ -201,6 +201,8 @@ For example, if the sequence of births is G-G-G-B, they would have four children
 ```{admonition} Example
 :class: tip
 
+This is Example 4.3.12 from {cite}`Blitzstein19:Introduction`.
+
 This is a classic problem called the coupon collector problem. Imagine that there are $ n $ different types of toys that you are trying to collect. Each time you acquire a toy, it is equally likely to be any one of the $ n $ types, regardless of the toys you have collected so far. The goal is to determine the expected number of toys you need to collect in order to have at least one of each type.
 
 **Question:** What is the expected number of toys needed to complete the set?
@@ -222,37 +224,11 @@ This is a classic problem called the coupon collector problem. Imagine that ther
     - $ N_2 \sim \text{FS}\left(\frac{n-1}{n}\right) $, as you are looking for a toy of a new type among the $ n $ available types, given that you’ve already collected one type.
     - More generally, $ N_j $ follows $ \text{FS}\left(\frac{n-j+1}{n}\right) $ because you are searching for a new type of toy among the remaining $ n - (j - 1) $ types.
 3. **Step 3: Compute the Final Answer**
-    
     The expected total number of toys $ N $ is given by the sum of the expected values of each $ N_j $. Therefore,
-\begin{equation*}
+    \begin{equation*}
     \mathbb{E}[N] = \mathbb{E}[N_1] + \mathbb{E}[N_2] + \cdots + \mathbb{E}[N_n] = 1 + \frac{n}{n-1} + \frac{n}{n-2} + \cdots + n \approx n \log n.
-\end{equation*}
+    \end{equation*}
     
-```
-    
-
-```{admonition} Example
-:class: tip
-
-The **St. Petersburg paradox** is a classic problem in probability theory and economics. The setup of this paradox involves a game where a fair coin is flipped repeatedly until it lands on heads for the first time. The game has the following structure:
-
-- If the game ends in one round (i.e., you get heads on the first flip), you win \$2.
-- If the game ends in two rounds (i.e., the first heads occurs on the second flip), you win \$4.
-- More generally, if the game ends in $ i $ rounds, you win \$$ 2^i $.
-
-Let $ X $ denote the total winnings from the game. By definition, the winnings are given by $ X = 2^N $, where $ N $ is the number of rounds needed to get the first heads. The expected value of $ X $ can be calculated as follows:
-
-\begin{align*}
-\mathbb{E}[X] &= \sum_{i = 1}^{\infty} 2^i \cdot \mathbb{P}[X = 2^i] = \sum_{i = 1}^{\infty} 2^i \cdot \mathbb{P}[2^N = 2^i]\\
-&= \sum_{i = 1}^{\infty} 2^i \cdot \mathbb{P}[N = i] =  2 \cdot \frac{1}{2} + 4 \cdot \frac{1}{4} + 8 \cdot \frac{1}{8} + \cdots = \infty.
-\end{align*}
-
-This result is counterintuitive because it suggests that a rational person should be willing to pay any amount to play this game, despite the unrealistic nature of achieving such high winnings. In fact, since $N \sim \text{FS}\left(\frac{1}{2}\right)$, so the expected number of rounds of the game is $\mathbb{E}[N] = 2$.
-
-It’s important to note that $ \infty = \mathbb{E}[X] = \mathbb{E}\left[2^N\right] \not=  2^{\mathbb{E}[N]} = 4$.
-
-To make the game more realistic, suppose you impose a bound of 40 rounds. In this case, the maximum potential winnings are \$$ 2^{40} $, which is approximately one trillion dollars. However, the expected value of $ X $ when limiting the number of rounds to 40 can be calculated as $\mathbb{E}[X] = \sum_{n = 1}^{40} \frac{1}{2^n} \cdot 2^n = 40.$ By capping the game at 40 rounds, the expected winnings become finite and are equal to 40 dollars.
-
 ```
 
 We will introduce one more distribution that is closely related to the geometric distribution.
@@ -334,4 +310,124 @@ Now, we can calculate the expected number of tests:
 \mathbb{E}[X] = \mathbb{E}[1 + 100 \cdot I_A] = 1 + 100 \mathbb{E}[I_A] = 1 + 100(1 - 0.9^{100}).
 \end{equation*}
 
+```
+
+```{admonition} Example
+:class: tip
+
+This is Example 4.4.5 from {cite}`Blitzstein19:Introduction`.
+
+In a room with $ n $ people, each person's birthday is equally likely to fall on any of the 365 days of the year. The goal is to calculate the expected number of birthday matches, denoted as $ Y $, where a birthday match occurs if two people share the same birthday.
+
+**Step 1: Define the random variables.** We begin by labeling the people in the room as $1, 2, 3, \dots, n $ and ordering the $ \binom{n}{2} $ pairs of people. Let $ Y $ represent the total number of birthday matches, which can be written as the sum of indicator variables $ I_j $, where $ I_j = 1 $ if the $ j $-th pair of individuals share a birthday, and $ I_j = 0 $ otherwise. Thus, we can express $ Y $ as:
+\begin{equation*}
+Y = I_1 + I_2 + \cdots + I_{\binom{n}{2}}.
+\end{equation*}
+
+**Step 2: Define the goal.** We aim to compute $ \mathbb{E}[Y] $, the expected number of birthday matches. Using the linearity of expectation, we can break this sum down into the individual expectations for each pair:
+\begin{align*}
+		\mathbb{E}[Y] &= \mathbb{E}\left[I_1 + I_2 + \cdots + I_{{n \choose 2}}\right] = \mathbb{E}\left[I_1\right] + \mathbb{E}\left[I_2\right] + \cdots + \mathbb{E}\left[I_{{n \choose 2}}\right]\\
+		&= \sum_{j = 1}^{{n \choose 2}} \mathbb{P}[\text{$j^{th}$ pair share birthday}].
+\end{align*}
+
+**Step 3: Calculate the probability for each pair.** For any pair of people, the probability that they share the same birthday can be computed as follows. The probability that the first person in the pair is born on any specific day (e.g., January 1st) is $ \frac{1}{365} $, and the probability that the second person is also born on that same day is also $ \frac{1}{365} $. Therefore, the probability that both individuals in a pair are born on the same day is:
+\begin{align*}
+			\mathbb{P}[\text{pair share b-day}] &= \mathbb{P}[\text{pair born on Jan 1 or pair born on Jan 2 or }\dots]\\
+			&= \mathbb{P}[\text{pair born on Jan 1}] + \mathbb{P}[\text{pair born on Jan 2}] + \cdots\\
+			&= \sum_{i = 1}^{365}\mathbb{P}[\text{pair both born on day }i]\\
+      &=  \sum_{i = 1}^{365}\frac{1}{365} \cdot \frac{1}{365}\\
+			&= \frac{1}{365}.
+\end{align*}
+
+**Step 4: Compute the final answer.** Using this probability, we can now compute the expected number of birthday matches. Since there are $ \binom{n}{2} $ pairs in the room, the expected number of matches is:
+\begin{equation*}
+\mathbb{E}[Y] = \frac{\binom{n}{2}}{365}.
+\end{equation*}
+For example, in a room with 70 people, the expected number of birthday matches is:
+\begin{equation*}
+\mathbb{E}[\# \text{ birthday matches}] = \frac{\binom{70}{2}}{365} \approx 6.6.
+\end{equation*}
+```
+
+## Law of the unconscious statistician
+
+The *law of the unconscious statistician (LOTUS)* is a simple formula for calculating the expected value of functions of RVs, namely $\mathbb{E}[g(X)]$ where $X$ is a RV and $g$ is any function.
+
+```{admonition} Law of the unconcious statistician
+For any function $g: \mathbb{R} \to \mathbb{R}$, $\mathbb{E}[g(X)] = \sum_x g(x)\mathbb{P}[X = x]$.
+```
+
+```{admonition} Example: St. Petersburg paradox
+:class: tip
+
+This is Example 4.3.14 from {cite}`Blitzstein19:Introduction`.
+
+Suppose you play a game where you flip a fair coin repeatedly until it lands heads. The payout structure is as follows: if the 1st heads appears on the 1st round, you win \$2; if it appears on the 2nd round, you win \$4; if it appears on the $i$-th round, you win $2^i$ dollars.
+
+**Question:** Let $ X $ represent your total winnings from the game. What is the expected value $ \mathbb{E}[X] $?
+
+**Step 1: Define the random variables.** Let $ N $ denote the number of rounds it takes to get the first heads. Since the winnings are determined by the round on which the first heads occurs, we can express $ X $ as a function of $ N $: $X = 2^N = g(N).$
+
+**Step 2: Define the goal.** We want to calculate the expected value of $ X $. Using the fact that $ X = g(N) $, we compute $ \mathbb{E}[X] $ as:
+\begin{equation*}
+\mathbb{E}[X] = \mathbb{E}[g(N)] = \sum_{n=1}^{\infty} g(n) \cdot \mathbb{P}[N = n].
+\end{equation*}
+
+**Step 3: Is $N$ a familiar RV?** The random variable $ N $ follows the first success distribution because it counts the number of rounds until the first heads appears in a sequence of fair coin flips, including that first head. Specifically, $ N \sim \text{FS}(\frac{1}{2}) $, which means the probability that the first heads occurs on the $n$-th round is:
+\begin{equation*}
+\mathbb{P}[N = n] = \frac{1}{2^n}.
+\end{equation*}
+
+**Step 4: Compute the expected value.** Substituting the expression for $ g(n) = 2^n $ and the probability $ \mathbb{P}[N = n] = \frac{1}{2^n} $ into the expected value formula, we get:
+\begin{equation*}
+\mathbb{E}[X] = \sum_{n=1}^{\infty} 2^n \cdot \frac{1}{2^n} = 2 \cdot \frac{1}{2} + 4 \cdot \frac{1}{4} + 8 \cdot \frac{1}{8} + \cdots.
+\end{equation*}
+Each term simplifies to 1, and since there are infinitely many terms, the sum diverges: $\mathbb{E}[X] = \infty.$ Thus, the expected winnings in the St. Petersburg game are infinite.
+
+This result is counterintuitive because it suggests that a rational person should be willing to pay any amount to play this game, despite the unrealistic nature of achieving such high winnings. In fact, since $N \sim \text{FS}\left(\frac{1}{2}\right)$, so the expected number of rounds of the game is $\mathbb{E}[N] = 2$.
+
+It’s important to note that $ \infty = \mathbb{E}[X] = \mathbb{E}\left[2^N\right] \not=  2^{\mathbb{E}[N]} = 4$.
+
+To make the game more realistic, suppose you impose a bound of 40 rounds. In this case, the maximum potential winnings are \$$ 2^{40} $, which is approximately one trillion dollars. However, the expected value of $ X $ when limiting the number of rounds to 40 can be calculated as $\mathbb{E}[X] = \sum_{n = 1}^{40} \frac{1}{2^n} \cdot 2^n = 40.$ By capping the game at 40 rounds, the expected winnings become finite and are equal to 40 dollars.
+```
+
+## Variance
+
+Variance is a measure that describes how "spread out" a probability distribution is. It quantifies the average squared deviation of a random variable $ X $ from its mean.
+```{admonition} Variance
+The variance of a RV $X$ is defined as $\text{Var}(X) = \mathbb{E}\left[(X - \mathbb{E}[X])^2\right].$
+```
+
+### Why variance is defined this way
+
+A natural first attempt to measure spread might be to compute the expectation of the difference between the random variable and its mean, i.e., $ \mathbb{E}[X - \mathbb{E}[X]] $. However, this turns out to be zero by linearity of expectation: $\mathbb{E}[X - \mathbb{E}[X]] = 0.$ Next, one might try using the absolute deviation, $ \mathbb{E}[|X - \mathbb{E}[X]|] $, but this function is not differentiable, which makes it more difficult to work with mathematically. The definition of variance as $\mathbb{E}\left[(X - \mathbb{E}[X])^2\right]$ both captures the spread of a distribution and is easy to work with mathematically.
+
+### Standard deviation
+
+It’s important to note that when a RV is measured in terms of some unit (say, inches), then its variance will be measured in terms of that unit squared (say, inches^2). To express variance in the same units as the original random variable, we take the square root of the variance, yielding the standard deviation.
+
+```{admonition} Standard deviation
+The standard deviation of a RV $X$ is defined as $\text{SD}(X) = \sqrt{\text{Var}(X)}.$
+```
+
+### Alternate expression for variance
+
+Another way to express variance simplifies the computation by expanding the squared term:
+\begin{equation*}
+\text{Var}(X) = \mathbb{E}[X^2 + 2X\mathbb{E}[X] - \mathbb{E}[X]^2] = \mathbb{E}[X^2] - 2\mathbb{E}[X]^2 + \mathbb{E}[X]^2 = \mathbb{E}[X^2] - \mathbb{E}[X]^2.
+\end{equation*}
+This version of the formula shows that variance is the difference between the expected value of $ X^2 $ and the square of the expected value of $ X $.
+
+### Important properties of variance
+
+- **Shifting by a constant**: Adding a constant $ c $ to $ X $ does not change its variance: $\text{Var}(X + c) = \text{Var}(X).$
+- **Scaling by a constant**: Multiplying $ X $ by a constant $ c $ scales the variance by $ c^2 $: $\text{Var}(cX) = c^2 \text{Var}(X).$
+- **Independence**: If $ X $ and $ Y $ are independent, the variance of their sum is the sum of their variances: $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y).$
+
+```{admonition} Example: Variance of a binomial random variable
+:class: tip
+
+This is Example 4.6.5 from {cite}`Blitzstein19:Introduction`.
+
+Recall that the if $ X \sim \text{Bin}(n, p) $, we can express $ X $ as the sum of $ n $ independent Bernoulli variables $ I_1, I_2, \dots, I_n \sim \text{Bern}(p) $: $X = I_1 + I_2 + \cdots + I_n.$ For each $ I_j $, the expected value is $ \mathbb{E}[I_j] = p $, and since $ I_j^2 = I_j $, we have that $\mathbb{E}[I_j^2] = \mathbb{E}[I_j] = p.$ The variance of each $ I_j $ is then $\text{Var}(I_j) = \mathbb{E}[I_j^2] - \mathbb{E}[I_j]^2 = p - p^2 = p(1 - p).$ Since $ X $ is the sum of $ n $ independent indicators, the variance of $ X $ is: $\text{Var}(X) = \text{Var}(I_1) + \text{Var}(I_2) + \cdots + \text{Var}(I_n) = np(1 - p).$
 ```
