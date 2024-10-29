@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Continuous random variables &#8212; MS&amp;E 120 Course Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="4. Expectation" href="chapter4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MS&E 120 Course Reader</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stanford MS&E 120: Intro to Probability
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Continuous random variables</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">5.1. Probability density functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform">5.2. Uniform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-of-x">5.2.1. Expectation of <span class="math notranslate nohighlight">\( X \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-x">5.2.2. Variance of <span class="math notranslate nohighlight">\( X \)</span></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="continuous-random-variables">
+<h1><span class="section-number">5. </span>Continuous random variables<a class="headerlink" href="#continuous-random-variables" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#probability-density-functions" id="id4">Probability density functions</a></p></li>
+<li><p><a class="reference internal" href="#uniform" id="id5">Uniform</a></p>
+<ul>
+<li><p><a class="reference internal" href="#expectation-of-x" id="id6">Expectation of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
+<li><p><a class="reference internal" href="#variance-of-x" id="id7">Variance of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>Up to this point, we have focused on discrete random variables, which have values that can be written down as a list. In this chapter, we will explore <em>continuous random variables</em>, which can assume any real value within a given interval—potentially extending infinitely, from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+<section id="probability-density-functions">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">5.1. </span>Probability density functions</a><a class="headerlink" href="#probability-density-functions" title="Link to this heading">#</a></h2>
+<p>To build intuition, recall that for a discrete RV <span class="math notranslate nohighlight">\(X\)</span> with PMF <span class="math notranslate nohighlight">\(f_X(x) = \mathbb{P}[X = x]\)</span>, we can calculate the probability it falls within some interval by summing up its PMF in this interval. For example, if <span class="math notranslate nohighlight">\(X \sim \text{Bin}(4, 0.5)\)</span>, for example, then <span class="math notranslate nohighlight">\(\mathbb{P}[1 \leq X \leq 3] = \mathbb{P}[X = 1] + \mathbb{P}[X = 2] + \mathbb{P}[X = 3] = f_X(1) + f_X(2) + f_X(3).\)</span></p>
+<p>A continuous RV has a <em>probability density function (PDF)</em> that’s defined similarly. In particular, we say that the RV <span class="math notranslate nohighlight">\(X\)</span> has PDF <span class="math notranslate nohighlight">\(f_X(x)\)</span> if <span class="math notranslate nohighlight">\(\mathbb{P}[a \leq X \leq b] = \int_a^b f_X(x) \, dx\)</span>. The only difference here is that instead of summing up the PMF over the discrete values, we are taking the integral over a continuous range (this intuitively makes sense since, as we learn in calculus class, an integral is a continuous version of a summation). The PDF of a continuous RV is illustrated in the following figure.</p>
+<figure class="align-center" id="pdf">
+<a class="reference internal image-reference" href="_images/pdf.png"><img alt="_images/pdf.png" src="_images/pdf.png" style="width: 225px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">This is Figure 5.2 from <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>. It illustrates the PDF of a continuous RV <span class="math notranslate nohighlight">\(X\)</span>. To calculuate <span class="math notranslate nohighlight">\(\mathbb{P}[-2 \leq X \leq 2]\)</span>, we compute the integral of the function between <span class="math notranslate nohighlight">\(-2\)</span> and <span class="math notranslate nohighlight">\(2\)</span>, which is the shaded region.</span><a class="headerlink" href="#pdf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To be a valid PDF, it must be the case that <span class="math notranslate nohighlight">\(f_X(x) \geq 0\)</span> and <span class="math notranslate nohighlight">\(\int_{-\infty}^\infty f_X(x) \, dx = 1\)</span>.</p>
+<p>It immediately follows that a continuous RV’s cumulative distribution function (CDF) is defined as <span class="math notranslate nohighlight">\(F_X(x) = \mathbb{P}[X \leq x] = \int_{-\infty}^x f_X(t) \, dt\)</span>. Remembering the fundamental theorem of calculus, it follows that if we know a RV’s CDF, we can figure out its PDF by taking the derivative: <span class="math notranslate nohighlight">\(f_X(x) = F'_X(x)\)</span>. The CDF also allows us to easily compute the probability <span class="math notranslate nohighlight">\(X\)</span> falls within an interval: <span class="math notranslate nohighlight">\(\mathbb{P}[a &lt; X &lt; b] = \int_a^b f_X(x) \, dx = F_X(b) - F_X(a)\)</span>.</p>
+<p>It’s important to understand the differences between a discrete RV’s PMF and a continuous RV’s PDF. If we evaluate the PDF of a continuous RV <span class="math notranslate nohighlight">\(X\)</span> at some number, say 3, it’s important to remember that <span class="math notranslate nohighlight">\(f_X(3) \not= \mathbb{P}[X=3]\)</span> because, by definition, <span class="math notranslate nohighlight">\(\mathbb{P}[X = 3] = \int_3^3 f_X(x) \, dx = 0\)</span>. However, it is the case that the probability <span class="math notranslate nohighlight">\(X\)</span> is in some tiny interval <span class="math notranslate nohighlight">\((3, 3 + \epsilon)\)</span> is <em>approximately</em> <span class="math notranslate nohighlight">\(f_X(3)\epsilon\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}\mathbb{P}\left[3 &lt; X &lt; 3 + \epsilon \right] = \int_{3}^{3 + \epsilon} f_X(x) \, dx \approx f_X(3)\epsilon.
+
+\end{equation*}\]</div>
+<p>Building on the intuition that an integral is just a continuous version of a sum, we define the expected value of a continuous RV in exactly the way you would expect:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{E}[X] = \int_{-\infty}^{\infty} x f_X(x) \, dx.
+
+\end{equation*}\]</div>
+<p>Similarly, even the law of the unconscious statistician (LOTUS) carries over directly:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\mathbb{E}[g(X)] = \int_{-\infty}^{\infty} g(x) f_X(x) \, dx.
+
+\end{equation*}\]</div>
+<p>In the following table, we summarize the continuous analog of the concepts we learned for discrete RVs.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Discrete</strong></p></th>
+<th class="head"><p><strong>Continuous</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\( X \)</span> takes on values from a list <span class="math notranslate nohighlight">\( x_1, x_2, \dots \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( X \)</span> can be anything between <span class="math notranslate nohighlight">\( -\infty \)</span> and <span class="math notranslate nohighlight">\( \infty \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>PMF <span class="math notranslate nohighlight">\( f_X(x) = \mathbb{P}[X = x] \)</span></p></td>
+<td><p>PDF <span class="math notranslate nohighlight">\( f_X(x) \)</span> (but <span class="math notranslate nohighlight">\( \mathbb{P}[X = x] = 0 \)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p>CDF <span class="math notranslate nohighlight">\( F_X(x) = \mathbb{P}[X \leq x] = \sum_{x_i \leq x} f_X(x_i) \)</span></p></td>
+<td><p>CDF <span class="math notranslate nohighlight">\( F_X(x) = \mathbb{P}[X \leq x] = \int_{-\infty}^x f_X(t) \, dt \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Expectation <span class="math notranslate nohighlight">\( \mathbb{E}[X] = \sum x f_X(x) \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbb{E}[X] = \int_{-\infty}^{\infty} x f_X(x) \, dx \)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>LOTUS <span class="math notranslate nohighlight">\( \mathbb{E}[g(X)] = \sum g(x) f_X(x) \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbb{E}[g(X)] = \int_{-\infty}^{\infty} g(x) f_X(x) \, dx \)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="uniform">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">5.2. </span>Uniform</a><a class="headerlink" href="#uniform" title="Link to this heading">#</a></h2>
+<p>For a given interval <span class="math notranslate nohighlight">\((a, b)\)</span>, a uniform random variable represents a “completely random” point somewhere between <span class="math notranslate nohighlight">\( a \)</span> and <span class="math notranslate nohighlight">\( b \)</span>. In a uniform distribution, the probability of selecting a point within any sub-interval is proportional to the length of that interval.</p>
+<p>If we denote this random variable as <span class="math notranslate nohighlight">\( X \sim \text{Unif}(a, b) \)</span>, then its probability density function (PDF) <span class="math notranslate nohighlight">\( f_X(x) \)</span> is defined as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) =
+\begin{cases}
+c &amp; \text{if } a \leq x \leq b \\
+0 &amp; \text{else}
+\end{cases}
+\end{equation*}\]</div>
+<p>To determine the value of <span class="math notranslate nohighlight">\( c \)</span>, we use the fact that the total area under the PDF over the interval <span class="math notranslate nohighlight">\((a, b)\)</span> must be equal to 1. This means:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+1 = \int_{-\infty}^{\infty} f_X(x) \, dx = \int_{-\infty}^a 0 \, dx + \int_a^b c \, dx + \int_b^{\infty} 0 \, dx = 0 + c(b - a) + 0.
+\end{equation*}\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\( c \)</span> gives:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+c = \frac{1}{b - a}.
+\end{equation*}\]</div>
+<p>Thus, for a uniform random variable <span class="math notranslate nohighlight">\( X \)</span> over <span class="math notranslate nohighlight">\((a, b)\)</span>, the PDF is <span class="math notranslate nohighlight">\( f_X(x) = \frac{1}{b - a} \)</span> for <span class="math notranslate nohighlight">\( a \leq x \leq b \)</span> and 0 otherwise. For example, if <span class="math notranslate nohighlight">\( X \sim \text{Unif}(0, 1) \)</span>, then the PDF is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) =
+\begin{cases}
+1 &amp; \text{if } 0 \leq x \leq 1 \\
+0 &amp; \text{else}
+\end{cases}
+\end{equation*}\]</div>
+<p>Meanwhile, if <span class="math notranslate nohighlight">\( X \sim \text{Unif}\left(\frac{1}{2}, 1\right) \)</span>, then the PDF is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) =
+\begin{cases}
+\frac{1}{1 - \frac{1}{2}} = 2 &amp; \text{if } \frac{1}{2} \leq x \leq 1 \\
+0 &amp; \text{else}
+\end{cases}
+\end{equation*}\]</div>
+<p>The CDF of a continuous uniform random variable <span class="math notranslate nohighlight">\( X \)</span> over an interval <span class="math notranslate nohighlight">\((a, b)\)</span> is defined  as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>When <span class="math notranslate nohighlight">\( x &lt; a \)</span></strong>: Since <span class="math notranslate nohighlight">\( x \)</span> is less than the lower bound <span class="math notranslate nohighlight">\( a \)</span>, the probability <span class="math notranslate nohighlight">\( \mathbb{P}[X \leq x] \)</span> is zero. Mathematically, <span class="math notranslate nohighlight">\(\mathbb{P}[X \leq x] = \int_{-\infty}^x 0 \, dt = 0.\)</span></p></li>
+<li><p><strong>When <span class="math notranslate nohighlight">\( a \leq x \leq b \)</span></strong>: In this case, <span class="math notranslate nohighlight">\( x \)</span> falls within the interval <span class="math notranslate nohighlight">\((a, b)\)</span>, so we calculate <span class="math notranslate nohighlight">\( \mathbb{P}[X \leq x] \)</span> by integrating <span class="math notranslate nohighlight">\( f_X(t) \)</span> from <span class="math notranslate nohighlight">\( a \)</span> to <span class="math notranslate nohighlight">\( x \)</span>: <span class="math notranslate nohighlight">\(\mathbb{P}[X \leq x] = \int_a^x f_X(t) \, dt = \int_a^x \frac{1}{b - a} \, dt = \frac{x - a}{b - a}.\)</span></p></li>
+<li><p><strong>When <span class="math notranslate nohighlight">\( x &gt; b \)</span></strong>: Here, <span class="math notranslate nohighlight">\( x \)</span> is greater than the upper bound <span class="math notranslate nohighlight">\( b \)</span>, meaning <span class="math notranslate nohighlight">\( X \)</span> is certainly less than or equal to <span class="math notranslate nohighlight">\( x \)</span>, so <span class="math notranslate nohighlight">\( \mathbb{P}[X \leq x] = 1 \)</span>.</p></li>
+</ol>
+<p>To summarize, the CDF <span class="math notranslate nohighlight">\( F_X(x) = \mathbb{P}[X \leq x] \)</span> for a uniform random variable <span class="math notranslate nohighlight">\( X \sim \text{Unif}(a, b) \)</span> is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(x) = \begin{cases}
+0 &amp; \text{if } x &lt; a \\
+\frac{x - a}{b - a} &amp; \text{if } a \leq x \leq b \\
+1 &amp; \text{if } x &gt; b.
+\end{cases}
+\end{equation*}\]</div>
+<p>For example, if <span class="math notranslate nohighlight">\( X \sim \text{Unif}(0, 1) \)</span>, the CDF becomes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(x) = \begin{cases}
+0 &amp; \text{if } x &lt; 0 \\
+x &amp; \text{if } 0 \leq x \leq 1 \\
+1 &amp; \text{if } x &gt; 1.
+\end{cases}
+\end{equation*}\]</div>
+<p>The following figure illustrates the PDF and CDF of the <span class="math notranslate nohighlight">\(\text{Unif}(0, 1) \)</span> distribution.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/uniform.png"><img alt="_images/uniform.png" src="_images/uniform.png" style="width: 475px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">This is Figure 5.6 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>. It illustrates the PDF and CDF of the <span class="math notranslate nohighlight">\(\text{Unif}(0, 1) \)</span> distribution.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="expectation-of-x">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">5.2.1. </span>Expectation of <span class="math notranslate nohighlight">\( X \)</span></a><a class="headerlink" href="#expectation-of-x" title="Link to this heading">#</a></h3>
+<p>The expectation of <span class="math notranslate nohighlight">\( X \)</span> is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \int_{-\infty}^{\infty} x f_X(x) \, dx = \int_a^b \frac{x}{b - a} \, dx.
+\end{equation*}\]</div>
+<p>Evaluating this integral, we find:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \left. \frac{x^2}{2(b - a)} \right|_a^b = \frac{b^2 - a^2}{2(b - a)} = \frac{a + b}{2}.
+\end{equation*}\]</div>
+<p>For a uniform random variable <span class="math notranslate nohighlight">\( X \sim \text{Unif}(0, 1) \)</span>, this yields <span class="math notranslate nohighlight">\( \mathbb{E}[X] = \frac{0 + 1}{2} = \frac{1}{2} \)</span>.</p>
+</section>
+<section id="variance-of-x">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">5.2.2. </span>Variance of <span class="math notranslate nohighlight">\( X \)</span></a><a class="headerlink" href="#variance-of-x" title="Link to this heading">#</a></h3>
+<p>The variance of <span class="math notranslate nohighlight">\( X \)</span> is <span class="math notranslate nohighlight">\( \text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \)</span>. First, we calculate <span class="math notranslate nohighlight">\( \mathbb{E}[X^2] \)</span> using LOTUS:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X^2] = \int_a^b x^2 f_X(x) \, dx = \left. \frac{x^3}{3(b - a)} \right|_a^b = \frac{b^3 - a^3}{3(b - a)}.
+\end{equation*}\]</div>
+<p>Then, the variance becomes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\text{Var}(X) = \frac{b^3 - a^3}{3(b - a)} - \left(\frac{a + b}{2}\right)^2 = \frac{(b - a)^2}{12}.
+\end{equation*}\]</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Expectation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">5.1. Probability density functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform">5.2. Uniform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-of-x">5.2.1. Expectation of <span class="math notranslate nohighlight">\( X \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-x">5.2.2. Variance of <span class="math notranslate nohighlight">\( X \)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ellen Vitercik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

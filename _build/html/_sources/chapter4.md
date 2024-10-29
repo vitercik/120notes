@@ -431,3 +431,74 @@ This is Example 4.6.5 from {cite}`Blitzstein19:Introduction`.
 
 Recall that the if $ X \sim \text{Bin}(n, p) $, we can express $ X $ as the sum of $ n $ independent Bernoulli variables $ I_1, I_2, \dots, I_n \sim \text{Bern}(p) $: $X = I_1 + I_2 + \cdots + I_n.$ For each $ I_j $, the expected value is $ \mathbb{E}[I_j] = p $, and since $ I_j^2 = I_j $, we have that $\mathbb{E}[I_j^2] = \mathbb{E}[I_j] = p.$ The variance of each $ I_j $ is then $\text{Var}(I_j) = \mathbb{E}[I_j^2] - \mathbb{E}[I_j]^2 = p - p^2 = p(1 - p).$ Since $ X $ is the sum of $ n $ independent indicators, the variance of $ X $ is: $\text{Var}(X) = \text{Var}(I_1) + \text{Var}(I_2) + \cdots + \text{Var}(I_n) = np(1 - p).$
 ```
+
+## Poisson
+
+Suppose a rideshare company wants to model the hourly distribution of ride requests it receives in Palo Alto. Let's denote the random variable $ X $ as the number of requests per hour, and we aim to determine the probability $ \mathbb{P}[X = k] $, representing the likelihood of receiving $ k $ requests in any given hour.
+
+Suppose that using historical data, the company estimates the average number of requests per hour as $ \mathbb{E}[X] = \lambda $. A natural question arises: could we model $ X $ using a Binomial distribution?
+
+In a Binomial distribution, $ X \sim \text{Bin}(n, p) $ has expected value $ \mathbb{E}[X] = np $, and the probability of observing exactly $ k $ events is given by
+\begin{equation*}
+\mathbb{P}[X = k] = {n \choose k}p^k (1-p)^{n-k}.
+\end{equation*}
+If we approximate $ X $ as the sum of ride requests over each minute of the hour, we can think of it as the sum of 60 independent indicators:
+\begin{equation*}
+X \approx I_1 + \cdots + I_{60},
+\end{equation*}
+where $ I_j = 1 $ if a request is made in the $ j $-th minute and $ 0 $ otherwise. With this setup, we could choose $ n = 60 $ and rearrange $ \lambda = np $ to get that $ p = \frac{\lambda}{60} $. Under this model, we might approximate the probability of exactly $ k $ requests as:
+\begin{equation*}
+\mathbb{P}[X = k] = {60 \choose k} \left(\frac{\lambda}{60}\right)^k \left(1 - \frac{\lambda}{60}\right)^{60-k}.
+\end{equation*}
+
+However, this approach has a limitation: there could be multiple requests within a single minute. To refine the model, we might consider splitting each hour into 3,600 seconds instead, approximating $ X $ as:
+\begin{equation*}
+X \approx I_1 + \cdots + I_{3600},
+\end{equation*}
+where $ I_j = 1 $ if a request occurs during the $ j $-th second. In this case, we set $ n = 3600 $ and adjust $ p $ such that $ \lambda = np $, giving $ p = \frac{\lambda}{3600} $. This allows us to model the probability of $ k $ requests as:
+\begin{equation*}
+\mathbb{P}[X = k] = {3600 \choose k} \left(\frac{\lambda}{3600}\right)^k \left(1 - \frac{\lambda}{3600}\right)^{3600-k}.
+\end{equation*}
+
+Even with seconds as intervals, we still face the issue that more than one request could occur per second. If we continue splitting the intervals into increasingly smaller units, in the limit, we would get that
+\begin{equation*}
+\mathbb{P}[X = k] = \frac{e^{-\lambda} \lambda^k}{k!}, \quad k = 0, 1, 2, \dots.
+\end{equation*}
+
+In this case, we say that $X$ has the Poisson distribution, written as $X \sim \text{Pois}(\lambda)$. It’s not hard to show that $\mathbb{E}[X] = \lambda$ (see the textbook).
+
+This example motivates the **Poisson paradigm/approximation,** a useful approach for modeling the occurrence of rare events over many trials.
+
+```{admonition} Poisson paradigm/approximation
+Imagine we have $ n $ trials, each associated with a random indicator variable $ I_1, \dots, I_n $, where $ I_j = 1 $ if the $ j $-th trial is a success and $ 0 $ otherwise. Here, the probability of success for each trial, $ \mathbb{P}[I_j = 1] = p_j $, is small, while the total number of trials $ n $ is large. Importantly, the trials don't need to be independent of one another.
+
+Under these conditions, the total number of successes, represented by $ I_1 + \cdots + I_n $, can be approximated by a Poisson distribution with parameter $ \lambda = \sum_{j=1}^n p_j $.
+```
+
+Here are some examples of the Poisson paradigm:
+- **Customer arrivals at Starbucks**: Suppose we count the number of customers who enter a Starbucks on a given day. Here, each trial could represent a specific minute, and a success occurs when a customer enters during that minute.
+- **Emails received in an hour**: Suppose we want to count the number of emails received in an hour. Each minute of the hour represents a trial, with a success occurring when a new email arrives during that minute.
+
+In each of these examples, since there are many trials, each with a low probability of success, the total number of successes can be well-approximated by a Poisson distribution.
+
+```{admonition} Example: Birthday triplets
+:class: tip
+
+Suppose we’re in a room with $ n $ people, and we want to find an approximate probability that three people share the same birthday. The Poisson approximation is a suitable tool here for the following reasons:
+
+- **Setting up trials**: Each trial involves checking a specific triplet of individuals $ (i, j, k) $ to see if they share the same birthday. With $ n $ people, the number of possible triplets is $ {n \choose 3} $, which is quite large as $ n $ grows.
+- **Low probability of success**: The probability that any specific triplet $ (i, j, k) $ shares the same birthday is very low. We define the indicator variable $ I_{i, j, k} $ such that $ I_{i, j, k} = 1 $ if individuals $ i $, $ j $, and $ k $ share the same birthday and $ I_{i, j, k} = 0 $ otherwise. Calculating this probability:
+
+\begin{equation*}
+\mathbb{P}[I_{i, j, k} = 1] = \sum_{x=1}^{365} \mathbb{P}[i, j, k \text{ all born on day } x] = \sum_{x=1}^{365} \left(\frac{1}{365}\right)^3 = \frac{365}{365^3} = \frac{1}{365^2}.
+\end{equation*}
+
+Define $ X = \sum I_{i, j, k} $, which counts the number of triplets with matching birthdays. According to the Poisson approximation, $ X $ can be approximated by a Poisson random variable with parameter $ \lambda = {n \choose 3} \cdot \frac{1}{365^2} $.
+
+Now, the probability that at least one triplet of individuals shares the same birthday is given by:
+\begin{equation*}
+\mathbb{P}[X \geq 1] = 1 - \mathbb{P}[X = 0] \approx 1 - \frac{e^{-\lambda}\lambda^0}{0!} = 1 - e^{-\lambda}.
+\end{equation*}
+
+For example, if $ n = 100 $, $ 1 - e^{-\lambda} = 0.7029 $, which remarkably matches the actual probability of 0.7029. Thus, the Poisson approximation accurately estimates the probability that three individuals share the same birthday.
+```
