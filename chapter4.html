@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter4';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Bibliography" href="bibliography.html" />
+    <link rel="next" title="5. Continuous random variables" href="chapter5.html" />
     <link rel="prev" title="3. Random variables and their distributions" href="chapter3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,7 +180,8 @@
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Expectation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">5. Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">6. Bibliography</a></li>
 </ul>
 
     </div>
@@ -388,6 +389,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-properties-of-variance">4.6.4. Important properties of variance</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson">4.7. Poisson</a></li>
 </ul>
             </nav>
         </div>
@@ -416,6 +418,7 @@ document.write(`
 <li><p><a class="reference internal" href="#important-properties-of-variance" id="id14">Important properties of variance</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#poisson" id="id15">Poisson</a></p></li>
 </ul>
 </nav>
 <section id="definition-of-expectation">
@@ -776,6 +779,73 @@ Y = I_1 + I_2 + \cdots + I_{\binom{n}{2}}.
 </div>
 </section>
 </section>
+<section id="poisson">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">4.7. </span>Poisson</a><a class="headerlink" href="#poisson" title="Link to this heading">#</a></h2>
+<p>Suppose a rideshare company wants to model the hourly distribution of ride requests it receives in Palo Alto. Let’s denote the random variable <span class="math notranslate nohighlight">\( X \)</span> as the number of requests per hour, and we aim to determine the probability <span class="math notranslate nohighlight">\( \mathbb{P}[X = k] \)</span>, representing the likelihood of receiving <span class="math notranslate nohighlight">\( k \)</span> requests in any given hour.</p>
+<p>Suppose that using historical data, the company estimates the average number of requests per hour as <span class="math notranslate nohighlight">\( \mathbb{E}[X] = \lambda \)</span>. A natural question arises: could we model <span class="math notranslate nohighlight">\( X \)</span> using a Binomial distribution?</p>
+<p>In a Binomial distribution, <span class="math notranslate nohighlight">\( X \sim \text{Bin}(n, p) \)</span> has expected value <span class="math notranslate nohighlight">\( \mathbb{E}[X] = np \)</span>, and the probability of observing exactly <span class="math notranslate nohighlight">\( k \)</span> events is given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X = k] = {n \choose k}p^k (1-p)^{n-k}.
+\end{equation*}\]</div>
+<p>If we approximate <span class="math notranslate nohighlight">\( X \)</span> as the sum of ride requests over each minute of the hour, we can think of it as the sum of 60 independent indicators:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X \approx I_1 + \cdots + I_{60},
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\( I_j = 1 \)</span> if a request is made in the <span class="math notranslate nohighlight">\( j \)</span>-th minute and <span class="math notranslate nohighlight">\( 0 \)</span> otherwise. With this setup, we could choose <span class="math notranslate nohighlight">\( n = 60 \)</span> and rearrange <span class="math notranslate nohighlight">\( \lambda = np \)</span> to get that <span class="math notranslate nohighlight">\( p = \frac{\lambda}{60} \)</span>. Under this model, we might approximate the probability of exactly <span class="math notranslate nohighlight">\( k \)</span> requests as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X = k] = {60 \choose k} \left(\frac{\lambda}{60}\right)^k \left(1 - \frac{\lambda}{60}\right)^{60-k}.
+\end{equation*}\]</div>
+<p>However, this approach has a limitation: there could be multiple requests within a single minute. To refine the model, we might consider splitting each hour into 3,600 seconds instead, approximating <span class="math notranslate nohighlight">\( X \)</span> as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X \approx I_1 + \cdots + I_{3600},
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\( I_j = 1 \)</span> if a request occurs during the <span class="math notranslate nohighlight">\( j \)</span>-th second. In this case, we set <span class="math notranslate nohighlight">\( n = 3600 \)</span> and adjust <span class="math notranslate nohighlight">\( p \)</span> such that <span class="math notranslate nohighlight">\( \lambda = np \)</span>, giving <span class="math notranslate nohighlight">\( p = \frac{\lambda}{3600} \)</span>. This allows us to model the probability of <span class="math notranslate nohighlight">\( k \)</span> requests as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X = k] = {3600 \choose k} \left(\frac{\lambda}{3600}\right)^k \left(1 - \frac{\lambda}{3600}\right)^{3600-k}.
+\end{equation*}\]</div>
+<p>Even with seconds as intervals, we still face the issue that more than one request could occur per second. If we continue splitting the intervals into increasingly smaller units, in the limit, we would get that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X = k] = \frac{e^{-\lambda} \lambda^k}{k!}, \quad k = 0, 1, 2, \dots.
+\end{equation*}\]</div>
+<p>In this case, we say that <span class="math notranslate nohighlight">\(X\)</span> has the Poisson distribution, written as <span class="math notranslate nohighlight">\(X \sim \text{Pois}(\lambda)\)</span>. It’s not hard to show that <span class="math notranslate nohighlight">\(\mathbb{E}[X] = \lambda\)</span> (see the textbook).</p>
+<p>This example motivates the <strong>Poisson paradigm/approximation,</strong> a useful approach for modeling the occurrence of rare events over many trials.</p>
+<div class="admonition-poisson-paradigm-approximation admonition">
+<p class="admonition-title">Poisson paradigm/approximation</p>
+<p>Imagine we have <span class="math notranslate nohighlight">\( n \)</span> trials, each associated with a random indicator variable <span class="math notranslate nohighlight">\( I_1, \dots, I_n \)</span>, where <span class="math notranslate nohighlight">\( I_j = 1 \)</span> if the <span class="math notranslate nohighlight">\( j \)</span>-th trial is a success and <span class="math notranslate nohighlight">\( 0 \)</span> otherwise. Here, the probability of success for each trial, <span class="math notranslate nohighlight">\( \mathbb{P}[I_j = 1] = p_j \)</span>, is small, while the total number of trials <span class="math notranslate nohighlight">\( n \)</span> is large. Importantly, the trials don’t need to be independent of one another.</p>
+<p>Under these conditions, the total number of successes, represented by <span class="math notranslate nohighlight">\( I_1 + \cdots + I_n \)</span>, can be approximated by a Poisson distribution with parameter <span class="math notranslate nohighlight">\( \lambda = \sum_{j=1}^n p_j \)</span>.</p>
+</div>
+<p>Here are some examples of the Poisson paradigm:</p>
+<ul class="simple">
+<li><p><strong>Customer arrivals at Starbucks</strong>: Suppose we count the number of customers who enter a Starbucks on a given day. Here, each trial could represent a specific minute, and a success occurs when a customer enters during that minute.</p></li>
+<li><p><strong>Emails received in an hour</strong>: Suppose we want to count the number of emails received in an hour. Each minute of the hour represents a trial, with a success occurring when a new email arrives during that minute.</p></li>
+</ul>
+<p>In each of these examples, since there are many trials, each with a low probability of success, the total number of successes can be well-approximated by a Poisson distribution.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Birthday triplets</p>
+<p>Suppose we’re in a room with <span class="math notranslate nohighlight">\( n \)</span> people, and we want to find an approximate probability that three people share the same birthday. The Poisson approximation is a suitable tool here for the following reasons:</p>
+<ul class="simple">
+<li><p><strong>Setting up trials</strong>: Each trial involves checking a specific triplet of individuals <span class="math notranslate nohighlight">\( (i, j, k) \)</span> to see if they share the same birthday. With <span class="math notranslate nohighlight">\( n \)</span> people, the number of possible triplets is <span class="math notranslate nohighlight">\( {n \choose 3} \)</span>, which is quite large as <span class="math notranslate nohighlight">\( n \)</span> grows.</p></li>
+<li><p><strong>Low probability of success</strong>: The probability that any specific triplet <span class="math notranslate nohighlight">\( (i, j, k) \)</span> shares the same birthday is very low. We define the indicator variable <span class="math notranslate nohighlight">\( I_{i, j, k} \)</span> such that <span class="math notranslate nohighlight">\( I_{i, j, k} = 1 \)</span> if individuals <span class="math notranslate nohighlight">\( i \)</span>, <span class="math notranslate nohighlight">\( j \)</span>, and <span class="math notranslate nohighlight">\( k \)</span> share the same birthday and <span class="math notranslate nohighlight">\( I_{i, j, k} = 0 \)</span> otherwise. Calculating this probability:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[I_{i, j, k} = 1] = \sum_{x=1}^{365} \mathbb{P}[i, j, k \text{ all born on day } x] = \sum_{x=1}^{365} \left(\frac{1}{365}\right)^3 = \frac{365}{365^3} = \frac{1}{365^2}.
+\end{equation*}\]</div>
+<p>Define <span class="math notranslate nohighlight">\( X = \sum I_{i, j, k} \)</span>, which counts the number of triplets with matching birthdays. According to the Poisson approximation, <span class="math notranslate nohighlight">\( X \)</span> can be approximated by a Poisson random variable with parameter <span class="math notranslate nohighlight">\( \lambda = {n \choose 3} \cdot \frac{1}{365^2} \)</span>.</p>
+<p>Now, the probability that at least one triplet of individuals shares the same birthday is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X \geq 1] = 1 - \mathbb{P}[X = 0] \approx 1 - \frac{e^{-\lambda}\lambda^0}{0!} = 1 - e^{-\lambda}.
+\end{equation*}\]</div>
+<p>For example, if <span class="math notranslate nohighlight">\( n = 100 \)</span>, <span class="math notranslate nohighlight">\( 1 - e^{-\lambda} = 0.7029 \)</span>, which remarkably matches the actual probability of 0.7029. Thus, the Poisson approximation accurately estimates the probability that three individuals share the same birthday.</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -818,11 +888,11 @@ Y = I_1 + I_2 + \cdots + I_{\binom{n}{2}}.
       </div>
     </a>
     <a class="right-next"
-       href="bibliography.html"
+       href="chapter5.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Continuous random variables</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -854,6 +924,7 @@ Y = I_1 + I_2 + \cdots + I_{\binom{n}{2}}.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-properties-of-variance">4.6.4. Important properties of variance</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson">4.7. Poisson</a></li>
 </ul>
   </nav></div>
 
