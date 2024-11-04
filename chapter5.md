@@ -149,3 +149,147 @@ Then, the variance becomes:
 \begin{equation*}
 \text{Var}(X) = \frac{b^3 - a^3}{3(b - a)} - \left(\frac{a + b}{2}\right)^2 = \frac{(b - a)^2}{12}.
 \end{equation*}
+
+## Normal
+
+Bell curves are remarkably prevalent in the world around us. The **normal distribution** is commonly used to model events and variables that exhibit this characteristic "bell curve" shape. For example, the standard normal distribution, denoted as $ Z $, has a specific probability density function (PDF) given by:
+
+\begin{equation*}
+\varphi(t) = \frac{1}{\sqrt{2\pi}}e^{-t^2/2}.
+\end{equation*}
+
+When a random variable $ Z $ follows this distribution, it is said to have a **standard normal distribution**. The notation $ Z \sim N(0,1) $ indicates that $ Z $ has a mean of $ 0 $ and a variance of $ 1 $.
+
+To find the probability that $ Z $ lies between two values $ a $ and $ b $, we compute:
+
+\begin{equation*}
+\mathbb{P}[a \leq Z \leq b] = \int_a^b \varphi(t) \, dt.
+\end{equation*}
+
+The cumulative distribution function (CDF) of $ Z $, represented as $ \Phi(t) $, gives the probability that $ Z $ is less than or equal to a given value $ t $:
+
+\begin{equation*}
+\Phi(t) = \mathbb{P}[Z \leq t] = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-y^2/2} \, dy.
+\end{equation*}
+
+The **expected value** of $ Z $, $ \mathbb{E}[Z] $, is $ 0 $, calculated by
+
+\begin{equation*}
+\mathbb{E}[Z] = \int_{-\infty}^{\infty} t \varphi(t) \, dt = 0,
+\end{equation*}
+
+and the **variance** of $ Z $, $ \text{Var}(Z) $, is $ 1 $.
+
+If we have a random variable $ Z \sim N(0,1) $, then the transformation $ X = \mu + \sigma Z $ yields a new normal distribution with mean $ \mu $ and variance $ \sigma^2 $. 
+
+When a random variable $ Z $ follows a standard normal distribution, denoted $ Z \sim N(0,1) $, we can create a new normal distribution by applying a linear transformation. Specifically, if we define $ X = \mu + \sigma Z $, where $ \sigma > 0 $, then $ X $ follows a normal distribution with mean $ \mu $ and variance $ \sigma^2 $, expressed as $ X \sim N(\mu, \sigma^2) $.
+
+The **expected value** of $ X $, $ \mathbb{E}[X] $, can be derived as follows:
+
+\begin{equation*}
+\mathbb{E}[X] = \mathbb{E}[\mu + \sigma Z] = \mu + \sigma \mathbb{E}[Z] = \mu.
+\end{equation*}
+
+Similarly, the **variance** of $ X $, $ \text{Var}(X) $, is:
+
+\begin{equation*}
+\text{Var}(X) = \sigma^2 \text{Var}(Z) = \sigma^2.
+\end{equation*}
+
+The **cumulative distribution function (CDF)** of $ X $ provides the probability that $ X $ is less than or equal to a value $ t $. This is calculated by standardizing $ X $ (subtracting $ \mu $ and dividing by $ \sigma $) to relate it to $ Z $:
+
+\begin{equation*}
+\mathbb{P}[X \leq t] = \mathbb{P}\left[\frac{X - \mu}{\sigma} \leq \frac{t - \mu}{\sigma}\right] = \mathbb{P}\left[Z \leq \frac{t - \mu}{\sigma}\right] = \Phi\left(\frac{t - \mu}{\sigma}\right),
+\end{equation*}
+
+where $ \Phi $ is the CDF of the standard normal distribution.
+
+Finally, the **probability density function (PDF)** of $ X $, obtained using the chain rule for transformations, is:
+
+\begin{equation*}
+f_X(t) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(t - \mu)^2}{2\sigma^2}\right).
+\end{equation*}
+
+The **68-95-99.7 rule** is a useful guideline for interpreting probabilities in a normal distribution. For $ X \sim N(\mu, \sigma^2) $, this rule states:
+
+- Approximately 68% of the values lie within one standard deviation of the mean, so $\mathbb{P}[|X - \mu| < \sigma] \approx 0.68$.
+- Roughly 95% of the values are within two standard deviations, meaning $\mathbb{P}[|X - \mu| < 2\sigma] \approx 0.95$.
+- Nearly all values, about 99.7%, fall within three standard deviations, or $\mathbb{P}[|X - \mu| < 3\sigma] \approx 0.997$.
+
+```{admonition} Example: Stock prices
+:class: tip
+
+To illustrate this, suppose you are forecasting a stock price that follows a normal distribution with a mean $\mu = 100$ and a standard deviation $\sigma = 3$. Your prediction for the stock price is exactly $100$. You'll receive a bonus if your forecast error—meaning the difference between the actual and predicted price—is smaller than $6$. According to the 68-95-99.7 rule, the probability that the actual stock price will fall within $6$ units of your prediction (i.e., within two standard deviations) is approximately 95%. Therefore, $\mathbb{P}[\text{bonus}] = 0.95$.
+```
+
+## Exponential
+
+The **exponential distribution** is commonly used to model the time interval between consecutive events. This distribution is particularly useful in scenarios where events occur randomly and independently over time. Examples of processes that can be modeled by an exponential distribution include:
+
+- The arrival of emergencies at a hospital,
+- The occurrence of catastrophic events, such as a sudden stock market crash,
+- Equipment breakdowns in manufacturing or industrial settings.
+
+If a random variable $ X $ follows an exponential distribution with a rate parameter $ \lambda $, then its probability density function (PDF) is given by:
+
+\begin{equation*}
+f_X(t) = \lambda e^{-\lambda t}, \quad t > 0.
+\end{equation*}
+
+The **cumulative distribution function (CDF)** of $ X $ provides the probability that $ X $ will occur within a given time $ t $. It is calculated as follows:
+
+\begin{equation*}
+F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 - e^{-\lambda t} = \mathbb{P}[X < t].
+\end{equation*}
+
+The **expected value** or mean of $ X $, $ \mathbb{E}[X] $, is $ \frac{1}{\lambda} $, which represents the average time between events. The **variance** of $ X $, $ \text{Var}(X) $, is $ \frac{1}{\lambda^2} $, indicating the spread or variability of the time intervals between events.
+
+The **exponential distribution** is unique in that it possesses a property known as **memorylessness**. This means that, regardless of how much time has already passed, the likelihood of an event occurring in the future remains the same. In other words, if you've been waiting for an event to happen for several hours, this wait time doesn't make the event more imminent; it still has the same probability of occurring in the next hour as it did at the start.
+
+Mathematically, for a random variable $ X $ that follows an exponential distribution with rate parameter $ \lambda $, this memoryless property can be expressed as:
+
+\begin{equation*}
+\mathbb{P}[X \geq s + t \mid X \geq s] = \mathbb{P}[X \geq t].
+\end{equation*}
+
+This equation states that the probability of waiting at least an additional time $ t $, given that at least $ s $ units of time have already passed, is simply the probability of waiting at least $ t $ from the beginning. We can derive this as follows:
+
+\begin{equation*}
+\mathbb{P}[X \geq s + t \mid X \geq s] = \frac{\mathbb{P}[X \geq s + t]}{\mathbb{P}[X \geq s]} = \frac{e^{-\lambda(s + t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}[X \geq t].
+\end{equation*}
+
+Interestingly, if $ X $ is a positive, memoryless, and continuous random variable, then $ X $ must follow an exponential distribution.
+
+```{admonition} Example: Hospital bed waiting time
+:class: tip
+
+Suppose an emergency room (ER) has 10 beds, where the time a patient time spends occupying a bed follows an exponential distribution. Specifically, the time in the $i$-th bed is modeled by an exponential distribution with rate parameter $\lambda_i$. Suppose Alice arrives at the ER at midnight. All 10 beds are currently occupied, but Alice is next in line to be assigned a bed.
+
+**Question:** What is the probability that Alice is still waiting for an available bed at 12:30 (30 minutes after her arrival)?
+
+**Step 1: Define the Random Variables**
+
+Let $ X_i $ represent the number of minutes after midnight until the $i$-th bed becomes available, for $ i = 1, 2, \dots, 10 $. By the memoryless property of the exponential distribution, each $ X_i \sim \text{Expo}(\lambda_i) $, meaning it does not matter how long each patient has already been in their bed; the remaining time is still governed by an exponential distribution.
+
+**Step 2: Compute the Probability**
+
+We want to determine the probability that Alice needs to wait at least 30 minutes, or mathematically, $ \mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} > 30] $. This probability can be computed as follows:
+
+\begin{equation*}
+\mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} > 30] = \mathbb{P}[X_1 > 30 \text{ and } X_2 > 30 \text{ and } \dots X_{10} > 30].
+\end{equation*}
+
+Since each $ X_i $ is an independent exponential random variable:
+
+\begin{equation*}
+\mathbb{P}[X_1 > 30] \cdots \mathbb{P}[X_{10} > 30] = \left(1 - \mathbb{P}[X_1 < 30]\right) \cdots \left(1 - \mathbb{P}[X_{10} < 30]\right).
+\end{equation*}
+
+For each bed $ i $, $ \mathbb{P}[X_i > 30] = e^{-30 \lambda_i} $, so we get:
+
+\begin{equation*}
+\mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} > 30] = e^{-30 \lambda_1} \cdots e^{-30 \lambda_{10}} = e^{-30(\lambda_1 + \cdots + \lambda_{10})}.
+\end{equation*}
+
+**Insight:** The minimum of these waiting times, $ \min\{X_1, X_2, \dots, X_{10}\} $, follows an exponential distribution with a combined rate parameter $ \lambda_1 + \cdots + \lambda_{10} $.
+```

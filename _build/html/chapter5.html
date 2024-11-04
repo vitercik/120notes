@@ -383,6 +383,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-x">5.2.2. Variance of <span class="math notranslate nohighlight">\( X \)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.3. Normal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential">5.4. Exponential</a></li>
 </ul>
             </nav>
         </div>
@@ -405,6 +407,8 @@ document.write(`
 <li><p><a class="reference internal" href="#variance-of-x" id="id7">Variance of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#normal" id="id8">Normal</a></p></li>
+<li><p><a class="reference internal" href="#exponential" id="id9">Exponential</a></p></li>
 </ul>
 </nav>
 <p>Up to this point, we have focused on discrete random variables, which have values that can be written down as a list. In this chapter, we will explore <em>continuous random variables</em>, which can assume any real value within a given interval—potentially extending infinitely, from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
@@ -565,6 +569,120 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 \end{equation*}\]</div>
 </section>
 </section>
+<section id="normal">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">5.3. </span>Normal</a><a class="headerlink" href="#normal" title="Link to this heading">#</a></h2>
+<p>Bell curves are remarkably prevalent in the world around us. The <strong>normal distribution</strong> is commonly used to model events and variables that exhibit this characteristic “bell curve” shape. For example, the standard normal distribution, denoted as <span class="math notranslate nohighlight">\( Z \)</span>, has a specific probability density function (PDF) given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\varphi(t) = \frac{1}{\sqrt{2\pi}}e^{-t^2/2}.
+\end{equation*}\]</div>
+<p>When a random variable <span class="math notranslate nohighlight">\( Z \)</span> follows this distribution, it is said to have a <strong>standard normal distribution</strong>. The notation <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span> indicates that <span class="math notranslate nohighlight">\( Z \)</span> has a mean of <span class="math notranslate nohighlight">\( 0 \)</span> and a variance of <span class="math notranslate nohighlight">\( 1 \)</span>.</p>
+<p>To find the probability that <span class="math notranslate nohighlight">\( Z \)</span> lies between two values <span class="math notranslate nohighlight">\( a \)</span> and <span class="math notranslate nohighlight">\( b \)</span>, we compute:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[a \leq Z \leq b] = \int_a^b \varphi(t) \, dt.
+\end{equation*}\]</div>
+<p>The cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\( Z \)</span>, represented as <span class="math notranslate nohighlight">\( \Phi(t) \)</span>, gives the probability that <span class="math notranslate nohighlight">\( Z \)</span> is less than or equal to a given value <span class="math notranslate nohighlight">\( t \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\Phi(t) = \mathbb{P}[Z \leq t] = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-y^2/2} \, dy.
+\end{equation*}\]</div>
+<p>The <strong>expected value</strong> of <span class="math notranslate nohighlight">\( Z \)</span>, <span class="math notranslate nohighlight">\( \mathbb{E}[Z] \)</span>, is <span class="math notranslate nohighlight">\( 0 \)</span>, calculated by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Z] = \int_{-\infty}^{\infty} t \varphi(t) \, dt = 0,
+\end{equation*}\]</div>
+<p>and the <strong>variance</strong> of <span class="math notranslate nohighlight">\( Z \)</span>, <span class="math notranslate nohighlight">\( \text{Var}(Z) \)</span>, is <span class="math notranslate nohighlight">\( 1 \)</span>.</p>
+<p>If we have a random variable <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span>, then the transformation <span class="math notranslate nohighlight">\( X = \mu + \sigma Z \)</span> yields a new normal distribution with mean <span class="math notranslate nohighlight">\( \mu \)</span> and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>.</p>
+<p>When a random variable <span class="math notranslate nohighlight">\( Z \)</span> follows a standard normal distribution, denoted <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span>, we can create a new normal distribution by applying a linear transformation. Specifically, if we define <span class="math notranslate nohighlight">\( X = \mu + \sigma Z \)</span>, where <span class="math notranslate nohighlight">\( \sigma &gt; 0 \)</span>, then <span class="math notranslate nohighlight">\( X \)</span> follows a normal distribution with mean <span class="math notranslate nohighlight">\( \mu \)</span> and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>, expressed as <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span>.</p>
+<p>The <strong>expected value</strong> of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span>, can be derived as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \mathbb{E}[\mu + \sigma Z] = \mu + \sigma \mathbb{E}[Z] = \mu.
+\end{equation*}\]</div>
+<p>Similarly, the <strong>variance</strong> of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \text{Var}(X) \)</span>, is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\text{Var}(X) = \sigma^2 \text{Var}(Z) = \sigma^2.
+\end{equation*}\]</div>
+<p>The <strong>cumulative distribution function (CDF)</strong> of <span class="math notranslate nohighlight">\( X \)</span> provides the probability that <span class="math notranslate nohighlight">\( X \)</span> is less than or equal to a value <span class="math notranslate nohighlight">\( t \)</span>. This is calculated by standardizing <span class="math notranslate nohighlight">\( X \)</span> (subtracting <span class="math notranslate nohighlight">\( \mu \)</span> and dividing by <span class="math notranslate nohighlight">\( \sigma \)</span>) to relate it to <span class="math notranslate nohighlight">\( Z \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X \leq t] = \mathbb{P}\left[\frac{X - \mu}{\sigma} \leq \frac{t - \mu}{\sigma}\right] = \mathbb{P}\left[Z \leq \frac{t - \mu}{\sigma}\right] = \Phi\left(\frac{t - \mu}{\sigma}\right),
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\( \Phi \)</span> is the CDF of the standard normal distribution.</p>
+<p>Finally, the <strong>probability density function (PDF)</strong> of <span class="math notranslate nohighlight">\( X \)</span>, obtained using the chain rule for transformations, is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(t) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(t - \mu)^2}{2\sigma^2}\right).
+\end{equation*}\]</div>
+<p>The <strong>68-95-99.7 rule</strong> is a useful guideline for interpreting probabilities in a normal distribution. For <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span>, this rule states:</p>
+<ul class="simple">
+<li><p>Approximately 68% of the values lie within one standard deviation of the mean, so <span class="math notranslate nohighlight">\(\mathbb{P}[|X - \mu| &lt; \sigma] \approx 0.68\)</span>.</p></li>
+<li><p>Roughly 95% of the values are within two standard deviations, meaning <span class="math notranslate nohighlight">\(\mathbb{P}[|X - \mu| &lt; 2\sigma] \approx 0.95\)</span>.</p></li>
+<li><p>Nearly all values, about 99.7%, fall within three standard deviations, or <span class="math notranslate nohighlight">\(\mathbb{P}[|X - \mu| &lt; 3\sigma] \approx 0.997\)</span>.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Example: Stock prices</p>
+<p>To illustrate this, suppose you are forecasting a stock price that follows a normal distribution with a mean <span class="math notranslate nohighlight">\(\mu = 100\)</span> and a standard deviation <span class="math notranslate nohighlight">\(\sigma = 3\)</span>. Your prediction for the stock price is exactly <span class="math notranslate nohighlight">\(100\)</span>. You’ll receive a bonus if your forecast error—meaning the difference between the actual and predicted price—is smaller than <span class="math notranslate nohighlight">\(6\)</span>. According to the 68-95-99.7 rule, the probability that the actual stock price will fall within <span class="math notranslate nohighlight">\(6\)</span> units of your prediction (i.e., within two standard deviations) is approximately 95%. Therefore, <span class="math notranslate nohighlight">\(\mathbb{P}[\text{bonus}] = 0.95\)</span>.</p>
+</div>
+</section>
+<section id="exponential">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">5.4. </span>Exponential</a><a class="headerlink" href="#exponential" title="Link to this heading">#</a></h2>
+<p>The <strong>exponential distribution</strong> is commonly used to model the time interval between consecutive events. This distribution is particularly useful in scenarios where events occur randomly and independently over time. Examples of processes that can be modeled by an exponential distribution include:</p>
+<ul class="simple">
+<li><p>The arrival of emergencies at a hospital,</p></li>
+<li><p>The occurrence of catastrophic events, such as a sudden stock market crash,</p></li>
+<li><p>Equipment breakdowns in manufacturing or industrial settings.</p></li>
+</ul>
+<p>If a random variable <span class="math notranslate nohighlight">\( X \)</span> follows an exponential distribution with a rate parameter <span class="math notranslate nohighlight">\( \lambda \)</span>, then its probability density function (PDF) is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(t) = \lambda e^{-\lambda t}, \quad t &gt; 0.
+\end{equation*}\]</div>
+<p>The <strong>cumulative distribution function (CDF)</strong> of <span class="math notranslate nohighlight">\( X \)</span> provides the probability that <span class="math notranslate nohighlight">\( X \)</span> will occur within a given time <span class="math notranslate nohighlight">\( t \)</span>. It is calculated as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 - e^{-\lambda t} = \mathbb{P}[X &lt; t].
+\end{equation*}\]</div>
+<p>The <strong>expected value</strong> or mean of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span>, is <span class="math notranslate nohighlight">\( \frac{1}{\lambda} \)</span>, which represents the average time between events. The <strong>variance</strong> of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \text{Var}(X) \)</span>, is <span class="math notranslate nohighlight">\( \frac{1}{\lambda^2} \)</span>, indicating the spread or variability of the time intervals between events.</p>
+<p>The <strong>exponential distribution</strong> is unique in that it possesses a property known as <strong>memorylessness</strong>. This means that, regardless of how much time has already passed, the likelihood of an event occurring in the future remains the same. In other words, if you’ve been waiting for an event to happen for several hours, this wait time doesn’t make the event more imminent; it still has the same probability of occurring in the next hour as it did at the start.</p>
+<p>Mathematically, for a random variable <span class="math notranslate nohighlight">\( X \)</span> that follows an exponential distribution with rate parameter <span class="math notranslate nohighlight">\( \lambda \)</span>, this memoryless property can be expressed as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X \geq s + t \mid X \geq s] = \mathbb{P}[X \geq t].
+\end{equation*}\]</div>
+<p>This equation states that the probability of waiting at least an additional time <span class="math notranslate nohighlight">\( t \)</span>, given that at least <span class="math notranslate nohighlight">\( s \)</span> units of time have already passed, is simply the probability of waiting at least <span class="math notranslate nohighlight">\( t \)</span> from the beginning. We can derive this as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X \geq s + t \mid X \geq s] = \frac{\mathbb{P}[X \geq s + t]}{\mathbb{P}[X \geq s]} = \frac{e^{-\lambda(s + t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}[X \geq t].
+\end{equation*}\]</div>
+<p>Interestingly, if <span class="math notranslate nohighlight">\( X \)</span> is a positive, memoryless, and continuous random variable, then <span class="math notranslate nohighlight">\( X \)</span> must follow an exponential distribution.</p>
+<div class="tip admonition">
+<p class="admonition-title">Example: Hospital bed waiting time</p>
+<p>Suppose an emergency room (ER) has 10 beds, where the time a patient time spends occupying a bed follows an exponential distribution. Specifically, the time in the <span class="math notranslate nohighlight">\(i\)</span>-th bed is modeled by an exponential distribution with rate parameter <span class="math notranslate nohighlight">\(\lambda_i\)</span>. Suppose Alice arrives at the ER at midnight. All 10 beds are currently occupied, but Alice is next in line to be assigned a bed.</p>
+<p><strong>Question:</strong> What is the probability that Alice is still waiting for an available bed at 12:30 (30 minutes after her arrival)?</p>
+<p><strong>Step 1: Define the Random Variables</strong></p>
+<p>Let <span class="math notranslate nohighlight">\( X_i \)</span> represent the number of minutes after midnight until the <span class="math notranslate nohighlight">\(i\)</span>-th bed becomes available, for <span class="math notranslate nohighlight">\( i = 1, 2, \dots, 10 \)</span>. By the memoryless property of the exponential distribution, each <span class="math notranslate nohighlight">\( X_i \sim \text{Expo}(\lambda_i) \)</span>, meaning it does not matter how long each patient has already been in their bed; the remaining time is still governed by an exponential distribution.</p>
+<p><strong>Step 2: Compute the Probability</strong></p>
+<p>We want to determine the probability that Alice needs to wait at least 30 minutes, or mathematically, <span class="math notranslate nohighlight">\( \mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} &gt; 30] \)</span>. This probability can be computed as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} &gt; 30] = \mathbb{P}[X_1 &gt; 30 \text{ and } X_2 &gt; 30 \text{ and } \dots X_{10} &gt; 30].
+\end{equation*}\]</div>
+<p>Since each <span class="math notranslate nohighlight">\( X_i \)</span> is an independent exponential random variable:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X_1 &gt; 30] \cdots \mathbb{P}[X_{10} &gt; 30] = \left(1 - \mathbb{P}[X_1 &lt; 30]\right) \cdots \left(1 - \mathbb{P}[X_{10} &lt; 30]\right).
+\end{equation*}\]</div>
+<p>For each bed <span class="math notranslate nohighlight">\( i \)</span>, <span class="math notranslate nohighlight">\( \mathbb{P}[X_i &gt; 30] = e^{-30 \lambda_i} \)</span>, so we get:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} &gt; 30] = e^{-30 \lambda_1} \cdots e^{-30 \lambda_{10}} = e^{-30(\lambda_1 + \cdots + \lambda_{10})}.
+\end{equation*}\]</div>
+<p><strong>Insight:</strong> The minimum of these waiting times, <span class="math notranslate nohighlight">\( \min\{X_1, X_2, \dots, X_{10}\} \)</span>, follows an exponential distribution with a combined rate parameter <span class="math notranslate nohighlight">\( \lambda_1 + \cdots + \lambda_{10} \)</span>.</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -637,6 +755,8 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-x">5.2.2. Variance of <span class="math notranslate nohighlight">\( X \)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.3. Normal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential">5.4. Exponential</a></li>
 </ul>
   </nav></div>
 
