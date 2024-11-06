@@ -152,13 +152,28 @@ Then, the variance becomes:
 
 ## Normal
 
-Bell curves are remarkably prevalent in the world around us. The **normal distribution** is commonly used to model events and variables that exhibit this characteristic "bell curve" shape. For example, the standard normal distribution, denoted as $ Z $, has a specific probability density function (PDF) given by:
+Bell curves are remarkably prevalent in the world around us. The **normal distribution** is commonly used to model events and variables that exhibit this characteristic "bell curve" shape.
 
+```{admonition} Standard normal distribution
+A *standard normal random variable* $ Z $ has the probability density function (PDF):
 \begin{equation*}
 \varphi(t) = \frac{1}{\sqrt{2\pi}}e^{-t^2/2}.
 \end{equation*}
 
-When a random variable $ Z $ follows this distribution, it is said to have a **standard normal distribution**. The notation $ Z \sim N(0,1) $ indicates that $ Z $ has a mean of $ 0 $ and a variance of $ 1 $.
+This distribution is so famous that we use the special notation $\varphi(t)$ to denote its PDF. See {numref}`Figure {number} <normal>` for an illustration.
+
+We use the notation $ Z \sim N(0,1) $ to represent this RV's distribution. In this case, the parameters $0$ and $1$ indicate that $ Z $ has a mean of $ 0 $ and a variance of $ 1 $.
+```
+
+```{figure} images/normal.png
+---
+name: normal
+width: 250px
+align: center
+---
+
+This is Figure 5.11 from {cite}`Blitzstein19:Introduction`, illustrating the PDF of the standard normal distribution.
+```
 
 To find the probability that $ Z $ lies between two values $ a $ and $ b $, we compute:
 
@@ -166,51 +181,43 @@ To find the probability that $ Z $ lies between two values $ a $ and $ b $, we c
 \mathbb{P}[a \leq Z \leq b] = \int_a^b \varphi(t) \, dt.
 \end{equation*}
 
-The cumulative distribution function (CDF) of $ Z $, represented as $ \Phi(t) $, gives the probability that $ Z $ is less than or equal to a given value $ t $:
-
+The cumulative distribution function (CDF) of $ Z $, represented as $ \Phi(t) $ (which is the capital letter version of the Greek letter $\varphi$), gives the probability that $ Z $ is less than or equal to a given value $ t $:
 \begin{equation*}
 \Phi(t) = \mathbb{P}[Z \leq t] = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-y^2/2} \, dy.
 \end{equation*}
-
 The **expected value** of $ Z $, $ \mathbb{E}[Z] $, is $ 0 $, calculated by
-
 \begin{equation*}
 \mathbb{E}[Z] = \int_{-\infty}^{\infty} t \varphi(t) \, dt = 0,
 \end{equation*}
+and the **variance** of $ Z $, $ \text{Var}(Z) $, is $ 1 $. See the textbook for the derivation of these quantities.
 
-and the **variance** of $ Z $, $ \text{Var}(Z) $, is $ 1 $.
+```{admonition} Normal distribution
+If we have a random variable $ Z \sim N(0,1) $, then the transformation $ X = \mu + \sigma Z $ yields a new normal distribution with mean $ \mu $ and variance $ \sigma^2 $. We denote this as $ X \sim N(\mu, \sigma^2) $.
+```
 
-If we have a random variable $ Z \sim N(0,1) $, then the transformation $ X = \mu + \sigma Z $ yields a new normal distribution with mean $ \mu $ and variance $ \sigma^2 $. 
+Intuitively, by applying the transformation $ X = \mu + \sigma Z $, we are shifting the peak of the bell curve in {numref}`Figure {number} <normal>` over from $0$ to $\mu$, and we are squashing or stretching the bell curve by multiplying $Z$ by $\sigma$.
 
-When a random variable $ Z $ follows a standard normal distribution, denoted $ Z \sim N(0,1) $, we can create a new normal distribution by applying a linear transformation. Specifically, if we define $ X = \mu + \sigma Z $, where $ \sigma > 0 $, then $ X $ follows a normal distribution with mean $ \mu $ and variance $ \sigma^2 $, expressed as $ X \sim N(\mu, \sigma^2) $.
-
-The **expected value** of $ X $, $ \mathbb{E}[X] $, can be derived as follows:
-
+To verify that the **expected value** of $ X \sim N(\mu, \sigma^2) $ is indeed $\mu$, we can use linearity of expectation:
 \begin{equation*}
 \mathbb{E}[X] = \mathbb{E}[\mu + \sigma Z] = \mu + \sigma \mathbb{E}[Z] = \mu.
 \end{equation*}
 
 Similarly, the **variance** of $ X $, $ \text{Var}(X) $, is:
-
 \begin{equation*}
 \text{Var}(X) = \sigma^2 \text{Var}(Z) = \sigma^2.
 \end{equation*}
 
 The **cumulative distribution function (CDF)** of $ X $ provides the probability that $ X $ is less than or equal to a value $ t $. This is calculated by standardizing $ X $ (subtracting $ \mu $ and dividing by $ \sigma $) to relate it to $ Z $:
-
 \begin{equation*}
 \mathbb{P}[X \leq t] = \mathbb{P}\left[\frac{X - \mu}{\sigma} \leq \frac{t - \mu}{\sigma}\right] = \mathbb{P}\left[Z \leq \frac{t - \mu}{\sigma}\right] = \Phi\left(\frac{t - \mu}{\sigma}\right),
 \end{equation*}
-
 where $ \Phi $ is the CDF of the standard normal distribution.
-
 Finally, the **probability density function (PDF)** of $ X $, obtained using the chain rule for transformations, is:
-
 \begin{equation*}
 f_X(t) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(t - \mu)^2}{2\sigma^2}\right).
 \end{equation*}
 
-The **68-95-99.7 rule** is a useful guideline for interpreting probabilities in a normal distribution. For $ X \sim N(\mu, \sigma^2) $, this rule states:
+Although the PDF and CDF of the normal distribution are unweildy and difficult to work with, there are simple heuristics we can use the work with this random variable. In particular, the **68-95-99.7 rule** is a useful guideline for interpreting probabilities in a normal distribution. For $ X \sim N(\mu, \sigma^2) $, this rule states:
 
 - Approximately 68% of the values lie within one standard deviation of the mean, so $\mathbb{P}[|X - \mu| < \sigma] \approx 0.68$.
 - Roughly 95% of the values are within two standard deviations, meaning $\mathbb{P}[|X - \mu| < 2\sigma] \approx 0.95$.
@@ -244,9 +251,7 @@ F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 -
 
 The **expected value** or mean of $ X $, $ \mathbb{E}[X] $, is $ \frac{1}{\lambda} $, which represents the average time between events. The **variance** of $ X $, $ \text{Var}(X) $, is $ \frac{1}{\lambda^2} $, indicating the spread or variability of the time intervals between events.
 
-The **exponential distribution** is unique in that it possesses a property known as **memorylessness**. This means that, regardless of how much time has already passed, the likelihood of an event occurring in the future remains the same. In other words, if you've been waiting for an event to happen for several hours, this wait time doesn't make the event more imminent; it still has the same probability of occurring in the next hour as it did at the start.
-
-Mathematically, for a random variable $ X $ that follows an exponential distribution with rate parameter $ \lambda $, this memoryless property can be expressed as:
+The **exponential distribution** is unique in that it possesses a property known as **memorylessness**. As {cite}`Blitzstein19:Introduction` puts it, this property says that "even if you've waited for hours or days without success, the success isn't any more likely to arrive soon. In fact, you might as well have just started waiting 10 seconds ago." Mathematically, for a random variable $ X $ that follows an exponential distribution, this memoryless property can be expressed as:
 
 \begin{equation*}
 \mathbb{P}[X \geq s + t \mid X \geq s] = \mathbb{P}[X \geq t].
@@ -255,7 +260,7 @@ Mathematically, for a random variable $ X $ that follows an exponential distribu
 This equation states that the probability of waiting at least an additional time $ t $, given that at least $ s $ units of time have already passed, is simply the probability of waiting at least $ t $ from the beginning. We can derive this as follows:
 
 \begin{equation*}
-\mathbb{P}[X \geq s + t \mid X \geq s] = \frac{\mathbb{P}[X \geq s + t]}{\mathbb{P}[X \geq s]} = \frac{e^{-\lambda(s + t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}[X \geq t].
+\mathbb{P}[X \geq s + t \mid X \geq s] = \frac{\mathbb{P}[X \geq s + t \text{ and }X \geq s]}{\mathbb{P}[X \geq s]} = \frac{\mathbb{P}[X \geq s + t]}{\mathbb{P}[X \geq s]} = \frac{e^{-\lambda(s + t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}[X \geq t].
 \end{equation*}
 
 Interestingly, if $ X $ is a positive, memoryless, and continuous random variable, then $ X $ must follow an exponential distribution.
@@ -292,4 +297,48 @@ For each bed $ i $, $ \mathbb{P}[X_i > 30] = e^{-30 \lambda_i} $, so we get:
 \end{equation*}
 
 **Insight:** The minimum of these waiting times, $ \min\{X_1, X_2, \dots, X_{10}\} $, follows an exponential distribution with a combined rate parameter $ \lambda_1 + \cdots + \lambda_{10} $.
+```
+
+## Poisson processes
+
+*Poisson processes* are one of the most useful models of events occurring randomly over time.
+
+```{admonition} Poisson process
+
+A sequence of arrivals in continuous time is called a *Poisson process* with rate $ \lambda $ if it satisfies the following conditions:
+
+- The number of arrivals, denoted $ X $, within an interval of length $ t $ is a Poisson random variable with parameter $ \lambda t $. This means that the probability of observing exactly $ k $ arrivals in that interval is given by $\mathbb{P}[X = k] = \frac{e^{-\lambda t} \lambda^k}{k!}.$
+- The number of arrivals in disjoint time intervals are independent of each other. For instance, the counts of arrivals in the intervals $ (0, 10) $, $ [10, 12) $, and $ [15, \infty) $ are mutually independent.
+```
+
+```{admonition} Example: Arrivals at SFO
+:class: tip
+
+Suppose people at San Francisco International Airport according to a Poisson process with a rate of $ \lambda = 50 $ arrivals per minute. This means, for example that:
+
+- Since one minute is an interval of length 1, the number of people expected to arrive in one minute follows a Poisson distribution with parameter $ 50 $, denoted as $ \text{Pois}\left(50\right) $.
+- For a 30-second interval (half a minute), the number of people arriving in that time frame follows the $ \text{Pois}\left(\frac{50}{2}\right) $ distribution.
+
+**Question:** Let $T_1$ be the time the first customer arrives (starting from when SFO opens in the morning). What is the distribution of $T_1$?
+
+**Step 1: Define the random variables.** Since we are working with a Poisson process, we know that if $ N_t $ is the number of customers arriving by time $ t $, then $ N_t \sim \text{Pois}(50t) $.
+
+**Step 2: Determine the relationship between the random variables.** We want to understand the relationship between $T_1$ and $N_t$. Starting with an example, we know that the event $ T_1 > \frac{1}{2} $ (no arrival in the first half minute) occurs if and only if $ N_{1/2} = 0 $, meaning no arrivals have occurred by time $ \frac{1}{2} $ (measured in minutes). More generally, $ T_1 > t $ if and only if $ N_t = 0 $, indicating that no arrivals have occurred by time $ t $.
+
+**Step 3: Calculate the CDF of $ T_1 $.** The probability $ \mathbb{P}[T_1 > t] $ is the probability of zero arrivals in the interval $ [0, t] $, calculated as:
+\begin{equation*}
+\mathbb{P}[T_1 > t] = \mathbb{P}[N_t = 0] = \frac{e^{-\lambda t}\lambda^0}{0!} = e^{-50t}.
+\end{equation*}
+
+Therefore, the cumulative distribution function (CDF) of $ T_1 $ is:
+\begin{equation*}
+\mathbb{P}[T_1 < t] = 1 - \mathbb{P}[T_1 > t] = 1 - e^{-50t}.
+\end{equation*}
+This is exactly the CDF of the exponential distribution with parameter $\lambda = 50$, indicating that $ T_1 \sim \text{Expo}\left(50\right) $.
+
+Similarly, let $ T_2 $ is the time of the second arrival, and note that the interval $ (T_1, T_2] $ is disjoint from $ [0, T_1] $. Thus, the waiting time between the first and second arrivals, $ T_2 - T_1 $, also follows an exponential distribution with rate $ 50 $.
+```
+
+```{admonition} General rule
+In general, if a sequence of arrivals is a Poisson process with rate $\lambda$, then the time between each arrival has the Expo$(\lambda)$ distribution.
 ```
