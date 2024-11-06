@@ -385,6 +385,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.3. Normal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential">5.4. Exponential</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-processes">5.5. Poisson processes</a></li>
 </ul>
             </nav>
         </div>
@@ -400,20 +401,21 @@ document.write(`
 <h1><span class="section-number">5. </span>Continuous random variables<a class="headerlink" href="#continuous-random-variables" title="Link to this heading">#</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#probability-density-functions" id="id4">Probability density functions</a></p></li>
-<li><p><a class="reference internal" href="#uniform" id="id5">Uniform</a></p>
+<li><p><a class="reference internal" href="#probability-density-functions" id="id7">Probability density functions</a></p></li>
+<li><p><a class="reference internal" href="#uniform" id="id8">Uniform</a></p>
 <ul>
-<li><p><a class="reference internal" href="#expectation-of-x" id="id6">Expectation of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
-<li><p><a class="reference internal" href="#variance-of-x" id="id7">Variance of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
+<li><p><a class="reference internal" href="#expectation-of-x" id="id9">Expectation of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
+<li><p><a class="reference internal" href="#variance-of-x" id="id10">Variance of <span class="math notranslate nohighlight">\( X \)</span></a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#normal" id="id8">Normal</a></p></li>
-<li><p><a class="reference internal" href="#exponential" id="id9">Exponential</a></p></li>
+<li><p><a class="reference internal" href="#normal" id="id11">Normal</a></p></li>
+<li><p><a class="reference internal" href="#exponential" id="id12">Exponential</a></p></li>
+<li><p><a class="reference internal" href="#poisson-processes" id="id13">Poisson processes</a></p></li>
 </ul>
 </nav>
 <p>Up to this point, we have focused on discrete random variables, which have values that can be written down as a list. In this chapter, we will explore <em>continuous random variables</em>, which can assume any real value within a given interval—potentially extending infinitely, from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
 <section id="probability-density-functions">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">5.1. </span>Probability density functions</a><a class="headerlink" href="#probability-density-functions" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">5.1. </span>Probability density functions</a><a class="headerlink" href="#probability-density-functions" title="Link to this heading">#</a></h2>
 <p>To build intuition, recall that for a discrete RV <span class="math notranslate nohighlight">\(X\)</span> with PMF <span class="math notranslate nohighlight">\(f_X(x) = \mathbb{P}[X = x]\)</span>, we can calculate the probability it falls within some interval by summing up its PMF in this interval. For example, if <span class="math notranslate nohighlight">\(X \sim \text{Bin}(4, 0.5)\)</span>, for example, then <span class="math notranslate nohighlight">\(\mathbb{P}[1 \leq X \leq 3] = \mathbb{P}[X = 1] + \mathbb{P}[X = 2] + \mathbb{P}[X = 3] = f_X(1) + f_X(2) + f_X(3).\)</span></p>
 <p>A continuous RV has a <em>probability density function (PDF)</em> that’s defined similarly. In particular, we say that the RV <span class="math notranslate nohighlight">\(X\)</span> has PDF <span class="math notranslate nohighlight">\(f_X(x)\)</span> if <span class="math notranslate nohighlight">\(\mathbb{P}[a \leq X \leq b] = \int_a^b f_X(x) \, dx\)</span>. The only difference here is that instead of summing up the PMF over the discrete values, we are taking the integral over a continuous range (this intuitively makes sense since, as we learn in calculus class, an integral is a continuous version of a summation). The PDF of a continuous RV is illustrated in the following figure.</p>
 <figure class="align-center" id="pdf">
@@ -471,7 +473,7 @@ document.write(`
 </div>
 </section>
 <section id="uniform">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">5.2. </span>Uniform</a><a class="headerlink" href="#uniform" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">5.2. </span>Uniform</a><a class="headerlink" href="#uniform" title="Link to this heading">#</a></h2>
 <p>For a given interval <span class="math notranslate nohighlight">\((a, b)\)</span>, a uniform random variable represents a “completely random” point somewhere between <span class="math notranslate nohighlight">\( a \)</span> and <span class="math notranslate nohighlight">\( b \)</span>. In a uniform distribution, the probability of selecting a point within any sub-interval is proportional to the length of that interval.</p>
 <p>If we denote this random variable as <span class="math notranslate nohighlight">\( X \sim \text{Unif}(a, b) \)</span>, then its probability density function (PDF) <span class="math notranslate nohighlight">\( f_X(x) \)</span> is defined as:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -542,7 +544,7 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 </figcaption>
 </figure>
 <section id="expectation-of-x">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">5.2.1. </span>Expectation of <span class="math notranslate nohighlight">\( X \)</span></a><a class="headerlink" href="#expectation-of-x" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">5.2.1. </span>Expectation of <span class="math notranslate nohighlight">\( X \)</span></a><a class="headerlink" href="#expectation-of-x" title="Link to this heading">#</a></h3>
 <p>The expectation of <span class="math notranslate nohighlight">\( X \)</span> is given by:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -556,7 +558,7 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 <p>For a uniform random variable <span class="math notranslate nohighlight">\( X \sim \text{Unif}(0, 1) \)</span>, this yields <span class="math notranslate nohighlight">\( \mathbb{E}[X] = \frac{0 + 1}{2} = \frac{1}{2} \)</span>.</p>
 </section>
 <section id="variance-of-x">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">5.2.2. </span>Variance of <span class="math notranslate nohighlight">\( X \)</span></a><a class="headerlink" href="#variance-of-x" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">5.2.2. </span>Variance of <span class="math notranslate nohighlight">\( X \)</span></a><a class="headerlink" href="#variance-of-x" title="Link to this heading">#</a></h3>
 <p>The variance of <span class="math notranslate nohighlight">\( X \)</span> is <span class="math notranslate nohighlight">\( \text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \)</span>. First, we calculate <span class="math notranslate nohighlight">\( \mathbb{E}[X^2] \)</span> using LOTUS:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -570,19 +572,30 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 </section>
 </section>
 <section id="normal">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">5.3. </span>Normal</a><a class="headerlink" href="#normal" title="Link to this heading">#</a></h2>
-<p>Bell curves are remarkably prevalent in the world around us. The <strong>normal distribution</strong> is commonly used to model events and variables that exhibit this characteristic “bell curve” shape. For example, the standard normal distribution, denoted as <span class="math notranslate nohighlight">\( Z \)</span>, has a specific probability density function (PDF) given by:</p>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">5.3. </span>Normal</a><a class="headerlink" href="#normal" title="Link to this heading">#</a></h2>
+<p>Bell curves are remarkably prevalent in the world around us. The <strong>normal distribution</strong> is commonly used to model events and variables that exhibit this characteristic “bell curve” shape.</p>
+<div class="admonition-standard-normal-distribution admonition">
+<p class="admonition-title">Standard normal distribution</p>
+<p>A <em>standard normal random variable</em> <span class="math notranslate nohighlight">\( Z \)</span> has the probability density function (PDF):</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \varphi(t) = \frac{1}{\sqrt{2\pi}}e^{-t^2/2}.
 \end{equation*}\]</div>
-<p>When a random variable <span class="math notranslate nohighlight">\( Z \)</span> follows this distribution, it is said to have a <strong>standard normal distribution</strong>. The notation <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span> indicates that <span class="math notranslate nohighlight">\( Z \)</span> has a mean of <span class="math notranslate nohighlight">\( 0 \)</span> and a variance of <span class="math notranslate nohighlight">\( 1 \)</span>.</p>
+<p>This distribution is so famous that we use the special notation <span class="math notranslate nohighlight">\(\varphi(t)\)</span> to denote its PDF. See <a class="reference internal" href="#id5"><span class="std std-numref">Figure 5.3</span></a> for an illustration.</p>
+<p>We use the notation <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span> to represent this RV’s distribution. In this case, the parameters <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> indicate that <span class="math notranslate nohighlight">\( Z \)</span> has a mean of <span class="math notranslate nohighlight">\( 0 \)</span> and a variance of <span class="math notranslate nohighlight">\( 1 \)</span>.</p>
+</div>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/normal.png"><img alt="_images/normal.png" src="_images/normal.png" style="width: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">This is Figure 5.11 from <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>, illustrating the PDF of the standard normal distribution.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p>To find the probability that <span class="math notranslate nohighlight">\( Z \)</span> lies between two values <span class="math notranslate nohighlight">\( a \)</span> and <span class="math notranslate nohighlight">\( b \)</span>, we compute:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \mathbb{P}[a \leq Z \leq b] = \int_a^b \varphi(t) \, dt.
 \end{equation*}\]</div>
-<p>The cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\( Z \)</span>, represented as <span class="math notranslate nohighlight">\( \Phi(t) \)</span>, gives the probability that <span class="math notranslate nohighlight">\( Z \)</span> is less than or equal to a given value <span class="math notranslate nohighlight">\( t \)</span>:</p>
+<p>The cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\( Z \)</span>, represented as <span class="math notranslate nohighlight">\( \Phi(t) \)</span> (which is the capital letter version of the Greek letter <span class="math notranslate nohighlight">\(\varphi\)</span>), gives the probability that <span class="math notranslate nohighlight">\( Z \)</span> is less than or equal to a given value <span class="math notranslate nohighlight">\( t \)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \Phi(t) = \mathbb{P}[Z \leq t] = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^t e^{-y^2/2} \, dy.
@@ -592,10 +605,13 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 \[\begin{equation*}
 \mathbb{E}[Z] = \int_{-\infty}^{\infty} t \varphi(t) \, dt = 0,
 \end{equation*}\]</div>
-<p>and the <strong>variance</strong> of <span class="math notranslate nohighlight">\( Z \)</span>, <span class="math notranslate nohighlight">\( \text{Var}(Z) \)</span>, is <span class="math notranslate nohighlight">\( 1 \)</span>.</p>
-<p>If we have a random variable <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span>, then the transformation <span class="math notranslate nohighlight">\( X = \mu + \sigma Z \)</span> yields a new normal distribution with mean <span class="math notranslate nohighlight">\( \mu \)</span> and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>.</p>
-<p>When a random variable <span class="math notranslate nohighlight">\( Z \)</span> follows a standard normal distribution, denoted <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span>, we can create a new normal distribution by applying a linear transformation. Specifically, if we define <span class="math notranslate nohighlight">\( X = \mu + \sigma Z \)</span>, where <span class="math notranslate nohighlight">\( \sigma &gt; 0 \)</span>, then <span class="math notranslate nohighlight">\( X \)</span> follows a normal distribution with mean <span class="math notranslate nohighlight">\( \mu \)</span> and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>, expressed as <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span>.</p>
-<p>The <strong>expected value</strong> of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span>, can be derived as follows:</p>
+<p>and the <strong>variance</strong> of <span class="math notranslate nohighlight">\( Z \)</span>, <span class="math notranslate nohighlight">\( \text{Var}(Z) \)</span>, is <span class="math notranslate nohighlight">\( 1 \)</span>. See the textbook for the derivation of these quantities.</p>
+<div class="admonition-normal-distribution admonition">
+<p class="admonition-title">Normal distribution</p>
+<p>If we have a random variable <span class="math notranslate nohighlight">\( Z \sim N(0,1) \)</span>, then the transformation <span class="math notranslate nohighlight">\( X = \mu + \sigma Z \)</span> yields a new normal distribution with mean <span class="math notranslate nohighlight">\( \mu \)</span> and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>. We denote this as <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span>.</p>
+</div>
+<p>Intuitively, by applying the transformation <span class="math notranslate nohighlight">\( X = \mu + \sigma Z \)</span>, we are shifting the peak of the bell curve in <a class="reference internal" href="#id5"><span class="std std-numref">Figure 5.3</span></a> over from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(\mu\)</span>, and we are squashing or stretching the bell curve by multiplying <span class="math notranslate nohighlight">\(Z\)</span> by <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>To verify that the <strong>expected value</strong> of <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span> is indeed <span class="math notranslate nohighlight">\(\mu\)</span>, we can use linearity of expectation:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \mathbb{E}[X] = \mathbb{E}[\mu + \sigma Z] = \mu + \sigma \mathbb{E}[Z] = \mu.
@@ -610,13 +626,13 @@ x &amp; \text{if } 0 \leq x \leq 1 \\
 \[\begin{equation*}
 \mathbb{P}[X \leq t] = \mathbb{P}\left[\frac{X - \mu}{\sigma} \leq \frac{t - \mu}{\sigma}\right] = \mathbb{P}\left[Z \leq \frac{t - \mu}{\sigma}\right] = \Phi\left(\frac{t - \mu}{\sigma}\right),
 \end{equation*}\]</div>
-<p>where <span class="math notranslate nohighlight">\( \Phi \)</span> is the CDF of the standard normal distribution.</p>
-<p>Finally, the <strong>probability density function (PDF)</strong> of <span class="math notranslate nohighlight">\( X \)</span>, obtained using the chain rule for transformations, is:</p>
+<p>where <span class="math notranslate nohighlight">\( \Phi \)</span> is the CDF of the standard normal distribution.
+Finally, the <strong>probability density function (PDF)</strong> of <span class="math notranslate nohighlight">\( X \)</span>, obtained using the chain rule for transformations, is:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f_X(t) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(t - \mu)^2}{2\sigma^2}\right).
 \end{equation*}\]</div>
-<p>The <strong>68-95-99.7 rule</strong> is a useful guideline for interpreting probabilities in a normal distribution. For <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span>, this rule states:</p>
+<p>Although the PDF and CDF of the normal distribution are unweildy and difficult to work with, there are simple heuristics we can use the work with this random variable. In particular, the <strong>68-95-99.7 rule</strong> is a useful guideline for interpreting probabilities in a normal distribution. For <span class="math notranslate nohighlight">\( X \sim N(\mu, \sigma^2) \)</span>, this rule states:</p>
 <ul class="simple">
 <li><p>Approximately 68% of the values lie within one standard deviation of the mean, so <span class="math notranslate nohighlight">\(\mathbb{P}[|X - \mu| &lt; \sigma] \approx 0.68\)</span>.</p></li>
 <li><p>Roughly 95% of the values are within two standard deviations, meaning <span class="math notranslate nohighlight">\(\mathbb{P}[|X - \mu| &lt; 2\sigma] \approx 0.95\)</span>.</p></li>
@@ -628,7 +644,7 @@ f_X(t) = \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(t - \mu)^2}{2\sigma^2}\r
 </div>
 </section>
 <section id="exponential">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">5.4. </span>Exponential</a><a class="headerlink" href="#exponential" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">5.4. </span>Exponential</a><a class="headerlink" href="#exponential" title="Link to this heading">#</a></h2>
 <p>The <strong>exponential distribution</strong> is commonly used to model the time interval between consecutive events. This distribution is particularly useful in scenarios where events occur randomly and independently over time. Examples of processes that can be modeled by an exponential distribution include:</p>
 <ul class="simple">
 <li><p>The arrival of emergencies at a hospital,</p></li>
@@ -646,8 +662,7 @@ f_X(t) = \lambda e^{-\lambda t}, \quad t &gt; 0.
 F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 - e^{-\lambda t} = \mathbb{P}[X &lt; t].
 \end{equation*}\]</div>
 <p>The <strong>expected value</strong> or mean of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \mathbb{E}[X] \)</span>, is <span class="math notranslate nohighlight">\( \frac{1}{\lambda} \)</span>, which represents the average time between events. The <strong>variance</strong> of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( \text{Var}(X) \)</span>, is <span class="math notranslate nohighlight">\( \frac{1}{\lambda^2} \)</span>, indicating the spread or variability of the time intervals between events.</p>
-<p>The <strong>exponential distribution</strong> is unique in that it possesses a property known as <strong>memorylessness</strong>. This means that, regardless of how much time has already passed, the likelihood of an event occurring in the future remains the same. In other words, if you’ve been waiting for an event to happen for several hours, this wait time doesn’t make the event more imminent; it still has the same probability of occurring in the next hour as it did at the start.</p>
-<p>Mathematically, for a random variable <span class="math notranslate nohighlight">\( X \)</span> that follows an exponential distribution with rate parameter <span class="math notranslate nohighlight">\( \lambda \)</span>, this memoryless property can be expressed as:</p>
+<p>The <strong>exponential distribution</strong> is unique in that it possesses a property known as <strong>memorylessness</strong>. As <span id="id6">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span> puts it, this property says that “even if you’ve waited for hours or days without success, the success isn’t any more likely to arrive soon. In fact, you might as well have just started waiting 10 seconds ago.” Mathematically, for a random variable <span class="math notranslate nohighlight">\( X \)</span> that follows an exponential distribution, this memoryless property can be expressed as:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \mathbb{P}[X \geq s + t \mid X \geq s] = \mathbb{P}[X \geq t].
@@ -655,7 +670,7 @@ F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 -
 <p>This equation states that the probability of waiting at least an additional time <span class="math notranslate nohighlight">\( t \)</span>, given that at least <span class="math notranslate nohighlight">\( s \)</span> units of time have already passed, is simply the probability of waiting at least <span class="math notranslate nohighlight">\( t \)</span> from the beginning. We can derive this as follows:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathbb{P}[X \geq s + t \mid X \geq s] = \frac{\mathbb{P}[X \geq s + t]}{\mathbb{P}[X \geq s]} = \frac{e^{-\lambda(s + t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}[X \geq t].
+\mathbb{P}[X \geq s + t \mid X \geq s] = \frac{\mathbb{P}[X \geq s + t \text{ and }X \geq s]}{\mathbb{P}[X \geq s]} = \frac{\mathbb{P}[X \geq s + t]}{\mathbb{P}[X \geq s]} = \frac{e^{-\lambda(s + t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}[X \geq t].
 \end{equation*}\]</div>
 <p>Interestingly, if <span class="math notranslate nohighlight">\( X \)</span> is a positive, memoryless, and continuous random variable, then <span class="math notranslate nohighlight">\( X \)</span> must follow an exponential distribution.</p>
 <div class="tip admonition">
@@ -681,6 +696,45 @@ F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 -
 \mathbb{P}[\min\{X_1, X_2, \dots, X_{10}\} &gt; 30] = e^{-30 \lambda_1} \cdots e^{-30 \lambda_{10}} = e^{-30(\lambda_1 + \cdots + \lambda_{10})}.
 \end{equation*}\]</div>
 <p><strong>Insight:</strong> The minimum of these waiting times, <span class="math notranslate nohighlight">\( \min\{X_1, X_2, \dots, X_{10}\} \)</span>, follows an exponential distribution with a combined rate parameter <span class="math notranslate nohighlight">\( \lambda_1 + \cdots + \lambda_{10} \)</span>.</p>
+</div>
+</section>
+<section id="poisson-processes">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">5.5. </span>Poisson processes</a><a class="headerlink" href="#poisson-processes" title="Link to this heading">#</a></h2>
+<p><em>Poisson processes</em> are one of the most useful models of events occurring randomly over time.</p>
+<div class="admonition-poisson-process admonition">
+<p class="admonition-title">Poisson process</p>
+<p>A sequence of arrivals in continuous time is called a <em>Poisson process</em> with rate <span class="math notranslate nohighlight">\( \lambda \)</span> if it satisfies the following conditions:</p>
+<ul class="simple">
+<li><p>The number of arrivals, denoted <span class="math notranslate nohighlight">\( X \)</span>, within an interval of length <span class="math notranslate nohighlight">\( t \)</span> is a Poisson random variable with parameter <span class="math notranslate nohighlight">\( \lambda t \)</span>. This means that the probability of observing exactly <span class="math notranslate nohighlight">\( k \)</span> arrivals in that interval is given by <span class="math notranslate nohighlight">\(\mathbb{P}[X = k] = \frac{e^{-\lambda t} \lambda^k}{k!}.\)</span></p></li>
+<li><p>The number of arrivals in disjoint time intervals are independent of each other. For instance, the counts of arrivals in the intervals <span class="math notranslate nohighlight">\( (0, 10) \)</span>, <span class="math notranslate nohighlight">\( [10, 12) \)</span>, and <span class="math notranslate nohighlight">\( [15, \infty) \)</span> are mutually independent.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Arrivals at SFO</p>
+<p>Suppose people at San Francisco International Airport according to a Poisson process with a rate of <span class="math notranslate nohighlight">\( \lambda = 50 \)</span> arrivals per minute. This means, for example that:</p>
+<ul class="simple">
+<li><p>Since one minute is an interval of length 1, the number of people expected to arrive in one minute follows a Poisson distribution with parameter <span class="math notranslate nohighlight">\( 50 \)</span>, denoted as <span class="math notranslate nohighlight">\( \text{Pois}\left(50\right) \)</span>.</p></li>
+<li><p>For a 30-second interval (half a minute), the number of people arriving in that time frame follows the <span class="math notranslate nohighlight">\( \text{Pois}\left(\frac{50}{2}\right) \)</span> distribution.</p></li>
+</ul>
+<p><strong>Question:</strong> Let <span class="math notranslate nohighlight">\(T_1\)</span> be the time the first customer arrives (starting from when SFO opens in the morning). What is the distribution of <span class="math notranslate nohighlight">\(T_1\)</span>?</p>
+<p><strong>Step 1: Define the random variables.</strong> Since we are working with a Poisson process, we know that if <span class="math notranslate nohighlight">\( N_t \)</span> is the number of customers arriving by time <span class="math notranslate nohighlight">\( t \)</span>, then <span class="math notranslate nohighlight">\( N_t \sim \text{Pois}(50t) \)</span>.</p>
+<p><strong>Step 2: Determine the relationship between the random variables.</strong> We want to understand the relationship between <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(N_t\)</span>. Starting with an example, we know that the event <span class="math notranslate nohighlight">\( T_1 &gt; \frac{1}{2} \)</span> (no arrival in the first half minute) occurs if and only if <span class="math notranslate nohighlight">\( N_{1/2} = 0 \)</span>, meaning no arrivals have occurred by time <span class="math notranslate nohighlight">\( \frac{1}{2} \)</span> (measured in minutes). More generally, <span class="math notranslate nohighlight">\( T_1 &gt; t \)</span> if and only if <span class="math notranslate nohighlight">\( N_t = 0 \)</span>, indicating that no arrivals have occurred by time <span class="math notranslate nohighlight">\( t \)</span>.</p>
+<p><strong>Step 3: Calculate the CDF of <span class="math notranslate nohighlight">\( T_1 \)</span>.</strong> The probability <span class="math notranslate nohighlight">\( \mathbb{P}[T_1 &gt; t] \)</span> is the probability of zero arrivals in the interval <span class="math notranslate nohighlight">\( [0, t] \)</span>, calculated as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[T_1 &gt; t] = \mathbb{P}[N_t = 0] = \frac{e^{-\lambda t}\lambda^0}{0!} = e^{-50t}.
+\end{equation*}\]</div>
+<p>Therefore, the cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\( T_1 \)</span> is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[T_1 &lt; t] = 1 - \mathbb{P}[T_1 &gt; t] = 1 - e^{-50t}.
+\end{equation*}\]</div>
+<p>This is exactly the CDF of the exponential distribution with parameter <span class="math notranslate nohighlight">\(\lambda = 50\)</span>, indicating that <span class="math notranslate nohighlight">\( T_1 \sim \text{Expo}\left(50\right) \)</span>.</p>
+<p>Similarly, let <span class="math notranslate nohighlight">\( T_2 \)</span> is the time of the second arrival, and note that the interval <span class="math notranslate nohighlight">\( (T_1, T_2] \)</span> is disjoint from <span class="math notranslate nohighlight">\( [0, T_1] \)</span>. Thus, the waiting time between the first and second arrivals, <span class="math notranslate nohighlight">\( T_2 - T_1 \)</span>, also follows an exponential distribution with rate <span class="math notranslate nohighlight">\( 50 \)</span>.</p>
+</div>
+<div class="admonition-connection-between-the-poisson-and-exponential-distributions admonition">
+<p class="admonition-title">Connection between the Poisson and exponential distributions</p>
+<p>In general, if a sequence of arrivals is a Poisson process with rate <span class="math notranslate nohighlight">\(\lambda\)</span>, then the time between each arrival has the Expo<span class="math notranslate nohighlight">\((\lambda)\)</span> distribution.</p>
 </div>
 </section>
 </section>
@@ -757,6 +811,7 @@ F_X(t) = \int_0^t \lambda e^{-\lambda y} \, dy = -e^{-\lambda y} \Big|_0^t = 1 -
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.3. Normal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential">5.4. Exponential</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-processes">5.5. Poisson processes</a></li>
 </ul>
   </nav></div>
 
