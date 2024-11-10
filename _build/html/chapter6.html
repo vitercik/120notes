@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Joint distributions &#8212; MS&amp;E 120 Course Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="5. Continuous random variables" href="chapter5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MS&E 120 Course Reader</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stanford MS&E 120: Intro to Probability
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Joint distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Joint distributions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-marginal-and-conditional">6.1. Joint, marginal, and conditional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete">6.1.1. Discrete</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous">6.1.2. Continuous</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid">6.1.3. Hybrid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-lotus">6.2. 2D LOTUS</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="joint-distributions">
+<h1><span class="section-number">6. </span>Joint distributions<a class="headerlink" href="#joint-distributions" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#joint-marginal-and-conditional" id="id6">Joint, marginal, and conditional</a></p>
+<ul>
+<li><p><a class="reference internal" href="#discrete" id="id7">Discrete</a></p></li>
+<li><p><a class="reference internal" href="#continuous" id="id8">Continuous</a></p></li>
+<li><p><a class="reference internal" href="#hybrid" id="id9">Hybrid</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#d-lotus" id="id10">2D LOTUS</a></p></li>
+</ul>
+</nav>
+<p>Until now, whenever we have analyzed multiple random variables in a single problem, we have assumed they were independent—that is, information about one random variable gave us no insight into the others. While independence is a useful assumption for simplifying calculations, most random variables are not independent. In this chapter, we will develop tools to jointly analyze <em>dependent</em> random variables.</p>
+<section id="joint-marginal-and-conditional">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">6.1. </span>Joint, marginal, and conditional</a><a class="headerlink" href="#joint-marginal-and-conditional" title="Link to this heading">#</a></h2>
+<section id="discrete">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">6.1.1. </span>Discrete</a><a class="headerlink" href="#discrete" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> be two discrete random variables.</p>
+<div class="admonition-joint-cumulative-distribution-function-cdf admonition">
+<p class="admonition-title">Joint cumulative distribution function (CDF)</p>
+<p>The <em>joint CDF</em> of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, denoted <span class="math notranslate nohighlight">\( F_{X,Y}(x,y) \)</span>, is defined as the probability that <span class="math notranslate nohighlight">\( X \leq x \)</span> and <span class="math notranslate nohighlight">\( Y \leq y \)</span>, or <span class="math notranslate nohighlight">\( F_{X,Y}(x,y) = \mathbb{P}[X \leq x, Y \leq y] \)</span>.</p>
+</div>
+<figure class="align-center" id="joint-pmf">
+<a class="reference internal image-reference" href="_images/joint_PMF.png"><img alt="_images/joint_PMF.png" src="_images/joint_PMF.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">This is Figure 7.1 from <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>. It illustrates the joint PMF of two RVs <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</span><a class="headerlink" href="#joint-pmf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-joint-probability-mass-function-pmf admonition">
+<p class="admonition-title">Joint probability mass function (PMF)</p>
+<p>The <em>joint PMF</em> of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, denoted <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) \)</span>, is the probability that <span class="math notranslate nohighlight">\( X = x \)</span> and <span class="math notranslate nohighlight">\( Y = y \)</span>, or <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) = \mathbb{P}[X = x, Y = y] \)</span>. See <a class="reference internal" href="#joint-pmf"><span class="std std-numref">Figure 6.1</span></a> for an illustration.</p>
+</div>
+<figure class="align-center" id="marginal-pmf">
+<a class="reference internal image-reference" href="_images/marginal_PMF.png"><img alt="_images/marginal_PMF.png" src="_images/marginal_PMF.png" style="width: 375px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">This is Figure 7.2 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>. It is a bird’s-eye view of the PMF in <a class="reference internal" href="#joint-pmf"><span class="std std-numref">Figure 6.1</span></a>. As <span id="id3">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span> states, the marginal PMF <span class="math notranslate nohighlight">\(f_X(x)\)</span> is obtained by summing over the joint PMF in the <span class="math notranslate nohighlight">\(y\)</span>-direction.</span><a class="headerlink" href="#marginal-pmf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-marginal-pmf admonition">
+<p class="admonition-title">Marginal PMF</p>
+<p>We obtain the <em>marginal PMF</em> of <span class="math notranslate nohighlight">\( X \)</span>, <span class="math notranslate nohighlight">\( f_X(x) = \mathbb{P}[X = x] \)</span>, via the law of total probability: we sum over the joint probabilities over all possible values of <span class="math notranslate nohighlight">\( Y \)</span>, so</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \mathbb{P}[X = x] = \sum_y \mathbb{P}[X = x, Y = y] = \sum_y f_{X,Y}(x,y).
+\end{equation*}\]</div>
+<p>The marginal PMF of <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(f_Y(y)\)</span>, is defined symmetrically. See <a class="reference internal" href="#marginal-pmf"><span class="std std-numref">Figure 6.2</span></a> for an illustration.</p>
+</div>
+<figure class="align-center" id="conditional-pmf">
+<a class="reference internal image-reference" href="_images/conditional_PMF.png"><img alt="_images/conditional_PMF.png" src="_images/conditional_PMF.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">This is Figure 7.3 from <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>. To obtain the conditional PMF <span class="math notranslate nohighlight">\(\mathbb{P}[Y = y \mid X = x]\)</span>, we renormalize the slice of the joint PMF that corresponds to the event that <span class="math notranslate nohighlight">\(X = x\)</span>.</span><a class="headerlink" href="#conditional-pmf" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition-conditional-pmf admonition">
+<p class="admonition-title">Conditional PMF</p>
+<p>The <em>conditional PMF</em> of <span class="math notranslate nohighlight">\( Y \)</span> given <span class="math notranslate nohighlight">\( X = x \)</span>, <span class="math notranslate nohighlight">\( \mathbb{P}[Y = y \mid X = x] \)</span>, represents the probability that <span class="math notranslate nohighlight">\( Y = y \)</span> given that <span class="math notranslate nohighlight">\( X = x \)</span>. It is calculated using the definition of conditional probability</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[Y = y \mid X = x] = \frac{\mathbb{P}[X = x, Y = y]}{\mathbb{P}[X = x]},
+\end{equation*}\]</div>
+<p>assuming <span class="math notranslate nohighlight">\( \mathbb{P}[X = x] &gt; 0.\)</span> The conditional PMF of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y = y\)</span> is defined symmetrically. See <a class="reference internal" href="#conditional-pmf"><span class="std std-numref">Figure 6.3</span></a> for an illustration.</p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="free-throw">
+<caption><span class="caption-number">Table 6.1 </span><span class="caption-text">Joint PMF of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> for the following basketball free throw example.</span><a class="headerlink" href="#free-throw" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 1 \)</span></strong></p></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 0 \)</span></strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><span class="math notranslate nohighlight">\( X = 1 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(1,1) = \mathbb{P}[X = 1, Y = 1] = \frac{5}{100} \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(1,0) = \frac{20}{100} \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><span class="math notranslate nohighlight">\( X = 0 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(0,1) = \frac{3}{100} \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(0,0) = \frac{72}{100} \)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Basketball free throws</p>
+<p>Suppose we want to analyze the likelihood of a player making two consecutive free throws in a game. Let <span class="math notranslate nohighlight">\( X \)</span> be an indicator variable representing whether a player makes the first free throw (1 if they make it, 0 if they miss), and <span class="math notranslate nohighlight">\( Y \)</span> is an indicator variable representing whether they make the second free throw.</p>
+<p>The joint PMF of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is given in <a class="reference internal" href="#free-throw"><span class="std std-numref">Table 6.1</span></a>.</p>
+<p>The marginal PMF of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(f_X(0) = \mathbb{P}[X = 0] = f_{X,Y}(0,0) + f_{X,Y}(0,1) = \frac{25}{100}\)</span> and <span class="math notranslate nohighlight">\(f_X(1) = \mathbb{P}[X = 1] = f_{X,Y}(1,0) + f_{X,Y}(1,1) = \frac{75}{100}\)</span>. Similarly, the marginal PMF of <span class="math notranslate nohighlight">\(Y\)</span> is <span class="math notranslate nohighlight">\(f_Y(0) = f_{X,Y}(0,0) + f_{X,Y}(1,0) = \frac{8}{100}\)</span> and <span class="math notranslate nohighlight">\(f_Y(1) = f_{X,Y}(0,1) + f_{X,Y}(1,1) = \frac{92}{100}\)</span>.</p>
+<p>Finally, the conditional PMF of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y = 0\)</span>, for example, is <span class="math notranslate nohighlight">\(\mathbb{P}[X = 0 \mid Y = 0] = \frac{f_{X,Y}(0,0)}{f_Y(0)} = \frac{5/100}{8/100} = \frac{5}{8}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}[X = 1 \mid Y = 0] = 1- \frac{5}{8} = \frac{3}{8}.\)</span></p>
+</div>
+<div class="admonition-independence admonition">
+<p class="admonition-title">Independence</p>
+<p>Two random variables <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are said to be independent if their joint cumulative distribution function (CDF) <span class="math notranslate nohighlight">\( F_{X,Y}(x,y) \)</span> can be expressed as the product of their individual CDFs, <span class="math notranslate nohighlight">\( F_X(x) \)</span> and <span class="math notranslate nohighlight">\( F_Y(y) \)</span>, for all values of <span class="math notranslate nohighlight">\( x \)</span> and <span class="math notranslate nohighlight">\( y \)</span>. In other words, <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are independent if <span class="math notranslate nohighlight">\( F_{X,Y}(x,y) = F_X(x)F_Y(y) \)</span> holds for all possible pairs of values.</p>
+<p>An equivalent condition for independence is that the joint probability mass function (PMF) <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) \)</span> can be factored as the product of the marginal PMFs of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, i.e., <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) = f_X(x)f_Y(y) \)</span>.</p>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="joint-pmf-coin">
+<caption><span class="caption-number">Table 6.2 </span><span class="caption-text">Joint PMF for the following coin flip example</span><a class="headerlink" href="#joint-pmf-coin" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 0 \)</span></strong></p></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 1 \)</span></strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><span class="math notranslate nohighlight">\( X = 0 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(0,0) = \mathbb{P}[X = 0, Y= 0] = 0 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(0,1) =\mathbb{P}[X = 0, Y = 1] = \mathbb{P}[X = 0] = \frac{1}{4} \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><span class="math notranslate nohighlight">\( X = 1 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(1,0) =\mathbb{P}[X = 1, Y= 0] = \mathbb{P}[X = 1] = \frac{1}{2} \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(1,1) =0 \)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong><span class="math notranslate nohighlight">\( X = 2 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(2,0) =0 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( f_{X,Y}(2,1) =\frac{1}{4} \)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Coin flips</p>
+<p>Suppose a fair coin is flipped twice. Let the random variable <span class="math notranslate nohighlight">\( X \)</span> represent the number of heads obtained in the two flips. Define another random variable, <span class="math notranslate nohighlight">\( Y \)</span>, such that <span class="math notranslate nohighlight">\( Y = 1 \)</span> if both tosses landed the same way (either both heads or both tails), and <span class="math notranslate nohighlight">\( Y = 0 \)</span> otherwise.</p>
+<p><strong>Question 1:</strong> What is the joint probability mass function (PMF) of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>?</p>
+<p>The joint PMF of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> is given in <a class="reference internal" href="#joint-pmf-coin"><span class="std std-numref">Table 6.2</span></a>.</p>
+<p><strong>Question 2:</strong> What is the marginal PMF of <span class="math notranslate nohighlight">\( X \)</span>?</p>
+<p>The marginal PMF of <span class="math notranslate nohighlight">\( X \)</span>, representing the probability distribution of the number of heads, is calculated as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( f_X(0) = \mathbb{P}[X = 0] = \mathbb{P}[X = 0, Y = 0] + \mathbb{P}[X = 0, Y = 1] = \frac{1}{4} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( f_X(1) = \mathbb{P}[X = 1, Y = 0] + \mathbb{P}[X = 1, Y = 1] = \frac{1}{2} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( f_X(2) = \frac{1}{4} \)</span></p></li>
+</ul>
+<p><strong>Question 3:</strong> What is the marginal PMF of <span class="math notranslate nohighlight">\( Y \)</span>?</p>
+<p>The marginal PMF of <span class="math notranslate nohighlight">\( Y \)</span>, representing the probability of the tosses landing the same way or not, is calculated as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( f_Y(0) = \mathbb{P}[Y = 0] = \mathbb{P}[X = 0, Y = 0] + \mathbb{P}[X = 1, Y = 0] + \mathbb{P}[X = 2, Y = 0] = \frac{1}{2} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( f_Y(1) = \frac{1}{2} \)</span></p></li>
+</ul>
+<p><strong>Question 4:</strong> Are <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> independent?</p>
+<p>No, <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are not independent. For example, the joint probability <span class="math notranslate nohighlight">\( f_{X,Y}(0,0) = 0 \)</span> does not equal the product of the marginals <span class="math notranslate nohighlight">\( f_X(0)f_Y(0) = \frac{1}{4} \cdot \frac{1}{2} = \frac{1}{8} \)</span>.</p>
+</div>
+</section>
+<section id="continuous">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">6.1.2. </span>Continuous</a><a class="headerlink" href="#continuous" title="Link to this heading">#</a></h3>
+<p>Next, let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be two continuous RVs. In this case, the definition of the joint CDF remains the same:</p>
+<div class="admonition-joint-cumulative-distribution-function-cdf admonition">
+<p class="admonition-title">Joint cumulative distribution function (CDF)</p>
+<p>The <em>joint CDF</em> of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, denoted <span class="math notranslate nohighlight">\( F_{X,Y}(x,y) \)</span>, represents the probability that <span class="math notranslate nohighlight">\( X \leq x \)</span> and <span class="math notranslate nohighlight">\( Y \leq y \)</span>, or <span class="math notranslate nohighlight">\( F_{X,Y}(x,y) = \mathbb{P}[X \leq x, Y \leq y] \)</span>.</p>
+</div>
+<p>Recall that in the case of a single continuous RV, we obtain the PDF by taking the derivative of the CDF. The same holds true when working with joint continuous RVs, except we must take the derivate in terms of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<div class="admonition-joint-probability-density-function-pdf admonition">
+<p class="admonition-title">Joint probability density function (PDF)</p>
+<p>The <em>joint PDF</em> of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, denoted <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) \)</span>, is obtained by taking the second partial derivative of the joint CDF with respect to both <span class="math notranslate nohighlight">\( x \)</span> and <span class="math notranslate nohighlight">\( y \)</span>. In other words, <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) = \frac{\partial^2}{\partial x \partial y}F_{X,Y}(x,y) \)</span>.</p>
+</div>
+<div class="admonition-marginal-pmf admonition">
+<p class="admonition-title">Marginal PMF</p>
+<p>The marginal PDF of <span class="math notranslate nohighlight">\( X \)</span>, denoted <span class="math notranslate nohighlight">\( f_X(x) \)</span>, is obtained by integrating the joint PDF over all values of <span class="math notranslate nohighlight">\( Y \)</span>. This is expressed as <span class="math notranslate nohighlight">\( f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \, dy \)</span>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Uniform distribution over a square</p>
+<p>Suppose <span class="math notranslate nohighlight">\( (X, Y) \)</span> is a completely random point chosen uniformly from within the square region <span class="math notranslate nohighlight">\( \{(x,y): x, y \in [0,1]\} \)</span> in the plane. This means that any point within the square is equally likely to be chosen.</p>
+<p>The joint probability density function (PDF) of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) \)</span>, is defined as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}f_{X,Y}(x,y) = \begin{cases}1 &amp;\text{if }(x,y) \in [0,1] \times [0,1]\\ 0 &amp;\text{else.}\end{cases}\end{equation*}\]</div>
+<p>To find the marginal PDF of <span class="math notranslate nohighlight">\( X \)</span>, denoted <span class="math notranslate nohighlight">\( f_X(x) \)</span>, we integrate <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) \)</span> over all possible values of <span class="math notranslate nohighlight">\( y \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \, dy = \int_{-\infty}^0 0 \, dy + \int_0^1 1 \, dy + \int_1^{\infty} 0 \, dy = y \Big|_{0}^1 = 1.
+\end{equation*}\]</div>
+<p>This result implies that <span class="math notranslate nohighlight">\( X \)</span> follows a uniform distribution on the interval <span class="math notranslate nohighlight">\( [0,1] \)</span>, or <span class="math notranslate nohighlight">\( X \sim \text{Unif}(0,1) \)</span>.</p>
+<p>Since the joint PDF <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) \)</span> can be factored as the product of the marginal PDFs of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> for all <span class="math notranslate nohighlight">\( x, y \in [0,1] \times [0,1] \)</span>, i.e., <span class="math notranslate nohighlight">\( f_{X,Y}(x,y) = 1 = f_X(x) f_Y(y) \)</span>, we conclude that <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are independent.</p>
+</div>
+<figure class="align-center" id="circle">
+<a class="reference internal image-reference" href="_images/circle.png"><img alt="_images/circle.png" src="_images/circle.png" style="width: 275px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">This is Figure 7.6 from <span id="id5">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>. For a fixed <span class="math notranslate nohighlight">\(x \in [-1,1]\)</span>, <span class="math notranslate nohighlight">\((x,y)\)</span> is in the unit circle centered at the origin if <span class="math notranslate nohighlight">\(x^2 + y^2 \leq 1\)</span>, or in other words, if <span class="math notranslate nohighlight">\(-\sqrt{1 - x^2} \leq y \leq \sqrt{1 - x^2}\)</span>.</span><a class="headerlink" href="#circle" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Example: Uniform distribution over a circle</p>
+<p>Suppose <span class="math notranslate nohighlight">\( (X, Y) \)</span> is a completely random point chosen uniformly from within a circle of radius 1, centered at the origin. This region can be described as <span class="math notranslate nohighlight">\( \{(x, y) : x^2 + y^2 \leq 1\} \)</span>. Any point within this circle is equally likely to be chosen.</p>
+<p>The joint probability density function (PDF) of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, denoted <span class="math notranslate nohighlight">\( f_{X,Y}(x, y) \)</span>, is defined as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}f_{X,Y}(x,y) = \begin{cases} \frac{1}{\pi} &amp; \text{if }x^2 + y^2\leq 1\\
+0 &amp;\text{else}\end{cases}\end{equation*}\]</div>
+<p>(understanding why the PDF is <span class="math notranslate nohighlight">\(\frac{1}{\pi}\)</span> inside the circle requires comfort with multi-variable integration, so you may take this as given—don’t worry if you don’t know how we arrived at <span class="math notranslate nohighlight">\(\frac{1}{\pi}\)</span>).</p>
+<p>To find the marginal PDF of <span class="math notranslate nohighlight">\( X \)</span>, denoted <span class="math notranslate nohighlight">\( f_X(x) \)</span>, we integrate <span class="math notranslate nohighlight">\( f_{X,Y}(x, y) \)</span> over all possible values of <span class="math notranslate nohighlight">\( y \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x, y) \, dy.
+\end{equation*}\]</div>
+<p>We know that <span class="math notranslate nohighlight">\(f_{X,Y}(x, y) = \frac{1}{\pi}\)</span> so long as <span class="math notranslate nohighlight">\((x,y)\)</span> is in the circle of radius 1, centered at the origin, or in other words, so long as <span class="math notranslate nohighlight">\(x^2 + y^2\leq 1\)</span>. Looking at <a class="reference internal" href="#circle"><span class="std std-numref">Fig. 6.4</span></a>, we can see that for a specific choice of <span class="math notranslate nohighlight">\(x \in [-1,1]\)</span>, <span class="math notranslate nohighlight">\(f_{X,Y}(x, y) = \frac{1}{\pi}\)</span> so long as <span class="math notranslate nohighlight">\(-\sqrt{1 - x^2} \leq y \leq \sqrt{1 - x^2}\)</span>. Otherwise, <span class="math notranslate nohighlight">\(f_{X,Y}(x, y) = 0\)</span>. Therefore, for <span class="math notranslate nohighlight">\(x \in [-1,1]\)</span>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \int_{-\infty}^{-\sqrt{1 - x^2}} 0 \, dy + \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \frac{1}{\pi} \, dy + \int_{\sqrt{1 - x^2}}^{\infty} 0 \, dy = \left. \frac{y}{\pi} \right|_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} = \frac{2}{\pi} \sqrt{1 - x^2}.
+\end{equation*}\]</div>
+<p>For <span class="math notranslate nohighlight">\(x \not\in [-1,1]\)</span>, <span class="math notranslate nohighlight">\(f_X(x) = 0\)</span>.</p>
+<p>This result shows that <span class="math notranslate nohighlight">\( X \)</span> does not follow a uniform distribution, as <span class="math notranslate nohighlight">\( f_X(x) \)</span> depends on <span class="math notranslate nohighlight">\( x \)</span> in a non-constant way.</p>
+<p>Moreover, <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are not independent. For example, <span class="math notranslate nohighlight">\( f_{X,Y}(0.9, 0.9) = 0 \)</span>, because the point <span class="math notranslate nohighlight">\( (0.9, 0.9) \)</span> lies outside the circle (as <span class="math notranslate nohighlight">\( 0.9^2 + 0.9^2 &gt; 1 \)</span>), even though both <span class="math notranslate nohighlight">\( f_X(0.9) \)</span> and <span class="math notranslate nohighlight">\( f_Y(0.9) \)</span> are non-zero. This demonstrates that the joint probability does not equal the product of the marginals, confirming that <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are dependent.</p>
+</div>
+</section>
+<section id="hybrid">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">6.1.3. </span>Hybrid</a><a class="headerlink" href="#hybrid" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Example: Injury recovery time</p>
+<p>Suppose an athlete has sustained an injury, but it is unclear whether the injury is minor or major.</p>
+<ul class="simple">
+<li><p>If the injury is minor, the time it takes to heal follows an exponential distribution with rate <span class="math notranslate nohighlight">\( \lambda_0 \)</span> (so the expected healing time is <span class="math notranslate nohighlight">\( \frac{1}{\lambda_0} \)</span>).</p></li>
+<li><p>If the injury is major, the healing time follows an exponential distribution with rate <span class="math notranslate nohighlight">\( \lambda_1 \)</span> (with expected healing time <span class="math notranslate nohighlight">\( \frac{1}{\lambda_1} \)</span>).</p></li>
+<li><p>We assume that <span class="math notranslate nohighlight">\( \lambda_0 &gt; \lambda_1 \)</span>, meaning that minor injuries generally heal faster than major ones.</p></li>
+</ul>
+<p>The injury is major with probability <span class="math notranslate nohighlight">\( p_1 \)</span> and as minor with probability <span class="math notranslate nohighlight">\( p_0 = 1 - p_1 \)</span>. Let <span class="math notranslate nohighlight">\( I \)</span> be an indicator random variable, where <span class="math notranslate nohighlight">\( I = 1 \)</span> if the injury is major and <span class="math notranslate nohighlight">\( I = 0 \)</span> if it is minor. Let <span class="math notranslate nohighlight">\( T \)</span> represent the time it takes for the injury to heal.</p>
+<p><strong>Question:</strong> What is the marginal cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\( T \)</span>?</p>
+<p>The marginal CDF of <span class="math notranslate nohighlight">\( T \)</span>, denoted <span class="math notranslate nohighlight">\( F_T(t) \)</span>, can be computed as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_T(t) = \mathbb{P}[T \leq t] = \mathbb{P}[T \leq t \mid I = 0] \cdot \mathbb{P}[I = 0] + \mathbb{P}[T \leq t \mid I = 1] \cdot \mathbb{P}[I = 1].
+\end{equation*}\]</div>
+<p>Substituting the expressions for each conditional probability, we get:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_T(t) = \left(1 - e^{-\lambda_0 t}\right)p_0 + \left(1 - e^{-\lambda_1 t}\right)p_1 = 1 - p_0 e^{-\lambda_0 t} - p_1 e^{-\lambda_1 t}.
+\end{equation*}\]</div>
+<p><strong>Question:</strong> What is the marginal probability density function (PDF) of <span class="math notranslate nohighlight">\( T \)</span>?</p>
+<p>The marginal PDF of <span class="math notranslate nohighlight">\( T \)</span>, denoted <span class="math notranslate nohighlight">\( f_T(t) \)</span>, is the derivative of <span class="math notranslate nohighlight">\( F_T(t) \)</span> with respect to <span class="math notranslate nohighlight">\( t \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \frac{d}{dt} F_T(t) = p_0 \lambda_0 e^{-\lambda_0 t} + p_1 \lambda_1 e^{-\lambda_1 t}.
+\end{equation*}\]</div>
+</div>
+</section>
+</section>
+<section id="d-lotus">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">6.2. </span>2D LOTUS</a><a class="headerlink" href="#d-lotus" title="Link to this heading">#</a></h2>
+<p>The law of the unconscious statistician extends naturally to joint random variables. We will only state it here for discrete RVs (the definition for continuous RVs involves multi-variable integration, which we do not assume knowledge of in this class).</p>
+<div class="admonition-d-law-of-the-unconscious-statistician-lotus admonition">
+<p class="admonition-title">2D Law of the unconscious statistician (LOTUS)</p>
+<p>Let <span class="math notranslate nohighlight">\( g: \mathbb{R}^2 \to \mathbb{R} \)</span> be a function. When <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are discrete random variables, the expected value of <span class="math notranslate nohighlight">\( g(X, Y) \)</span>, denoted <span class="math notranslate nohighlight">\( \mathbb{E}[g(X, Y)] \)</span>, is calculated as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[g(X, Y)] = \sum_x \sum_y g(x, y) \cdot \mathbb{P}[X = x, Y = y].
+\end{equation*}\]</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="soccer">
+<caption><span class="caption-number">Table 6.3 </span><span class="caption-text">Joint PMF of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> for shots and goals in soccer</span><a class="headerlink" href="#soccer" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( X = 1 \)</span></strong></p></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( X = 2 \)</span></strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><span class="math notranslate nohighlight">\( Y = 0 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( \frac{3}{10} \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( \frac{2}{10} \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><span class="math notranslate nohighlight">\( Y = 1 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( \frac{1}{10} \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( \frac{3}{10} \)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong><span class="math notranslate nohighlight">\( Y = 2 \)</span></strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( \frac{1}{10} \)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Shots per goal in soccer</p>
+<p>In the first 15 minutes of a soccer match, a team will make between 1 and 2 shots on goal. Let <span class="math notranslate nohighlight">\( X \)</span> represent the number of shots taken and <span class="math notranslate nohighlight">\( Y \)</span> represent the number of goals scored. The joint probability distribution of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> is given by <a class="reference internal" href="#soccer"><span class="std std-numref">Table 6.3</span></a>.</p>
+<p><strong>Question:</strong> What is the expected number of goals per shot?</p>
+<p>To find this, we calculate <span class="math notranslate nohighlight">\( \mathbb{E}\left[\frac{Y}{X}\right] \)</span> as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}\left[\frac{Y}{X}\right] = \frac{0}{1} \cdot \frac{3}{10} + \frac{1}{1} \cdot \frac{1}{10} + \frac{0}{2} \cdot \frac{2}{10} + \frac{1}{2} \cdot \frac{3}{10} + \frac{2}{2} \cdot \frac{1}{10} = \frac{7}{20}.
+\end{equation*}\]</div>
+<p>Thus, the expected number of goals per shot is <span class="math notranslate nohighlight">\( \frac{7}{20} \)</span>.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Continuous random variables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-marginal-and-conditional">6.1. Joint, marginal, and conditional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete">6.1.1. Discrete</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous">6.1.2. Continuous</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid">6.1.3. Hybrid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-lotus">6.2. 2D LOTUS</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ellen Vitercik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

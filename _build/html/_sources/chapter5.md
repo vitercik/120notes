@@ -339,6 +339,6 @@ This is exactly the CDF of the exponential distribution with parameter $\lambda 
 Similarly, let $ T_2 $ is the time of the second arrival, and note that the interval $ (T_1, T_2] $ is disjoint from $ [0, T_1] $. Thus, the waiting time between the first and second arrivals, $ T_2 - T_1 $, also follows an exponential distribution with rate $ 50 $.
 ```
 
-```{admonition} Connection between the Poisson and exponential distributions
+```{admonition} General rule
 In general, if a sequence of arrivals is a Poisson process with rate $\lambda$, then the time between each arrival has the Expo$(\lambda)$ distribution.
 ```
