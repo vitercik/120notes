@@ -307,3 +307,159 @@ To find this, we calculate $ \mathbb{E}\left[\frac{Y}{X}\right] $ as follows:
 
 Thus, the expected number of goals per shot is $ \frac{7}{20} $.
 ```
+
+## Covariance and correlation
+
+*Covariance* provides insight into the relationship between two variables, specifically in terms of how they vary together. Unlike variance, which measures the variability of a single variable, covariance captures how two variables move in relation to each other. 
+
+```{admonition} Covariance
+The covariance of two random variables $X$ and $Y$, denoted as $\text{Cov}(X, Y)$, is given by
+\begin{equation*}
+\text{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y].
+\end{equation*}
+```
+
+When $X$ and $Y$ tend to move in the same direction (both increasing or both decreasing together), the covariance $\text{Cov}(X, Y)$ will be positive.
+
+Conversely, if $X$ and $Y$ tend to move in opposite directions (one increases while the other decreases), then $\text{Cov}(X, Y)$ will be negative.
+
+If $X$ and $Y$ are independent, they are *uncorrelated*, meaning $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$, which implies $\text{Cov}(X, Y) = 0$. However, it is worth noting that $\text{Cov}(X, Y) = 0$ does not necessarily imply that $X$ and $Y$ are independent; two variables can have zero covariance and still be dependent in a non-linear way.
+
+The covariance function has several key properties:
+1. The covariance of a variable with itself, $\text{Cov}(X, X)$, is simply the variance of $X$, written as $\text{Var}(X)$.
+2. Covariance is symmetric, meaning $\text{Cov}(X, Y) = \text{Cov}(Y, X)$.
+3. For the variance of the sum of multiple variables $X_1, X_2, \dots, X_n$, we have
+    
+    \begin{equation*}
+    \text{Var}(X_1 + X_2 + \cdots + X_n) = \text{Var}(X_1) + \cdots + \text{Var}(X_n) + 2\sum_{i < j} \text{Cov}(X_i, X_j).
+    \end{equation*}
+    
+```{admonition} Example: Hypergeometric variance
+:class: tip
+
+Remember that the hypergeometric distribution arises when selecting a sample of $n$ marbles from a set containing $w$ white and $b$ black marbles without replacement (all choices of the $n$ marbles are equally likely). We define $X$ as the number of white marbles in the sample of size $n$, denoted as $X \sim \text{HGeom}(w, b, n)$.
+
+The variable $X$ can be expressed as the sum $X = I_1 + I_2 + \cdots + I_n$, where $I_j$ is an indicator variable that equals 1 if the $j^{\text{th}}$ ball in the sample is white, and 0 otherwise. The variance of $X$ can be calculated by examining the variance of these indicators:
+
+\begin{equation*}
+\text{Var}(X) = \text{Var}(I_1 + \cdots + I_n) = \text{Var}(I_1) + \cdots + \text{Var}(I_n) + 2 \sum_{i < j} \text{Cov}(I_i, I_j).
+\end{equation*}
+
+To find $\text{Var}(I_j)$, we calculate $\text{Var}(I_j) = \mathbb{E}[I_j^2] - \mathbb{E}[I_j]^2$. Since $I_j$ is an indicator variable, $I_j^2 = I_j$, so $\text{Var}(I_j) = \mathbb{E}[I_j] - \mathbb{E}[I_j]^2$. The expected value $\mathbb{E}[I_j]$ represents the probability that the $j^{\text{th}}$ marble is white, which is $\frac{w}{w+b}$. Therefore, $\text{Var}(I_j) = p - p^2 = p(1 - p)$, where $p = \frac{w}{w+b}$.
+
+Next, we calculate $\text{Cov}(I_1, I_2)$, the covariance between any two distinct indicator variables. Plugging in the formual for covariance, we have that $\text{Cov}(I_1, I_2) = \mathbb{E}[I_1 I_2] - p^2$. Meanwhile,  $\mathbb{E}[I_1I_2] = \mathbb{P}[1^{st} \text{ and }2^{nd} \text{ balls are white}] = \frac{w(w-1)}{(w+b)(w+b-1)}$.
+
+Finally, we can express the variance of $X$ as:
+\begin{equation*}
+\text{Var}(X) = np(1 - p) + 2\binom{n}{2} \text{Cov}(I_1, I_2) = \frac{N - n}{N - 1}np(1 - p),
+\end{equation*}
+where $N = w + b$ is the total number of marbles. As $N \to \infty$, this variance approaches that of a Binomial distribution with parameters $n$ and $p$, given by $np(1 - p)$.
+```
+
+*Correlation* provides a standardized, easy-to-interpret measure of the linear relationship between two variables. Unlike covariance, which can vary widely in scale based on the units of the variables, correlation always lies between -1 and 1, making it unit-less and comparable across different pairs of variables.
+
+```{admonition} Correlation
+The correlation between two random variables $X$ and $Y$, denoted as $\text{Corr}(X, Y)$, is defined as
+\begin{equation*}
+\text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sqrt{\text{Var}(X) \text{Var}(Y)}}.
+\end{equation*}
+```
+
+This measure quantifies the strength and direction of the linear relationship between $X$ and $Y$. The correlation is constrained within the range $-1 \leq \text{Corr}(X, Y) \leq 1$.
+```{figure} images/pos.png
+---
+name: pos
+width: 275px
+align: center
+---
+
+This is Figure 7.9 from {cite}`Blitzstein19:Introduction`, illustrating RVs $X$ and $Y$ which are positively correlated.
+```
+A correlation close to 1 indicates a positive linear relationship, as in {numref}`pos`.
+```{figure} images/neg.png
+---
+name: neg
+width: 275px
+align: center
+---
+
+This is Figure 7.9 from {cite}`Blitzstein19:Introduction`, illustrating RVs $X$ and $Y$ which are negatively correlated.
+```
+Meanwhile, a correlation close to -1 indicates a negative linear relationship, as in {numref}`neg`.
+```{figure} images/ind.png
+---
+name: ind
+width: 275px
+align: center
+---
+
+This is Figure 7.9 from {cite}`Blitzstein19:Introduction`, illustrating RVs $X$ and $Y$ which are independent and thus uncorrelated.
+```
+Finally, a value closer to 0 suggest a weaker linear relationship, as in {numref}`ind`.
+
+## Multinomial
+
+Before we introduce the next joint distribution, which is a simple generalization of the Binomial distribution, we begin with a quick counting problem.
+
+```{admonition} Counting problem
+:class: tip
+
+How many unique ways are there to permute the letters in the word "STATISTICS"?
+
+We start by noting that there are 10 letters in total, but some letters are repeated. Specifically, there are 3 S's, 3 T's, 2 I's, 1 A, and 1 C. To find the number of distinct arrangements, imagine filling in 10 blanks with these letters. First, we choose 3 positions out of 10 for the S's, which can be done in $\binom{10}{3}$ ways. Next, we select 3 out of the remaining 7 positions for the T's, done in $\binom{7}{3}$ ways, and so on for each letter group.
+
+The total number of distinct permutations is therefore:
+\begin{equation*}
+\binom{10}{3} \cdot \binom{7}{3} \cdot \binom{4}{1} \cdot \binom{3}{2} \cdot \binom{1}{1} = \frac{10!}{3!3!2!}.
+\end{equation*}
+
+This result can also be derived by noting that there are $10!$ ways to arrange all 10 letters if they were distinct, but this count includes overcounting due to the repeated letters. We correct for this by dividing by $3!$ for the S's, $3!$ for the T's, and $2!$ for the I's. Therefore, the total number of distinct arrangements of the letters in "STATISTICS" is given by $\frac{10!}{3!3!2!}$.
+```
+
+Remember that the Binomial distribution, denoted as Bin$(n, p)$, counts the number of successes in $n$ trials, where each trial has two possible outcomes: success or failure, with a probability of success $p$ for each trial.
+
+The *Multinomial distribution* is a generalization of the Binomial, extending it to scenarios with multiple categories rather than just two. For instance, in a setting where each trial could result in one of three outcomes, such as a win, tie, or loss, the Multinomial distribution is relevant.
+
+```{admonition} Multinomial distribution
+Suppose $n$ objects are placed into $k$ different categories. Each object has a probability $p_1$ of being placed in category 1, $p_2$ in category 2, and so forth, up to category $k$, where the probabilities sum to 1: $p_1 + p_2 + \dots + p_k = 1$.
+
+Define $X_1$ as the number of objects placed in category 1, $X_2$ as the number in category 2, and so on. The vector $\vec{X} = (X_1, \dots, X_k)$ follows a Multinomial distribution with parameters $n$ and $\vec{p} = (p_1, \dots, p_k)$, denoted as $\vec{X} \sim \text{Mult}_k(n, \vec{p})$.
+```
+
+To compute the joint PMF, we start with an example.  Suppose $n = 11$ and there are three categories. Then the probability of the specific outcome $\mathbb{P}[23311112221)]$, which we use to denote the outcome where object 1 is placed in category 2, object 2 is placed in category 3, object 3 is placed in category 3, and so on, is $\mathbb{P}[23311112221)] = p_1^5p_2^4p_3^2$. This is because there are five 1’s, four 2’s, and two 3’s. As we know from the counting problem at the beginning of this section, there are $\frac{11!}{5!4!2!}$ ways to construct a sequence with exactly five 1’s, four 2’s, and two 3’s, so
+\begin{equation*}
+\mathbb{P}[(X_1 = 5, X_2 = 4, X_3 = 2)] = \frac{11!}{5!4!2!} \cdot p_1^5p_2^4p_3^2.
+\end{equation*}
+
+Generalizing this intuition, we get the joint PMF of the multinomial distribution:
+
+\begin{equation*}\mathbb{P}[X_1 = n_1, X_2 = n_2, \dots, X_k = n_k] =\begin{cases} \frac{n!}{n_1!n_2! \dots n_k!}\cdot p_1^{n_1}p_2^{n_2}\cdots p_k^{n_k} &\text{if }n_1 + n_2 + \cdots + n_k = n\\
+0 &\text{else.}\end{cases}\end{equation*}
+
+There are a few nice properties of the Multinomial distribution. First, given $\vec{X} \sim \text{Mult}_k(n, \vec{p})$, where $\vec{X} = (X_1, X_2, \dots, X_k)$ follows a Multinomial distribution with parameters $n$ and probability vector $\vec{p} = (p_1, p_2, \dots, p_k)$, the marginal distribution of each individual component $X_j$ is Binomial. Specifically, $X_j \sim \text{Bin}(n, p_j)$, meaning that the count of objects in any single category $j$ follows a Binomial distribution with probability $p_j$.
+
+Moreover, the Multinomial distribution also exhibits a property known as the *lumping property*. This property allows us to combine counts across categories. For example, imagine a political context with five parties, where parties 1 and 2 are dominant, and parties 3, 4, and 5 are minor. We can define a new vector $\vec{Y} = (X_1, X_2, X_3 + X_4 + X_5)$, where $X_3 + X_4 + X_5$ represents the combined count of the minor parties. Then $\vec{Y}$ will follow a Multinomial distribution with three categories and a probability vector adjusted for the combined minor parties: $\vec{Y} \sim \text{Mult}_3(n, p_1, p_2, p_3 + p_4 + p_5)$.
+
+## Multivariate Normal
+
+Before introducing our final joint distribution, we start with an important property of Normal random variables: if $ Z_1 \sim N(\mu_1, \sigma_1^2) $ and $ Z_2 \sim N(\mu_2, \sigma_2^2) $, then a linear combination of these variables, $ t_1Z_1 + t_2Z_2 $, also follows a Normal distribution. Specifically,
+\begin{equation*}
+t_1Z_1 + t_2Z_2 \sim N\left(t_1\mu_1 + t_2\mu_2, \sqrt{t_1^2\sigma_1^2 + t_2^2\sigma_2^2}\right).
+\end{equation*}
+
+In many applications, such as finance and data science, it is helpful to work with multidimensional bell curves, which are modeled using the multivariate Normal distribution.
+
+```{admonition} Bivariate normal
+The pair $(X, Y)$ has the *Bivariate Normal* distribution if any linear combination $aX + bY$ has a Normal distribution for any choice of constants $a$ and $b$.
+```
+
+For example, consider $Z_1 \sim N(\mu_1, \sigma_1^2)$ and $Z_2 \sim N(\mu_2, \sigma_2^2)$. The pair $(Z_1 - 5Z_2, Z_2)$ is bivariate Normal because any linear combination $a(Z_1 - 5Z_2) + bZ_2$ simplifies to $aZ_1 + (5 - b)Z_2$, which, as we know from the useful property at the beginning of this section, is Normally distributed.
+
+A bivariate Normal distribution for $(X, Y)$ is typically denoted as $(X, Y) \sim N(\vec{\mu}, \Sigma)$, where:
+
+- $\vec{\mu} = (\mathbb{E}[X], \mathbb{E}[Y])$ is the mean vector, and
+- $\Sigma = \begin{pmatrix} \text{Var}(X) & \text{Cov}(X, Y) \\ \text{Cov}(X, Y) & \text{Var}(Y) \end{pmatrix}$ is the covariance matrix, capturing the variances of $X$ and $Y$ as well as their covariance.
+
+A noteworthy property of the Bivariate Normal distribution is that if $(X, Y)$ follows this distribution, then both $X$ and $Y$ are individually Normally distributed.
+
+One special result for the Bivariate Normal distribution is that if the covariance between $X$ and $Y$, $\text{Cov}(X, Y)$, is zero, then $X$ and $Y$ are independent. This property is unique to the Normal distribution, as, in general, zero covariance does not imply independence.
