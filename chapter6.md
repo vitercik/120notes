@@ -444,7 +444,7 @@ Moreover, the Multinomial distribution also exhibits a property known as the *lu
 
 Before introducing our final joint distribution, we start with an important property of Normal random variables: if $ Z_1 \sim N(\mu_1, \sigma_1^2) $ and $ Z_2 \sim N(\mu_2, \sigma_2^2) $, then a linear combination of these variables, $ t_1Z_1 + t_2Z_2 $, also follows a Normal distribution. Specifically,
 \begin{equation*}
-t_1Z_1 + t_2Z_2 \sim N\left(t_1\mu_1 + t_2\mu_2, \sqrt{t_1^2\sigma_1^2 + t_2^2\sigma_2^2}\right).
+t_1Z_1 + t_2Z_2 \sim N\left(t_1\mu_1 + t_2\mu_2, t_1^2\sigma_1^2 + t_2^2\sigma_2^2\right).
 \end{equation*}
 
 In many applications, such as finance and data science, it is helpful to work with multidimensional bell curves, which are modeled using the multivariate Normal distribution.
