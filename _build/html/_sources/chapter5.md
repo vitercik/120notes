@@ -307,7 +307,7 @@ For each bed $ i $, $ \mathbb{P}[X_i > 30] = e^{-30 \lambda_i} $, so we get:
 
 A sequence of arrivals in continuous time is called a *Poisson process* with rate $ \lambda $ if it satisfies the following conditions:
 
-- The number of arrivals, denoted $ X $, within an interval of length $ t $ is a Poisson random variable with parameter $ \lambda t $. This means that the probability of observing exactly $ k $ arrivals in that interval is given by $\mathbb{P}[X = k] = \frac{e^{-\lambda t} \lambda^k}{k!}.$
+- The number of arrivals, denoted $ X $, within an interval of length $ t $ is a Poisson random variable with parameter $ \lambda t $. This means that the probability of observing exactly $ k $ arrivals in that interval is given by $\mathbb{P}[X = k] = \frac{e^{-\lambda t} (\lambda t)^k}{k!}.$
 - The number of arrivals in disjoint time intervals are independent of each other. For instance, the counts of arrivals in the intervals $ (0, 10) $, $ [10, 12) $, and $ [15, \infty) $ are mutually independent.
 ```
 

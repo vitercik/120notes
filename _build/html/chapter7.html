@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Transformations &#8212; MS&amp;E 120 Course Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter7';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="6. Joint distributions" href="chapter6.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MS&E 120 Course Reader</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stanford MS&E 120: Intro to Probability
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">6. Joint distributions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">8. Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter7.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter7.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-of-variables">7.1. Change of variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutions">7.2. Convolutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gamma">7.3. Gamma</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transformations">
+<h1><span class="section-number">7. </span>Transformations<a class="headerlink" href="#transformations" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#change-of-variables" id="id2">Change of variables</a></p></li>
+<li><p><a class="reference internal" href="#convolutions" id="id3">Convolutions</a></p></li>
+<li><p><a class="reference internal" href="#gamma" id="id4">Gamma</a></p></li>
+</ul>
+</nav>
+<p>Often, the random variable we want to analyze does not exactly follow one of the named distributions we’ve analyzed in this class, but is a closely related transformation of one of these RVs. In this section, we will learn how to analyze these transformations of RVs.</p>
+<section id="change-of-variables">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">7.1. </span>Change of variables</a><a class="headerlink" href="#change-of-variables" title="Link to this heading">#</a></h2>
+<p>We begin with a motivating example. Given a Normal RV <span class="math notranslate nohighlight">\(X \sim N(0, 1)\)</span>, suppose we define a new random variable <span class="math notranslate nohighlight">\(Y = e^X\)</span>. This transformation is often used to model the evolution of stock prices. In this section, we will develop tools to analyze the distribution of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="admonition-change-of-variables-for-a-continuous-rv admonition">
+<p class="admonition-title">Change of variables for a continuous RV</p>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a continuous RV, and define <span class="math notranslate nohighlight">\(Y = g(X)\)</span>, where <span class="math notranslate nohighlight">\(g\)</span> is a differentiable and increasing function. The probability density function (PDF) of <span class="math notranslate nohighlight">\(Y\)</span> is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{1}{g'(g^{-1}(y))}.
+\end{equation*}\]</div>
+<p>If <span class="math notranslate nohighlight">\(g\)</span> is a decreasing function, the PDF of <span class="math notranslate nohighlight">\(Y\)</span> is modified to account for the absolute value of the derivative:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(y) = f_X(x) \cdot \left| \frac{1}{g'(g^{-1}(y))} \right|.
+\end{equation*}\]</div>
+</div>
+<p>We now return to our motivating example.</p>
+<div class="tip admonition">
+<p class="admonition-title">Log-Normal PDF</p>
+<p>This is Example 8.1.3 from <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(X \sim N(0, 1)\)</span>, we determine the PDF of <span class="math notranslate nohighlight">\(Y = e^X\)</span> step by step.</p>
+<p><strong>Step 1: Identify the transformation <span class="math notranslate nohighlight">\(g\)</span>.</strong> The transformation <span class="math notranslate nohighlight">\(g(x) = e^x\)</span> is both differentiable and strictly increasing.</p>
+<p><strong>Step 2: Compute the inverse of <span class="math notranslate nohighlight">\(g\)</span>.</strong> The inverse function <span class="math notranslate nohighlight">\(g^{-1}(y)\)</span> satisfies <span class="math notranslate nohighlight">\(g(g^{-1}(y)) = y\)</span>. For <span class="math notranslate nohighlight">\(g(x) = e^x\)</span>, the inverse is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+g^{-1}(y) = \ln y.
+\end{equation*}\]</div>
+<p><strong>Step 3: Compute the derivative of <span class="math notranslate nohighlight">\(g\)</span>.</strong> The derivative of <span class="math notranslate nohighlight">\(g(x) = e^x\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+g'(x) = e^x.
+\end{equation*}\]</div>
+<p><strong>Step 4: Identify the PDF of <span class="math notranslate nohighlight">\(X\)</span>.</strong> Since <span class="math notranslate nohighlight">\(X \sim N(0, 1)\)</span>, its PDF is the standard normal density function:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \varphi(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}.
+\end{equation*}\]</div>
+<p><strong>Step 5: Derive the PDF of <span class="math notranslate nohighlight">\(Y\)</span>.</strong> Substituting into the formula for <span class="math notranslate nohighlight">\(f_Y(y)\)</span>, we have:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(y) =
+\begin{cases}
+0, &amp; \text{if } y \leq 0 \text{ (since $Y = e^X &gt; 0$)}, \\
+f_X(g^{-1}(y)) \cdot \frac{1}{g'(g^{-1}(y))}, &amp; \text{if } y &gt; 0.
+\end{cases}
+\end{equation*}\]</div>
+<p>For <span class="math notranslate nohighlight">\(y &gt; 0\)</span>, substituting <span class="math notranslate nohighlight">\(g^{-1}(y) = \ln y\)</span> and <span class="math notranslate nohighlight">\(g'(\ln y) = e^{\ln y} = y\)</span>, we find:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(y) = f_X(\ln y) \cdot \frac{1}{y} = \varphi(\ln y) \cdot \frac{1}{y}.
+\end{equation*}\]</div>
+<p>Explicitly:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(y) = \frac{1}{\sqrt{2\pi}} e^{-(\ln y)^2 / 2} \cdot \frac{1}{y}, \quad y &gt; 0.
+\end{equation*}\]</div>
+</div>
+</section>
+<section id="convolutions">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">7.2. </span>Convolutions</a><a class="headerlink" href="#convolutions" title="Link to this heading">#</a></h2>
+<p>This section will provide tools for determining the distribution of the sum of two independent random variables. Let <span class="math notranslate nohighlight">\(T = X + Y\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent. The process for deriving the distribution of <span class="math notranslate nohighlight">\(T\)</span> depends on whether <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are discrete or continuous.</p>
+<ol class="arabic">
+<li><p><strong>For Discrete RVs</strong></p>
+<p>If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are discrete, the probability mass function of <span class="math notranslate nohighlight">\(T\)</span> is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[T = t] = \sum_x \mathbb{P}[X = x \text{ and } Y = t - x] = \sum_x \mathbb{P}[X = x] \mathbb{P}[Y = t - x].
+\end{equation*}\]</div>
+</li>
+<li><p><strong>For Continuous RVs</strong></p>
+<p>If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are continuous, the probability density function (PDF) of <span class="math notranslate nohighlight">\(T\)</span> is obtained through convolution:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \int_{-\infty}^\infty f_X(x) f_Y(t - x) \, dx.
+\end{equation*}\]</div>
+</li>
+</ol>
+<div class="tip admonition">
+<p class="admonition-title">Swim race</p>
+<p>Suppose a swimmer swims two laps. Let <span class="math notranslate nohighlight">\(X\)</span> represent the time taken to complete the first lap and <span class="math notranslate nohighlight">\(Y\)</span> the time for the second lap. Assume both times are independent and follow an exponential distribution with rate parameter <span class="math notranslate nohighlight">\(\lambda\)</span>, i.e., <span class="math notranslate nohighlight">\(X, Y \sim \text{Expo}(\lambda)\)</span>. The PDF of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = f_Y(y) =
+\begin{cases}
+\lambda e^{-\lambda x}, &amp; \text{if } x &gt; 0, \\
+0, &amp; \text{otherwise.}
+\end{cases}
+\end{equation*}\]</div>
+<p>Now, let <span class="math notranslate nohighlight">\(T = X + Y\)</span> represent the total time to complete both laps. We aim to find the PDF of <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p><strong>Step 1: Set up the convolution.</strong> For <span class="math notranslate nohighlight">\(t &gt; 0\)</span>, the PDF of <span class="math notranslate nohighlight">\(T\)</span> is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \int_{-\infty}^\infty f_X(x) f_Y(t - x) \, dx.
+\end{equation*}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(f_X(x) = 0\)</span> for <span class="math notranslate nohighlight">\(x &lt; 0\)</span> and <span class="math notranslate nohighlight">\(f_Y(t - x) = 0\)</span> for <span class="math notranslate nohighlight">\(t - x &lt; 0\)</span> (i.e., <span class="math notranslate nohighlight">\(x &gt; t\)</span>), the product <span class="math notranslate nohighlight">\(f_X(x)f_Y(t - x)\)</span> is nonzero only when <span class="math notranslate nohighlight">\(0 \leq x \leq t\)</span>. Thus, the integral simplifies to:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \int_0^t f_X(x) f_Y(t - x) \, dx.
+\end{equation*}\]</div>
+<p><strong>Step 2: Substitute the PDFs of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</strong> Substituting <span class="math notranslate nohighlight">\(f_X(x) = \lambda e^{-\lambda x}\)</span> and <span class="math notranslate nohighlight">\(f_Y(t - x) = \lambda e^{-\lambda (t - x)}\)</span>, we get:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \int_0^t \lambda e^{-\lambda x} \cdot \lambda e^{-\lambda (t - x)} \, dx.
+\end{equation*}\]</div>
+<p>Combining terms, we find:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \lambda^2 e^{-\lambda t} \int_0^t e^{-\lambda x + \lambda x} \, dx = \lambda^2 e^{-\lambda t} \int_0^t 1 \, dx.
+\end{equation*}\]</div>
+<p><strong>Step 3: Evaluate the integral.</strong> The integral of 1 over <span class="math notranslate nohighlight">\([0, t]\)</span> is simply <span class="math notranslate nohighlight">\(t\)</span>, so:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \lambda^2 t e^{-\lambda t}.
+\end{equation*}\]</div>
+<p>Thus, the total time <span class="math notranslate nohighlight">\(T = X + Y\)</span> follows a distribution with PDF:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_T(t) = \lambda^2 t e^{-\lambda t}, \quad t &gt; 0.
+\end{equation*}\]</div>
+</div>
+</section>
+<section id="gamma">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">7.3. </span>Gamma</a><a class="headerlink" href="#gamma" title="Link to this heading">#</a></h2>
+<p>We will begin this section with a review of Poisson processes in the context of the 2014 FIFA World Cup. During the World Cup, the average number of soccer goals scored per 90-minute game was approximately 2.7. Let <span class="math notranslate nohighlight">\(X_{90}\)</span> represent the total number of goals scored in a game, with <span class="math notranslate nohighlight">\(\mathbb{E}[X_{90}] = 2.7\)</span>. The sequence of goals over continuous time can be modeled as a <strong>Poisson process</strong> with a rate parameter <span class="math notranslate nohighlight">\(\lambda\)</span>. In a Poisson process with rate <span class="math notranslate nohighlight">\(\lambda\)</span>, the random variable <span class="math notranslate nohighlight">\(X_t\)</span>, representing the number of goals scored in an interval of <span class="math notranslate nohighlight">\(t\)</span> minutes, follows a Poisson distribution:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_t \sim \text{Pois}(\lambda t), \quad \mathbb{P}[X_t = k] = \frac{e^{-\lambda t}(\lambda t)^k}{k!}.
+\end{equation*}\]</div>
+<p>Given that the expected number of goals in a 90-minute game is <span class="math notranslate nohighlight">\(\mathbb{E}[X_{90}] = 2.7\)</span>, and using the property <span class="math notranslate nohighlight">\(\mathbb{E}[X_t] = \lambda t\)</span>, we have:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+2.7 = \lambda \cdot 90 \implies \lambda = 0.03.
+\end{equation*}\]</div>
+<p>Thus, the rate of goals is <span class="math notranslate nohighlight">\(\lambda = 0.03\)</span> goals per minute.</p>
+<p>Here are a few example questions we might ask about this Poisson process:</p>
+<ol class="arabic simple">
+<li><p><strong>What is the probability of exactly 4 goals before halftime?</strong> The interval from the start of the game to halftime (45 minutes) is modeled by <span class="math notranslate nohighlight">\(X_{45} \sim \text{Pois}(\lambda t = 0.03 \cdot 45 = 1.35)\)</span>. The probability of exactly 4 goals is:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[X_{45} = 4] = \frac{e^{-\lambda t} (\lambda t)^4}{4!} = \frac{e^{-1.35}(1.35)^4}{4!} \approx 0.03.
+\end{equation*}\]</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>What is the probability the first goal is scored within the first 10 minutes?</strong> Let <span class="math notranslate nohighlight">\(T_1\)</span> represent the time until the first goal. In a Poisson process, <span class="math notranslate nohighlight">\(T_1\)</span> follows an exponential distribution with rate <span class="math notranslate nohighlight">\(\lambda = 0.03\)</span>, i.e., <span class="math notranslate nohighlight">\(T_1 \sim \text{Expo}(\lambda)\)</span>. The cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\(T_1\)</span> is:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_{T_1}(t) = \mathbb{P}[T_1 \leq t] =
+\begin{cases}
+0, &amp; \text{if } t \leq 0, \\
+1 - e^{-\lambda t}, &amp; \text{if } t &gt; 0.
+\end{cases}
+\end{equation*}\]</div>
+<p>Substituting <span class="math notranslate nohighlight">\(t = 10\)</span> and <span class="math notranslate nohighlight">\(\lambda = 0.03\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_{T_1}(10) = 1 - e^{-0.03 \cdot 10} = 1 - e^{-0.3} \approx 0.26.
+\end{equation*}\]</div>
+<p>Thus, there is approximately a 26% chance the first goal is scored within the first 10 minutes.</p>
+<p>Next, let <span class="math notranslate nohighlight">\(T_5\)</span> represent the time until the 5th goal is scored in a soccer game. In the remainder of this section, our goal will be to determine the PDF of <span class="math notranslate nohighlight">\(T_5\)</span>. Doing so will rely on the <em><strong>Gamma function,</strong></em> defined as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\Gamma(a) = \int_0^{\infty} e^{-x}x^{a-1} \, dx, \quad a &gt; 0.
+\end{equation*}\]</div>
+<p>Key properties of the Gamma function include:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Gamma(a + 1) = a \Gamma(a)\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Gamma(n) = (n-1)!\)</span> for positive integers <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ul>
+<div class="admonition-gamma-distribution admonition">
+<p class="admonition-title">Gamma distribution</p>
+<p>A random variable <span class="math notranslate nohighlight">\(Y\)</span> is said to have a <strong>Gamma distribution</strong> with shape parameter <span class="math notranslate nohighlight">\(a &gt; 0\)</span> and rate parameter <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> if its probability density function (PDF) is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(y) = \frac{\lambda e^{-\lambda y}(\lambda y)^{a-1}}{\Gamma(a)}, \quad y &gt; 0.
+\end{equation*}\]</div>
+<p>This is written as <span class="math notranslate nohighlight">\(Y \sim \text{Gamma}(a, \lambda)\)</span>.</p>
+</div>
+<p>Let’s return back to the World Cup example, where we aim to find the PDF of <span class="math notranslate nohighlight">\(T_5\)</span>, the time until the 5th goal is scored in a soccer game. Let <span class="math notranslate nohighlight">\(X_t\)</span> denote the number of goals scored within the first <span class="math notranslate nohighlight">\(t\)</span> minutes of the game. The time <span class="math notranslate nohighlight">\(T_5 \leq t\)</span> if and only if at least 5 goals are scored by time <span class="math notranslate nohighlight">\(t\)</span>, i.e., <span class="math notranslate nohighlight">\(X_t \geq 5\)</span>. The cumulative distribution function (CDF) of <span class="math notranslate nohighlight">\(T_5\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_{T_5}(t) = \mathbb{P}[T_5 \leq t] = \mathbb{P}[X_t \geq 5] = \sum_{k=5}^\infty \mathbb{P}[X_t = k],
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(X_t \sim \text{Pois}(\lambda t)\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}[X_t = k] = \frac{e^{-\lambda t}(\lambda t)^k}{k!}\)</span>.</p>
+<p>To find the PDF of <span class="math notranslate nohighlight">\(T_5\)</span>, we differentiate the CDF:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_{T_5}(t) = \frac{d}{dt}F_{T_5}(t).
+\end{equation*}\]</div>
+<p>Differentiating term by term:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_{T_5}(t) = \frac{\lambda e^{-\lambda t}(\lambda t)^4}{4!} = \frac{\lambda e^{-\lambda t}(\lambda t)^4}{\Gamma(5)}.
+\end{equation*}\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(T_5 \sim \text{Gamma}(5, \lambda)\)</span>, meaning the time until the 5th goal follows a Gamma distribution with shape parameter <span class="math notranslate nohighlight">\(5\)</span> and rate parameter <span class="math notranslate nohighlight">\(\lambda\)</span>.
+For example, to find the probability of scoring 5 goals in the first 45 minutes, we compute:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[T_5 \leq 45] = \int_0^{45} f_{T_5}(t) \, dt = \int_0^{45} \frac{\lambda e^{-\lambda t}(\lambda t)^4}{\Gamma(5)} \, dt.
+\end{equation*}\]</div>
+<p>Substituting <span class="math notranslate nohighlight">\(\lambda = 0.03\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[T_5 \leq 45] = \frac{1}{\Gamma(5)} \int_0^{45} 0.03 \cdot e^{-0.03 t}(0.03 t)^4 \, dt.
+\end{equation*}\]</div>
+<p>Evaluating this integral gives approximately <span class="math notranslate nohighlight">\(0.01\)</span>, meaning there is about a 1% chance of scoring 5 goals within 45 minutes.</p>
+<p>Generalizing beyond this example, the Gamma distribution has a close relationship with the Poisson process, summarized as follows.</p>
+<div class="admonition-connection-between-the-gamma-and-exponential-distributions admonition">
+<p class="admonition-title">Connection between the Gamma and Exponential distributions</p>
+<p>If <span class="math notranslate nohighlight">\(Y_1, Y_2, \dots, Y_j \sim \text{Expo}(\lambda)\)</span> are independent, then their sum <span class="math notranslate nohighlight">\(Y_1 + Y_2 + \cdots + Y_j\)</span> follows a Gamma distribution:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_1 + Y_2 + \cdots + Y_j \sim \text{Gamma}(j, \lambda).
+\end{equation*}\]</div>
+</div>
+<p>To summarize, for a Poisson process with rate <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
+<ol class="arabic simple">
+<li><p>The number of arrivals in an interval of length <span class="math notranslate nohighlight">\(t\)</span> follows the <span class="math notranslate nohighlight">\(\text{Pois}(\lambda t)\)</span> distribution,</p></li>
+<li><p>The time between consecutive arrivals follows the <span class="math notranslate nohighlight">\(\text{Expo}(\lambda)\)</span> distribution,</p></li>
+<li><p>The time of the <span class="math notranslate nohighlight">\(j^{\text{th}}\)</span> arrival follows the <span class="math notranslate nohighlight">\(\text{Gamma}(j, \lambda)\)</span> distribution.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter6.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Joint distributions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-of-variables">7.1. Change of variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutions">7.2. Convolutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gamma">7.3. Gamma</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ellen Vitercik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
