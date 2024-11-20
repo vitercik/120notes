@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Conditional expectation &#8212; MS&amp;E 120 Course Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter8';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="7. Transformations" href="chapter7.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MS&E 120 Course Reader</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stanford MS&E 120: Intro to Probability
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">6. Joint distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">7. Transformations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Conditional expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">9. Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter8.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter8.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Conditional expectation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-expectation-given-an-event">8.1. Conditional expectation given an event</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-expectation-given-a-random-variable">8.2. Conditional expectation given a random variable</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-conditional-expectation">8.2.1. Properties of Conditional Expectation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conditional-expectation">
+<h1><span class="section-number">8. </span>Conditional expectation<a class="headerlink" href="#conditional-expectation" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#conditional-expectation-given-an-event" id="id3">Conditional expectation given an event</a></p></li>
+<li><p><a class="reference internal" href="#conditional-expectation-given-a-random-variable" id="id4">Conditional expectation given a random variable</a></p>
+<ul>
+<li><p><a class="reference internal" href="#properties-of-conditional-expectation" id="id5">Properties of Conditional Expectation</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p><em>Conditional expectation</em> provides a way to compute the expected value of a RV given additional information about the occurrence of a specific event or the value of another variable. It refines the notion of expectation by incorporating this new information, enabling more precise predictions and insights into the behavior of RVs under specific conditions.</p>
+<section id="conditional-expectation-given-an-event">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">8.1. </span>Conditional expectation given an event</a><a class="headerlink" href="#conditional-expectation-given-an-event" title="Link to this heading">#</a></h2>
+<p>We begin with the definition of conditional expectation given an event.</p>
+<div class="admonition-conditional-expectation-given-an-event admonition">
+<p class="admonition-title">Conditional expectation given an event</p>
+<ol class="arabic simple">
+<li><p><strong>Discrete Random Variable:</strong> Let <span class="math notranslate nohighlight">\( A \)</span> be an event and <span class="math notranslate nohighlight">\( Y \)</span> a discrete random variable. The conditional expectation of <span class="math notranslate nohighlight">\( Y \)</span> given <span class="math notranslate nohighlight">\( A \)</span> is expressed as:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid A] = \sum_y y \mathbb{P}[Y = y \mid A] = \sum_y y \cdot \frac{\mathbb{P}[A \mid Y = y] \mathbb{P}[Y = y]}{\mathbb{P}[A]},
+\end{equation*}\]</div>
+<p>where the summation is taken over all possible values of <span class="math notranslate nohighlight">\( Y \)</span>.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Continuous Random Variable:</strong> If <span class="math notranslate nohighlight">\( A \)</span> is an event and <span class="math notranslate nohighlight">\( Y \)</span> is a continuous random variable, then we replace the PMF <span class="math notranslate nohighlight">\(\mathbb{P}[Y = y]\)</span> with the PDF <span class="math notranslate nohighlight">\(f_Y(y)\)</span> and take an integral rather than a sum:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid A] = \int_{-\infty}^\infty y \cdot \frac{\mathbb{P}[A \mid Y = y] f_Y(y)}{\mathbb{P}[A]} \, dy.
+\end{equation*}\]</div>
+</div>
+<p>Building off of this definition, the <strong>Law of Total Expectation</strong> is a natural extension of the Law of Total Probability.</p>
+<div class="admonition-law-of-total-expectation admonition">
+<p class="admonition-title">Law of total expectation</p>
+<p>If <span class="math notranslate nohighlight">\( A_1, A_2, \dots, A_n \)</span> partition the set of all possible outcomes, then:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y] = \sum_{i=1}^n \mathbb{E}[Y \mid A_i] \mathbb{P}[A_i].
+\end{equation*}\]</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="tennis">
+<caption><span class="caption-number">Table 8.1 </span><span class="caption-text">A tennis player is in a best-of-three match. The random variable <span class="math notranslate nohighlight">\( Y \)</span> represents the number of sets won. This table summarizes the joint PMF of the player’s performance in the events he did or did not sleep well.</span><a class="headerlink" href="#tennis" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 0 \)</span></strong></p></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 1 \)</span></strong></p></th>
+<th class="head"><p><strong><span class="math notranslate nohighlight">\( Y = 2 \)</span></strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Didn’t sleep well</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0.15 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0.30 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0.10 \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Slept well</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0.05 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0.20 \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\( 0.20 \)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Tennis match</p>
+<p>Suppose a tennis player is in a best-of-three match. The random variable <span class="math notranslate nohighlight">\( Y \)</span> represents the number of sets won. The player’s performance is influenced by whether they slept well the night before. The probabilities of winning 0, 1, or 2 sets under different sleep conditions are summarized in <a class="reference internal" href="#tennis"><span class="std std-numref">Table 8.1</span></a>.</p>
+<p><strong>Question:</strong> What is the expected number of sets won <span class="math notranslate nohighlight">\(\mathbb{E}[Y] \)</span> given that the player slept well?</p>
+<p>Let <span class="math notranslate nohighlight">\( A \)</span> represent the event of sleeping well. First, we compute <span class="math notranslate nohighlight">\( \mathbb{P}[A] \)</span>, the probability of sleeping well:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[A] = 0.05 + 0.20 + 0.20 = 0.45.
+\end{equation*}\]</div>
+<p>Next, we calculate the conditional probabilities of winning 0, 1, or 2 sets given <span class="math notranslate nohighlight">\( A \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{P}[Y = 0 \mid A] &amp;= \frac{\mathbb{P}[Y = 0 \text{ and } A]}{\mathbb{P}[A]} = \frac{0.05}{0.45},
+\mathbb{P}[Y = 1 \mid A] &amp;= \frac{\mathbb{P}[Y = 1 \text{ and } A]}{\mathbb{P}[A]} = \frac{0.20}{0.45},
+\mathbb{P}[Y = 2 \mid A] &amp;= \frac{\mathbb{P}[Y = 2 \text{ and } A]}{\mathbb{P}[A]} = \frac{0.20}{0.45}.
+\end{align*}\]</div>
+<p>Finally, we compute the conditional expectation <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid A] \)</span> using these probabilities:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid A] = 0 \cdot \mathbb{P}[Y = 0 \mid A] + 1 \cdot \mathbb{P}[Y = 1 \mid A] + 2 \cdot \mathbb{P}[Y = 2 \mid A].
+\end{equation*}\]</div>
+<p>Substituting the values:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid A] = 0 \cdot \frac{0.05}{0.45} + 1 \cdot \frac{0.20}{0.45} + 2 \cdot \frac{0.20}{0.45} = \frac{0.60}{0.45} = 1.333.
+\end{equation*}\]</div>
+<p>Thus, the expected number of sets won, given that the player slept well, is approximately 1.33.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Tossing a coin</p>
+<p>This is Example 9.1.9 from <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>Suppose we toss a fair coin repeatedly. Define <span class="math notranslate nohighlight">\( W_{HT} \)</span> as the number of flips required to observe the pattern “HT” for the first time. For example, in the sequence <span class="math notranslate nohighlight">\( \text{TTHHT} \)</span>, <span class="math notranslate nohighlight">\( W_{HT} = 5 \)</span>.</p>
+<p><strong>Question:</strong> What is <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HT}] \)</span>?</p>
+<p>We break <span class="math notranslate nohighlight">\( W_{HT} \)</span> into two components:
+- <span class="math notranslate nohighlight">\( W_1 \)</span>: The number of flips until the first heads (H).
+- <span class="math notranslate nohighlight">\( W_2 \)</span>: The additional number of flips required to observe the first tails (T) after the first heads.
+Since <span class="math notranslate nohighlight">\( W_1, W_2 \sim \text{FS}(\frac{1}{2}) \)</span>), we compute:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[W_{HT}] = \mathbb{E}[W_1 + W_2] = \mathbb{E}[W_1] + \mathbb{E}[W_2] = 2 + 2 = 4.
+\end{equation*}\]</div>
+<hr class="docutils" />
+<p>Next, define <span class="math notranslate nohighlight">\( W_{HH} \)</span> as the number of flips required to observe the pattern “HH” for the first time. For example, in the sequence <span class="math notranslate nohighlight">\( \text{TTTHTHH} \)</span>, <span class="math notranslate nohighlight">\( W_{HH} = 7 \)</span>.</p>
+<p><strong>Question:</strong> What is <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH}] \)</span>?</p>
+<p><strong>Step 1: Define the goal.</strong> Using the law of total expectation, we will compute <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH}] \)</span> based on the outcomes of the first tosses:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{E}[W_{HH}] &amp;= \mathbb{E}[W_{HH} \mid \text{1st two tosses are (H, H)}] \cdot \mathbb{P}[\text{1st two tosses are (H, H)}]\\
+&amp;+\mathbb{E}[W_{HH} \mid \text{1st two tosses are (H, T)}] \cdot \mathbb{P}[\text{1st two tosses are (H, T)}]\\
+&amp;+\mathbb{E}[W_{HH} \mid \text{1st toss is T}] \cdot \mathbb{P}[\text{1st toss is T}].
+\end{align*}\]</div>
+<p><strong>Step 2: Compute individual probabilities.</strong></p>
+<ul class="simple">
+<li><p>If the first two tosses are (H, H), then <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH} \mid \text{1st tosses are (H, H)}] = 2 \)</span>.</p></li>
+<li><p>If the first two tosses are (H, T), then <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH} \mid \text{1st tosses are (H, T)}] = 2 + \mathbb{E}[W_{HH}] \)</span> (due to the memoryless property of the coin tosses).</p></li>
+<li><p>If the first toss is T, then <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH} \mid \text{1st toss is T}] = 1 + \mathbb{E}[W_{HH}] \)</span>.</p></li>
+</ul>
+<p><strong>Step 3: Solve for <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH}] \)</span>.</strong>
+Substitute the values into the expectation formula:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[W_{HH}] = 2 \cdot \frac{1}{4} + (2 + \mathbb{E}[W_{HH}]) \cdot \frac{1}{4} + (1 + \mathbb{E}[W_{HH}]) \cdot \frac{1}{2}.
+\end{equation*}\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\( \mathbb{E}[W_{HH}] \)</span>, we get that <span class="math notranslate nohighlight">\(\mathbb{E}[W_{HH}] = 6.\)</span></p>
+</div>
+</section>
+<section id="conditional-expectation-given-a-random-variable">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">8.2. </span>Conditional expectation given a random variable</a><a class="headerlink" href="#conditional-expectation-given-a-random-variable" title="Link to this heading">#</a></h2>
+<p>Conditional expectation, given a random variable, is an important concept in probability. The notation <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] \)</span> represents the expectation of <span class="math notranslate nohighlight">\( Y \)</span> conditioned on <span class="math notranslate nohighlight">\( X \)</span>. The goal in this section is to understand what this expression means and how it functions. As a first step, it is helpful to first understand <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X = x] \)</span>. Here, <span class="math notranslate nohighlight">\( X = x \)</span> represents the event that <span class="math notranslate nohighlight">\(X\)</span> equals <span class="math notranslate nohighlight">\(x\)</span>. The expectation <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X = x] \)</span> is the conditional expectation of <span class="math notranslate nohighlight">\( Y \)</span> given this event and can be determined using the conditional probability distribution of <span class="math notranslate nohighlight">\( Y \)</span> given <span class="math notranslate nohighlight">\( X = x \)</span>. For a discrete random variable <span class="math notranslate nohighlight">\( Y \)</span>, the conditional expectation <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X = x] \)</span> is, by definition,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X = x] = \sum_y y \cdot \mathbb{P}[Y = y \mid X = x].
+\end{equation*}\]</div>
+<p>For instance, if <span class="math notranslate nohighlight">\( X \)</span> is also discrete, this can be expressed using the joint and marginal probabilities:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X = x] = \sum_y y \cdot \frac{\mathbb{P}[Y = y, X = x]}{\mathbb{P}[X = x]}.
+\end{equation*}\]</div>
+<p>Similarly, if <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are continuous random variables, the conditional expectation is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X = x] = \int_{-\infty}^\infty y \cdot \frac{f_{X,Y}(x, y)}{f_X(x)} \, dy,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\( f_{X,Y}(x, y) \)</span> is the joint probability density function of <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span>, and <span class="math notranslate nohighlight">\( f_X(x) \)</span> is the marginal density of <span class="math notranslate nohighlight">\( X \)</span>.</p>
+<p>We will use the notation <span class="math notranslate nohighlight">\( g(x) = \mathbb{E}[Y \mid X = x] \)</span> to represent the conditional expectation of <span class="math notranslate nohighlight">\( Y \)</span> given <span class="math notranslate nohighlight">\( X = x \)</span>. Intuitively, it provides the best prediction for the value of <span class="math notranslate nohighlight">\( Y \)</span>, assuming that the value of <span class="math notranslate nohighlight">\( X \)</span> is known.</p>
+<p>For example, let <span class="math notranslate nohighlight">\( X \)</span> represent a person’s age and <span class="math notranslate nohighlight">\( Y \)</span> represent their maximum heart rate. The general rule of thumb is that a person’s maximum heart rate is 220 minus their age. Of course, this is just a rough estimate; some people’s maximum heart rate will be higher or lower. In other words, 220 minus age is our best guess for a person’s maximum heart rate. We can express this rule of thumb in terms of conditional expectation: for a 21-year-old, for example,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X = 21] = \mathbb{E}[\text{maximum heart rate} \mid \text{21 years old}] = 199.
+\end{equation*}\]</div>
+<p>More generally,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X = x] = \mathbb{E}[\text{maximum heart rate} \mid x \text{ years old}] = 220 - x = g(x).
+\end{equation*}\]</div>
+<p>We are now ready to define <span class="math notranslate nohighlight">\(\mathbb{E}[Y \mid X]\)</span>.</p>
+<div class="admonition-example-conditional-expectation-given-a-random-variable admonition">
+<p class="admonition-title">Example: Conditional expectation given a random variable</p>
+<p>The <em>conditional expectation of <span class="math notranslate nohighlight">\( Y \)</span> given <span class="math notranslate nohighlight">\( X \)</span></em>, denoted <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] \)</span>, is defined as the random variable <span class="math notranslate nohighlight">\( g(X) \)</span>.</p>
+</div>
+<p>For example, if <span class="math notranslate nohighlight">\( g(x) = x^2 \)</span>, then <span class="math notranslate nohighlight">\( g(X) = X^2 \)</span>, meaning the conditional expectation is expressed as a function of <span class="math notranslate nohighlight">\( X \)</span>. Importantly, <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] \)</span> is a function of the random variable <span class="math notranslate nohighlight">\( X \)</span>, not of <span class="math notranslate nohighlight">\( Y \)</span>.</p>
+<p>To illustrate, we return to the case where <span class="math notranslate nohighlight">\( X \)</span> represents a person’s age and <span class="math notranslate nohighlight">\( Y \)</span> represents their maximum heart rate:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X] = \mathbb{E}[\text{maximum heart rate} \mid X \text{ years old}] = 220 - X = g(X).
+\end{equation*}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Breaking a stick</p>
+<p>This is Example 9.2.4 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>Suppose a stick of length 1 is broken at a random point <span class="math notranslate nohighlight">\( X \)</span>, where <span class="math notranslate nohighlight">\( X \sim \text{Uniform}(0, 1) \)</span>. Then, another breakpoint <span class="math notranslate nohighlight">\( Y \)</span> is chosen randomly from a uniform distribution over the interval <span class="math notranslate nohighlight">\( (0, x) \)</span>. The goal is to compute <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] \)</span>, the conditional expectation of <span class="math notranslate nohighlight">\( Y \)</span> given <span class="math notranslate nohighlight">\( X \)</span>.</p>
+<p><strong>Step 1: Determine <span class="math notranslate nohighlight">\( g(x) \)</span>.</strong> Given <span class="math notranslate nohighlight">\( X = x \)</span>, the random variable <span class="math notranslate nohighlight">\( Y \)</span> is uniformly distributed over <span class="math notranslate nohighlight">\( (0, x) \)</span>. For a uniform distribution, the expectation is simply the midpoint of the interval. Thus:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+g(x) = \mathbb{E}[Y \mid X = x] = \frac{x}{2}.
+\end{equation*}\]</div>
+<p><strong>Step 2: Express <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] \)</span> as a function of <span class="math notranslate nohighlight">\( X \)</span>.</strong>
+By substituting <span class="math notranslate nohighlight">\( X \)</span> into the expression for <span class="math notranslate nohighlight">\( g(x) \)</span>, we get:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y \mid X] = g(X) = \frac{X}{2}.
+\end{equation*}\]</div>
+</div>
+<section id="properties-of-conditional-expectation">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">8.2.1. </span>Properties of Conditional Expectation</a><a class="headerlink" href="#properties-of-conditional-expectation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Dropping Independence</strong>: If <span class="math notranslate nohighlight">\( X \)</span> and <span class="math notranslate nohighlight">\( Y \)</span> are independent, the conditional expectation <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] \)</span> simplifies to the unconditional expectation <span class="math notranslate nohighlight">\( \mathbb{E}[Y] \)</span>. In other words, knowing <span class="math notranslate nohighlight">\( X \)</span> provides no additional information about <span class="math notranslate nohighlight">\( Y \)</span>, so <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid X] = \mathbb{E}[Y] \)</span>.</p></li>
+<li><p><strong>Linearity</strong>: Conditional expectation is linear, meaning that for two random variables <span class="math notranslate nohighlight">\( Y_1 \)</span> and <span class="math notranslate nohighlight">\( Y_2 \)</span>,
+<span class="math notranslate nohighlight">\(\mathbb{E}[Y_1 + Y_2 \mid X] = \mathbb{E}[Y_1 \mid X] + \mathbb{E}[Y_2 \mid X].\)</span></p></li>
+<li><p><strong>Adam’s Law (Law of Iterated Expectations)</strong>: The overall expectation of <span class="math notranslate nohighlight">\( Y \)</span> can be computed by taking the expectation of its conditional expectation:
+<span class="math notranslate nohighlight">\(\mathbb{E}[\mathbb{E}[Y \mid X]] = \mathbb{E}[Y].\)</span></p></li>
+</ol>
+<div class="tip admonition">
+<p class="admonition-title">Example: Time until first goal in soccer</p>
+<p>Consider a soccer team that takes shots following a Poisson process with a rate of <span class="math notranslate nohighlight">\( \lambda \)</span> shots per minute. Each shot results in a goal with a probability <span class="math notranslate nohighlight">\( p \)</span>. Let <span class="math notranslate nohighlight">\( Y \)</span> represent the number of minutes until the first goal. The task is to determine <span class="math notranslate nohighlight">\( \mathbb{E}[Y] \)</span>, the expected time until the first goal.</p>
+<p>Hint: Let <span class="math notranslate nohighlight">\( N \)</span> be the number of shots taken until the first goal (including the shot that scores). Using Adam’s law (<span class="math notranslate nohighlight">\( \mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y \mid N]] \)</span>), we compute <span class="math notranslate nohighlight">\( \mathbb{E}[Y] \)</span> step by step.</p>
+<p><strong>Step 1: Compute <span class="math notranslate nohighlight">\( g(n) = \mathbb{E}[Y \mid N = n] \)</span>.</strong> Given <span class="math notranslate nohighlight">\( N = n \)</span>, the time <span class="math notranslate nohighlight">\( Y \)</span> until the first goal follows a Gamma distribution with shape parameter <span class="math notranslate nohighlight">\( n \)</span> and rate parameter <span class="math notranslate nohighlight">\( \lambda \)</span>. The expected value of a Gamma random variable is given by the formula <span class="math notranslate nohighlight">\( \frac{n}{\lambda} \)</span>. Therefore:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+g(n) = \mathbb{E}[Y \mid N = n] = \frac{n}{\lambda}.
+\end{equation*}\]</div>
+<p><strong>Step 2: Compute <span class="math notranslate nohighlight">\( \mathbb{E}[Y \mid N] \)</span> as a function of <span class="math notranslate nohighlight">\( N \)</span>.</strong> Replacing <span class="math notranslate nohighlight">\( n \)</span> with <span class="math notranslate nohighlight">\( N \)</span>, the conditional expectation becomes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+g(N) = \mathbb{E}[Y \mid N] = \frac{N}{\lambda}.
+\end{equation*}\]</div>
+<p><strong>Step 3: Use Adam’s law <span class="math notranslate nohighlight">\( \mathbb{E}[Y] \)</span>.</strong>
+Using Adam’s law (<span class="math notranslate nohighlight">\( \mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y \mid N]] \)</span>), we substitute <span class="math notranslate nohighlight">\( g(N) \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y] = \mathbb{E}[g(N)] = \mathbb{E}\left[\frac{N}{\lambda}\right] = \frac{1}{\lambda} \mathbb{E}[N].
+\end{equation*}\]</div>
+<p><strong>Step 4: Compute <span class="math notranslate nohighlight">\( \mathbb{E}[N] \)</span>.</strong> The random variable <span class="math notranslate nohighlight">\( N \)</span>, the number of shots until the first goal, follows a first success distribution with success probability <span class="math notranslate nohighlight">\( p \)</span>. Therefore, the expected number of trials until the first success is <span class="math notranslate nohighlight">\( \mathbb{E}[N] = \frac{1}{p} \)</span>.</p>
+<p>Substituting <span class="math notranslate nohighlight">\( \mathbb{E}[N] \)</span> into the expression for <span class="math notranslate nohighlight">\( \mathbb{E}[Y] \)</span>, we find:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[Y] = \frac{1}{\lambda} \cdot \frac{1}{p} = \frac{1}{\lambda p}.
+\end{equation*}\]</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Transformations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-expectation-given-an-event">8.1. Conditional expectation given an event</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-expectation-given-a-random-variable">8.2. Conditional expectation given a random variable</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-conditional-expectation">8.2.1. Properties of Conditional Expectation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ellen Vitercik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
