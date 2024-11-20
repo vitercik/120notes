@@ -178,7 +178,13 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Probability and counting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">3. Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">6. Joint distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">7. Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter8.html">8. Conditional expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">9. Bibliography</a></li>
 </ul>
 
     </div>
@@ -413,10 +419,6 @@ document.write(`
 <section id="sets">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.1. </span>Sets</a><a class="headerlink" href="#sets" title="Link to this heading">#</a></h2>
 <p>In probability, the primary goal is to determine how likely a specific <strong>set</strong> of outcomes is, given a particular experiment. In this section, we’ll focus on understanding the concept of <em>sets</em>, which form the foundation of probability theory.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This first section will admittedly be a bit dry, but bear with me! For the rest of the class, it’s necessary that we’re all completely comfortable with these definitions and notations.</p>
-</div>
 <p>A <em>set</em> is a collection of objects or elements. For example, the set <span class="math notranslate nohighlight">\(\{1, 3, 5, 7\}\)</span> contains four numbers, while the outcomes from flipping a coin twice form the set <span class="math notranslate nohighlight">\(\{HH, HT, TH, TT\}\)</span> (where <span class="math notranslate nohighlight">\(H\)</span> stands for Heads and <span class="math notranslate nohighlight">\(T\)</span> stands for Tails). There’s also the empty set, denoted <span class="math notranslate nohighlight">\(∅\)</span>, which contains no elements.</p>
 <p><strong>Subsets.</strong> If every element in the set <span class="math notranslate nohighlight">\(A\)</span> is also in the set <span class="math notranslate nohighlight">\(B\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> is called a <em>subset</em> of <span class="math notranslate nohighlight">\(B\)</span>, represented as <span class="math notranslate nohighlight">\(A \subseteq B\)</span>. For example, <span class="math notranslate nohighlight">\(\{HH, HT\} \subseteq \{HH, HT, TH, TT\}\)</span>.</p>
 <p><strong>Elements of sets.</strong> When we use the notation <span class="math notranslate nohighlight">\(a \in A\)</span>, it means that <span class="math notranslate nohighlight">\(a\)</span> is an element of set <span class="math notranslate nohighlight">\(A\)</span>. Meanwhile, the notation <span class="math notranslate nohighlight">\(a \notin A\)</span> means that <span class="math notranslate nohighlight">\(a\)</span> is not an element of <span class="math notranslate nohighlight">\(A\)</span>.   For example, <span class="math notranslate nohighlight">\(1 \in \{1, 3, 5, 7\}\)</span>, but <span class="math notranslate nohighlight">\(2 \notin \{1, 3, 5, 7\}\)</span>.</p>
