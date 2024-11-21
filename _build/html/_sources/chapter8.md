@@ -6,6 +6,13 @@
 
 *Conditional expectation* provides a way to compute the expected value of a RV given additional information about the occurrence of a specific event or the value of another variable. It refines the notion of expectation by incorporating this new information, enabling more precise predictions and insights into the behavior of RVs under specific conditions.
 
+For example, while $\mathbb{E}[\text{final exam grade}]$ would tell us, for a randomly chosen person the class, what we should expect their final exam grade to be, 
+\begin{align*}
+&\mathbb{E}[\text{final exam grade} \mid \text{used ChatGPT on the homework}] \text{ and}&\\
+&\mathbb{E}[\text{final exam grade} \mid \text{didn't use ChatGPT on the homework}]
+\end{align*}
+would tell us what we could expect a student's final exam score to be based on whether they used ChatGPT on the homework 😉. Of course, we can anticipate that the former will be significantly lower than the latter.
+
 ## Conditional expectation given an event
 
 We begin with the definition of conditional expectation given an event.

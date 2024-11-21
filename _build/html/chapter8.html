@@ -409,6 +409,13 @@ document.write(`
 </ul>
 </nav>
 <p><em>Conditional expectation</em> provides a way to compute the expected value of a RV given additional information about the occurrence of a specific event or the value of another variable. It refines the notion of expectation by incorporating this new information, enabling more precise predictions and insights into the behavior of RVs under specific conditions.</p>
+<p>For example, while <span class="math notranslate nohighlight">\(\mathbb{E}[\text{final exam grade}]\)</span> would tell us, for a randomly chosen person the class, what we should expect their final exam grade to be,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp;\mathbb{E}[\text{final exam grade} \mid \text{used ChatGPT on the homework}] \text{ and}&amp;\\
+&amp;\mathbb{E}[\text{final exam grade} \mid \text{didn't use ChatGPT on the homework}]
+\end{align*}\]</div>
+<p>would tell us what we could expect a student’s final exam score to be based on whether they used ChatGPT on the homework 😉. Of course, we can anticipate that the former will be significantly lower than the latter.</p>
 <section id="conditional-expectation-given-an-event">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">8.1. </span>Conditional expectation given an event</a><a class="headerlink" href="#conditional-expectation-given-an-event" title="Link to this heading">#</a></h2>
 <p>We begin with the definition of conditional expectation given an event.</p>
