@@ -209,7 +209,7 @@ By substituting $ X $ into the expression for $ g(x) $, we get:
 \end{equation*}
 ```
 
-### Properties of Conditional Expectation
+### Properties of conditional expectation
 
 1. **Dropping Independence**: If $ X $ and $ Y $ are independent, the conditional expectation $ \mathbb{E}[Y \mid X] $ simplifies to the unconditional expectation $ \mathbb{E}[Y] $. In other words, knowing $ X $ provides no additional information about $ Y $, so $ \mathbb{E}[Y \mid X] = \mathbb{E}[Y] $.
 2. **Linearity**: Conditional expectation is linear, meaning that for two random variables $ Y_1 $ and $ Y_2 $,
@@ -220,7 +220,7 @@ $\mathbb{E}[\mathbb{E}[Y \mid X]] = \mathbb{E}[Y].$
 ```{admonition} Example: Time until first goal in soccer
 :class: tip
 
-Consider a soccer team that takes shots following a Poisson process with a rate of $ \lambda $ shots per minute. Each shot results in a goal with a probability $ p $. Let $ Y $ represent the number of minutes until the first goal. The task is to determine $ \mathbb{E}[Y] $, the expected time until the first goal.
+Suppose a soccer team that takes shots following a Poisson process with a rate of $ \lambda $ shots per minute. Each shot results in a goal with a probability $ p $. Let $ Y $ represent the number of minutes until the first goal. The task is to determine $ \mathbb{E}[Y] $, the expected time until the first goal.
 
 Hint: Let $ N $ be the number of shots taken until the first goal (including the shot that scores). Using Adam’s law ($ \mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y \mid N]] $), we compute $ \mathbb{E}[Y] $ step by step.
 
@@ -230,7 +230,7 @@ Hint: Let $ N $ be the number of shots taken until the first goal (including the
 g(n) = \mathbb{E}[Y \mid N = n] = \frac{n}{\lambda}.
 \end{equation*}
 
-**Step 2: Compute $ \mathbb{E}[Y \mid N] $ as a function of $ N $.** Replacing $ n $ with $ N $, the conditional expectation becomes:
+**Step 2: Plug in $ N $.** Replacing $ n $ with $ N $, the conditional expectation becomes:
 \begin{equation*}
 g(N) = \mathbb{E}[Y \mid N] = \frac{N}{\lambda}.
 \end{equation*}
@@ -246,5 +246,298 @@ Using Adam's law ($ \mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y \mid N]] $), we subs
 Substituting $ \mathbb{E}[N] $ into the expression for $ \mathbb{E}[Y] $, we find:
 \begin{equation*}
 \mathbb{E}[Y] = \frac{1}{\lambda} \cdot \frac{1}{p} = \frac{1}{\lambda p}.
+\end{equation*}
+```
+
+## Conditional variance
+
+Conditional variance helps us understand the variability of a RV $Y$ within specific contexts or subgroups defined by another RV $X$. This is valuable because it allows us to distinguish between variability due to inherent randomness within groups as well as differences across groups.
+
+```{admonition} Conditional variance
+The **conditional variance** of $ Y $ given $ X $, denoted as $\text{Var}(Y \mid X)$, is defined as $\text{Var}(Y \mid X) = \mathbb{E}[Y^2 \mid X] - \mathbb{E}[Y \mid X]^2.$
+```
+
+**Eve's Law** connects the total variance of $ Y $ to both the conditional variance of $ Y $ given $ X $ and the variance of the conditional expectation of $ Y $. It is stated as:
+\begin{equation*}
+\text{Var}(Y) = \mathbb{E}[\text{Var}(Y \mid X)] + \text{Var}(\mathbb{E}[Y \mid X]).
+\end{equation*}
+Here, the first term, $\mathbb{E}[\text{Var}(Y \mid X)]$, captures the average variability within groups defined by $ X $, while the second term, $\text{Var}(\mathbb{E}[Y \mid X])$, measures the variability of group means.
+
+Eve’s law is easier to work with if we define the following functions:
+- $ h(x) = \text{Var}(Y \mid X = x) $: The variance of $ Y $ for a specific value of $ X = x $.
+- $ h(X) = \text{Var}(Y \mid X) $: The conditional variance of $ Y $ given $ X $, varying across values of $ X $.
+Using $ h(X) $ and $ g(X) = \mathbb{E}[Y \mid X] $, Eve's Law can also be rewritten as $\text{Var}(Y) = \mathbb{E}[h(X)] + \text{Var}(g(X)).$
+
+We illustrate the intuition behind Eve’s law with an example involving Olympic gymnastics teams, where:
+- $ X $ represents the country.
+- $ Y $ represents the height of gymnasts.
+
+There are two sources of variation in the height $ Y $:
+1. **Within-group variation**: $\mathbb{E}[\text{Var}(Y \mid X)] = \mathbb{E}[h(X)]$
+    - Within each country, people have different heights. The average variation in height within each country, $\mathbb{E}[\text{Var}(Y \mid X)]$, is the *within-group variation*.
+2. **Between-group variation**: $\text{Var}(\mathbb{E}[Y \mid X]) = \text{Var}(g(X))$
+    - Across countries, the average height is different. This variation in the average heights across countries, $\text{Var}(\mathbb{E}[Y \mid X])$, is the *between-group* variation.
+In this context, Eve's Law explains how the total variance in gymnast heights combines the within-group and between-group components.
+
+## Adam and Eve examples
+
+```{admonition} Example: Revenue of a store
+:class: tip
+
+This is Example 9.6.1 from {cite}`Blitzstein19:Introduction`.
+
+Consider a store where the number of customers $ N $ visiting on a given day is random. The key details are:
+-  $ N $, the number of customers, has a mean of $ \mathbb{E}[N] = 1000 $ and a variance of $ \text{Var}(N) = 100 $.
+-  Each customer spends a random amount $ Y_j $, where:
+  - $ Y_1, Y_2, \dots $ are independent and identically distributed.
+  - The spending per customer has a mean of $ \mathbb{E}[Y_j] = 5 $ and a variance of $ \text{Var}(Y_j) = 3 $.
+- The total revenue $ Y $ for the day is the sum of the spending by all customers:
+    \begin{equation*}
+    Y = \sum_{j=1}^N Y_j.
+    \end{equation*}
+
+**Question:** What is $\mathbb{E}[Y]$?
+
+**Step 1: Define the goal.** The total revenue $ Y $ depends on the random number of customers $ N $. Using the Adam’s law, we can express $ \mathbb{E}[Y] $ as $\mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y \mid N]] = \mathbb{E}[g(N)],$ where $ g(N) = \mathbb{E}[Y \mid N] $ is the expected total revenue given $ N $ customers.
+
+**Step 2: Compute $ g(n) $.** When the number of customers is fixed at $ N = n $, the total revenue is:
+\begin{equation*}
+g(n) = \mathbb{E}[Y \mid N = n] = \mathbb{E}\left[\sum_{j=1}^n Y_j \mid N = n\right].
+\end{equation*}
+Since the $ Y_j $'s are independent and identically distributed:
+\begin{equation*}
+g(n) = \mathbb{E}[Y_1] + \mathbb{E}[Y_2] + \cdots + \mathbb{E}[Y_n] = n \cdot \mathbb{E}[Y_j].
+\end{equation*}
+Substituting $ \mathbb{E}[Y_j] = 5 $, we have that $g(n) = 5n.$
+
+**Step 3: Plug in $N$.** Replacing $ n $ with the random variable $ N $, the conditional expectation becomes $g(N) = \mathbb{E}[Y \mid N] = 5N.$
+
+**Step 4: Apply Adam's Law.** Using Adam’s law, we compute $ \mathbb{E}[Y] $:
+\begin{equation*}
+\mathbb{E}[Y] = \mathbb{E}[\mathbb{E}[Y \mid N]] = \mathbb{E}[g(N)] = \mathbb{E}[5N].
+\end{equation*}
+Since $ 5 $ is a constant, we can factor it out: $\mathbb{E}[Y] = 5 \cdot \mathbb{E}[N].$
+Finally, substituting $ \mathbb{E}[N] = 1000 $, we have that $\mathbb{E}[Y] = 5 \cdot 1000 = 5000.$
+
+---
+
+**Question**: What is $\text{Var}(Y)$?
+
+**Step 1: Define the goal.** Using Eve's Law, we decompose $ \text{Var}(Y) $ into two components:
+\begin{equation*}
+\text{Var}(Y) = \mathbb{E}[h(N)] + \text{Var}(g(N)),
+\end{equation*}
+where $ h(N) = \text{Var}(Y \mid N) $ is the conditional variance of $ Y $ given $ N $, and $ g(N) = \mathbb{E}[Y \mid N] $ is the expected total revenue given $ N $.
+
+**Step 2: Compute $ h(n) = \text{Var}(Y \mid N = n) $.** When the number of customers is fixed at $ N = n $, the total revenue is:
+\begin{equation*}
+\text{Var}(Y \mid N = n) = \text{Var}\left(\sum_{j=1}^n Y_j \mid N = n\right).
+\end{equation*}
+Since the spending amounts $ Y_j $ are independent:
+\begin{equation*}
+\text{Var}(Y \mid N = n) = \text{Var}\left(\sum_{j=1}^n Y_j\right) = \sum_{j=1}^n \text{Var}(Y_j).
+\end{equation*}
+Substituting $ \text{Var}(Y_j) = 3 $, we have that $\text{Var}(Y \mid N = n) = 3n.$
+
+**Step 3: Plug in $ N $.** Replacing $ n $ with the random variable $ N $, the conditional variance becomes:
+\begin{equation*}
+h(N) = \text{Var}(Y \mid N) = 3N.
+\end{equation*}
+
+**Step 4: Apply Eve's Law.** Using Eve's Law, we compute the total variance:
+\begin{equation*}
+\text{Var}(Y) = \mathbb{E}[h(N)] + \text{Var}(g(N)).
+\end{equation*}
+Substituting $ h(N) = 3N $ and $ g(N) = 5N $, we have:
+\begin{equation*}
+\text{Var}(Y) = \mathbb{E}[3N] + \text{Var}(5N).
+\end{equation*}
+Simplifying further:
+\begin{equation*}
+\text{Var}(Y) = 3 \cdot \mathbb{E}[N] + 25 \cdot \text{Var}(N).
+\end{equation*}
+Substitute the values $ \mathbb{E}[N] = 1000 $ and $ \text{Var}(N) = 100 $:
+\begin{equation*}
+\text{Var}(Y) = 3 \cdot 1000 + 25 \cdot 100 = 3000 + 2500 = 5500.
+\end{equation*}
+```
+
+```{admonition} Example: Grand Slam career
+:class: tip
+
+Alice is a tennis player who will participate in $ N $ Grand Slam tournaments over her career. The number of tournaments she plays, $ N $, follows a geometric distribution:
+\begin{equation*}
+N \sim \text{Geom}\left(\frac{1}{350}\right).
+\end{equation*}
+For each tournament, Alice has a probability of $ \frac{1}{15} $ of winning, independent of all other tournaments. Let $ T $ represent the total number of Grand Slams she wins during her career.
+
+**Question:** What is the expected number of Grand Slam titles Alice will win, $ \mathbb{E}[T] $?
+
+**Step 1: Define the goal.** We can compute $ \mathbb{E}[T] $ using the law of total expectation:
+\begin{equation*}
+\mathbb{E}[T] = \mathbb{E}[\mathbb{E}[T \mid N]] = \mathbb{E}[g(N)],
+\end{equation*}
+where $ g(N) = \mathbb{E}[T \mid N] $ is the expected number of titles given that she plays $ N $ tournaments.
+
+**Step 2: Compute $ g(n) $.** When Alice plays exactly $ N = n $ tournaments, the number of titles she wins, $ T $, follows a $\text{Bin}\left(n, \frac{1}{15}\right)$ distribution. For a binomial random variable, the expected value is:
+\begin{equation*}
+\mathbb{E}[T \mid N = n] = n \cdot \frac{1}{15}.
+\end{equation*}
+Thus, $ g(n) = \frac{n}{15} $.
+
+**Step 3: Plug in $N$.** Substituting the random variable $ N $ into $ g(n) $, we find:
+\begin{equation*}
+g(N) = \mathbb{E}[T \mid N] = \frac{N}{15}.
+\end{equation*}
+
+**Step 4: Apply Adam’s Law.** Using Adam’s law:
+\begin{equation*}
+\mathbb{E}[T] = \mathbb{E}[\mathbb{E}[T \mid N]] = \mathbb{E}[g(N)] = \mathbb{E}\left[\frac{N}{15}\right].
+\end{equation*}
+Factoring out $ \frac{1}{15} $:
+\begin{equation*}
+\mathbb{E}[T] = \frac{1}{15} \mathbb{E}[N].
+\end{equation*}
+
+For a geometric random variable $ N $ with success probability $ p = \frac{1}{350} $, the expected value is:
+\begin{equation*}
+\mathbb{E}[N] = \frac{1 - p}{p} = \frac{1 - \frac{1}{350}}{\frac{1}{350}} = 349.
+\end{equation*}
+Substituting this into the equation for $ \mathbb{E}[T] $:
+\begin{equation*}
+\mathbb{E}[T] = \frac{1}{15} \cdot 349 = 23.27.
+\end{equation*}
+
+---
+
+**Question:** What is $ \text{Var}(T) $?
+
+**Step 1: Define the goal.** Using Eve's Law, we express the variance of $ T $ as:
+\begin{equation*}
+\text{Var}(T) = \mathbb{E}[h(N)] + \text{Var}(g(N)),
+\end{equation*}
+where $ h(N) = \text{Var}(T \mid N) $ is the conditional variance of $ T $ given $ N $, and $ g(N) = \mathbb{E}[T \mid N] $ is the expected number of wins given $ N $.
+
+**Step 2: Compute $ h(n) $.** When the number of tournaments is fixed at $ N = n $, the number of titles won, $ T $, follows the $\text{Bin}\left(n, \frac{1}{15}\right)$ distribution. The variance of a $\text{Bin}(n,p)$ random variable is $n \cdot p \cdot (1 - p).$ Substituting $ p = \frac{1}{15} $, we find:
+\begin{equation*}
+h(n) = \text{Var}(T \mid N = n) = n \cdot \frac{1}{15} \cdot \left(1 - \frac{1}{15}\right) = \frac{14n}{225}.
+\end{equation*}
+
+**Step 3: Plug in $N$.** Substituting $ N $ as the random variable, the conditional variance becomes:
+\begin{equation*}
+h(N) = \text{Var}(T \mid N) = \frac{14N}{225}.
+\end{equation*}
+
+**Step 4: Apply Eve's Law.** Using Eve's Law, we compute:
+\begin{equation*}
+\text{Var}(T) = \mathbb{E}[h(N)] + \text{Var}(g(N)).
+\end{equation*}
+Substituting $ h(N) = \frac{14N}{225} $ and $ g(N) = \frac{N}{15} $, we have:
+\begin{equation*}
+\text{Var}(T) = \mathbb{E}\left[\frac{14N}{225}\right] + \text{Var}\left(\frac{N}{15}\right).
+\end{equation*}
+For $ N \sim \text{Geom}(\frac{1}{350}) $, we know $ \mathbb{E}[N] = \frac{1 - \frac{1}{350}}{\frac{1}{350}} = 349 $. Substituting:
+\begin{equation*}
+\mathbb{E}[h(N)] = \frac{14}{225} \cdot \mathbb{E}[N] = \frac{14}{225} \cdot 349.
+\end{equation*}
+
+Moreover, 
+\begin{equation*}
+\text{Var}(N) = \frac{1 - \frac{1}{350}}{\left(\frac{1}{350}\right)^2} = 121,801.
+\end{equation*}
+Substituting:
+\begin{equation*}
+\text{Var}\left(\frac{N}{15}\right) = \frac{1}{15^2} \cdot \text{Var}(N) = \frac{1}{15^2} \cdot 121801 = \frac{121801}{225}.
+\end{equation*}
+
+Combining the two terms:
+\begin{equation*}
+\text{Var}(T) = \frac{14}{225} \cdot 349 + \frac{121801}{225} \approx 564.
+\end{equation*}
+```
+```{admonition} Example: Clustering sampling
+:class: tip
+
+This is Example 9.6.2 from {cite}`Blitzstein19:Introduction`.
+
+*Cluster sampling* is a method used in polling, such as for a presidential election, to gather insights about the population. In this process, a random state is first selected as the cluster for the poll. From the chosen state, a random sample of $ n $ individuals are selected, with replacement in this example. Each individual in the sample is asked about their political affiliation: say, Democrat or Republican.
+
+Let $ X $ represent the number of Democrats in the sample. If the proportion of Democrats in the chosen state is denoted by $ q $, then $ X $ follows a binomial distribution, $ X \sim \text{Bin}(n, q) $. However, since the true proportion of Democrats, $ q $, is unknown, it is modeled as a random variable. In this example, $ q $ is assumed to follow a uniform distribution on $[0, 1]$, i.e., $ Q \sim \text{Unif}(0, 1) $.
+
+**Question:** What is $\mathbb{E}[X]$?
+
+**Step 1: Define the goal.** To compute $ \mathbb{E}[X] $, we use the law of total expectation:
+\begin{equation*}
+\mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X \mid Q]] = \mathbb{E}[g(Q)],
+\end{equation*}
+where $ g(Q) = \mathbb{E}[X \mid Q] $ is the expected value of $ X $ given $ Q $.
+
+**Step 2: Compute $ g(q) $.** When the fraction of Democrats in the chosen state is $ Q = q $, $ X $ follows a binomial distribution. The expected value of a binomial random variable is:
+\begin{equation*}
+g(q) = \mathbb{E}[X \mid Q = q] = nq.
+\end{equation*}
+
+**Step 3: Plug in $Q$.** Substituting $ Q $ as the random variable, we find:
+\begin{equation*}
+g(Q) = \mathbb{E}[X \mid Q] = nQ.
+\end{equation*}
+
+**Step 4: Apply Adam's Law.** Using Adam’s law:
+\begin{equation*}
+\mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X \mid Q]] = \mathbb{E}[g(Q)] = \mathbb{E}[nQ].
+\end{equation*}
+Factoring out $ n $, we have that $\mathbb{E}[X] = n \mathbb{E}[Q].$ Since $ Q \sim \text{Unif}(0, 1) $, the expected value of $ Q $ is $\mathbb{E}[Q] = \frac{1}{2}.$ Thus:
+\begin{equation*}
+\mathbb{E}[X] = n \cdot \frac{1}{2} = \frac{n}{2}.
+\end{equation*}
+
+---
+
+**Question:** What is $\text{Var}(X)$?
+
+**Step 1: Define the goal.** To compute $ \text{Var}(X) $, we use Eve's Law:
+\begin{equation*}
+\text{Var}(X) = \mathbb{E}[h(Q)] + \text{Var}(g(Q)),
+\end{equation*}
+where $ h(Q) = \text{Var}(X \mid Q) $ is the conditional variance of $ X $ given $ Q $, and $ g(Q) = \mathbb{E}[X \mid Q] $.
+
+**Step 2: Compute $ h(q) $.** When $ Q = q $, $ X$ is a binomial random variable, and the variance of a binomial random variable is:
+\begin{equation*}
+h(q) = \text{Var}(X \mid Q = q) = nq(1 - q).
+\end{equation*}
+
+**Step 3: Plug in $Q$.** Substituting $ Q $ as the random variable, we have:
+\begin{equation*}
+h(Q) = \text{Var}(X \mid Q) = nQ(1 - Q).
+\end{equation*}
+
+**Step 4: Apply Eve's Law.** Using Eve's Law:
+\begin{equation*}
+\text{Var}(X) = \mathbb{E}[h(Q)] + \text{Var}(g(Q)).
+\end{equation*}
+Substituting $ h(Q) = nQ(1 - Q) $ and $ g(Q) = nQ $:
+\begin{equation*}
+\text{Var}(X) = \mathbb{E}\left[nQ(1 - Q)\right] + \text{Var}(nQ).
+\end{equation*}
+Factoring out constants:
+\begin{equation*}
+\text{Var}(X) = n\left(\mathbb{E}[Q] - \mathbb{E}[Q^2]\right) + n^2\text{Var}(Q).
+\end{equation*}
+For $ Q \sim \text{Unif}(0, 1) $:
+\begin{equation*}
+\mathbb{E}[Q] = \frac{1}{2}, \quad \text{Var}(Q) = \frac{1}{12}.
+\end{equation*}
+From the relationship $ \text{Var}(Q) = \mathbb{E}[Q^2] - \mathbb{E}[Q]^2 $:
+\begin{equation*}
+\frac{1}{12} = \mathbb{E}[Q^2] - \left(\frac{1}{2}\right)^2.
+\end{equation*}
+Solving for $ \mathbb{E}[Q^2] $:
+\begin{equation*}
+\mathbb{E}[Q^2] = \frac{1}{3}.
+\end{equation*}
+
+Adding the two components:
+\begin{equation*}
+\text{Var}(X) = \frac{n}{6} + \frac{n^2}{12}.
 \end{equation*}
 ```
