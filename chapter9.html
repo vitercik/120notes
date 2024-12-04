@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Inequalities and limit theorems &#8212; MS&amp;E 120 Course Reader</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter9';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="10. Bibliography" href="bibliography.html" />
+    <link rel="prev" title="8. Conditional expectation" href="chapter8.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MS&E 120 Course Reader</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Stanford MS&E 120: Intro to Probability
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Probability and counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Conditional probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Random variables and their distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter6.html">6. Joint distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">7. Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter8.html">8. Conditional expectation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Inequalities and limit theorems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter9.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Inequalities and limit theorems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inequalities">9.1. Inequalities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-mean-and-variance">9.2. Sample mean and variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">9.3. Law of Large Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">9.4. Central Limit Theorem</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="inequalities-and-limit-theorems">
+<h1><span class="section-number">9. </span>Inequalities and limit theorems<a class="headerlink" href="#inequalities-and-limit-theorems" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#inequalities" id="id5">Inequalities</a></p></li>
+<li><p><a class="reference internal" href="#sample-mean-and-variance" id="id6">Sample mean and variance</a></p></li>
+<li><p><a class="reference internal" href="#law-of-large-numbers" id="id7">Law of Large Numbers</a></p></li>
+<li><p><a class="reference internal" href="#central-limit-theorem" id="id8">Central Limit Theorem</a></p></li>
+</ul>
+</nav>
+<section id="inequalities">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">9.1. </span>Inequalities</a><a class="headerlink" href="#inequalities" title="Link to this heading">#</a></h2>
+<p>In this section, we’ll cover some tools for back-of-the-envelope estimations of how likely certain events are without knowing the full probability distribution of a random variable. Two fundamental inequalities—Markov’s and Chebyshev’s—are particularly useful for this purpose.</p>
+<div class="admonition-markov-s-inequality admonition">
+<p class="admonition-title">Markov’s inequality</p>
+<p>Markov’s inequality states that for any <span class="math notranslate nohighlight">\( a &gt; 0 \)</span>, the probability that the absolute value of a random variable <span class="math notranslate nohighlight">\( X \)</span> exceeds <span class="math notranslate nohighlight">\( a \)</span> is bounded by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[|X| \geq a] \leq \frac{\mathbb{E}[|X|]}{a}.
+\end{equation*}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Ages</p>
+<p>Suppose we have a group of 100 people. Let <span class="math notranslate nohighlight">\(X\)</span> be a RV that represents a randomly chosen person’s age.</p>
+<p><strong>Question 1:</strong> Is it possible for 95 people to be younger than the average age? Yes, for example, we could have 95 infants aged 0 and 5 young adults aged 21. The average age is <span class="math notranslate nohighlight">\(\frac{21}{100}\)</span>, and the 95 infants are all younger than this.</p>
+<p><strong>Question 2:</strong> Can at least 51 people be older than twice the average age? We can answer this question by ordering the ages as <span class="math notranslate nohighlight">\( x_1 \geq x_2 \geq \cdots \geq x_{100} \)</span>. By definition,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = \sum_x x \mathbb{P}[X = x] = \frac{1}{100} \sum_{i=1}^{100} x_i = \frac{1}{100} \left( \sum_{i=1}^{51} x_i + \sum_{i=52}^{100} x_i \right).
+\end{equation*}\]</div>
+<p>Assume that at least 51 people are older than twice the average age, so <span class="math notranslate nohighlight">\( x_i \geq 2\mathbb{E}[X] \)</span> for <span class="math notranslate nohighlight">\( i = 1, \dots, 51 \)</span>. Substituting this:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] \geq \frac{1}{100} \left( \sum_{i=1}^{51} 2\mathbb{E}[X] + \sum_{i=52}^{100} x_i \right) = \frac{1}{100} \left( 102\mathbb{E}[X] + \sum_{i=52}^{100} X_i \right) &gt; \mathbb{E}[X].
+\end{equation*}\]</div>
+<p>We’ve arrived at a contradiction! Thus, it is not possible for at least 51 people to be older than twice the average age.</p>
+<p>We can also answer this question using Markov’s inequality. The fraction of people whose age is at least twice the average is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\text{# people with age } x_i \geq 2\mathbb{E}[X]}{100} = \mathbb{P}[X \geq 2\mathbb{E}[X]] \leq \frac{\mathbb{E}[X]}{2\mathbb{E}[X]} = \frac{1}{2}.
+\end{equation*}\]</div>
+<p>Therefore, at most 50 people can have an age that is at least twice the average.</p>
+</div>
+<p>Chebyshev’s inequality provides a stronger bound by incorporating the variance of the random variable.</p>
+<div class="admonition-chebyshev-s-inequality admonition">
+<p class="admonition-title">Chebyshev’s inequality</p>
+<p>Let <span class="math notranslate nohighlight">\( \mu = \mathbb{E}[X] \)</span> and <span class="math notranslate nohighlight">\( \sigma^2 = \text{Var}(X) \)</span>. For any <span class="math notranslate nohighlight">\( a &gt; 0 \)</span>, Chebyshev’s inequality states:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{P}[|X - \mu| \geq a] \leq \frac{\sigma^2}{a^2}.
+\end{equation*}\]</div>
+</div>
+<p>This inequality quantifies how spread out the values of <span class="math notranslate nohighlight">\( X \)</span> can be from its mean <span class="math notranslate nohighlight">\( \mu \)</span>. For example, it ensures that most of the probability mass is concentrated near the mean when the variance is small.</p>
+</section>
+<section id="sample-mean-and-variance">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">9.2. </span>Sample mean and variance</a><a class="headerlink" href="#sample-mean-and-variance" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\( X_1, X_2, \dots, X_n \)</span> represent random variables (RVs) that are identically distributed with an <em>unknown</em> mean <span class="math notranslate nohighlight">\( \mu \)</span> and variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>, i.e.,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X_1] = \mathbb{E}[X_2] = \cdots = \mathbb{E}[X_n] = \mu \quad \text{and} \quad \text{Var}(X_1) = \text{Var}(X_2) = \cdots = \text{Var}(X_n) = \sigma^2.
+\end{equation*}\]</div>
+<p>We will motivate this section’s key concepts—sample mean and variance—through an example of tracking a stock price’s movement. Suppose <span class="math notranslate nohighlight">\( X_i \)</span> is defined as follows:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_i =
+\begin{cases}
+1 &amp; \text{if the stock price increases on day } i, \\
+0 &amp; \text{otherwise.}
+\end{cases}
+\end{equation*}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\( X_1, X_2, \dots, X_n \)</span> follow a Bernoulli distribution with parameter <span class="math notranslate nohighlight">\( p \)</span>, where <span class="math notranslate nohighlight">\( p = \mathbb{P}[X_i = 1] \)</span> represents the probability of a price increase. However, suppose <span class="math notranslate nohighlight">\( p \)</span> is unknown. For instance, if <span class="math notranslate nohighlight">\( n = 5 \)</span> and the observed values are <span class="math notranslate nohighlight">\( X_1 = 1, X_2 = 1, X_3 = 0, X_4 = 1, X_5 = 0 \)</span>, the sample mean</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{1}{5}(X_1 + X_2 + X_3 + X_4 + X_5) = \frac{3}{5}
+\end{equation*}\]</div>
+<p>provides a reasonable estimate for <span class="math notranslate nohighlight">\( p \)</span>.</p>
+<div class="admonition-sample-mean admonition">
+<p class="admonition-title">Sample mean</p>
+<p>The sample mean is defined as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\bar{X}_n = \frac{1}{n}(X_1 + X_2 + \cdots + X_n).
+\end{equation*}\]</div>
+</div>
+<p>Its expected value is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{E}[\bar{X}_n] &amp;= \mathbb{E}\left[\frac{1}{n}(X_1 + X_2 + \cdots + X_n)\right]\\
+&amp;= \frac{1}{n}\mathbb{E}[X_1 + X_2 + \cdots + X_n]\\
+&amp;= \frac{1}{n}(\mathbb{E}[X_1] + \mathbb{E}[X_2] + \cdots + \mathbb{E}[X_n])\\
+&amp;= \mu.
+\end{align*}\]</div>
+<p>We call <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> an <em>unbiased estimator</em> of <span class="math notranslate nohighlight">\( \mu \)</span>, meaning its expectation equals <span class="math notranslate nohighlight">\( \mu \)</span>.</p>
+<div class="admonition-sample-variance admonition">
+<p class="admonition-title">Sample variance</p>
+<p>The sample variance is defined as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S_n^2 = \frac{1}{n-1} \sum_{j=1}^n (X_j - \bar{X}_n)^2.
+\end{equation*}\]</div>
+</div>
+<p>Using the earlier example where <span class="math notranslate nohighlight">\( n = 5 \)</span> and <span class="math notranslate nohighlight">\( \bar{X}_n = \frac{3}{5} \)</span>, the calculation for <span class="math notranslate nohighlight">\( S_n^2 \)</span> becomes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S_n^2 = \frac{1}{4} \left(\left(1 - \frac{3}{5}\right)^2 + \left(1 - \frac{3}{5}\right)^2 + \left(0 - \frac{3}{5}\right)^2 + \left(1 - \frac{3}{5}\right)^2 + \left(0 - \frac{3}{5}\right)^2\right) = \frac{7}{20}.
+\end{equation*}\]</div>
+<p>The sample variance <span class="math notranslate nohighlight">\( S_n^2 \)</span> is a good estimator for the population variance <span class="math notranslate nohighlight">\( \sigma^2 \)</span>. Importantly, <span class="math notranslate nohighlight">\( \mathbb{E}[S_n^2] = \sigma^2 \)</span>, so <span class="math notranslate nohighlight">\( S_n^2 \)</span> is an <em>unbiased estimator</em> of <span class="math notranslate nohighlight">\( \sigma^2 \)</span>.</p>
+</section>
+<section id="law-of-large-numbers">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">9.3. </span>Law of Large Numbers</a><a class="headerlink" href="#law-of-large-numbers" title="Link to this heading">#</a></h2>
+<p>The Law of Large Numbers (LLN) states that as the sample size <span class="math notranslate nohighlight">\( n \)</span> approaches infinity, the sample mean <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> converges to its expected value <span class="math notranslate nohighlight">\(\mathbb{E}\left[ \bar{X}_n\right] = \mu \)</span> with probability 1. In other words, given a sufficiently large number of observations, the average of those observations will almost surely approximate the expected value of the underlying distribution. The LLN is illustrated in <a class="reference internal" href="#lln"><span class="std std-numref">Fig. 9.1</span></a>.</p>
+<figure class="align-center" id="lln">
+<a class="reference internal image-reference" href="_images/LLN.png"><img alt="_images/LLN.png" src="_images/LLN.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text">This is Figure 10.2 from <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>, illustrating the LLN. The figure’s caption in the textbook: “let <span class="math notranslate nohighlight">\( X_1, X_2, \dots \)</span> be i.i.d. <span class="math notranslate nohighlight">\( \text{Bern}\left(\frac{1}{2}\right) \)</span>. Interpreting the <span class="math notranslate nohighlight">\( X_j \)</span> as indicators of Heads in a string of fair coin tosses, <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> represents the proportion of Heads after <span class="math notranslate nohighlight">\( n \)</span> tosses. The [LLN] states that, with probability 1, when the sequence of RVs <span class="math notranslate nohighlight">\( \bar{X}_1, \bar{X}_2, \bar{X}_3, \dots \)</span> crystallizes into a sequence of numbers, the sequence of numbers will converge to <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>. Mathematically, there are bizarre outcomes such as <span class="math notranslate nohighlight">\(HHHHHH\dots \)</span>  and <span class="math notranslate nohighlight">\(HHTHHTHHTHHT\dots\)</span>,  but collectively they have zero probability of occurring. […] As an illustration, we simulated six sequences of fair coin tosses” (illustrated by the six different colors in the figure) “and, for each sequence, computed <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> as a function of <span class="math notranslate nohighlight">\( n \)</span>. Of course, in real life, we cannot simulate infinitely many coin tosses, so we stopped after 300 tosses. [This figure] plots <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> as a function of <span class="math notranslate nohighlight">\( n \)</span> for each sequence. At the beginning, we can see that there is quite a bit of fluctuation in the running proportion of Heads. As the number of coin tosses increases, however <span class="math notranslate nohighlight">\(\text{Var}(\bar{X}_n)\)</span> gets smaller and smaller, and <span class="math notranslate nohighlight">\(\bar{X}_n\)</span> approaches <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>.”</span><a class="headerlink" href="#lln" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="central-limit-theorem">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">9.4. </span>Central Limit Theorem</a><a class="headerlink" href="#central-limit-theorem" title="Link to this heading">#</a></h2>
+<p>According to the LLN, as <span class="math notranslate nohighlight">\(n \to \infty\)</span>, the sample mean <span class="math notranslate nohighlight">\(\bar{X}_n\)</span> converges to the constant value <span class="math notranslate nohighlight">\(\mathbb{E}\left[ \bar{X}_n\right]\)</span>, but as we can see from <a class="reference internal" href="#lln"><span class="std std-numref">Fig. 9.1</span></a>, for intermediate values of <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\bar{X}_n\)</span> still exhibits random behavior. This raises the question: what is the distribution of <span class="math notranslate nohighlight">\(\bar{X}_n\)</span>? This question is answered by the central limit theorem (CLT), a cornerstone of probability and statistics.</p>
+<div class="admonition-central-limit-theorem admonition">
+<p class="admonition-title">Central limit theorem</p>
+<p>Let <span class="math notranslate nohighlight">\( X_1, X_2, \dots, X_n \)</span> be random variables drawn from the same arbitrary distribution with expected value <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X_1] = \mathbb{E}[X_2] = \cdots = \mathbb{E}[X_n] = \mu, \quad \text{and} \quad \text{Var}(X_1) = \text{Var}(X_2) = \cdots = \text{Var}(X_n) = \sigma^2.
+\end{equation*}\]</div>
+<p>Even if the underlying distribution of <span class="math notranslate nohighlight">\( X_1, \dots, X_n \)</span> is not normal, the central limit theorem guarantees that, for large <span class="math notranslate nohighlight">\( n \)</span>, the distribution of the sample mean:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i
+\end{equation*}\]</div>
+<p>is approximately normal. Specifically, <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> is approximately distributed as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right).
+\end{equation*}\]</div>
+</div>
+<p>The central limit theorem is illustrated in <a class="reference internal" href="#clt"><span class="std std-numref">Fig. 9.2</span></a>.</p>
+<figure class="align-center" id="clt">
+<a class="reference internal image-reference" href="_images/CLT.png"><img alt="_images/CLT.png" src="_images/CLT.png" style="width: 700px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9.2 </span><span class="caption-text">This is Figure 10.5 from <span id="id2">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>, illustrating the central limit theorem. The figure’s caption in the textbook: “Histograms of the distribution of <span class="math notranslate nohighlight">\(\bar{X}_n\)</span> for different starting distributions of the <span class="math notranslate nohighlight">\(X_j\)</span> (indicated by the rows) and increasing values of <span class="math notranslate nohighlight">\(n\)</span> (indicated by the columns). Each histogram is based on 10,000 simulated values of <span class="math notranslate nohighlight">\(\bar{X}_n\)</span>. Regardless of the starting distribution of the <span class="math notranslate nohighlight">\(X_j\)</span>, the distribution of <span class="math notranslate nohighlight">\(\bar{X}_n\)</span> approaches a Normal distribution as <span class="math notranslate nohighlight">\(n\)</span> grows.”</span><a class="headerlink" href="#clt" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Example: Bernoulli</p>
+<p>Suppose <span class="math notranslate nohighlight">\( X_1, \dots, X_n \sim \text{Bern}(p) \)</span> with <span class="math notranslate nohighlight">\( p = \frac{1}{2} \)</span>. For each <span class="math notranslate nohighlight">\( X \)</span>, we have:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb{E}[X] = p = \frac{1}{2}, \quad \text{Var}(X) = p(1-p) = \frac{1}{4}.
+\end{equation*}\]</div>
+<p>Now, define the sample mean:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\bar{X}_n = \frac{1}{n}(X_1 + \cdots + X_n).
+\end{equation*}\]</div>
+<p>By the Central Limit Theorem, when <span class="math notranslate nohighlight">\( n \)</span> is large, <span class="math notranslate nohighlight">\( \bar{X}_n \)</span> is approximately distributed as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathcal{N}\left(\frac{1}{2}, \frac{1}{4n}\right).
+\end{equation*}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Binomial</p>
+<p>This is Example 10.3.3 from <span id="id3">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\( Y \sim \text{Bin}\left(n, \frac{1}{2}\right) \)</span>, where <span class="math notranslate nohighlight">\( n \)</span> is large. The binomial random variable <span class="math notranslate nohighlight">\( Y \)</span> can be expressed as the sum of independent Bernoulli random variables:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y = X_1 + \cdots + X_n, \quad \text{where } X_1, \dots, X_n \sim \text{Bern}\left(\frac{1}{2}\right).
+\end{equation*}\]</div>
+<p>Using the relationship <span class="math notranslate nohighlight">\( Y = n\bar{X}_n \)</span>, the normalized variable <span class="math notranslate nohighlight">\( \bar{X}_n = \frac{1}{n} Y \)</span> is approximately distributed as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathcal{N}\left(\frac{1}{2}, \frac{1}{4n}\right).
+\end{equation*}\]</div>
+<p>Consequently, <span class="math notranslate nohighlight">\( Y \)</span> itself is approximately distributed as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathcal{N}\left(\frac{n}{2}, \frac{n}{4}\right).
+\end{equation*}\]</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example: Log-normal</p>
+<p>This is Example 10.3.7 from <span id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Joseph K Blitzstein and Jessica Hwang. Introduction to probability. Chapman and Hall/CRC, 2019.">BH19</a>]</span>.</p>
+<p>In Section 7.1, I claimed that if <span class="math notranslate nohighlight">\(X \sim N(0,1)\)</span> is normally distributed, then <span class="math notranslate nohighlight">\(Y = e^X\)</span> is often used to model the evolution of stock prices. In this example, we will see why this is!</p>
+<p>Suppose a stock price either rises by 70% or falls by 50% each day, with both outcomes equally likely. Let <span class="math notranslate nohighlight">\( Y_n \)</span> denote the stock price after <span class="math notranslate nohighlight">\( n = 365 \)</span> days, starting with an initial price <span class="math notranslate nohighlight">\( Y_0 = 100 \)</span>. The goal is to use the Central Limit Theorem (CLT) to demonstrate that <span class="math notranslate nohighlight">\( \log Y_n \)</span> is approximately normally distributed. Specifically, this means that <span class="math notranslate nohighlight">\( Y_n \)</span> can be expressed as <span class="math notranslate nohighlight">\( Y_n \approx e^X \)</span>, where <span class="math notranslate nohighlight">\( X \)</span> is drawn from a normal distribution.</p>
+<p>Let <span class="math notranslate nohighlight">\( U_n \)</span> denote the number of days the stock price rises within the first <span class="math notranslate nohighlight">\( n \)</span> days. Consequently, <span class="math notranslate nohighlight">\( n - U_n \)</span> represents the number of days the stock price falls. The stock price after the first day, <span class="math notranslate nohighlight">\( Y_1 \)</span>, is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_1 =
+\begin{cases}
+Y_0 \cdot 1.7 &amp; \text{if the stock rises on day 1 (i.e., $ U_1 = 1 $)}, \\
+Y_0 \cdot 0.5 &amp; \text{if the stock falls on day 1 (i.e., $ U_1 = 0 $)}.
+\end{cases}
+\end{equation*}\]</div>
+<p>This can be rewritten as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_1 = Y_0 \cdot (1.7)^{U_1} \cdot (0.5)^{1 - U_1}.
+\end{equation*}\]</div>
+<p>By generalizing this to <span class="math notranslate nohighlight">\( n \)</span> days, the stock price after <span class="math notranslate nohighlight">\( n \)</span> days becomes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_n = Y_0 \cdot (1.7)^{U_n} \cdot (0.5)^{n - U_n}.
+\end{equation*}\]</div>
+<p>Taking the logarithm of <span class="math notranslate nohighlight">\( Y_n \)</span>, we use the properties of logarithms (<span class="math notranslate nohighlight">\( \log(ab) = \log a + \log b \)</span> and <span class="math notranslate nohighlight">\( \log(a^b) = b \log a \)</span>) to write:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\log Y_n = \log Y_0 + U_n \log 1.7 + (n - U_n) \log 0.5.
+\end{equation*}\]</div>
+<p>Combining terms involving <span class="math notranslate nohighlight">\( U_n \)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\log Y_n = \log Y_0 + U_n \log 3.4 + n \log 0.5.
+\end{equation*}\]</div>
+<p>Letting <span class="math notranslate nohighlight">\(C = \log Y_0 + n \log 0.5 \)</span> represent a constant (i.e., it is not random), we can write this as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\log Y_n = U_n \log 3.4 + C.
+\end{equation*}\]</div>
+<p>The random variable <span class="math notranslate nohighlight">\( U_n \)</span>, which counts the number of days the stock rises, follows a binomial distribution:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+U_n \sim \text{Bin}\left(n, \frac{1}{2}\right).
+\end{equation*}\]</div>
+<p>For large <span class="math notranslate nohighlight">\( n \)</span>, the Central Limit Theorem guarantees that <span class="math notranslate nohighlight">\( U_n \)</span> can be approximated by a normal distribution:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+U_n \sim \mathcal{N}\left(\frac{n}{2}, \frac{n}{4}\right).
+\end{equation*}\]</div>
+<p>Since <span class="math notranslate nohighlight">\( \log Y_n \)</span> is a linear transformation of <span class="math notranslate nohighlight">\( U_n \)</span>, and a linear transformation of a normally distributed random variable remains normal, we conclude that <span class="math notranslate nohighlight">\( \log Y_n \)</span> is approximately normally distributed.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter8.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Conditional expectation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inequalities">9.1. Inequalities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-mean-and-variance">9.2. Sample mean and variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">9.3. Law of Large Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">9.4. Central Limit Theorem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ellen Vitercik
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
