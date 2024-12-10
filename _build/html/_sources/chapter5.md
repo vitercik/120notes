@@ -18,7 +18,7 @@ width: 225px
 align: center
 ---
 
-This is Figure 5.2 from {cite}`Blitzstein19:Introduction`. It illustrates the PDF of a continuous RV $X$. To calculuate $\mathbb{P}[-2 \leq X \leq 2]$, we compute the integral of the function between $-2$ and $2$, which is the shaded region.
+This is Figure 5.2 from {cite}`Blitzstein19:Introduction`. It illustrates the PDF of a continuous RV $X$. To calculate $\mathbb{P}[-2 \leq X \leq 2]$, we compute the integral of the function between $-2$ and $2$, which is the shaded region.
 ```
 To be a valid PDF, it must be the case that $f_X(x) \geq 0$ and $\int_{-\infty}^\infty f_X(x) \, dx = 1$.
 
