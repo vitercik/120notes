@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Bibliography" href="bibliography.html" />
+    <link rel="next" title="7. Transformations" href="chapter7.html" />
     <link rel="prev" title="5. Continuous random variables" href="chapter5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,7 +182,10 @@
 <li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Expectation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Continuous random variables</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Joint distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">7. Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter7.html">7. Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter8.html">8. Conditional expectation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter9.html">9. Inequalities and limit theorems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">10. Bibliography</a></li>
 </ul>
 
     </div>
@@ -490,8 +493,8 @@ f_X(x) = \mathbb{P}[X = x] = \sum_y \mathbb{P}[X = x, Y = y] = \sum_y f_{X,Y}(x,
 <p class="admonition-title">Example: Basketball free throws</p>
 <p>Suppose we want to analyze the likelihood of a player making two consecutive free throws in a game. Let <span class="math notranslate nohighlight">\( X \)</span> be an indicator variable representing whether a player makes the first free throw (1 if they make it, 0 if they miss), and <span class="math notranslate nohighlight">\( Y \)</span> is an indicator variable representing whether they make the second free throw.</p>
 <p>The joint PMF of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is given in <a class="reference internal" href="#free-throw"><span class="std std-numref">Table 6.1</span></a>.</p>
-<p>The marginal PMF of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(f_X(0) = \mathbb{P}[X = 0] = f_{X,Y}(0,0) + f_{X,Y}(0,1) = \frac{25}{100}\)</span> and <span class="math notranslate nohighlight">\(f_X(1) = \mathbb{P}[X = 1] = f_{X,Y}(1,0) + f_{X,Y}(1,1) = \frac{75}{100}\)</span>. Similarly, the marginal PMF of <span class="math notranslate nohighlight">\(Y\)</span> is <span class="math notranslate nohighlight">\(f_Y(0) = f_{X,Y}(0,0) + f_{X,Y}(1,0) = \frac{8}{100}\)</span> and <span class="math notranslate nohighlight">\(f_Y(1) = f_{X,Y}(0,1) + f_{X,Y}(1,1) = \frac{92}{100}\)</span>.</p>
-<p>Finally, the conditional PMF of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y = 0\)</span>, for example, is <span class="math notranslate nohighlight">\(\mathbb{P}[X = 0 \mid Y = 0] = \frac{f_{X,Y}(0,0)}{f_Y(0)} = \frac{5/100}{8/100} = \frac{5}{8}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}[X = 1 \mid Y = 0] = 1- \frac{5}{8} = \frac{3}{8}.\)</span></p>
+<p>The marginal PMF of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(f_X(0) = \mathbb{P}[X = 0] = f_{X,Y}(0,0) + f_{X,Y}(0,1) = \frac{75}{100}\)</span> and <span class="math notranslate nohighlight">\(f_X(1) = \mathbb{P}[X = 1] = f_{X,Y}(1,0) + f_{X,Y}(1,1) = \frac{25}{100}\)</span>. Similarly, the marginal PMF of <span class="math notranslate nohighlight">\(Y\)</span> is <span class="math notranslate nohighlight">\(f_Y(0) = f_{X,Y}(0,0) + f_{X,Y}(1,0) = \frac{92}{100}\)</span> and <span class="math notranslate nohighlight">\(f_Y(1) = f_{X,Y}(0,1) + f_{X,Y}(1,1) = \frac{8}{100}\)</span>.</p>
+<p>Finally, the conditional PMF of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y = 0\)</span>, for example, is <span class="math notranslate nohighlight">\(\mathbb{P}[X = 0 \mid Y = 0] = \frac{f_{X,Y}(0,0)}{f_Y(0)} = \frac{72/100}{92/100} = \frac{18}{23}\)</span> and <span class="math notranslate nohighlight">\(\mathbb{P}[X = 1 \mid Y = 0] = 1- \frac{18}{23} = \frac{5}{23}.\)</span></p>
 </div>
 <div class="admonition-independence admonition">
 <p class="admonition-title">Independence</p>
@@ -851,11 +854,11 @@ t_1Z_1 + t_2Z_2 \sim N\left(t_1\mu_1 + t_2\mu_2, t_1^2\sigma_1^2 + t_2^2\sigma_2
       </div>
     </a>
     <a class="right-next"
-       href="bibliography.html"
+       href="chapter7.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Transformations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

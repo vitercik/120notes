@@ -88,9 +88,9 @@ Suppose we want to analyze the likelihood of a player making two consecutive fre
 
 The joint PMF of $X$ and $Y$ is given in {numref}`free_throw`.
 
-The marginal PMF of $X$ is $f_X(0) = \mathbb{P}[X = 0] = f_{X,Y}(0,0) + f_{X,Y}(0,1) = \frac{25}{100}$ and $f_X(1) = \mathbb{P}[X = 1] = f_{X,Y}(1,0) + f_{X,Y}(1,1) = \frac{75}{100}$. Similarly, the marginal PMF of $Y$ is $f_Y(0) = f_{X,Y}(0,0) + f_{X,Y}(1,0) = \frac{8}{100}$ and $f_Y(1) = f_{X,Y}(0,1) + f_{X,Y}(1,1) = \frac{92}{100}$.
+The marginal PMF of $X$ is $f_X(0) = \mathbb{P}[X = 0] = f_{X,Y}(0,0) + f_{X,Y}(0,1) = \frac{75}{100}$ and $f_X(1) = \mathbb{P}[X = 1] = f_{X,Y}(1,0) + f_{X,Y}(1,1) = \frac{25}{100}$. Similarly, the marginal PMF of $Y$ is $f_Y(0) = f_{X,Y}(0,0) + f_{X,Y}(1,0) = \frac{92}{100}$ and $f_Y(1) = f_{X,Y}(0,1) + f_{X,Y}(1,1) = \frac{8}{100}$.
 
-Finally, the conditional PMF of $X$ given $Y = 0$, for example, is $\mathbb{P}[X = 0 \mid Y = 0] = \frac{f_{X,Y}(0,0)}{f_Y(0)} = \frac{5/100}{8/100} = \frac{5}{8}$ and $\mathbb{P}[X = 1 \mid Y = 0] = 1- \frac{5}{8} = \frac{3}{8}.$
+Finally, the conditional PMF of $X$ given $Y = 0$, for example, is $\mathbb{P}[X = 0 \mid Y = 0] = \frac{f_{X,Y}(0,0)}{f_Y(0)} = \frac{72/100}{92/100} = \frac{18}{23}$ and $\mathbb{P}[X = 1 \mid Y = 0] = 1- \frac{18}{23} = \frac{5}{23}.$
 ```
 
 ```{admonition} Independence
